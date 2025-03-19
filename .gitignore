@@ -9,8 +9,8 @@ lerna-debug.log*
 
 node_modules
 .DS_Store
-dist
-dist-ssr
+# dist (we need the dist folder to be included in the repo so we can share the compiled code between projects)
+# dist-ssr
 coverage
 *.local
 
