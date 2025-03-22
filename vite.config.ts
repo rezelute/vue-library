@@ -39,7 +39,6 @@ export default defineConfig({
          entry: path.resolve(__dirname, "src/main.ts"),
          name: "SharedVueLibrary",
          formats: ["es"],
-         // fileName: (format) => `index.${format}.js`,
       },
       rollupOptions: {
          external: ["vue", "primevue"], // Exclude dependencies from the bundle
@@ -61,7 +60,7 @@ export default defineConfig({
          vueTemplate: true,
       }),
       tailwindcss(),
-      dts(),
+      dts({ tsconfigPath: "./tsconfig.app.json" }),
       // dts({
       //    outDir: "./dist", // Output directory for .d.ts files
       //    include: ["src/**/*"], // Include all source files

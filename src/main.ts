@@ -1,27 +1,29 @@
 import "./assets/styles/main.css";
 import "primeicons/primeicons.css";
 
-import { createApp } from "vue";
-import { createPinia } from "pinia";
 import App from "./App.vue";
-import router from "./router";
-import SuperTokens from "supertokens-web-js";
-import Session from "supertokens-web-js/recipe/session";
-import Passwordless from "supertokens-web-js/recipe/passwordless";
-import ThirdParty from "supertokens-web-js/recipe/thirdparty";
-import PrimeVue from "primevue/config";
-import Lara from "@primeuix/themes/lara";
-import { definePreset } from "@primeuix/themes";
+// import { createApp } from "vue";
+// import { createPinia } from "pinia";
+// import router from "./router";
+// import SuperTokens from "supertokens-web-js";
+// import Session from "supertokens-web-js/recipe/session";
+// import Passwordless from "supertokens-web-js/recipe/passwordless";
+// import ThirdParty from "supertokens-web-js/recipe/thirdparty";
+// import PrimeVue from "primevue/config";
+// import Lara from "@primeuix/themes/lara";
+// import { definePreset } from "@primeuix/themes";
 
 import ThemeToggle from "./components/themeToggle/ThemeToggle.vue";
-import { useCounterStore } from "./stores/counter";
+import Toaster from "./components/toaster/Toaster.vue";
+// import { useCounterStore } from "./stores/counter";
 // export { ThemeToggle, useCounterStore };
 
-export { ThemeToggle };
+export { ThemeToggle, Toaster };
 
 export default {
    install: (app: typeof App) => {
       app.component("ThemeToggle", ThemeToggle);
+      app.component("Toaster", Toaster);
    },
 };
 
