@@ -36,11 +36,12 @@ export default defineConfig({
    // Build the library for use in other projects
    build: {
       lib: {
-         entry: path.resolve(__dirname, "src/main.ts"),
+         entry: path.resolve(__dirname, "src/index.ts"),
          name: "SharedVueLibrary",
          formats: ["es"],
       },
       rollupOptions: {
+         input: "src/index.ts", // Explicit entry point
          external: ["vue", "primevue"], // Exclude dependencies from the bundle
          output: {
             globals: {
@@ -60,11 +61,10 @@ export default defineConfig({
          vueTemplate: true,
       }),
       tailwindcss(),
-      dts({ tsconfigPath: "./tsconfig.app.json" }),
-      // dts({
-      //    outDir: "./dist", // Output directory for .d.ts files
-      //    include: ["src/**/*"], // Include all source files
-      // }),
+      dts({
+         tsconfigPath: "./tsconfig.app.json",
+         include: ["src/index.ts", "src/components", "src/generated_types"],
+      }),
    ],
    css: {
       preprocessorOptions: {
