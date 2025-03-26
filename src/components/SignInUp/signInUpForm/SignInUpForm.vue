@@ -69,7 +69,7 @@ async function onSignupStart() {
       // Disabled Sign-Up or Sign-In or invalid configuration etc.
       if (response.status === "SIGN_IN_UP_NOT_ALLOWED") {
          addToast({
-            severity: "danger",
+            severity: "error",
             summary: toastContent.error.somethingWentWrong.summary,
             detail: toastContent.error.somethingWentWrong.detail,
             error: response,

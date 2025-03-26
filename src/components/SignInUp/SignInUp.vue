@@ -62,7 +62,7 @@ async function hasInitialMagicLinkBeenSent() {
       return codeAlreadySent !== undefined;
    } catch (error) {
       addToast({
-         severity: "danger",
+         severity: "error",
          summary: toastContent.error.somethingWentWrong.summary,
          detail: toastContent.error.somethingWentWrong.detail,
          error,
@@ -96,7 +96,7 @@ async function handleGoogleCallback() {
       } else if (response.status === "SIGN_IN_UP_NOT_ALLOWED") {
          addToast({
             toast,
-            severity: "danger",
+            severity: "error",
             summary: googleFailSummary,
             detail: googleFailDetail,
             logInfo: { summary: "Google auth callback", error: response.reason },
@@ -108,7 +108,7 @@ async function handleGoogleCallback() {
       else {
          addToast({
             toast,
-            severity: "danger",
+            severity: "error",
             summary: googleFailSummary,
             detail: googleFailDetail,
             logInfo: { summary: "Google auth callback", error: response },
@@ -120,7 +120,7 @@ async function handleGoogleCallback() {
 
       addToast({
          toast,
-         severity: "danger",
+         severity: "error",
          summary: toastContent.error.somethingWentWrong.summary,
          detail: toastContent.error.somethingWentWrong.detail,
          logInfo: { summary: "Google auth callback", error },

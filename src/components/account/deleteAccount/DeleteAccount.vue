@@ -58,7 +58,7 @@ async function sendDeleteEmail() {
       isDeleteEmailSent.value = false;
 
       addToast({
-         severity: "danger",
+         severity: "error",
          summary: toastContent.error.somethingWentWrong.summary,
          detail: toastContent.error.somethingWentWrong.detail,
          error,

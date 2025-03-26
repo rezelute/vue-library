@@ -100,7 +100,7 @@ async function onCodeSubmit() {
             await clearLoginAttemptInfo();
 
             addToast({
-               severity: "danger",
+               severity: "error",
                summary: otpErrorSummary,
                detail: otpErrorDetail,
                error: response,
@@ -113,7 +113,7 @@ async function onCodeSubmit() {
       // if (err.isSuperTokensGeneralError === true) {} else {}
 
       addToast({
-         severity: "danger",
+         severity: "error",
          summary: toastContent.error.somethingWentWrong.summary,
          detail: toastContent.error.somethingWentWrong.detail,
          error: error,
@@ -140,7 +140,7 @@ async function onResendCode() {
          await clearLoginAttemptInfo();
 
          addToast({
-            severity: "danger",
+            severity: "error",
             summary: resendOtpFailedSummary,
             detail: resendOtpFailedDetail,
             error: response,
@@ -161,7 +161,7 @@ async function onResendCode() {
       // if (err.isSuperTokensGeneralError === true) {} else {}
 
       addToast({
-         severity: "danger",
+         severity: "error",
          summary: toastContent.error.somethingWentWrong.summary,
          detail: toastContent.error.somethingWentWrong.detail,
          error,
