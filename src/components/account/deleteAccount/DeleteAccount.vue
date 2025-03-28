@@ -2,7 +2,7 @@
    <!-- Delete account -->
    <Card>
       <template #title>
-         <h2>Delete your account</h2>
+         <h2 class="h2">Delete your account</h2>
       </template>
       <template #content>
          <div v-if="!isDeleteEmailSent" class="spacing-elements">
@@ -13,12 +13,13 @@
 
             <Button type="button" @click="sendDeleteEmail">Send deletion email</Button>
          </div>
-         <div v-else>
-            <p>
+         <p v-else class="action-confirm-msg">
+            <i class="pi pi-envelope text-primary"></i>
+            <span>
                We have sent you an email to verify your account deletion. Please check your inbox and click on
                the verification link.
-            </p>
-         </div>
+            </span>
+         </p>
       </template>
    </Card>
 </template>
@@ -27,6 +28,7 @@
 import Card from "primevue/card";
 import Button from "primevue/button";
 import useToast from "@/utils/toast";
+import accountService from "@/services/account/accountService";
 
 const { addToast, toastContent } = useToast();
 
@@ -39,21 +41,14 @@ const isDeleteEmailSent = ref(false);
 // send a request to the server to send a deletion email
 async function sendDeleteEmail() {
    try {
-      const response = await fetch(`${import.meta.env.VITE_API_DOMAIN}/auth/request-delete`, {
-         method: "POST",
-         credentials: "include",
-      });
-
-      const result = await response.json();
+      const response = await accountService.requestDelete();
       if (!response.ok) {
-         throw new Error(result.error || "Failed to send deletion email.");
+         throw new Error(`Error requesting account deletion: ${response.status} - ${response.statusText}`);
       }
-
-      if (!response.ok) {
-         throw new Error(result.error || "Failed to send deletion email.");
+      // request deletion email sent successfully, show confirmation message
+      else {
+         isDeleteEmailSent.value = true;
       }
-
-      isDeleteEmailSent.value = true;
    } catch (error) {
       isDeleteEmailSent.value = false;
 
@@ -63,12 +58,6 @@ async function sendDeleteEmail() {
          detail: toastContent.error.somethingWentWrong.detail,
          error,
       });
-
-      if (error instanceof Error) {
-         console.error(`Error sending deletion email: ${error.message}`);
-      } else {
-         console.error("Error sending deletion email: Unknown error occurred");
-      }
    }
 }
 </script>

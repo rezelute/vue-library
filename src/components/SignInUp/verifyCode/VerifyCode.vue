@@ -5,7 +5,7 @@
       </template>
       <template #content>
          <section class="spacing-elements">
-            <div class="flex-form">
+            <div class="spacing-form">
                <p>
                   To finish the signup process, enter the code that was emailed to you. Note that the code is
                   only valid for 10 minutes.
@@ -21,7 +21,7 @@
                <p v-if="isCodeInvalid" class="validation">{{ invalidCodeText }}</p>
                <Button class="w-fit" type="submit" @click="onCodeSubmit">Submit code</Button>
             </div>
-            <div class="mt-section-inner flex-form">
+            <div class="mt-section-inner spacing-form">
                <p>If you didnt receive an email, please check your Junk folder or resend another code.</p>
                <Button class="w-fit" type="button" @click="onResendCode">Resend code</Button>
             </div>

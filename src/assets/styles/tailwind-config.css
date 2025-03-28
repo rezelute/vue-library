@@ -10,10 +10,29 @@
 }
 
 @layer components {
-   .flex-form {
-      @apply flex flex-col gap-3;
+   /* === FORMS === */
+   .spacing-form {
+      @apply flex flex-col;
    }
 
+   /* Apply a smaller gap after labels */
+   .spacing-form label {
+      @apply mb-1;
+   }
+
+   /* Apply a larger gap after inputs */
+   .spacing-form input,
+   .spacing-form textarea,
+   .spacing-form select {
+      @apply mb-6;
+   }
+
+   /* No extra margin for the last element (e.g., button) */
+   .spacing-form > :last-child {
+      @apply mb-0;
+   }
+
+   /* === SPACING === */
    .mt-section {
       @apply mt-8;
    }
@@ -30,14 +49,33 @@
    } */
 
    /* === TEXT === */
+   /* H1 - Mainly used for page headings */
    .h1 {
-      @apply text-4xl font-medium mb-4;
+      @apply text-4xl font-medium my-10;
    }
    .h2 {
-      @apply text-2xl font-medium mb-2;
+      @apply text-2xl font-medium mb-4;
    }
    .h3 {
       @apply text-xl font-medium;
+   }
+   label {
+      @apply text-base;
+   }
+
+   /* === PRIME COMPONENT OVERRIDES === */
+   .p-card {
+      @apply p-6;
+   }
+
+   /* === RE-USABLE COMPONENTS === */
+   .action-confirm-msg {
+      @apply flex flex-col items-center gap-4 text-center;
+   }
+
+   .action-confirm-msg i {
+      @apply border-2 p-4 rounded-full text-primary;
+      font-size: 1.2rem !important;
    }
 }
 

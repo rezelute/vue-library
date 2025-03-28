@@ -1,10 +1,14 @@
 <template>
    <PageLoader :isLoading="isPageLoading">
-      <div class="container flex items-center justify-center w-full mt-12">
-         <div v-if="!deleteToken" class="max-w-xl spacing-sections">
-            <h1 class="h1 text-color">Account</h1>
-            <ChangeEmail />
-            <DeleteAccount />
+      <div class="container flex items-center justify-center w-full">
+         <div v-if="!deleteToken" class="max-w-xl">
+            <h1 class="h1 text-color">Your account</h1>
+
+            <div class="spacing-sections">
+               <YourAccount />
+               <ChangeEmail />
+               <DeleteAccount />
+            </div>
          </div>
          <div v-else>
             <Card>
@@ -25,9 +29,11 @@ import Spinner from "primevue/progressspinner";
 import Card from "primevue/card";
 import ChangeEmail from "@/components/account/changeEmail/ChangeEmail.vue";
 import DeleteAccount from "@/components/account/deleteAccount/DeleteAccount.vue";
+import YourAccount from "@/components/account/yourAccount/YourAccount.vue";
 import PageLoader from "@/components/pageLoader/PageLoader.vue";
 import Session from "supertokens-web-js/recipe/session";
 import useToast from "@/utils/toast";
+import accountService from "@/services/account/accountService";
 
 const { addToast } = useToast();
 const route = useRoute();
@@ -41,7 +47,7 @@ const deleteToken = ref(route.query.del_token as string | undefined);
 // -----------------------------------------
 onMounted(() => {
    // check if the user has a deletion token in the URL using vue router
-   if (deleteToken) {
+   if (deleteToken.value) {
       deleteAccount();
    }
 });
@@ -56,20 +62,14 @@ async function deleteAccount() {
       "Something went wrong while deleting your account. Please try again or contact us to let us know about this issue.";
 
    try {
-      const response = await fetch(`${import.meta.env.VITE_API_DOMAIN}/auth/delete-account`, {
-         method: "DELETE",
-         credentials: "include",
-         headers: {
-            "X-Delete-Token": deleteToken.value as string,
-            "Content-Type": "application/json",
-         },
-      });
+      const response = await accountService.deleteAccount(deleteToken.value as string);
 
-      const result = await response.json();
+      // If the response status is not OK (not in the 2xx range)
       if (!response.ok) {
-         throw new Error(result.error || "Failed to delete account.");
+         throw new Error(`Error deleting account: ${response.status} - ${response.statusText}`);
       }
 
+      // If the response is OK, we can proceed with the deletion
       await Session.signOut();
       window.location.href = "/goodbye";
    } catch (error) {
@@ -86,4 +86,4 @@ async function deleteAccount() {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped></style>

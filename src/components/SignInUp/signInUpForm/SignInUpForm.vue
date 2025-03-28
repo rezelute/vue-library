@@ -11,7 +11,7 @@
                <span class="px-4 text-gray-500 uppercase">Or</span>
                <hr class="flex-1 border-gray-300" />
             </div>
-            <form @submit.prevent class="flex-form">
+            <form @submit.prevent class="spacing-form">
                <p>
                   This website offers a Passwordless Sign-In option. Instead of remembering a password, you'll
                   receive a one-time code via email each time you sign in.

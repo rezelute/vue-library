@@ -1,21 +1,34 @@
 <template>
-   <!-- Change email -->
    <Card>
       <template #title>
-         <h2>Change your email</h2>
+         <h2 class="h2">Change your email</h2>
       </template>
       <template #content>
-         <div class="spacing-elements">
+         <!-- Change email form -->
+         <div v-if="!isEmailSent" class="spacing-elements">
             <p>
                You will receive an email to your old email to verify your new email address. Please click on
                the email link to update your email.
             </p>
-
-            <form @submit.prevent="sendChangeEmail" class="flex-form">
-               <label for="email">New email</label>
+            <form @submit.prevent="sendChangeEmail" class="spacing-form">
+               <label for="email" class="label">Enter your new email</label>
                <InputText v-model="userNewEmail" type="email" id="email" name="email" required />
                <Button type="submit">Change email</Button>
             </form>
+         </div>
+         <!-- Email sent -->
+         <div v-else class="action-confirm-msg">
+            <i class="pi pi-envelope"></i>
+            <p class="flex flex-col gap-2">
+               <span class="block text-wrap">We have a verification email to:</span>
+               <strong class="text-primary break-all px-2">
+                  {{ userNewEmail }}
+               </strong>
+               <span class="block">
+                  Please check the inbox of your new email and click on the verification link to change your
+                  email.
+               </span>
+            </p>
          </div>
       </template>
    </Card>
@@ -26,39 +39,31 @@ import Card from "primevue/card";
 import Button from "primevue/button";
 import InputText from "primevue/inputtext";
 import useToast from "@/utils/toast";
+import accountService from "@/services/account/accountService";
 
 const { addToast, toastContent } = useToast();
 
 // data
 // -----------------------------------------
 const userNewEmail = ref("");
+const isEmailSent = ref(false);
 
 // methods
 // -----------------------------------------
 // change the user's email
 async function sendChangeEmail() {
    try {
-      const response = await fetch(`${import.meta.env.VITE_API_DOMAIN}/auth/change-email`, {
-         method: "POST",
-         headers: {
-            "Content-Type": "application/json",
-         },
-         credentials: "include",
-         body: JSON.stringify({ email: userNewEmail.value }),
-      });
-
-      const result = await response.json();
-
+      const response = await accountService.changeEmail(userNewEmail.value);
       if (!response.ok) {
-         throw new Error(result.message || "Failed to update email");
+         isEmailSent.value = false;
+         throw new Error(`Error changing email: ${response.status} - ${response.statusText}`);
       }
 
-      addToast({
-         severity: "info",
-         summary: "Verification email sent",
-         detail: "We have sent you an email to verify your new email address. Please check your inbox.",
-      });
+      // request change email sent successfully, show confirmation message
+      isEmailSent.value = true;
    } catch (error) {
+      isEmailSent.value = false;
+
       addToast({
          severity: "error",
          summary: toastContent.error.somethingWentWrong.summary,
