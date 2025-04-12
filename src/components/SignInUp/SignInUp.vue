@@ -1,5 +1,5 @@
 <template>
-   <PageLoader :isLoading="false">
+   <PageLoader :isLoading="isLoading">
       <SignInUpForm
          v-if="!showMagicInputCode"
          :pageAuthType="pageAuthType"

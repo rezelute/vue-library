@@ -15,43 +15,50 @@
       @apply flex flex-col;
    }
 
-   /* Apply a smaller gap after labels */
-   .spacing-form label {
+   /* Small margin for labels and paragraphs */
+   .spacing-form > label,
+   .spacing-form > p {
       @apply mb-1;
    }
 
-   /* Apply a larger gap after inputs */
-   .spacing-form input,
-   .spacing-form textarea,
-   .spacing-form select {
+   /* Larger bottom margin for everything else (default case) */
+   .spacing-form > input,
+   .spacing-form > textarea,
+   .spacing-form > select,
+   .spacing-form > div {
       @apply mb-6;
    }
 
-   /* No extra margin for the last element (e.g., button) */
-   .spacing-form > :last-child {
+   /* BUT: remove bottom margin if the next sibling is a button */
+   .spacing-form input:has(+ button),
+   .spacing-form textarea:has(+ button),
+   .spacing-form select:has(+ button),
+   .spacing-form div:has(+ button),
+   .spacing-form p:has(+ button) {
       @apply mb-0;
    }
 
-   /* === SPACING === */
-   .mt-section {
-      @apply mt-8;
+   .spacing-form button {
+      @apply mt-4;
    }
 
+   /* === SPACING === */
    .spacing-sections {
       @apply flex flex-col gap-12;
+   }
+
+   .spacing-groups {
+      @apply flex flex-col gap-10;
    }
 
    .spacing-elements {
       @apply flex flex-col gap-4;
    }
-   /* .mt-section-inner {
-      @apply mt-10;
-   } */
 
    /* === TEXT === */
    /* H1 - Mainly used for page headings */
    .h1 {
-      @apply text-4xl font-medium my-10;
+      @apply text-4xl font-medium mb-10;
    }
    .h2 {
       @apply text-2xl font-medium mb-4;

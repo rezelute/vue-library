@@ -1,10 +1,10 @@
 <template>
    <Card class="max-w-xl p-12 w-full mx-auto">
       <template #title>
-         <h1 class="h1">Input validation code</h1>
+         <h1 class="h1 mt-0">Input validation code</h1>
       </template>
       <template #content>
-         <section class="spacing-elements">
+         <form @submit.prevent class="spacing-groups">
             <div class="spacing-form">
                <p>
                   To finish the signup process, enter the code that was emailed to you. Note that the code is
@@ -21,11 +21,11 @@
                <p v-if="isCodeInvalid" class="validation">{{ invalidCodeText }}</p>
                <Button class="w-fit" type="submit" @click="onCodeSubmit">Submit code</Button>
             </div>
-            <div class="mt-section-inner spacing-form">
+            <div class="spacing-form">
                <p>If you didnt receive an email, please check your Junk folder or resend another code.</p>
                <Button class="w-fit" type="button" @click="onResendCode">Resend code</Button>
             </div>
-         </section>
+         </form>
       </template>
    </Card>
 </template>
