@@ -4,9 +4,13 @@ import Passwordless from "supertokens-web-js/recipe/passwordless";
 import ThirdParty from "supertokens-web-js/recipe/thirdparty";
 import Session from "supertokens-web-js/recipe/session";
 import { type AppInfoUserInput } from "supertokens-web-js/lib/build/types";
-// shared library components/stores/composables
-import ThemeToggle from "./components/themeToggle/ThemeToggle.vue";
+
+// shared library STORES
 import { useUserStore } from "./stores/userStore";
+
+// shared routes
+import { sharedRoutes } from "./router/sharedRoutes";
+import { setupAuthGuard } from "./router/routeGuards";
 
 const initializeSuperTokens = (config: { appInfo: AppInfoUserInput }) => {
    SuperTokens.init({
@@ -19,7 +23,16 @@ const initializeSuperTokens = (config: { appInfo: AppInfoUserInput }) => {
    });
 };
 
-export { ThemeToggle, useUserStore, initializeSuperTokens };
+const stores = {
+   useUserStore,
+};
+
+const baseRouting = {
+   routes: sharedRoutes,
+   setupAuthGuard,
+};
+
+export { stores, baseRouting, initializeSuperTokens };
 
 // export default {
 //    install: (app: any) => {

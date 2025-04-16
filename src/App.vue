@@ -1,29 +1,28 @@
 <template>
-   <div>
+   <div class="bg-surface-50 dark:bg-surface-800 min-h-screen flex flex-col">
       <!-- Loader at the top of the page, visible when isLoading is true -->
       <PageInfiniteLoader :isLoading="isLoading" />
 
-      <div class="bg-surface-50 dark:bg-surface-800 min-h-screen flex flex-col">
-         <Toast />
+      <Toast />
 
-         <SiteNavigation :items="navItems" v-if="serverConnectionReady">
-            <template #logo>my logo</template>
-         </SiteNavigation>
+      <SiteNavigation :items="navItems" v-if="serverConnectionReady">
+         <template #logo>my logo</template>
+      </SiteNavigation>
 
-         <!-- This is a one off server health check that happens when the app loads to ensure the Server is running -->
-         <!-- Otherwise the app would load and clicking any buttons would all trigger server errors -->
-         <main
-            class="flex flex-col flex-grow"
-            :class="{ 'items-center justify-center': !serverConnectionReady }"
-         >
-            <div v-if="isLoading" class="loader text-primary"></div>
-            <AppErrorInfo v-else-if="!serverConnectionReady" error="Server is down" class="max-w-xl mx-auto">
-               The server is unreachable. We have been notified about this. Please try accessing the site
-               again later.
-            </AppErrorInfo>
-            <RouterView v-else />
-         </main>
+      <div>
+         <div class="container border">test</div>
       </div>
+
+      <!-- This is a one off server health check that happens when the app loads to ensure the Server is running -->
+      <!-- Otherwise the app would load and clicking any buttons would all trigger server errors -->
+      <main
+         class="flex flex-col flex-grow"
+         :class="{ 'items-center justify-center': !serverConnectionReady }"
+      >
+         <div v-if="isLoading" class="loader text-primary"></div>
+         <AppErrorInfo v-else-if="!serverConnectionReady" error="Server is down" class="max-w-xl mx-auto" />
+         <RouterView v-else />
+      </main>
    </div>
 </template>
 

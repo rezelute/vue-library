@@ -4,7 +4,7 @@
          <Menubar :model="[]">
             <template #start>
                <Button asChild v-slot="slotProps" variant="link">
-                  <RouterLink :to="!userStore.isSignedIn ? '/' : '/home'" :class="(slotProps as any).class">
+                  <RouterLink :to="!userSignedIn ? '/' : '/home'" :class="(slotProps as any).class">
                      <slot name="logo" />
                   </RouterLink>
                </Button>
@@ -24,7 +24,7 @@
                      </div>
 
                      <Button
-                        v-if="userStore.isSignedIn"
+                        v-if="userSignedIn"
                         @click="onSignout"
                         icon="pi pi-sign-out"
                         aria-label="Sign out"
@@ -45,7 +45,7 @@
                      <Menu ref="menu" id="overlay_menu" :model="mobileItems" popup />
                   </div>
 
-                  <ThemeToggle class="ms-2" />
+                  <!-- <ThemeToggle class="ms-2" /> -->
                </div>
             </template>
          </Menubar>
@@ -56,11 +56,11 @@
 <script setup lang="ts">
 import Menu from "primevue/menu";
 import Button from "primevue/button";
-import ThemeToggle from "@/components/themeToggle/ThemeToggle.vue";
+// import ThemeToggle from "../../components/themeToggle/ThemeToggle.vue";
 import Menubar from "primevue/menubar";
 import Session from "supertokens-web-js/recipe/session";
-import { useUserStore } from "@/stores/userStore";
-import useToast from "@/utils/toast";
+import { useUserStore } from "../../stores/userStore";
+// import useToast from "../../utils/toast";
 
 interface MenuItem {
    label: string;
@@ -68,8 +68,16 @@ interface MenuItem {
    to: string;
 }
 
-const { addToast, toastContent } = useToast();
-const props = defineProps<{ items: MenuItem[] }>();
+// const { addToast, toastContent } = useToast();
+const props = withDefaults(
+   defineProps<{
+      items: MenuItem[];
+      userSignedIn: boolean;
+   }>(),
+   {
+      userSignedIn: false,
+   }
+);
 
 // data
 // -----------------------------------------
@@ -85,7 +93,7 @@ const signInUpItems = ref([
 // computed
 // -----------------------------------------
 const items = computed(() => {
-   if (!userStore.isSignedIn) {
+   if (!props.userSignedIn) {
       return [...(props.items || []), ...signInUpItems.value];
    }
    // logged in (we dont show sign in/up items)
@@ -97,7 +105,7 @@ const items = computed(() => {
 const mobileItems = computed(() => {
    return [
       ...items.value,
-      ...(userStore.isSignedIn
+      ...(props.userSignedIn
          ? [
               {
                  label: "Sign out",
@@ -124,12 +132,12 @@ async function onSignout() {
       // redirect to signin page
       window.location.assign("signin");
    } catch (error) {
-      addToast({
-         severity: "error",
-         summary: toastContent.error.somethingWentWrong.summary,
-         detail: toastContent.error.somethingWentWrong.detail,
-         error,
-      });
+      // addToast({
+      //    severity: "error",
+      //    summary: toastContent.error.somethingWentWrong.summary,
+      //    detail: toastContent.error.somethingWentWrong.detail,
+      //    error,
+      // });
    } finally {
       signOutloading.value = false;
    }

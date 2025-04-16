@@ -95,11 +95,10 @@ async function handleGoogleCallback() {
          window.location.assign("/home");
       } else if (response.status === "SIGN_IN_UP_NOT_ALLOWED") {
          addToast({
-            toast,
             severity: "error",
             summary: googleFailSummary,
             detail: googleFailDetail,
-            logInfo: { summary: "Google auth callback", error: response.reason },
+            error: response,
          });
       }
       // SuperTokens requires that the third party provider
@@ -107,11 +106,10 @@ async function handleGoogleCallback() {
       // will fail.
       else {
          addToast({
-            toast,
             severity: "error",
             summary: googleFailSummary,
             detail: googleFailDetail,
-            logInfo: { summary: "Google auth callback", error: response },
+            error: response,
          });
          window.location.assign("/signin"); // redirect back to login page
       }
@@ -119,11 +117,10 @@ async function handleGoogleCallback() {
       // if (err.isSuperTokensGeneralError === true) {} else {}
 
       addToast({
-         toast,
          severity: "error",
          summary: toastContent.error.somethingWentWrong.summary,
          detail: toastContent.error.somethingWentWrong.detail,
-         logInfo: { summary: "Google auth callback", error },
+         error: error,
       });
    } finally {
       isLoading.value = false;

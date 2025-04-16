@@ -9,6 +9,7 @@ import path from "path";
 import dotenv from "dotenv";
 import tailwindcss from "@tailwindcss/vite";
 import dts from "vite-plugin-dts";
+import copy from "rollup-plugin-copy";
 
 dotenv.config(); // Load environment variables from .env
 
@@ -36,12 +37,29 @@ export default defineConfig({
    // Build the library for use in other projects
    build: {
       lib: {
-         entry: path.resolve(__dirname, "src/index.ts"),
+         // entry: path.resolve(__dirname, "src/index.ts"),
+         entry: {
+            index: path.resolve(__dirname, "src/index.ts"),
+            "components/index": path.resolve(__dirname, "src/components/index.ts"),
+         },
          name: "SharedVueLibrary",
          formats: ["es"],
       },
       rollupOptions: {
-         input: "src/index.ts", // Entry point
+         plugins: [
+            // manually copy tailwindcss config file to dist folder
+            copy({
+               targets: [
+                  {
+                     src: "src/assets/styles/tailwind-config.css",
+                     dest: "dist",
+                  },
+               ],
+               verbose: true, // Optional: logs output
+               hook: "writeBundle", // Ensures it runs after build output
+            }),
+         ],
+         // input: "src/index.ts", // Entry point
          // When we mark these as an external dependency,
          // we tell Rollup not to include them in the final output bundle because the consumer is expected to provide it externally
          external: ["vue", "primevue", "pinia"],
@@ -81,8 +99,6 @@ export default defineConfig({
       alias: {
          "@": fileURLToPath(new URL("./src", import.meta.url)),
       },
-      // Ensures these are sourced from the applications node_modules directory
-      dedupe: ["vue", "pinia", "supertokens-web-js"],
    },
    test: {
       // https://vitest.dev/guide/environment.html

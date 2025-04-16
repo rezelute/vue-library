@@ -13,13 +13,13 @@
 
             <Button type="button" @click="sendDeleteEmail">Send deletion email</Button>
          </div>
-         <p v-else class="action-confirm-msg">
-            <i class="pi pi-envelope text-primary"></i>
-            <span>
+
+         <ActionConfirmMsg v-else iconClass="pi pi-envelope">
+            <p>
                We have sent you an email to verify your account deletion. Please check your inbox and click on
                the verification link.
-            </span>
-         </p>
+            </p>
+         </ActionConfirmMsg>
       </template>
    </Card>
 </template>
@@ -29,6 +29,7 @@ import Card from "primevue/card";
 import Button from "primevue/button";
 import useToast from "@/utils/toast";
 import accountService from "@/services/account/accountService";
+import ActionConfirmMsg from "@/components/actionConfirmMsg/ActionConfirmMsg.vue";
 
 const { addToast, toastContent } = useToast();
 

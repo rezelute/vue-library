@@ -17,9 +17,8 @@
             </form>
          </div>
          <!-- Email sent -->
-         <div v-else class="action-confirm-msg">
-            <i class="pi pi-envelope"></i>
-            <p class="flex flex-col gap-2">
+         <ActionConfirmMsg v-else iconClass="pi pi-envelope">
+            <p>
                <span class="block text-wrap">We have a verification email to:</span>
                <strong class="text-primary break-all px-2">
                   {{ userNewEmail }}
@@ -29,7 +28,7 @@
                   email.
                </span>
             </p>
-         </div>
+         </ActionConfirmMsg>
       </template>
    </Card>
 </template>
@@ -40,6 +39,7 @@ import Button from "primevue/button";
 import InputText from "primevue/inputtext";
 import useToast from "@/utils/toast";
 import accountService from "@/services/account/accountService";
+import ActionConfirmMsg from "@/components/actionConfirmMsg/ActionConfirmMsg.vue";
 
 const { addToast, toastContent } = useToast();
 
