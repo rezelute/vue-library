@@ -15,13 +15,13 @@
 </template>
 
 <script setup lang="ts">
-import SignInUpForm from "@/components/SignInUp/signInUpForm/SignInUpForm.vue";
-import VerifyCode from "@/components/SignInUp/verifyCode/VerifyCode.vue";
+import SignInUpForm from "../../components/SignInUp/signInUpForm/SignInUpForm.vue";
+import VerifyCode from "../../components/SignInUp/verifyCode/VerifyCode.vue";
 import { getLoginAttemptInfo } from "supertokens-web-js/recipe/passwordless";
 import { useRouter } from "vue-router";
 import { signInAndUp } from "supertokens-web-js/recipe/thirdparty";
-import useToast from "@/utils/toast";
-import PageLoader from "@/components/pageLoader/PageLoader.vue";
+import useToast from "../../utils/toast";
+import PageLoader from "../../components/pageLoader/PageLoader.vue";
 
 const { addToast, toastContent } = useToast();
 const route = useRoute();

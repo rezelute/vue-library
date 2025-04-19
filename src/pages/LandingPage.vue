@@ -13,5 +13,5 @@
 <script setup lang="ts">
 import Button from "primevue/button";
 import InputText from "primevue/inputtext";
-import PageLoader from "@/components/pageLoader/PageLoader.vue";
+import PageLoader from "../components/pageLoader/PageLoader.vue";
 </script>

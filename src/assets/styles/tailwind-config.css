@@ -1,13 +1,10 @@
-@import "tailwindcss";
+/* @import "tailwindcss"; */
 
 @layer utilities {
    .container {
       margin-inline: auto;
 
-      /* @variant sm {
-      }
-      @variant md {
-      } */
+      /* @variant sm {}*/
    }
 }
 

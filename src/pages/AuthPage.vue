@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import SignInUp from "@/components/SignInUp/SignInUp.vue";
+import SignInUp from "../components/SignInUp/SignInUp.vue";
 </script>
 
 <style scoped></style>

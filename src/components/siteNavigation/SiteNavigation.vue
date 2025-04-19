@@ -1,54 +1,15 @@
 <template>
    <header class="bg-surface-0 dark:bg-surface-900">
       <div class="container">
-         <Menubar :model="[]">
-            <template #start>
-               <Button asChild v-slot="slotProps" variant="link">
-                  <RouterLink :to="!userSignedIn ? '/' : '/home'" :class="(slotProps as any).class">
-                     <slot name="logo" />
-                  </RouterLink>
-               </Button>
-            </template>
-
-            <template #end>
-               <div class="flex items-center gap-5">
-                  <!-- Links for larger screens -->
-                  <div class="hidden lg:flex items-center gap-5">
-                     <div v-for="item in items" :key="item.label">
-                        <Button asChild v-slot="slotProps" variant="outlined">
-                           <RouterLink :to="item.to" :class="(slotProps as any).class">
-                              <i :class="item.icon"></i>
-                              <span>{{ item.label }}</span>
-                           </RouterLink>
-                        </Button>
-                     </div>
-
-                     <Button
-                        v-if="userSignedIn"
-                        @click="onSignout"
-                        icon="pi pi-sign-out"
-                        aria-label="Sign out"
-                        variant="outlined"
-                        :loading="signOutloading"
-                     />
-                  </div>
-
-                  <!-- Burger menu for smaller screens -->
-                  <div class="lg:hidden">
-                     <Button
-                        icon="pi pi-bars"
-                        @click="toggleMenu"
-                        aria-label="Navigation menu"
-                        aria-haspopup="true"
-                        aria-controls="overlay_menu"
-                     />
-                     <Menu ref="menu" id="overlay_menu" :model="mobileItems" popup />
-                  </div>
-
-                  <!-- <ThemeToggle class="ms-2" /> -->
-               </div>
-            </template>
-         </Menubar>
+         <div>
+            <Button
+               @click="onSignout"
+               icon="pi pi-sign-out"
+               aria-label="Sign out"
+               variant="outlined"
+               :loading="signOutloading"
+            />
+         </div>
       </div>
    </header>
 </template>

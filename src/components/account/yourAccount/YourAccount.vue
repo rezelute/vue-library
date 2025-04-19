@@ -30,7 +30,7 @@
 <script setup lang="ts">
 import Card from "primevue/card";
 import Session from "supertokens-web-js/recipe/session";
-import accountService from "@/services/account/accountService";
+import accountService from "../../../services/account/accountService";
 
 const userId = ref("");
 const userEmail = ref("");

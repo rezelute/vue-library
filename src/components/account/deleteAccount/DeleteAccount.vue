@@ -27,9 +27,9 @@
 <script setup lang="ts">
 import Card from "primevue/card";
 import Button from "primevue/button";
-import useToast from "@/utils/toast";
-import accountService from "@/services/account/accountService";
-import ActionConfirmMsg from "@/components/actionConfirmMsg/ActionConfirmMsg.vue";
+import useToast from "../../../utils/toast";
+import accountService from "../../../services/account/accountService";
+import ActionConfirmMsg from "../../../components/actionConfirmMsg/ActionConfirmMsg.vue";
 
 const { addToast, toastContent } = useToast();
 

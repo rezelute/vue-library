@@ -30,12 +30,12 @@
 </template>
 
 <script setup lang="ts">
-import GoogleAuthIcon from "@/components/googleAuthIcon/GoogleAuthIcon.vue";
+import GoogleAuthIcon from "../../../components/googleAuthIcon/GoogleAuthIcon.vue";
 import Card from "primevue/card";
 import Textbox from "primevue/inputtext";
 import Button from "primevue/button";
 import { createCode } from "supertokens-web-js/recipe/passwordless";
-import useToast from "@/utils/toast";
+import useToast from "../../../utils/toast";
 
 const emits = defineEmits(["sendCodeSuccess"]);
 const { addToast, toastContent } = useToast();

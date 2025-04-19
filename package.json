@@ -1,5 +1,5 @@
 {
-   "name": "@rezelute/shared-vue-library",
+   "name": "@rezelute/vue-shared-lib",
    "version": "1.0.0",
    "private": true,
    "type": "module",
@@ -7,16 +7,22 @@
    "types": "./dist/index.d.ts",
    "exports": {
       ".": {
-         "import": "./dist/index.js",
-         "types": "./dist/index.d.ts"
+         "import": "./src/index.js",
+         "types": "./src/index.d.ts"
       },
       "./components": {
          "import": "./src/components/index.js",
          "types": "./src/components/index.d.ts"
+      },
+      "./tailwind-config.css": {
+         "default": "./src/assets/styles/tailwind-config.css"
       }
    },
    "files": [
-      "dist"
+      "src",
+      "index.ts",
+      "components",
+      "tailwind-config.css"
    ],
    "scripts": {
       "dev": "vite",

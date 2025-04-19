@@ -5,7 +5,7 @@
 
       <Toast />
 
-      <SiteNavigation :items="navItems" v-if="serverConnectionReady">
+      <SiteNavigation :items="navItems" v-if="serverConnectionReady" :userSignedIn="userStore.isSignedIn">
          <template #logo>my logo</template>
       </SiteNavigation>
 
@@ -28,10 +28,10 @@
 
 <script setup lang="ts">
 import Toast from "primevue/toast";
-import SiteNavigation from "@/components/siteNavigation/SiteNavigation.vue";
+import SiteNavigation from "./components/siteNavigation/SiteNavigation.vue";
 import { RouterView } from "vue-router";
-import { useUserStore } from "@/stores/userStore";
-import AppErrorInfo from "@/components/appErrorInfo/AppErrorInfo.vue";
+import { useUserStore } from "./stores/userStore";
+import AppErrorInfo from "./components/appErrorInfo/AppErrorInfo.vue";
 import PageInfiniteLoader from "./components/pageInfiniteLoader/PageInfiniteLoader.vue";
 
 // data

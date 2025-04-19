@@ -35,7 +35,7 @@ import Card from "primevue/card";
 import InputOtp from "primevue/inputotp";
 import Button from "primevue/button";
 import { resendCode, clearLoginAttemptInfo, consumeCode } from "supertokens-web-js/recipe/passwordless";
-import useToast from "@/utils/toast";
+import useToast from "../../../utils/toast";
 
 const emits = defineEmits(["verificationCodeSuccess", "resendCodeSuccess"]);
 

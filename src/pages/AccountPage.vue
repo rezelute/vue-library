@@ -27,13 +27,13 @@
 <script setup lang="ts">
 import Spinner from "primevue/progressspinner";
 import Card from "primevue/card";
-import ChangeEmail from "@/components/account/changeEmail/ChangeEmail.vue";
-import DeleteAccount from "@/components/account/deleteAccount/DeleteAccount.vue";
-import YourAccount from "@/components/account/yourAccount/YourAccount.vue";
-import PageLoader from "@/components/pageLoader/PageLoader.vue";
+import ChangeEmail from "../components/account/changeEmail/ChangeEmail.vue";
+import DeleteAccount from "../components/account/deleteAccount/DeleteAccount.vue";
+import YourAccount from "../components/account/yourAccount/YourAccount.vue";
+import PageLoader from "../components/pageLoader/PageLoader.vue";
 import Session from "supertokens-web-js/recipe/session";
-import useToast from "@/utils/toast";
-import accountService from "@/services/account/accountService";
+import useToast from "../utils/toast";
+import accountService from "../services/account/accountService";
 
 const { addToast } = useToast();
 const route = useRoute();
