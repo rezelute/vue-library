@@ -1,7 +1,7 @@
 <template>
    <header class="bg-surface-0 dark:bg-surface-900">
       <div class="container">
-         <div class="border border-surface-300">HELLO</div>
+         <div class="border border-primary-300">HELLO</div>
 
          <Menubar :model="[]">
             <template #start>

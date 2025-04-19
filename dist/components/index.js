@@ -2006,7 +2006,7 @@ const kt = { class: "bg-surface-0 dark:bg-surface-900" }, Lt = { class: "contain
       const v = K("RouterLink");
       return u(), c("header", kt, [
         h("div", Lt, [
-          f[0] || (f[0] = h("div", { class: "border border-surface-300" }, "HELLO", -1)),
+          f[0] || (f[0] = h("div", { class: "border border-primary-300" }, "HELLO", -1)),
           y(g(de), { model: [] }, {
             start: L(() => [
               y(g(A), {
