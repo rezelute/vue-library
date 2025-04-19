@@ -19,10 +19,7 @@
       }
    },
    "files": [
-      "src",
-      "index.ts",
-      "components",
-      "tailwind-config.css"
+      "dist"
    ],
    "scripts": {
       "dev": "vite",
