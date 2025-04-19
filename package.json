@@ -7,15 +7,15 @@
    "types": "./dist/index.d.ts",
    "exports": {
       ".": {
-         "import": "./src/index.js",
-         "types": "./src/index.d.ts"
+         "import": "./dist/index.js",
+         "types": "./dist/index.d.ts"
       },
       "./components": {
-         "import": "./src/components/index.js",
-         "types": "./src/components/index.d.ts"
+         "import": "./dist/components/index.js",
+         "types": "./dist/components/index.d.ts"
       },
       "./tailwind-config.css": {
-         "default": "./src/assets/styles/tailwind-config.css"
+         "default": "./dist/tailwind-config.css"
       }
    },
    "files": [
