@@ -1,9 +1,8 @@
 <template>
    <header class="bg-surface-0 dark:bg-surface-900">
       <div class="container">
-         <Button aria-label="Test btn">Testme</Button>
+         <div class="border border-surface-300">HELLO</div>
 
-         HELLO
          <Menubar :model="[]">
             <template #start>
                <Button asChild v-slot="slotProps" variant="link">
