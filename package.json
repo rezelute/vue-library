@@ -21,6 +21,7 @@
    "files": [
       "dist"
    ],
+   "prepare": "vite build",
    "scripts": {
       "dev": "vite",
       "build": "run-p type-check \"build-only {@}\" --",
