@@ -1,6 +1,6 @@
 <template>
    <header class="bg-surface-0 dark:bg-surface-900">
-      <div class="container">
+      <div class="container border">
          <Menubar :model="[]">
             <template #start>
                <Button asChild v-slot="slotProps" variant="link">
@@ -11,7 +11,7 @@
             </template>
 
             <template #end>
-               <div class="border">
+               <div class="flex gap-5">
                   <!-- Links for larger screens -->
                   <div class="hidden lg:flex items-center gap-5">
                      <div v-for="item in items" :key="item.label">
@@ -60,7 +60,7 @@ import ThemeToggle from "../../components/themeToggle/ThemeToggle.vue";
 import Menubar from "primevue/menubar";
 import Session from "supertokens-web-js/recipe/session";
 import { useUserStore } from "../../stores/userStore";
-import useToast from "../../utils/toast";
+// import useToast from "../../utils/toast";
 
 interface MenuItem {
    label: string;
@@ -68,7 +68,8 @@ interface MenuItem {
    to: string;
 }
 
-const { addToast, toastContent } = useToast();
+const emits = defineEmits(["signout"]);
+// const { addToast, toastContent } = useToast();
 const props = withDefaults(
    defineProps<{
       items: MenuItem[];
@@ -129,15 +130,19 @@ async function onSignout() {
       await Session.signOut();
       userStore.updateAuth();
 
+      emits("signout", "success");
+
       // redirect to signin page
-      window.location.assign("signin");
+      // window.location.assign("signin");
    } catch (error) {
-      addToast({
-         severity: "error",
-         summary: toastContent.error.somethingWentWrong.summary,
-         detail: toastContent.error.somethingWentWrong.detail,
-         error,
-      });
+      emits("signout", "failed", error);
+
+      // addToast({
+      //    severity: "error",
+      //    summary: toastContent.error.somethingWentWrong.summary,
+      //    detail: toastContent.error.somethingWentWrong.detail,
+      //    error,
+      // });
    } finally {
       signOutloading.value = false;
    }

@@ -22,7 +22,11 @@ declare function __VLS_template(): {
     rootEl: HTMLElement;
 };
 type __VLS_TemplateResult = ReturnType<typeof __VLS_template>;
-declare const __VLS_component: import('vue').DefineComponent<__VLS_Props, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<__VLS_Props> & Readonly<{}>, {
+declare const __VLS_component: import('vue').DefineComponent<__VLS_Props, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
+    signout: (...args: any[]) => void;
+}, string, import('vue').PublicProps, Readonly<__VLS_Props> & Readonly<{
+    onSignout?: ((...args: any[]) => any) | undefined;
+}>, {
     userSignedIn: boolean;
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {
     menu: ({
