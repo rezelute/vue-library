@@ -20,10 +20,10 @@ import VerifyCode from "../../components/SignInUp/verifyCode/VerifyCode.vue";
 import { getLoginAttemptInfo } from "supertokens-web-js/recipe/passwordless";
 import { useRouter } from "vue-router";
 import { signInAndUp } from "supertokens-web-js/recipe/thirdparty";
-import useToast from "../../utils/toast";
 import PageLoader from "../../components/pageLoader/PageLoader.vue";
+import toastContent from "../../content/generic/toastContent";
 
-const { addToast, toastContent } = useToast();
+const emits = defineEmits(["error"]);
 const route = useRoute();
 const router = useRouter();
 
@@ -61,8 +61,7 @@ async function hasInitialMagicLinkBeenSent() {
       if (codeAlreadySent) console.info("Code already sent: ", codeAlreadySent);
       return codeAlreadySent !== undefined;
    } catch (error) {
-      addToast({
-         severity: "error",
+      emits("error", {
          summary: toastContent.error.somethingWentWrong.summary,
          detail: toastContent.error.somethingWentWrong.detail,
          error,
@@ -94,8 +93,7 @@ async function handleGoogleCallback() {
 
          window.location.assign("/home");
       } else if (response.status === "SIGN_IN_UP_NOT_ALLOWED") {
-         addToast({
-            severity: "error",
+         emits("error", {
             summary: googleFailSummary,
             detail: googleFailDetail,
             error: response,
@@ -105,22 +103,21 @@ async function handleGoogleCallback() {
       // gives an email for the user. If that's not the case, sign up / in
       // will fail.
       else {
-         addToast({
-            severity: "error",
+         emits("error", {
             summary: googleFailSummary,
             detail: googleFailDetail,
             error: response,
          });
+
          window.location.assign("/signin"); // redirect back to login page
       }
    } catch (error) {
       // if (err.isSuperTokensGeneralError === true) {} else {}
 
-      addToast({
-         severity: "error",
+      emits("error", {
          summary: toastContent.error.somethingWentWrong.summary,
          detail: toastContent.error.somethingWentWrong.detail,
-         error: error,
+         error,
       });
    } finally {
       isLoading.value = false;

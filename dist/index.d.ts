@@ -23,7 +23,7 @@ declare const baseRouting: {
     routes: ({
         path: string;
         name: string;
-        component: import('vue').DefineComponent<{}, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
+        component: () => Promise<typeof import("./pages/AccountPage.vue")>;
         meta: {
             requiresAuth: boolean;
             guestOnly?: undefined;
@@ -32,13 +32,13 @@ declare const baseRouting: {
     } | {
         path: string;
         name: string;
-        component: import('vue').DefineComponent<{}, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, HTMLDivElement>;
+        component: () => Promise<typeof import("./pages/GoodbyePage.vue")>;
         meta?: undefined;
         props?: undefined;
     } | {
         path: string;
         name: string;
-        component: import('vue').DefineComponent<{}, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, HTMLDivElement>;
+        component: () => Promise<typeof import("./pages/AuthPage.vue")>;
         props: {
             authType: string;
         };

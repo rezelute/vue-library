@@ -32,8 +32,8 @@ import DeleteAccount from "../components/account/deleteAccount/DeleteAccount.vue
 import YourAccount from "../components/account/yourAccount/YourAccount.vue";
 import PageLoader from "../components/pageLoader/PageLoader.vue";
 import Session from "supertokens-web-js/recipe/session";
-import useToast from "../utils/toast";
 import accountService from "../services/account/accountService";
+import useToast from "../composables/toast";
 
 const { addToast } = useToast();
 const route = useRoute();

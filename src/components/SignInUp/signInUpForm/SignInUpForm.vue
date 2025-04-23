@@ -35,10 +35,9 @@ import Card from "primevue/card";
 import Textbox from "primevue/inputtext";
 import Button from "primevue/button";
 import { createCode } from "supertokens-web-js/recipe/passwordless";
-import useToast from "../../../utils/toast";
+import toastContent from "../../../content/generic/toastContent";
 
-const emits = defineEmits(["sendCodeSuccess"]);
-const { addToast, toastContent } = useToast();
+const emits = defineEmits(["sendCodeSuccess", "error"]);
 
 defineProps<{
    pageAuthType: "Sign in" | "Sign up";
@@ -68,8 +67,7 @@ async function onSignupStart() {
 
       // Disabled Sign-Up or Sign-In or invalid configuration etc.
       if (response.status === "SIGN_IN_UP_NOT_ALLOWED") {
-         addToast({
-            severity: "error",
+         emits("error", {
             summary: toastContent.error.somethingWentWrong.summary,
             detail: toastContent.error.somethingWentWrong.detail,
             error: response,
@@ -84,9 +82,7 @@ async function onSignupStart() {
       // this may be a custom error message sent from the API OR the input email is not valid
       // if (err.isSuperTokensGeneralError === true) {}
 
-      emits("sendCodeSuccess", false);
-
-      addToast({
+      emits("error", {
          severity: "error",
          summary: toastContent.error.somethingWentWrong.summary,
          detail: toastContent.error.somethingWentWrong.detail,

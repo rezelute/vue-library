@@ -41,6 +41,7 @@ export default defineConfig({
          entry: {
             index: path.resolve(__dirname, "src/index.ts"),
             "components/index": path.resolve(__dirname, "src/components/index.ts"),
+            "pages/index": path.resolve(__dirname, "src/pages/index.ts"),
          },
          name: "SharedVueLibrary",
          formats: ["es"],
@@ -62,7 +63,7 @@ export default defineConfig({
          // input: "src/index.ts", // Entry point
          // When we mark these as an external dependency,
          // we tell Rollup not to include them in the final output bundle because the consumer is expected to provide it externally
-         external: ["vue", "primevue", "pinia"],
+         external: ["vue", "primevue", "pinia", "vue-router"],
          output: {
             // References these as global variables provided by the consuming application
             globals: {

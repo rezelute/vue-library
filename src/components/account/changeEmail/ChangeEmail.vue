@@ -37,11 +37,11 @@
 import Card from "primevue/card";
 import Button from "primevue/button";
 import InputText from "primevue/inputtext";
-import useToast from "../../../utils/toast";
 import accountService from "../../../services/account/accountService";
 import ActionConfirmMsg from "../../../components/actionConfirmMsg/ActionConfirmMsg.vue";
+import toastContent from "../../../content/generic/toastContent";
 
-const { addToast, toastContent } = useToast();
+const emits = defineEmits(["error"]);
 
 // data
 // -----------------------------------------
@@ -64,8 +64,7 @@ async function sendChangeEmail() {
    } catch (error) {
       isEmailSent.value = false;
 
-      addToast({
-         severity: "error",
+      emits("error", {
          summary: toastContent.error.somethingWentWrong.summary,
          detail: toastContent.error.somethingWentWrong.detail,
          error,

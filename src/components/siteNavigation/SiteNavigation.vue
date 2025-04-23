@@ -60,7 +60,7 @@ import ThemeToggle from "../../components/themeToggle/ThemeToggle.vue";
 import Menubar from "primevue/menubar";
 import Session from "supertokens-web-js/recipe/session";
 import { useUserStore } from "../../stores/userStore";
-// import useToast from "../../utils/toast";
+import toastContent from "../../content/generic/toastContent";
 
 interface MenuItem {
    label: string;
@@ -68,8 +68,7 @@ interface MenuItem {
    to: string;
 }
 
-const emits = defineEmits(["signout"]);
-// const { addToast, toastContent } = useToast();
+const emits = defineEmits(["signoutSuccess", "error"]);
 const props = withDefaults(
    defineProps<{
       items: MenuItem[];
@@ -130,19 +129,14 @@ async function onSignout() {
       await Session.signOut();
       userStore.updateAuth();
 
-      emits("signout", "success");
-
       // redirect to signin page
-      // window.location.assign("signin");
+      window.location.assign("signin");
    } catch (error) {
-      emits("signout", "failed", error);
-
-      // addToast({
-      //    severity: "error",
-      //    summary: toastContent.error.somethingWentWrong.summary,
-      //    detail: toastContent.error.somethingWentWrong.detail,
-      //    error,
-      // });
+      emits("error", {
+         summary: toastContent.error.somethingWentWrong.summary,
+         detail: toastContent.error.somethingWentWrong.detail,
+         error,
+      });
    } finally {
       signOutloading.value = false;
    }

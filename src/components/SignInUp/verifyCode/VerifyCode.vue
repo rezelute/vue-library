@@ -35,11 +35,9 @@ import Card from "primevue/card";
 import InputOtp from "primevue/inputotp";
 import Button from "primevue/button";
 import { resendCode, clearLoginAttemptInfo, consumeCode } from "supertokens-web-js/recipe/passwordless";
-import useToast from "../../../utils/toast";
+import toastContent from "../../../content/generic/toastContent";
 
-const emits = defineEmits(["verificationCodeSuccess", "resendCodeSuccess"]);
-
-const { addToast, toastContent } = useToast();
+const emits = defineEmits(["verificationCodeSuccess", "resendCodeSuccess", "error"]);
 
 defineProps<{
    pageAuthType: "Sign in" | "Sign up";
@@ -99,26 +97,22 @@ async function onCodeSubmit() {
          else {
             await clearLoginAttemptInfo();
 
-            addToast({
-               severity: "error",
+            emits("error", {
                summary: otpErrorSummary,
                detail: otpErrorDetail,
                error: response,
             });
-            emits("verificationCodeSuccess", false);
          }
       }
    } catch (error: any) {
       // for any other type of error, show a generic error toast and hide the code input field
       // if (err.isSuperTokensGeneralError === true) {} else {}
 
-      addToast({
-         severity: "error",
+      emits("error", {
          summary: toastContent.error.somethingWentWrong.summary,
          detail: toastContent.error.somethingWentWrong.detail,
          error: error,
       });
-      emits("verificationCodeSuccess", false);
    }
 }
 
@@ -139,34 +133,28 @@ async function onResendCode() {
          // enter email / phone UI again.
          await clearLoginAttemptInfo();
 
-         addToast({
-            severity: "error",
+         emits("error", {
             summary: resendOtpFailedSummary,
             detail: resendOtpFailedDetail,
             error: response,
          });
-         emits("resendCodeSuccess", false);
       }
       // Magic link resent successfully, show toast to confirm
       else {
-         addToast({
-            severity: "success",
+         emits("resendCodeSuccess", {
             summary: "Code re-sent",
             detail: "Please check your email for the new code.",
          });
-         emits("resendCodeSuccess", true);
       }
    } catch (error: any) {
       // this may be a custom error message sent from the API by you.
       // if (err.isSuperTokensGeneralError === true) {} else {}
 
-      addToast({
-         severity: "error",
+      emits("error", {
          summary: toastContent.error.somethingWentWrong.summary,
          detail: toastContent.error.somethingWentWrong.detail,
          error,
       });
-      emits("resendCodeSuccess", false);
    }
 }
 </script>

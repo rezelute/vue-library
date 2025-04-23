@@ -1,6 +1,10 @@
-import { x as he, m as A, y as pe, E as Ie, B as ee, R as te, s as R, k as ne, n as ie, z as ge, A as N, C as ve, D as k, F as T, G as E, H as U, I as q, j as S, J, K as z, L as ye, u as ke, S as Le, l as xe, _ as Pe } from "../PageLoader.vue_vue_type_script_setup_true_lang-CpVC9aun.js";
-import { o as Vt } from "../PageLoader.vue_vue_type_script_setup_true_lang-CpVC9aun.js";
-import { renderSlot as x, createBlock as g, createCommentVNode as h, openBlock as u, Teleport as Ce, defineComponent as _, ref as D, computed as Z, unref as v, mergeProps as m, resolveDirective as re, createElementBlock as d, createElementVNode as b, withDirectives as se, resolveDynamicComponent as O, normalizeClass as C, toDisplayString as H, resolveComponent as K, withCtx as L, createVNode as y, Transition as we, Fragment as P, renderList as B, createTextVNode as V, normalizeStyle as Se, normalizeProps as Oe, guardReactiveProps as Me, onMounted as Ke } from "vue";
+import { b as A, R as ee, e as R, f as te, g as G, s as he } from "../PageLoader.vue_vue_type_script_setup_true_lang-CTVBwhFg.js";
+import { _ as _t } from "../PageLoader.vue_vue_type_script_setup_true_lang-CTVBwhFg.js";
+import { renderSlot as x, createBlock as g, createCommentVNode as h, openBlock as u, Teleport as pe, defineComponent as _, ref as D, computed as Z, unref as v, mergeProps as m, resolveDirective as ne, createElementBlock as d, createElementVNode as b, withDirectives as ie, resolveDynamicComponent as O, normalizeClass as C, toDisplayString as j, resolveComponent as K, withCtx as k, createVNode as y, Transition as Ie, Fragment as P, renderList as B, createTextVNode as V, normalizeStyle as ge, normalizeProps as ve, guardReactiveProps as ye, onMounted as ke } from "vue";
+import { a as Le, g as xe, E as Pe, B as re, i as se, b as Ce, c as N, d as we, f as L, e as T, h as E, r as q, j as S, k as J, l as z, m as Se, S as Oe } from "../index-CLtI3W90.js";
+import { u as Me } from "../userStore-DXQ_HXtK.js";
+import { _ as Ke } from "../_plugin-vue_export-helper-CHgC5LLL.js";
+import { _ as Ht } from "../SignInUp.vue_vue_type_script_setup_true_lang-CekpR5Se.js";
 function Ae() {
   let t = [];
   const e = (a, c, s = 999) => {
@@ -38,7 +42,7 @@ var M = Ae(), oe = {
     };
   },
   mounted: function() {
-    this.mounted = he();
+    this.mounted = Le();
   },
   computed: {
     inline: function() {
@@ -49,7 +53,7 @@ var M = Ae(), oe = {
 function Ee(t, e, n, r, o, i) {
   return i.inline ? x(t.$slots, "default", {
     key: 0
-  }) : o.mounted ? (u(), g(Ce, {
+  }) : o.mounted ? (u(), g(pe, {
     key: 1,
     to: n.appendTo
   }, [x(t.$slots, "default")], 8, ["to"])) : h("", !0);
@@ -117,7 +121,7 @@ var Be = /* @__PURE__ */ function() {
   return ze(t, [{
     key: "bindScrollListener",
     value: function() {
-      this.scrollableParents = pe(this.element);
+      this.scrollableParents = xe(this.element);
       for (var n = 0; n < this.scrollableParents.length; n++)
         this.scrollableParents[n].addEventListener("scroll", this.listener);
     }
@@ -134,7 +138,7 @@ var Be = /* @__PURE__ */ function() {
       this.unbindScrollListener(), this.element = null, this.listener = null, this.scrollableParents = null;
     }
   }]);
-}(), Re = Ie(), _e = ({ dt: t }) => `
+}(), Re = Pe(), _e = ({ dt: t }) => `
 .p-menu {
     background: ${t("menu.background")};
     color: ${t("menu.color")};
@@ -213,7 +217,7 @@ var Be = /* @__PURE__ */ function() {
 .p-menu-separator {
     border-block-start: 1px solid ${t("menu.separator.border.color")};
 }
-`, He = {
+`, je = {
   root: function(e) {
     var n = e.props;
     return ["p-menu p-component", {
@@ -236,10 +240,10 @@ var Be = /* @__PURE__ */ function() {
   itemLink: "p-menu-item-link",
   itemIcon: "p-menu-item-icon",
   itemLabel: "p-menu-item-label"
-}, je = ee.extend({
+}, He = re.extend({
   name: "menu",
   style: _e,
-  classes: He
+  classes: je
 }), Ne = {
   name: "BaseMenu",
   extends: R,
@@ -277,7 +281,7 @@ var Be = /* @__PURE__ */ function() {
       default: null
     }
   },
-  style: je,
+  style: He,
   provide: function() {
     return {
       $pcMenu: this,
@@ -299,7 +303,7 @@ var Be = /* @__PURE__ */ function() {
   },
   methods: {
     getItemProp: function(e, n) {
-      return e && e.item ? U(e.item[n]) : void 0;
+      return e && e.item ? q(e.item[n]) : void 0;
     },
     getPTOptions: function(e) {
       return this.ptm(e, {
@@ -358,18 +362,18 @@ var Be = /* @__PURE__ */ function() {
   },
   computed: {
     dataP: function() {
-      return ne({
+      return te({
         focus: this.isItemFocused(),
         disabled: this.disabled()
       });
     }
   },
   directives: {
-    ripple: te
+    ripple: ee
   }
-}, Ze = ["id", "aria-label", "aria-disabled", "data-p-focused", "data-p-disabled", "data-p"], Ge = ["data-p"], Ue = ["href", "target"], qe = ["data-p"], We = ["data-p"];
+}, Ze = ["id", "aria-label", "aria-disabled", "data-p-focused", "data-p-disabled", "data-p"], Ue = ["data-p"], Ge = ["href", "target"], qe = ["data-p"], We = ["data-p"];
 function Je(t, e, n, r, o, i) {
-  var a = re("ripple");
+  var a = ne("ripple");
   return i.visible() ? (u(), d("li", m({
     key: 0,
     id: n.id,
@@ -395,7 +399,7 @@ function Je(t, e, n, r, o, i) {
     item: n.item,
     label: i.label(),
     props: i.getMenuItemProps(n.item)
-  }, null, 8, ["item", "label", "props"])) : h("", !0) : se((u(), d("a", m({
+  }, null, 8, ["item", "label", "props"])) : h("", !0) : ie((u(), d("a", m({
     key: 0,
     href: n.item.url,
     class: t.cx("itemLink"),
@@ -412,7 +416,7 @@ function Je(t, e, n, r, o, i) {
   }, i.getPTOptions("itemIcon")), null, 16, qe)) : h("", !0), b("span", m({
     class: t.cx("itemLabel"),
     "data-p": i.dataP
-  }, i.getPTOptions("itemLabel")), H(i.label()), 17, We)], 16, Ue)), [[a]])], 16, Ge)], 16, Ze)) : h("", !0);
+  }, i.getPTOptions("itemLabel")), j(i.label()), 17, We)], 16, Ge)), [[a]])], 16, Ue)], 16, Ze)) : h("", !0);
 }
 ae.render = Je;
 function Q(t) {
@@ -424,18 +428,18 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
 }
 function Xe(t, e) {
   if (t) {
-    if (typeof t == "string") return G(t, e);
+    if (typeof t == "string") return U(t, e);
     var n = {}.toString.call(t).slice(8, -1);
-    return n === "Object" && t.constructor && (n = t.constructor.name), n === "Map" || n === "Set" ? Array.from(t) : n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n) ? G(t, e) : void 0;
+    return n === "Object" && t.constructor && (n = t.constructor.name), n === "Map" || n === "Set" ? Array.from(t) : n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n) ? U(t, e) : void 0;
   }
 }
 function Ye(t) {
   if (typeof Symbol < "u" && t[Symbol.iterator] != null || t["@@iterator"] != null) return Array.from(t);
 }
 function et(t) {
-  if (Array.isArray(t)) return G(t);
+  if (Array.isArray(t)) return U(t);
 }
-function G(t, e) {
+function U(t, e) {
   (e == null || e > t.length) && (e = t.length);
   for (var n = 0, r = Array(e); n < e; n++) r[n] = t[n];
   return r;
@@ -501,7 +505,7 @@ var ue = {
           this.onSpaceKey(e);
           break;
         case "Escape":
-          this.popup && (k(this.target), this.hide());
+          this.popup && (L(this.target), this.hide());
         case "Tab":
           this.overlayVisible && this.hide();
           break;
@@ -513,7 +517,7 @@ var ue = {
     },
     onArrowUpKey: function(e) {
       if (e.altKey && this.popup)
-        k(this.target), this.hide(), e.preventDefault();
+        L(this.target), this.hide(), e.preventDefault();
       else {
         var n = this.findPrevOptionIndex(this.focusedOptionIndex);
         this.changeFocusedOptionIndex(n), e.preventDefault();
@@ -527,7 +531,7 @@ var ue = {
     },
     onEnterKey: function(e) {
       var n = E(this.list, 'li[id="'.concat("".concat(this.focusedOptionIndex), '"]')), r = n && E(n, 'a[data-pc-section="itemlink"]');
-      this.popup && k(this.target), r ? r.click() : n && n.click(), e.preventDefault();
+      this.popup && L(this.target), r ? r.click() : n && n.click(), e.preventDefault();
     },
     onSpaceKey: function(e) {
       this.onEnterKey(e);
@@ -558,10 +562,10 @@ var ue = {
       this.overlayVisible = !1, this.target = null;
     },
     onEnter: function(e) {
-      ve(e, {
+      we(e, {
         position: "absolute",
         top: "0"
-      }), this.alignOverlay(), this.bindOutsideClickListener(), this.bindResizeListener(), this.bindScrollListener(), this.autoZIndex && M.set("menu", e, this.baseZIndex + this.$primevue.config.zIndex.menu), this.popup && k(this.list), this.$emit("show");
+      }), this.alignOverlay(), this.bindOutsideClickListener(), this.bindResizeListener(), this.bindScrollListener(), this.autoZIndex && M.set("menu", e, this.baseZIndex + this.$primevue.config.zIndex.menu), this.popup && L(this.list), this.$emit("show");
     },
     onLeave: function() {
       this.unbindOutsideClickListener(), this.unbindResizeListener(), this.unbindScrollListener(), this.$emit("hide");
@@ -570,7 +574,7 @@ var ue = {
       this.autoZIndex && M.clear(e);
     },
     alignOverlay: function() {
-      ge(this.container, this.target);
+      Ce(this.container, this.target);
       var e = N(this.target);
       e > N(this.container) && (this.container.style.minWidth = N(this.target) + "px");
     },
@@ -596,7 +600,7 @@ var ue = {
     bindResizeListener: function() {
       var e = this;
       this.resizeListener || (this.resizeListener = function() {
-        e.overlayVisible && !ie() && e.hide();
+        e.overlayVisible && !se() && e.hide();
       }, window.addEventListener("resize", this.resizeListener));
     },
     unbindResizeListener: function() {
@@ -629,7 +633,7 @@ var ue = {
       return this.focusedOptionIndex !== -1 ? this.focusedOptionIndex : null;
     },
     dataP: function() {
-      return ne({
+      return te({
         popup: this.popup
       });
     }
@@ -645,14 +649,14 @@ function rt(t, e, n, r, o, i) {
     appendTo: t.appendTo,
     disabled: !t.popup
   }, {
-    default: L(function() {
-      return [y(we, m({
+    default: k(function() {
+      return [y(Ie, m({
         name: "p-connected-overlay",
         onEnter: i.onEnter,
         onLeave: i.onLeave,
         onAfterLeave: i.onAfterLeave
       }, t.ptm("transition")), {
-        default: L(function() {
+        default: k(function() {
           return [!t.popup || o.overlayVisible ? (u(), d("div", m({
             key: 0,
             ref: i.containerRef,
@@ -697,7 +701,7 @@ function rt(t, e, n, r, o, i) {
             }, t.ptm("submenuLabel")), [x(t.$slots, t.$slots.submenulabel ? "submenulabel" : "submenuheader", {
               item: s
             }, function() {
-              return [V(H(i.label(s)), 1)];
+              return [V(j(i.label(s)), 1)];
             })], 16, it)) : h("", !0), (u(!0), d(P, null, B(s.items, function(f, p) {
               return u(), d(P, {
                 key: f.label + l + "_" + p
@@ -750,7 +754,7 @@ function rt(t, e, n, r, o, i) {
 ue.render = rt;
 var le = {
   name: "BarsIcon",
-  extends: q
+  extends: G
 };
 function st(t, e, n, r, o, i) {
   return u(), d("svg", m({
@@ -1066,14 +1070,14 @@ var ot = ({ dt: t }) => `
   submenu: "p-menubar-submenu",
   separator: "p-menubar-separator",
   end: "p-menubar-end"
-}, lt = ee.extend({
+}, lt = re.extend({
   name: "menubar",
   style: ot,
   classes: ut,
   inlineStyles: at
 }), me = {
   name: "AngleDownIcon",
-  extends: q
+  extends: G
 };
 function mt(t, e, n, r, o, i) {
   return u(), d("svg", m({
@@ -1090,7 +1094,7 @@ function mt(t, e, n, r, o, i) {
 me.render = mt;
 var de = {
   name: "AngleRightIcon",
-  extends: q
+  extends: G
 };
 function dt(t, e, n, r, o, i) {
   return u(), d("svg", m({
@@ -1189,7 +1193,7 @@ var ct = {
       return this.getItemId(e);
     },
     getItemProp: function(e, n, r) {
-      return e && e.item ? U(e.item[n], r) : void 0;
+      return e && e.item ? q(e.item[n], r) : void 0;
     },
     getItemLabel: function(e) {
       return this.getItemProp(e, "label");
@@ -1288,11 +1292,11 @@ var ct = {
     AngleDownIcon: me
   },
   directives: {
-    ripple: te
+    ripple: ee
   }
 }, ft = ["id", "aria-label", "aria-disabled", "aria-expanded", "aria-haspopup", "aria-level", "aria-setsize", "aria-posinset", "data-p-active", "data-p-focused", "data-p-disabled"], bt = ["onClick", "onMouseenter", "onMousemove"], ht = ["href", "target"], pt = ["id"], It = ["id"];
 function gt(t, e, n, r, o, i) {
-  var a = K("MenubarSub", !0), c = re("ripple");
+  var a = K("MenubarSub", !0), c = ne("ripple");
   return u(), d("ul", m({
     class: n.level === 0 ? t.cx("rootList") : t.cx("submenu")
   }, n.level === 0 ? t.ptm("rootList") : t.ptm("submenu")), [(u(!0), d(P, null, B(n.items, function(s, l) {
@@ -1337,7 +1341,7 @@ function gt(t, e, n, r, o, i) {
       hasSubmenu: i.getItemProp(s, "items"),
       label: i.getItemLabel(s),
       props: i.getMenuItemProps(s, l)
-    }, null, 8, ["item", "root", "hasSubmenu", "label", "props"])) : se((u(), d("a", m({
+    }, null, 8, ["item", "root", "hasSubmenu", "label", "props"])) : ie((u(), d("a", m({
       key: 0,
       href: i.getItemProp(s, "url"),
       class: t.cx("itemLink"),
@@ -1356,7 +1360,7 @@ function gt(t, e, n, r, o, i) {
       id: i.getItemLabelId(s),
       class: t.cx("itemLabel"),
       ref_for: !0
-    }, i.getPTOptions(s, l, "itemLabel")), H(i.getItemLabel(s)), 17, pt), i.getItemProp(s, "items") ? (u(), d(P, {
+    }, i.getPTOptions(s, l, "itemLabel")), j(i.getItemLabel(s)), 17, pt), i.getItemProp(s, "items") ? (u(), d(P, {
       key: 2
     }, [n.templates.submenuicon ? (u(), g(O(n.templates.submenuicon), {
       key: 0,
@@ -1372,7 +1376,7 @@ function gt(t, e, n, r, o, i) {
       id: i.getItemId(s) + "_list",
       menuId: n.menuId,
       role: "menu",
-      style: Se(t.sx("submenu", !0, {
+      style: ge(t.sx("submenu", !0, {
         processedItem: s
       })),
       focusedItemId: n.focusedItemId,
@@ -1441,7 +1445,7 @@ var fe = {
   },
   methods: {
     getItemProp: function(e, n) {
-      return e ? U(e[n]) : void 0;
+      return e ? q(e[n]) : void 0;
     },
     getItemLabel: function(e) {
       return this.getItemProp(e, "label");
@@ -1471,17 +1475,17 @@ var fe = {
       }, 1)), this.bindOutsideClickListener(), e.preventDefault();
     },
     show: function() {
-      k(this.menubar);
+      L(this.menubar);
     },
     hide: function(e, n) {
       var r = this;
       this.mobileActive && (this.mobileActive = !1, setTimeout(function() {
-        k(r.$refs.menubutton);
+        L(r.$refs.menubutton);
       }, 0)), this.activeItemPath = [], this.focusedItemInfo = {
         index: -1,
         level: 0,
         parentKey: ""
-      }, n && k(this.menubar), this.dirty = !1;
+      }, n && L(this.menubar), this.dirty = !1;
     },
     onFocus: function(e) {
       this.focused = !0, this.focusedItemInfo = this.focusedItemInfo.index !== -1 ? this.focusedItemInfo : {
@@ -1538,7 +1542,7 @@ var fe = {
         case "ShiftRight":
           break;
         default:
-          !n && ye(e.key) && this.searchItems(e, e.key);
+          !n && Se(e.key) && this.searchItems(e, e.key);
           break;
       }
     },
@@ -1552,7 +1556,7 @@ var fe = {
           index: i,
           level: c,
           parentKey: s
-        }, f && (this.dirty = !0), o && k(this.menubar), !(n === "hover" && this.queryMatches) && (this.activeItemPath = p);
+        }, f && (this.dirty = !0), o && L(this.menubar), !(n === "hover" && this.queryMatches) && (this.activeItemPath = p);
       }
     },
     onItemClick: function(e) {
@@ -1565,14 +1569,14 @@ var fe = {
           index: c,
           level: l,
           parentKey: f
-        }, this.dirty = !i, k(this.menubar);
+        }, this.dirty = !i, L(this.menubar);
       } else if (o)
         this.onItemChange(e);
       else {
         var p = i ? r : this.activeItemPath.find(function(I) {
           return I.parentKey === "";
         });
-        this.hide(n), this.changeFocusedItemIndex(n, p ? p.index : -1), this.mobileActive = !1, k(this.menubar);
+        this.hide(n), this.changeFocusedItemIndex(n, p ? p.index : -1), this.mobileActive = !1, L(this.menubar);
       }
     },
     onItemMouseEnter: function(e) {
@@ -1723,7 +1727,7 @@ var fe = {
     bindResizeListener: function() {
       var e = this;
       this.resizeListener || (this.resizeListener = function(n) {
-        ie() || e.hide(n, !0), e.mobileActive = !1;
+        se() || e.hide(n, !0), e.mobileActive = !1;
       }, window.addEventListener("resize", this.resizeListener));
     },
     unbindResizeListener: function() {
@@ -1938,7 +1942,7 @@ function xt(t, e, n, r, o, i) {
         return i.menuButtonKeydown(l);
       })
     }, Y(Y({}, t.buttonProps), t.ptm("button"))), [x(t.$slots, t.$slots.buttonicon ? "buttonicon" : "menubuttonicon", {}, function() {
-      return [y(a, Oe(Me(t.ptm("buttonicon"))), null, 16)];
+      return [y(a, ve(ye(t.ptm("buttonicon"))), null, 16)];
     })], 16, Lt)) : h("", !0)];
   }), y(c, {
     ref: i.menubarRef,
@@ -1970,7 +1974,7 @@ function xt(t, e, n, r, o, i) {
   }, t.ptm("end")), [x(t.$slots, "end")], 16)) : h("", !0)], 16);
 }
 fe.render = xt;
-const Pt = { class: "bg-surface-0 dark:bg-surface-900" }, Ct = { class: "container border" }, wt = { class: "flex gap-5" }, St = { class: "hidden lg:flex items-center gap-5" }, Ot = { class: "lg:hidden" }, $t = /* @__PURE__ */ _({
+const Pt = { class: "bg-surface-0 dark:bg-surface-900" }, Ct = { class: "container border" }, wt = { class: "flex gap-5" }, St = { class: "hidden lg:flex items-center gap-5" }, Ot = { class: "lg:hidden" }, zt = /* @__PURE__ */ _({
   __name: "SiteNavigation",
   props: {
     items: {},
@@ -1978,7 +1982,7 @@ const Pt = { class: "bg-surface-0 dark:bg-surface-900" }, Ct = { class: "contain
   },
   emits: ["signout"],
   setup(t, { emit: e }) {
-    const n = e, r = t, o = ke(), i = D(!1), a = D(null), c = D([
+    const n = e, r = t, o = Me(), i = D(!1), a = D(null), c = D([
       { label: "Sign in", icon: "pi pi-sign-in", to: "/signin" },
       { label: "Sign up", icon: "pi pi-user-plus", to: "/signup" }
     ]), s = Z(() => r.userSignedIn ? r.items : [...r.items || [], ...c.value]), l = Z(() => [
@@ -1992,34 +1996,34 @@ const Pt = { class: "bg-surface-0 dark:bg-surface-900" }, Ct = { class: "contain
       ] : []
       // If not logged in, this returns an empty array (no item added)
     ]), f = (I) => {
-      var j;
-      (j = a.value) == null || j.toggle(I);
+      var H;
+      (H = a.value) == null || H.toggle(I);
     };
     async function p() {
       try {
-        i.value = !0, await Le.signOut(), o.updateAuth(), n("signout", "success");
+        i.value = !0, await Oe.signOut(), o.updateAuth(), n("signout", "success");
       } catch (I) {
         n("signout", "failed", I);
       } finally {
         i.value = !1;
       }
     }
-    return (I, j) => {
+    return (I, H) => {
       const W = K("RouterLink");
       return u(), d("header", Pt, [
         b("div", Ct, [
           y(v(fe), { model: [] }, {
-            start: L(() => [
+            start: k(() => [
               y(v(A), {
                 asChild: "",
                 variant: "link"
               }, {
-                default: L((w) => [
+                default: k((w) => [
                   y(W, {
                     to: I.userSignedIn ? "/home" : "/",
                     class: C(w.class)
                   }, {
-                    default: L(() => [
+                    default: k(() => [
                       x(I.$slots, "logo")
                     ]),
                     _: 2
@@ -2028,7 +2032,7 @@ const Pt = { class: "bg-surface-0 dark:bg-surface-900" }, Ct = { class: "contain
                 _: 3
               })
             ]),
-            end: L(() => [
+            end: k(() => [
               b("div", wt, [
                 b("div", St, [
                   (u(!0), d(P, null, B(v(s), (w) => (u(), d("div", {
@@ -2038,16 +2042,16 @@ const Pt = { class: "bg-surface-0 dark:bg-surface-900" }, Ct = { class: "contain
                       asChild: "",
                       variant: "outlined"
                     }, {
-                      default: L((be) => [
+                      default: k((be) => [
                         y(W, {
                           to: w.to,
                           class: C(be.class)
                         }, {
-                          default: L(() => [
+                          default: k(() => [
                             b("i", {
                               class: C(w.icon)
                             }, null, 2),
-                            b("span", null, H(w.label), 1)
+                            b("span", null, j(w.label), 1)
                           ]),
                           _: 2
                         }, 1032, ["to", "class"])
@@ -2089,23 +2093,23 @@ const Pt = { class: "bg-surface-0 dark:bg-surface-900" }, Ct = { class: "contain
       ]);
     };
   }
-}), Ft = /* @__PURE__ */ _({
+}), Dt = /* @__PURE__ */ _({
   __name: "AppErrorInfo",
   props: {
     error: {}
   },
   setup(t) {
     const e = t;
-    return Ke(() => {
+    return ke(() => {
       console.error("App error: ", e.error);
-    }), (n, r) => (u(), g(v(xe), { class: "p-10" }, {
-      title: L(() => r[0] || (r[0] = [
+    }), (n, r) => (u(), g(v(he), { class: "p-10" }, {
+      title: k(() => r[0] || (r[0] = [
         b("h2", { class: "text-4xl font-semibold text-gray-800 text-center" }, [
           V(" Oops "),
           b("i", { class: "text-4xl not-italic" }, "🥲")
         ], -1)
       ])),
-      content: L(() => r[1] || (r[1] = [
+      content: k(() => r[1] || (r[1] = [
         b("p", { class: "mt-10 text-xl" }, [
           V(" Something went wrong! We have been notified about this. In the meantime, please try visiting the "),
           b("a", {
@@ -2131,11 +2135,12 @@ const Pt = { class: "bg-surface-0 dark:bg-surface-900" }, Ct = { class: "contain
       b("div", null, null, -1)
     ]))) : h("", !0);
   }
-}), Tt = /* @__PURE__ */ Pe(Kt, [["__scopeId", "data-v-a36ba306"]]);
+}), Vt = /* @__PURE__ */ Ke(Kt, [["__scopeId", "data-v-a36ba306"]]);
 export {
-  Ft as AppErrorInfo,
-  Tt as PageInfiniteLoader,
-  Vt as PageLoader,
-  $t as SiteNavigation,
+  Dt as AppErrorInfo,
+  Vt as PageInfiniteLoader,
+  _t as PageLoader,
+  Ht as SignInUp,
+  zt as SiteNavigation,
   $e as ThemeToggle
 };
