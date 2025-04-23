@@ -16,6 +16,9 @@
       },
       "./tailwind-config.css": {
          "default": "./dist/tailwind-config.css"
+      },
+      "./vue-shared-lib.css": {
+         "default": "./dist/vue-shared-lib.css"
       }
    },
    "files": [

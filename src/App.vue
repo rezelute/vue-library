@@ -18,9 +18,9 @@
       <main
          class="flex flex-col flex-grow"
          :class="{ 'items-center justify-center': !serverConnectionReady }"
+         v-if="!isLoading"
       >
-         <div v-if="isLoading" class="loader text-primary"></div>
-         <AppErrorInfo v-else-if="!serverConnectionReady" error="Server is down" class="max-w-xl mx-auto" />
+         <AppErrorInfo v-if="!serverConnectionReady" error="Server is down" class="max-w-xl mx-auto" />
          <RouterView v-else />
       </main>
    </div>
