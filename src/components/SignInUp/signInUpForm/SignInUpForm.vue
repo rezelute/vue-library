@@ -68,6 +68,7 @@ async function onSignupStart() {
       // Disabled Sign-Up or Sign-In or invalid configuration etc.
       if (response.status === "SIGN_IN_UP_NOT_ALLOWED") {
          emits("error", {
+            type: "sign_in_up_not_allowed",
             summary: toastContent.error.somethingWentWrong.summary,
             detail: toastContent.error.somethingWentWrong.detail,
             error: response,
@@ -83,7 +84,7 @@ async function onSignupStart() {
       // if (err.isSuperTokensGeneralError === true) {}
 
       emits("error", {
-         severity: "error",
+         type: "unexpected",
          summary: toastContent.error.somethingWentWrong.summary,
          detail: toastContent.error.somethingWentWrong.detail,
          error: error,

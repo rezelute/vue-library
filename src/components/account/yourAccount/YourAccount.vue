@@ -1,5 +1,5 @@
 <template>
-   <Card>
+   <Card v-if="userId || userEmail">
       <template #title>
          <h2 class="h2">Your details</h2>
       </template>
@@ -23,6 +23,10 @@
                </div>
             </div>
          </div>
+         <div class="spacing-elements">
+            <Skeleton height="4rem"></Skeleton>
+            <Skeleton height="4rem"></Skeleton>
+         </div>
       </template>
    </Card>
 </template>
@@ -32,8 +36,10 @@ import Card from "primevue/card";
 import Session from "supertokens-web-js/recipe/session";
 import accountService from "../../../services/account/accountService";
 
+const emits = defineEmits(["error"]);
 const userId = ref("");
 const userEmail = ref("");
+const isLoading = ref(false);
 
 // lifecycle
 // -----------------------------------------
@@ -44,7 +50,12 @@ onMounted(() => {
 // methods
 // -----------------------------------------
 async function getUserInfo() {
+   const userFetchErrorSummary = "Error fetching user info";
+   const userFetchErrorDetail = "Please try again later.";
+
    try {
+      isLoading.value = true;
+
       userId.value = await Session.getUserId();
       const response = await accountService.getEmail();
 
@@ -55,7 +66,15 @@ async function getUserInfo() {
       const data = await response.json();
       userEmail.value = data.email;
    } catch (error) {
+      emits("error", {
+         type: "unexpected",
+         summary: userFetchErrorSummary,
+         detail: userFetchErrorDetail,
+         error,
+      });
       console.error("Error fetching user email: ", error);
+   } finally {
+      isLoading.value = false;
    }
 }
 </script>

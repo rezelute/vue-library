@@ -10,15 +10,21 @@
                   To finish the signup process, enter the code that was emailed to you. Note that the code is
                   only valid for 10 minutes.
                </p>
-               <InputOtp
-                  :length="6"
-                  class="w-50"
-                  v-model="userMagicCode"
-                  type="text"
-                  placeholder="Input email code"
-                  required
-               />
-               <p v-if="isCodeInvalid" class="validation">{{ invalidCodeText }}</p>
+
+               <div>
+                  <InputOtp
+                     :length="6"
+                     class="w-50"
+                     v-model="userMagicCode"
+                     type="text"
+                     placeholder="Input email code"
+                     required
+                     :invalid="!isCodeValid"
+                  />
+                  <Message v-if="!isCodeValid" severity="error" size="small" variant="simple">
+                     {{ invalidCodeText }}
+                  </Message>
+               </div>
                <Button class="w-fit" type="submit" @click="onCodeSubmit">Submit code</Button>
             </div>
             <div class="spacing-form">
@@ -36,6 +42,7 @@ import InputOtp from "primevue/inputotp";
 import Button from "primevue/button";
 import { resendCode, clearLoginAttemptInfo, consumeCode } from "supertokens-web-js/recipe/passwordless";
 import toastContent from "../../../content/generic/toastContent";
+import Message from "primevue/message";
 
 const emits = defineEmits(["verificationCodeSuccess", "resendCodeSuccess", "error"]);
 
@@ -46,7 +53,7 @@ defineProps<{
 // data
 // -----------------------------------------
 const userMagicCode = ref(""); // user input code
-const isCodeInvalid = ref(false);
+const isCodeValid = ref(false);
 const codeInputAttemptCount = ref(0);
 const codeInputAttemptMax = ref(0);
 
@@ -58,11 +65,11 @@ const invalidCodeText = computed(() => {
 
 // methods
 // -----------------------------------------
-/** If the code is valid, we redirect to the home page  */
+/** If the code is valid, we tell the parent so it can redirect to the home page  */
 async function onCodeSubmit() {
-   const otpErrorSummary = "Error processing your OTP code";
+   const otpErrorSummary = "Unable to process your OTP code";
    const otpErrorDetail = "Please try again later.";
-   isCodeInvalid.value = false;
+   isCodeValid.value = false;
 
    try {
       const response = await consumeCode({ userInputCode: userMagicCode.value });
@@ -80,8 +87,10 @@ async function onCodeSubmit() {
             console.info("Existing user signed in successfully");
          }
 
-         // redirect to home page with vue router
-         window.location.href = "/home";
+         emits("verificationCodeSuccess", {
+            summary: "Code verified",
+            detail: "You have successfully signed in.",
+         });
       }
       // Failure: expired/invalid code, etc.
       else {
@@ -91,13 +100,15 @@ async function onCodeSubmit() {
          if (response.status === "INCORRECT_USER_INPUT_CODE_ERROR") {
             codeInputAttemptCount.value = response.failedCodeInputAttemptCount;
             codeInputAttemptMax.value = response.maximumCodeInputAttempts;
-            isCodeInvalid.value = true;
+            isCodeValid.value = false;
          }
-         // Other type of error (such as max invalid count reached), show an error toast and hide the code input field
+         // Other type of error ex. max invalid count reached, invalid code etc
+         // Show an error toast and hide the code input field
          else {
             await clearLoginAttemptInfo();
 
             emits("error", {
+               type: "input_code_invalid",
                summary: otpErrorSummary,
                detail: otpErrorDetail,
                error: response,
@@ -109,6 +120,7 @@ async function onCodeSubmit() {
       // if (err.isSuperTokensGeneralError === true) {} else {}
 
       emits("error", {
+         type: "unexpected",
          summary: toastContent.error.somethingWentWrong.summary,
          detail: toastContent.error.somethingWentWrong.detail,
          error: error,
@@ -134,6 +146,7 @@ async function onResendCode() {
          await clearLoginAttemptInfo();
 
          emits("error", {
+            type: "restart_flow_error",
             summary: resendOtpFailedSummary,
             detail: resendOtpFailedDetail,
             error: response,
@@ -151,6 +164,7 @@ async function onResendCode() {
       // if (err.isSuperTokensGeneralError === true) {} else {}
 
       emits("error", {
+         type: "unexpected",
          summary: toastContent.error.somethingWentWrong.summary,
          detail: toastContent.error.somethingWentWrong.detail,
          error,

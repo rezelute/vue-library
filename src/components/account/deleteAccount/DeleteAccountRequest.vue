@@ -1,5 +1,5 @@
 <template>
-   <!-- Delete account -->
+   <!-- Delete account request -->
    <Card>
       <template #title>
          <h2 class="h2">Delete your account</h2>
@@ -11,7 +11,7 @@
                delete your account.
             </p>
 
-            <Button type="button" @click="sendDeleteEmail">Send deletion email</Button>
+            <Button type="button" @click="sendDeleteEmail" :isLoading="isLoading">Send deletion email</Button>
          </div>
 
          <ActionConfirmMsg v-else iconClass="pi pi-envelope">
@@ -36,12 +36,15 @@ const emits = defineEmits(["error"]);
 // data
 // -----------------------------------------
 const isDeleteEmailSent = ref(false);
+const isLoading = ref(false);
 
 // methods
 // -----------------------------------------
 // send a request to the server to send a deletion email
 async function sendDeleteEmail() {
    try {
+      isLoading.value = true;
+
       const response = await accountService.requestDelete();
       if (!response.ok) {
          throw new Error(`Error requesting account deletion: ${response.status} - ${response.statusText}`);
@@ -54,10 +57,13 @@ async function sendDeleteEmail() {
       isDeleteEmailSent.value = false;
 
       emits("error", {
+         type: "unexpected",
          summary: toastContent.error.somethingWentWrong.summary,
          detail: toastContent.error.somethingWentWrong.detail,
          error,
       });
+   } finally {
+      isLoading.value = false;
    }
 }
 </script>

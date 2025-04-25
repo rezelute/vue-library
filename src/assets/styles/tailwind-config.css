@@ -18,6 +18,11 @@
       @apply mb-1;
    }
 
+   /* Small margin for error messages */
+   .spacing-form .p-message {
+      @apply mt-1;
+   }
+
    /* Larger bottom margin for everything else (default case) */
    .spacing-form > input,
    .spacing-form > textarea,

@@ -133,6 +133,7 @@ async function onSignout() {
       window.location.assign("signin");
    } catch (error) {
       emits("error", {
+         type: "unexpected",
          summary: toastContent.error.somethingWentWrong.summary,
          detail: toastContent.error.somethingWentWrong.detail,
          error,
