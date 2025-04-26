@@ -16,11 +16,11 @@
 </template>
 
 <script setup lang="ts">
-import ChangeEmail from "../components/account/changeEmail/ChangeEmail.vue";
-import DeleteAccountRequest from "../components/account/deleteAccount/DeleteAccountRequest.vue";
-import DeleteAccountAction from "../components/account/deleteAccount/DeleteAccountAction.vue";
-import YourAccount from "../components/account/yourAccount/YourAccount.vue";
-import PageLoader from "../components/pageLoader/PageLoader.vue";
+import ChangeEmail from "../components/account/ChangeEmail.vue";
+import DeleteAccountRequest from "../components/account/DeleteAccountRequest.vue";
+import DeleteAccountAction from "../components/account/DeleteAccountAction.vue";
+import YourAccount from "../components/account/UserAccountInfo.vue";
+// import PageLoader from "../components/pageLoader/PageLoader.vue";
 import useToast from "../composables/toast";
 
 const { addToast } = useToast();

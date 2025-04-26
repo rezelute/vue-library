@@ -4,7 +4,7 @@
          <h2 class="h2">Your details</h2>
       </template>
       <template #content>
-         <div class="spacing-elements">
+         <div v-if="!isLoading" class="spacing-elements">
             <div v-if="userId" class="flex flex-row gap-2">
                <div>ID:</div>
                <div>
@@ -23,7 +23,7 @@
                </div>
             </div>
          </div>
-         <div class="spacing-elements">
+         <div v-else class="spacing-elements">
             <Skeleton height="2rem"></Skeleton>
             <Skeleton height="2rem"></Skeleton>
          </div>
@@ -35,7 +35,7 @@
 import Card from "primevue/card";
 import Skeleton from "primevue/skeleton";
 import Session from "supertokens-web-js/recipe/session";
-import accountService from "../../../services/account/accountService";
+import accountService from "../../services/account/accountService";
 
 const emits = defineEmits(["error"]);
 const userId = ref("");

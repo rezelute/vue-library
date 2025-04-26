@@ -35,6 +35,7 @@
 
                   <!-- Burger menu for smaller screens -->
                   <div class="lg:hidden">
+                     <!-- Menu trigger button -->
                      <Button
                         icon="pi pi-bars"
                         @click="toggleMenu"
@@ -42,23 +43,24 @@
                         aria-haspopup="true"
                         aria-controls="overlay_tmenu"
                      />
+                     <!-- Smaller screen menu -->
                      <TieredMenu ref="tieredMenu" id="overlay_tmenu" :model="mobileItems" popup>
                         <template #item="{ item, props }">
+                           <!-- LINKS -->
                            <router-link v-if="item.route" :to="item.route" v-bind="props.action">
                               <span :class="item.icon" />
                               <span class="ml-2">{{ item.label }}</span>
                            </router-link>
 
-                           <!-- Fallback for commands (e.g., sign out) -->
-                           <button
-                              v-else
-                              type="button"
-                              v-bind="props.action"
-                              @click="(e) => item.command?.({ originalEvent: e, item })"
-                           >
-                              <span :class="item.icon" />
-                              <span>{{ item.label }}</span>
-                           </button>
+                           <!-- BUTTONS (sign out etc.) -->
+                           <Button
+                              v-if="userSignedIn"
+                              @click="onSignout"
+                              icon="pi pi-sign-out"
+                              aria-label="Sign out"
+                              variant="outlined"
+                              :loading="signOutloading"
+                           />
                         </template>
                      </TieredMenu>
                   </div>
@@ -103,7 +105,7 @@ const userStore = useUserStore();
 const signOutloading = ref(false);
 const tieredMenu = ref<InstanceType<typeof TieredMenu> | null>(null);
 
-const signInUpItems = ref([
+const signUpSystemItems = ref([
    { label: "Sign in", icon: "pi pi-sign-in", route: "/signin" },
    { label: "Sign up", icon: "pi pi-user-plus", route: "/signup" },
 ]);
@@ -111,28 +113,31 @@ const signInUpItems = ref([
 // computed
 // -----------------------------------------
 const items = computed(() => {
+   // signed OUT links
    if (!props.userSignedIn) {
-      return [...(props.items || []), ...signInUpItems.value];
+      return [...(props.items || []), ...signUpSystemItems.value] as MenuItem[];
    }
-   // logged in (we dont show sign in/up items)
+   // signed IN links (we dont show sign in/up items)
    else {
       return props.items;
    }
 });
 
 const mobileItems = computed(() => {
-   return [
-      ...items.value,
-      ...(props.userSignedIn
-         ? [
-              {
-                 label: "Sign out",
-                 icon: "pi pi-sign-out",
-                 command: () => onSignout(),
-              },
-           ]
-         : []), // If not logged in, this returns an empty array (no item added)
-   ];
+   return [...items.value];
+
+   // return [
+   //    ...items.value,
+   //    ...(props.userSignedIn
+   //       ? [
+   //            {
+   //               label: "Sign out",
+   //               icon: "pi pi-sign-out",
+   //               command: () => onSignout(),
+   //            },
+   //         ]
+   //       : []), // If not logged in, this returns an empty array (no item added)
+   // ];
 });
 
 // methods
