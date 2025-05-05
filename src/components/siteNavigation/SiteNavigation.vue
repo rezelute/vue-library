@@ -3,7 +3,7 @@
       <div class="container">
          <Menubar :model="[]">
             <template #start>
-               <Button asChild v-slot="slotProps" variant="link">
+               <Button v-slot="slotProps" asChild variant="link">
                   <RouterLink :to="!userSignedIn ? '/' : '/home'" :class="(slotProps as any).class">
                      <slot name="logo" />
                   </RouterLink>
@@ -15,7 +15,7 @@
                   <!-- Links for larger screens -->
                   <div class="hidden lg:flex items-center gap-5">
                      <div v-for="item in items" :key="item.label">
-                        <Button asChild v-slot="slotProps" variant="outlined">
+                        <Button v-slot="slotProps" asChild variant="outlined">
                            <RouterLink :to="item.to" :class="(slotProps as any).class">
                               <i :class="item.icon"></i>
                               <span>{{ item.label }}</span>
@@ -25,11 +25,11 @@
 
                      <Button
                         v-if="userSignedIn"
-                        @click="onSignout"
                         icon="pi pi-sign-out"
                         aria-label="Sign out"
                         variant="outlined"
                         :loading="signOutloading"
+                        @click="onSignout"
                      />
                   </div>
 
@@ -38,13 +38,13 @@
                      <!-- Menu trigger button -->
                      <Button
                         icon="pi pi-bars"
-                        @click="toggleMenu"
                         aria-label="Navigation menu"
                         aria-haspopup="true"
                         aria-controls="overlay_tmenu"
+                        @click="toggleMenu"
                      />
                      <!-- Smaller screen menu -->
-                     <TieredMenu ref="tieredMenu" id="overlay_tmenu" :model="mobileItems" popup>
+                     <TieredMenu id="overlay_tmenu" ref="tieredMenu" :model="mobileItems" popup>
                         <template #item="{ item, props }">
                            <!-- LINKS -->
                            <router-link v-if="item.to" :to="item.to" v-bind="props.action">
@@ -55,11 +55,11 @@
                            <!-- BUTTONS (sign out etc.) -->
                            <Button
                               v-if="userSignedIn"
-                              @click="onSignout"
                               icon="pi pi-sign-out"
                               aria-label="Sign out"
                               variant="outlined"
                               :loading="signOutloading"
+                              @click="onSignout"
                            />
                         </template>
                      </TieredMenu>

@@ -4,11 +4,11 @@
       <Textbox
          id="email"
          :modelValue="email"
-         @update:modelValue="onInput"
          :invalid="showError"
          placeholder="Email"
          required
          class="w-full"
+         @update:modelValue="onInput"
       />
       <Message v-if="showError" severity="error" size="small" variant="simple">
          {{ emailInvalidText }}

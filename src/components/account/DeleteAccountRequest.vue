@@ -11,7 +11,7 @@
                delete your account.
             </p>
 
-            <Button type="button" @click="sendDeleteEmail" :isLoading="isLoading">Send deletion email</Button>
+            <Button type="button" :isLoading="isLoading" @click="sendDeleteEmail">Send deletion email</Button>
          </div>
 
          <ActionConfirmMsg v-else iconClass="pi pi-envelope">

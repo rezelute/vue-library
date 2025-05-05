@@ -1,10 +1,10 @@
 <template>
    <Button
-      :icon="themeIcon"
       id="themeToggle"
-      @click="toggleTheme()"
+      :icon="themeIcon"
       variant="outlined"
       aria-label="Toggle theme"
+      @click="toggleTheme()"
    />
 </template>
 

@@ -16,7 +16,7 @@
             </div>
          </template>
          <template #content>
-            <form @submit.prevent class="spacing-groups">
+            <form class="spacing-groups" @submit.prevent>
                <!-- Code input & Submit -->
                <div class="spacing-form">
                   <p>
@@ -26,9 +26,9 @@
 
                   <div>
                      <InputOtp
+                        v-model="userMagicCode"
                         :length="6"
                         class="w-50"
-                        v-model="userMagicCode"
                         type="text"
                         placeholder="Input email code"
                         required

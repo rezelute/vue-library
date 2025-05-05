@@ -33,6 +33,7 @@ export default defineConfigWithVueTs(
    {
       files: ["**/*.{js,jsx,ts,tsx,vue}"],
       rules: {
+         "vue/attributes-order": "warn",
          "vue/attribute-hyphenation": "off",
          "vue/no-use-v-if-with-v-for": ["warn", { allowUsingIterationVar: true }],
          "vue/require-default-prop": "off",

@@ -5,16 +5,16 @@
 
       <Toast />
 
-      <SiteNavigation :items="navItems" v-if="serverConnectionReady" :userSignedIn="userStore.isSignedIn">
+      <SiteNavigation v-if="serverConnectionReady" :items="navItems" :userSignedIn="userStore.isSignedIn">
          <template #logo>my logo</template>
       </SiteNavigation>
 
       <!-- This is a one off server health check that happens when the app loads to ensure the Server is running -->
       <!-- Otherwise the app would load and clicking any buttons would all trigger server errors -->
       <main
+         v-if="!isLoading"
          class="flex flex-col flex-grow"
          :class="{ 'items-center justify-center': !serverConnectionReady }"
-         v-if="!isLoading"
       >
          <AppErrorInfo v-if="!serverConnectionReady" error="Server is down" class="max-w-xl mx-auto" />
          <RouterView v-else />

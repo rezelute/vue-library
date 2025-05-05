@@ -10,7 +10,7 @@
                You will receive an email to your old email to verify your new email address. Please click on
                the email link to update your email.
             </p>
-            <form @submit.prevent="sendChangeEmail" class="spacing-form">
+            <form class="spacing-form" @submit.prevent="sendChangeEmail">
                <EmailInput
                   v-model:email="email"
                   :isSubmitClicked="isSubmitClicked"

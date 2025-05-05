@@ -13,7 +13,7 @@
                <hr class="flex-1 border-gray-300" />
             </div>
 
-            <form @submit.prevent class="spacing-form">
+            <form class="spacing-form" @submit.prevent>
                <p>
                   This website offers a Passwordless Sign-In option. Instead of remembering a password, you'll
                   receive a one-time code via email each time you sign in.
@@ -21,20 +21,20 @@
 
                <EmailInput
                   v-model:email="email"
+                  :isSubmitClicked="isSubmitClicked"
                   @validity-changed="
                      (val) => {
                         console.log('val is now', val);
                         isEmailValid = val;
                      }
                   "
-                  :isSubmitClicked="isSubmitClicked"
                />
 
                <Button
                   :label="pageAuthType"
-                  @click="onSignupStart"
                   submit="submit"
                   :loading="signingUpLoading"
+                  @click="onSignupStart"
                />
             </form>
          </section>
