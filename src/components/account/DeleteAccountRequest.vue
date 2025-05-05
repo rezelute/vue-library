@@ -31,7 +31,7 @@ import accountService from "../../services/account/accountService";
 import ActionConfirmMsg from "../../components/actionConfirmMsg/ActionConfirmMsg.vue";
 import toastContent from "../../content/generic/toastContent";
 
-const emits = defineEmits(["error"]);
+const emits = defineEmits(["notify"]);
 
 // data
 // -----------------------------------------
@@ -47,7 +47,7 @@ async function sendDeleteEmail() {
 
       const response = await accountService.requestDelete();
       if (!response.ok) {
-         throw new Error(`Error requesting account deletion: ${response.status} - ${response.statusText}`);
+         throw response;
       }
       // request deletion email sent successfully, show confirmation message
       else {
@@ -56,12 +56,13 @@ async function sendDeleteEmail() {
    } catch (error) {
       isDeleteEmailSent.value = false;
 
-      emits("error", {
+      emits("notify", {
          type: "unexpected",
+         severity: "error",
          summary: toastContent.error.somethingWentWrong.summary,
          detail: toastContent.error.somethingWentWrong.detail,
-         error,
-      });
+         json: error,
+      } satisfies EmitNotify);
    } finally {
       isLoading.value = false;
    }

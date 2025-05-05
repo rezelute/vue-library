@@ -4,7 +4,7 @@
          v-if="!showMagicInputCode"
          :pageAuthType="pageAuthType"
          @sendCodeSuccess="() => (showMagicInputCode = true)"
-         @error="(...args) => $emit('error', ...args)"
+         @notify="(payload: EmitNotify) => $emit('notify', payload)"
       />
       <VerifyCode
          v-else
@@ -12,7 +12,7 @@
          @verificationCodeSuccess="onVerificationCodeSuccess"
          @resendCodeSuccess="(...args) => $emit('resendCodeSuccess', ...args)"
          @restartFlow="() => (showMagicInputCode = false)"
-         @error="onVerifyCodeError"
+         @notify="onVerifyCodeError"
       />
    </PageLoader>
 </template>
@@ -26,7 +26,7 @@ import { signInAndUp } from "supertokens-web-js/recipe/thirdparty";
 import PageLoader from "../../components/pageLoader/PageLoader.vue";
 import toastContent from "../../content/generic/toastContent";
 
-const emits = defineEmits(["error", "resendCodeSuccess"]);
+const emits = defineEmits(["notify", "resendCodeSuccess"]);
 const route = useRoute();
 const router = useRouter();
 
@@ -64,12 +64,13 @@ async function hasInitialMagicLinkBeenSent() {
       if (codeAlreadySent) console.info("Code already sent: ", codeAlreadySent);
       return codeAlreadySent !== undefined;
    } catch (error) {
-      emits("error", {
+      emits("notify", {
          type: "unexpected",
+         severity: "error",
          summary: toastContent.error.somethingWentWrong.summary,
          detail: toastContent.error.somethingWentWrong.detail,
-         error,
-      });
+         json: error,
+      } satisfies EmitNotify);
    } finally {
       isLoading.value = false;
    }
@@ -97,59 +98,57 @@ async function handleGoogleCallback() {
 
          window.location.assign("/home");
       } else if (response.status === "SIGN_IN_UP_NOT_ALLOWED") {
-         emits("error", {
+         emits("notify", {
             type: "sign_in_up_not_allowed",
+            severity: "error",
             summary: googleFailSummary,
             detail: googleFailDetail,
-            error: response,
-         });
+            json: response,
+         } satisfies EmitNotify);
       }
       // SuperTokens requires that the third party provider
       // gives an email for the user. If that's not the case, sign up / in
       // will fail.
       else {
-         emits("error", {
+         emits("notify", {
             type: "unexpected",
+            severity: "error",
             summary: googleFailSummary,
             detail: googleFailDetail,
-            error: response,
-         });
+            json: response,
+         } satisfies EmitNotify);
 
          window.location.assign("/signin"); // redirect back to login page
       }
    } catch (error) {
       // if (err.isSuperTokensGeneralError === true) {} else {}
 
-      emits("error", {
+      emits("notify", {
          type: "unexpected",
+         severity: "error",
          summary: toastContent.error.somethingWentWrong.summary,
          detail: toastContent.error.somethingWentWrong.detail,
-         error,
-      });
+         json: error,
+      } satisfies EmitNotify);
    } finally {
       isLoading.value = false;
    }
 }
 
 // -- verification code handlers --
-function onVerificationCodeSuccess(param: EmitSuccess) {
+function onVerificationCodeSuccess(payload: EmitSuccess) {
    // redirect to home page with vue router
    window.location.href = "/home";
 }
 
-function onVerifyCodeError(param: EmitError) {
+function onVerifyCodeError(payload: EmitNotify) {
    // reset the code input field
-   if (param.type === "restart_flow_error" || param.type === "input_code_invalid") {
+   if (payload.type === "restart_flow_error" || payload.type === "input_code_invalid") {
       showMagicInputCode.value = false;
    }
 
    // emit back up to the parent component to handle toasting
-   emits("error", {
-      type: param.type,
-      summary: param.summary,
-      detail: param.detail,
-      error: param.error,
-   } as EmitError);
+   emits("notify", payload);
 }
 </script>
 

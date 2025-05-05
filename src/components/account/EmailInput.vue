@@ -1,7 +1,9 @@
 <template>
    <div>
+      <label v-if="labelText" for="email">{{ labelText }}</label>
       <Textbox
-         :modelValue="model"
+         id="email"
+         :modelValue="email"
          @update:modelValue="onInput"
          :invalid="showError"
          placeholder="Email"
@@ -20,39 +22,37 @@ import Message from "primevue/message";
 import { validateEmail } from "../../utils/validation";
 
 // Two-way binding
-const model = defineModel<string>({ required: true });
+const email = defineModel<string>("email", { required: true });
 
+// Props
 const props = defineProps<{
    isSubmitClicked: boolean;
+   labelText?: string;
 }>();
 
+// Emit
 const emit = defineEmits<{
-   (e: "validity-changed", isValid: boolean): void;
+   (e: "validity-changed", value: boolean): void;
 }>();
 
 const emailInvalidText = "Please enter a valid email address";
-const hasBeenSubmitted = ref(false);
 
-// Computed validity - always up to date
-const isValid = computed(() => validateEmail(model.value));
+// lifecycle
+// -----------------------------------------
+onMounted(() => {
+   // Emit initial validity
+   emit("validity-changed", validateEmail(email.value));
+});
 
-// Show error only after submit has been triggered
-const showError = computed(() => hasBeenSubmitted.value && !isValid.value);
+// computed
+// -----------------------------------------
+const showError = computed(() => props.isSubmitClicked && !validateEmail(email.value));
 
-// React to submit click
-watch(
-   () => props.isSubmitClicked,
-   (clicked) => {
-      if (clicked) {
-         hasBeenSubmitted.value = true;
-         emit("validity-changed", isValid.value);
-      }
-   }
-);
-
-// Emit validity on input, but don't show error until submitted
+// methods
+// -----------------------------------------
 function onInput(value: string | undefined) {
-   model.value = value ?? "";
-   emit("validity-changed", isValid.value);
+   const sanitizedValue = value ?? "";
+   email.value = sanitizedValue;
+   emit("validity-changed", validateEmail(sanitizedValue));
 }
 </script>

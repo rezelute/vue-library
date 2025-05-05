@@ -1,6 +1,6 @@
 <template>
    <div class="flex flex-grow items-center justify-center w-full">
-      <SignInUp @error="onSignInUpError" />
+      <SignInUp @notify="onSignInUpError" />
    </div>
 </template>
 
@@ -10,13 +10,10 @@ import useToast from "@/composables/toast";
 
 const { addToast } = useToast();
 
-function onSignInUpError(param: EmitError) {
+function onSignInUpError(payload: EmitNotify) {
    addToast({
-      severity: "error",
-      summary: param.summary,
-      detail: param.detail,
+      ...payload,
       life: 0,
-      error: param.error,
    });
 }
 </script>

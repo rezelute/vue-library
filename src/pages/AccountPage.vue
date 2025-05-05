@@ -2,8 +2,8 @@
    <div class="container flex items-center justify-center w-full">
       <Account
          :deleteToken="deleteToken"
-         @changeEmailError="onChangeEmailError"
-         @deleteAccountRequestError="onDeleteAccountRequestError"
+         @changeEmailError="showToast"
+         @deleteAccountRequestError="showToast"
          @deleteAccountError="onDeleteAccountError"
       />
    </div>
@@ -22,33 +22,17 @@ const deleteToken = ref(route.query.del_token as string | undefined);
 
 // methods
 // -----------------------------------------
-function onChangeEmailError(error: EmitError) {
+function showToast(payload: EmitNotify) {
    addToast({
-      severity: "error",
-      summary: error.summary,
-      detail: error.detail,
-      life: 0,
-      error,
+      ...payload,
+      ...(payload.type !== "email_same_as_current" && { life: 0 }),
    });
 }
 
-function onDeleteAccountRequestError(error: EmitError) {
+function onDeleteAccountError(payload: EmitNotify) {
    addToast({
-      severity: "error",
-      summary: error.summary,
-      detail: error.detail,
+      ...payload,
       life: 0,
-      error,
-   });
-}
-
-function onDeleteAccountError(error: EmitError) {
-   addToast({
-      severity: "error",
-      summary: error.summary,
-      detail: error.detail,
-      life: 0,
-      error,
    });
 
    deleteToken.value = undefined;

@@ -3,7 +3,7 @@
    <Card>
       <template #content>
          <div class="spacing-elements p-12">
-            <p class="text-2xl">Deleting your account...</p>
+            <p class="text-2xl">Deleting your account, please dont close this window.</p>
             <Spinner />
          </div>
       </template>
@@ -16,7 +16,7 @@ import Card from "primevue/card";
 import Session from "supertokens-web-js/recipe/session";
 import accountService from "../../services/account/accountService";
 
-const emits = defineEmits(["error"]);
+const emits = defineEmits(["notify"]);
 const props = defineProps<{
    deleteToken: string;
 }>();
@@ -43,19 +43,20 @@ async function deleteAccount() {
 
       // If the response status is not OK (not in the 2xx range)
       if (!response.ok) {
-         throw new Error(`Error deleting account: ${response.status} - ${response.statusText}`);
+         throw response;
       }
 
       // If the response is OK, we can proceed with the deletion
       await Session.signOut();
       window.location.href = "/goodbye";
    } catch (error) {
-      emits("error", {
-         type: "unexpected",
+      emits("notify", {
+         type: "delete_account_fail",
+         severity: "error",
          summary: deleteAccountErrorSummary,
          detail: deleteAccountErrorDetail,
-         error,
-      });
+         json: error,
+      } satisfies EmitNotify);
    }
 }
 </script>

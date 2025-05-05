@@ -1,5 +1,5 @@
 <template>
-   <Card>
+   <Card class="mt-10">
       <template #title>
          <h1>Home page</h1>
       </template>

@@ -1,19 +1,19 @@
 <template>
-   <div v-if="!deleteToken" class="max-w-xl">
+   <div v-if="!deleteToken" class="max-w-xl mt-10">
       <slot id="header">
          <h1 class="h1 text-color">Your account</h1>
       </slot>
 
       <div class="spacing-page-sections">
          <UserAccountInfo />
-         <ChangeEmail @error="(...args) => $emit('changeEmailError', ...args)" />
-         <DeleteAccountRequest @error="(...args) => $emit('deleteAccountRequestError', ...args)" />
+         <ChangeEmail @notify="(...args) => $emit('changeEmailError', ...args)" />
+         <DeleteAccountRequest @notify="(...args) => $emit('deleteAccountRequestError', ...args)" />
       </div>
    </div>
    <div v-else>
       <DeleteAccountAction
          :deleteToken="deleteToken"
-         @error="(...args) => $emit('deleteAccountError', ...args)"
+         @notify="(...args) => $emit('deleteAccountError', ...args)"
       />
    </div>
 </template>

@@ -20,22 +20,16 @@
                </p>
 
                <EmailInput
-                  v-model="email"
+                  v-model:email="email"
+                  @validity-changed="
+                     (val) => {
+                        console.log('val is now', val);
+                        isEmailValid = val;
+                     }
+                  "
                   :isSubmitClicked="isSubmitClicked"
-                  @validity-changed="isEmailValid = $event"
                />
-               <!-- <div>
-                  <Textbox
-                     v-model="email"
-                     :invalid="isEmailValid == false"
-                     placeholder="Email"
-                     required
-                     class="w-full"
-                  />
-                  <Message v-if="isEmailValid === false" severity="error" size="small" variant="simple">
-                     {{ emailInvalidText }}
-                  </Message>
-               </div> -->
+
                <Button
                   :label="pageAuthType"
                   @click="onSignupStart"
@@ -56,7 +50,7 @@ import { createCode } from "supertokens-web-js/recipe/passwordless";
 import toastContent from "../../../content/generic/toastContent";
 import EmailInput from "../../../components/account/EmailInput.vue";
 
-const emits = defineEmits(["sendCodeSuccess", "error"]);
+const emits = defineEmits(["sendCodeSuccess", "notify"]);
 
 defineProps<{
    pageAuthType: "Sign in" | "Sign up";
@@ -64,20 +58,10 @@ defineProps<{
 
 // data
 // -----------------------------------------
-const isSubmitClicked = ref(false);
 const signingUpLoading = ref(false);
 const email = ref("mytestemail1235667@gmail.com"); // todo: remove this
-const isEmailValid = ref<boolean | null>(null);
-// const emailInvalidText = "Please enter a valid email address";
-
-// lifecycle
-// -----------------------------------------
-// reset code validity when the user starts typing
-// watch(email, () => {
-//    if (isEmailValid.value !== null) {
-//       isEmailValid.value = null;
-//    }
-// });
+const isEmailValid = ref<boolean>(false);
+const isSubmitClicked = ref(false);
 
 // methods
 // -----------------------------------------
@@ -85,53 +69,50 @@ const isEmailValid = ref<boolean | null>(null);
 async function onSignupStart() {
    isSubmitClicked.value = true;
 
-   // isEmailValid.value = validateEmail(email.value);
    if (!isEmailValid.value) {
-      console.log("not valid");
       return;
    }
 
-   console.log("Email is valid: ", email.value);
-   return;
+   try {
+      signingUpLoading.value = true;
 
-   //    try {
-   //       signingUpLoading.value = true;
+      const response = await createCode({
+         email: email.value,
+         shouldTryLinkingWithSessionUser: false, // If true, SuperTokens will attempt to link the passwordless code to an existing session user
+         userContext: {}, // Optionally include user context
+      });
 
-   //       const response = await createCode({
-   //          email: email.value,
-   //          shouldTryLinkingWithSessionUser: false, // If true, SuperTokens will attempt to link the passwordless code to an existing session user
-   //          userContext: {}, // Optionally include user context
-   //       });
+      console.log("Create code response: ", response);
 
-   //       console.log("Create code response: ", response);
+      // Disabled Sign-Up or Sign-In or invalid configuration etc.
+      if (response.status === "SIGN_IN_UP_NOT_ALLOWED") {
+         emits("notify", {
+            type: "sign_in_up_not_allowed",
+            severity: "error",
+            summary: toastContent.error.somethingWentWrong.summary,
+            detail: toastContent.error.somethingWentWrong.detail,
+            json: response,
+         } satisfies EmitNotify);
+      }
+      // Magic link sent successfully, show the code input field
+      else {
+         // showMagicInputCode.value = true;
+         emits("sendCodeSuccess", true);
+      }
+   } catch (error: any) {
+      // this may be a custom error message sent from the API OR the input email is not valid
+      // if (err.isSuperTokensGeneralError === true) {}
 
-   //       // Disabled Sign-Up or Sign-In or invalid configuration etc.
-   //       if (response.status === "SIGN_IN_UP_NOT_ALLOWED") {
-   //          emits("error", {
-   //             type: "sign_in_up_not_allowed",
-   //             summary: toastContent.error.somethingWentWrong.summary,
-   //             detail: toastContent.error.somethingWentWrong.detail,
-   //             error: response,
-   //          });
-   //       }
-   //       // Magic link sent successfully, show the code input field
-   //       else {
-   //          // showMagicInputCode.value = true;
-   //          emits("sendCodeSuccess", true);
-   //       }
-   //    } catch (error: any) {
-   //       // this may be a custom error message sent from the API OR the input email is not valid
-   //       // if (err.isSuperTokensGeneralError === true) {}
-
-   //       emits("error", {
-   //          type: "unexpected",
-   //          summary: toastContent.error.somethingWentWrong.summary,
-   //          detail: toastContent.error.somethingWentWrong.detail,
-   //          error: error,
-   //       });
-   //    } finally {
-   //       signingUpLoading.value = false;
-   //    }
+      emits("notify", {
+         type: "unexpected",
+         severity: "error",
+         summary: toastContent.error.somethingWentWrong.summary,
+         detail: toastContent.error.somethingWentWrong.detail,
+         json: error,
+      } satisfies EmitNotify);
+   } finally {
+      signingUpLoading.value = false;
+   }
 }
 </script>
 

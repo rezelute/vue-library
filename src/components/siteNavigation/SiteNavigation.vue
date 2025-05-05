@@ -47,7 +47,7 @@
                      <TieredMenu ref="tieredMenu" id="overlay_tmenu" :model="mobileItems" popup>
                         <template #item="{ item, props }">
                            <!-- LINKS -->
-                           <router-link v-if="item.route" :to="item.route" v-bind="props.action">
+                           <router-link v-if="item.to" :to="item.to" v-bind="props.action">
                               <span :class="item.icon" />
                               <span class="ml-2">{{ item.label }}</span>
                            </router-link>
@@ -88,7 +88,7 @@ interface MenuItem {
    to: string;
 }
 
-const emits = defineEmits(["signoutSuccess", "error"]);
+const emits = defineEmits(["signoutSuccess", "notify"]);
 const props = withDefaults(
    defineProps<{
       items: MenuItem[];
@@ -106,8 +106,8 @@ const signOutloading = ref(false);
 const tieredMenu = ref<InstanceType<typeof TieredMenu> | null>(null);
 
 const signUpSystemItems = ref([
-   { label: "Sign in", icon: "pi pi-sign-in", route: "/signin" },
-   { label: "Sign up", icon: "pi pi-user-plus", route: "/signup" },
+   { label: "Sign in", icon: "pi pi-sign-in", to: "/signin" },
+   { label: "Sign up", icon: "pi pi-user-plus", to: "/signup" },
 ]);
 
 // computed
@@ -155,12 +155,13 @@ async function onSignout() {
       // redirect to signin page
       window.location.assign("signin");
    } catch (error) {
-      emits("error", {
+      emits("notify", {
          type: "unexpected",
+         severity: "error",
          summary: toastContent.error.somethingWentWrong.summary,
          detail: toastContent.error.somethingWentWrong.detail,
-         error,
-      });
+         json: error,
+      } satisfies EmitNotify);
    } finally {
       signOutloading.value = false;
    }

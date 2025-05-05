@@ -64,7 +64,7 @@ import { resendCode, clearLoginAttemptInfo, consumeCode } from "supertokens-web-
 import toastContent from "../../../content/generic/toastContent";
 import Message from "primevue/message";
 
-const emits = defineEmits(["verificationCodeSuccess", "resendCodeSuccess", "error", "restartFlow"]);
+const emits = defineEmits(["verificationCodeSuccess", "resendCodeSuccess", "notify", "restartFlow"]);
 
 defineProps<{
    pageAuthType: "Sign in" | "Sign up";
@@ -155,24 +155,26 @@ async function onCodeSubmit() {
          else {
             await clearLoginAttemptInfo();
 
-            emits("error", {
+            emits("notify", {
                type: "input_code_invalid",
+               severity: "error",
                summary: otpErrorSummary,
                detail: otpErrorDetail,
-               error: response,
-            });
+               json: response,
+            } satisfies EmitNotify);
          }
       }
    } catch (error: any) {
       // for any other type of error, show a generic error toast and hide the code input field
       // if (err.isSuperTokensGeneralError === true) {} else {}
 
-      emits("error", {
+      emits("notify", {
          type: "unexpected",
+         severity: "error",
          summary: toastContent.error.somethingWentWrong.summary,
          detail: toastContent.error.somethingWentWrong.detail,
-         error: error,
-      });
+         json: error,
+      } satisfies EmitNotify);
    } finally {
       isSubmittingCode.value = false;
    }
@@ -196,12 +198,13 @@ async function onResendCode() {
          // enter email / phone UI again.
          await clearLoginAttemptInfo();
 
-         emits("error", {
+         emits("notify", {
             type: "restart_flow_error",
+            severity: "error",
             summary: resendOtpFailedSummary,
             detail: resendOtpFailedDetail,
-            error: response,
-         });
+            json: response,
+         } satisfies EmitNotify);
       }
       // Magic link resent successfully, show toast to confirm
       else {
@@ -214,12 +217,13 @@ async function onResendCode() {
       // this may be a custom error message sent from the API by you.
       // if (err.isSuperTokensGeneralError === true) {} else {}
 
-      emits("error", {
+      emits("notify", {
          type: "unexpected",
+         severity: "error",
          summary: toastContent.error.somethingWentWrong.summary,
          detail: toastContent.error.somethingWentWrong.detail,
-         error,
-      });
+         json: error,
+      } satisfies EmitNotify);
    } finally {
       isResendingCode.value = false;
    }

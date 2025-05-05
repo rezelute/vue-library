@@ -1,12 +1,17 @@
+import { type AddToast } from "../composables/toast";
+
 export {};
 
 declare global {
-   interface EmitError {
-      type: "unexpected" | unknown;
-      summary: string;
-      detail: string;
-      error: any;
-   }
+   type EmitNotify = Omit<AddToast, "life">;
+
+   // interface EmitNotify extends  {
+   //    severity: "info" | "warn" | "error";
+   //    // type: "unexpected" | unknown;
+   //    summary: string;
+   //    detail: string;
+   //    json: object;
+   // }
 
    interface EmitSuccess {
       summary: string;
