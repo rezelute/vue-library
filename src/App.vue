@@ -5,35 +5,29 @@
 
       <Toast />
 
-      <SiteNavigation v-if="serverConnectionReady" :items="navItems" :userSignedIn="userStore.isSignedIn">
+      <SiteNavigation v-if="!isLoading" :items="navItems" :userSignedIn="userStore.isSignedIn">
          <template #logo>my logo</template>
       </SiteNavigation>
 
       <!-- This is a one off server health check that happens when the app loads to ensure the Server is running -->
       <!-- Otherwise the app would load and clicking any buttons would all trigger server errors -->
-      <main
-         v-if="!isLoading"
-         class="flex flex-col flex-grow"
-         :class="{ 'items-center justify-center': !serverConnectionReady }"
-      >
-         <AppErrorInfo v-if="!serverConnectionReady" error="Server is down" class="max-w-xl mx-auto" />
-         <RouterView v-else />
+      <main v-if="!isLoading" class="flex flex-col flex-grow">
+         <RouterView />
       </main>
    </div>
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted, computed } from "vue";
 import Toast from "primevue/toast";
 import SiteNavigation from "./components/siteNavigation/SiteNavigation.vue";
 import { RouterView } from "vue-router";
 import { useUserStore } from "./stores/userStore";
-import AppErrorInfo from "./components/appErrorInfo/AppErrorInfo.vue";
 import PageInfiniteLoader from "./components/pageInfiniteLoader/PageInfiniteLoader.vue";
 
 // data
 // -----------------------------------------
 const isLoading = ref(true);
-const serverConnectionReady = ref(false);
 const userStore = useUserStore();
 const navSignedInItems = [
    { label: "Contact", icon: "pi pi-envelope", to: "/contact" },
@@ -43,31 +37,16 @@ const navSignedOutItems = [{ label: "Contact", icon: "pi pi-envelope", to: "/con
 
 // lifecycle
 // -----------------------------------------
-onMounted(async () => {
-   await checkServer();
+onMounted(() => {
+   // Simulate a server health check
+   setTimeout(() => {
+      isLoading.value = false;
+   }, 3000); // Simulate a 1 second delay for the server check
 });
 
 // computed
 // -----------------------------------------
 const navItems = computed(() => (userStore.isSignedIn ? navSignedInItems : navSignedOutItems));
-
-// methods
-// -----------------------------------------
-async function checkServer() {
-   try {
-      isLoading.value = true;
-
-      const response = await fetch(import.meta.env.VITE_API_DOMAIN, { method: "HEAD" });
-      if (!response.ok) throw new Error("Server is down");
-
-      serverConnectionReady.value = true;
-   } catch (error) {
-      console.error(error);
-      serverConnectionReady.value = false;
-   } finally {
-      isLoading.value = false;
-   }
-}
 </script>
 
 <style scoped></style>

@@ -25,6 +25,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
 import Card from "primevue/card";
 import Button from "primevue/button";
 import accountService from "../../services/account/accountService";
@@ -32,7 +33,7 @@ import ActionConfirmMsg from "../../components/actionConfirmMsg/ActionConfirmMsg
 import toastContent from "../../content/generic/toastContent";
 import { type EmitNotify } from "../../types";
 
-const emits = defineEmits(["notify"]);
+const emits = defineEmits(["deleteAccountRequestError", "deleteAccountRequestSuccess"]);
 
 // data
 // -----------------------------------------
@@ -53,11 +54,12 @@ async function sendDeleteEmail() {
       // request deletion email sent successfully, show confirmation message
       else {
          isDeleteEmailSent.value = true;
+         emits("deleteAccountRequestSuccess");
       }
    } catch (error) {
       isDeleteEmailSent.value = false;
 
-      emits("notify", {
+      emits("deleteAccountRequestError", {
          type: "unexpected",
          severity: "error",
          summary: toastContent.error.somethingWentWrong.summary,

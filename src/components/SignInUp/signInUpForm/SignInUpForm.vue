@@ -5,7 +5,10 @@
       </template>
       <template #content>
          <section>
-            <GoogleAuthIcon :authType="pageAuthType" />
+            <GoogleAuthIcon
+               :authType="pageAuthType"
+               @googleSignInError="(...args) => $emit('googleSignInError', ...args)"
+            />
 
             <div class="flex items-center my-10">
                <hr class="flex-1 border-gray-300" />
@@ -18,7 +21,6 @@
                   This website offers a Passwordless Sign-In option. Instead of remembering a password, you'll
                   receive a one-time code via email each time you sign in.
                </p>
-
                <EmailInput
                   v-model:email="email"
                   :isSubmitClicked="isSubmitClicked"
@@ -29,7 +31,6 @@
                      }
                   "
                />
-
                <Button
                   :label="pageAuthType"
                   submit="submit"
@@ -43,6 +44,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted, getCurrentInstance } from "vue";
 import GoogleAuthIcon from "../../../components/googleAuthIcon/GoogleAuthIcon.vue";
 import Card from "primevue/card";
 import Button from "primevue/button";
@@ -50,14 +52,8 @@ import { createCode } from "supertokens-web-js/recipe/passwordless";
 import toastContent from "../../../content/generic/toastContent";
 import EmailInput from "../../../components/account/EmailInput.vue";
 import { type EmitNotify } from "../../../types";
-// import { usePrimeVue } from "primevue/config";
 
-// onMounted(() => {
-//    const primevue = usePrimeVue();
-//    console.log("Shared component theme preset", primevue?.config?.theme);
-// });
-
-const emits = defineEmits(["sendCodeSuccess", "notify"]);
+const emits = defineEmits(["sendCodeSuccess", "signupStartError", "googleSignInError"]);
 
 defineProps<{
    pageAuthType: "Sign in" | "Sign up";
@@ -93,7 +89,7 @@ async function onSignupStart() {
 
       // Disabled Sign-Up or Sign-In or invalid configuration etc.
       if (response.status === "SIGN_IN_UP_NOT_ALLOWED") {
-         emits("notify", {
+         emits("signupStartError", {
             type: "sign_in_up_not_allowed",
             severity: "error",
             summary: toastContent.error.somethingWentWrong.summary,
@@ -110,7 +106,7 @@ async function onSignupStart() {
       // this may be a custom error message sent from the API OR the input email is not valid
       // if (err.isSuperTokensGeneralError === true) {}
 
-      emits("notify", {
+      emits("signupStartError", {
          type: "unexpected",
          severity: "error",
          summary: toastContent.error.somethingWentWrong.summary,

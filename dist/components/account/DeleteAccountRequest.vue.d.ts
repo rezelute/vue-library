@@ -1,6 +1,8 @@
 declare const _default: import('vue').DefineComponent<{}, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
-    notify: (...args: any[]) => void;
+    deleteAccountRequestError: (...args: any[]) => void;
+    deleteAccountRequestSuccess: (...args: any[]) => void;
 }, string, import('vue').PublicProps, Readonly<{}> & Readonly<{
-    onNotify?: ((...args: any[]) => any) | undefined;
+    onDeleteAccountRequestError?: ((...args: any[]) => any) | undefined;
+    onDeleteAccountRequestSuccess?: ((...args: any[]) => any) | undefined;
 }>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
 export default _default;

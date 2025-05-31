@@ -1,6 +1,6 @@
 import { AppInfoUserInput } from '../node_modules/supertokens-web-js/lib/build/types';
-import { themePresets } from './primeThemePresets';
+import { customThemes, setupPrimeVue } from './utils/primeThemePresets';
 declare const initializeSuperTokens: (config: {
     appInfo: AppInfoUserInput;
 }) => void;
-export { initializeSuperTokens, themePresets };
+export { initializeSuperTokens, customThemes, setupPrimeVue };

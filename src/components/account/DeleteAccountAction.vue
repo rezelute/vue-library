@@ -11,13 +11,14 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from "vue";
 import Spinner from "primevue/progressspinner";
 import Card from "primevue/card";
 import Session from "supertokens-web-js/recipe/session";
 import accountService from "../../services/account/accountService";
 import { type EmitNotify } from "../../types";
 
-const emits = defineEmits(["notify"]);
+const emits = defineEmits(["deleteAccountError", "deleteAccountSuccess"]);
 const props = defineProps<{
    deleteToken: string;
 }>();
@@ -49,10 +50,11 @@ async function deleteAccount() {
 
       // If the response is OK, we can proceed with the deletion
       await Session.signOut();
-      window.location.href = "/goodbye";
+
+      emits("deleteAccountSuccess");
    } catch (error) {
-      emits("notify", {
-         type: "delete_account_fail",
+      emits("deleteAccountError", {
+         type: "unexpected",
          severity: "error",
          summary: deleteAccountErrorSummary,
          detail: deleteAccountErrorDetail,

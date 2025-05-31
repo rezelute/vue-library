@@ -74,6 +74,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref, computed } from "vue";
 import Button from "primevue/button";
 import Menubar from "primevue/menubar";
 import TieredMenu from "primevue/tieredmenu";
@@ -83,13 +84,15 @@ import { useUserStore } from "../../stores/userStore";
 import toastContent from "../../content/generic/toastContent";
 import { type EmitNotify } from "../../types";
 
+defineOptions({ name: "SiteNavigation" });
+
 interface MenuItem {
    label: string;
    icon: string;
    to: string;
 }
 
-const emits = defineEmits(["signoutSuccess", "notify"]);
+const emits = defineEmits(["signoutSuccess", "signoutError"]);
 const props = withDefaults(
    defineProps<{
       items: MenuItem[];
@@ -126,19 +129,6 @@ const items = computed(() => {
 
 const mobileItems = computed(() => {
    return [...items.value];
-
-   // return [
-   //    ...items.value,
-   //    ...(props.userSignedIn
-   //       ? [
-   //            {
-   //               label: "Sign out",
-   //               icon: "pi pi-sign-out",
-   //               command: () => onSignout(),
-   //            },
-   //         ]
-   //       : []), // If not logged in, this returns an empty array (no item added)
-   // ];
 });
 
 // methods
@@ -153,10 +143,11 @@ async function onSignout() {
       await Session.signOut();
       userStore.updateAuth();
 
-      // redirect to signin page
-      window.location.assign("signin");
+      console.log("emitting signoutSuccess");
+
+      emits("signoutSuccess");
    } catch (error) {
-      emits("notify", {
+      emits("signoutError", {
          type: "unexpected",
          severity: "error",
          summary: toastContent.error.somethingWentWrong.summary,

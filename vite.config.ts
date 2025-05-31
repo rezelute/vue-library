@@ -1,8 +1,8 @@
+// import AutoImport from "unplugin-auto-import/vite";
 import { fileURLToPath, URL } from "node:url";
 
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-import AutoImport from "unplugin-auto-import/vite";
 import { configDefaults } from "vitest/config";
 import fs from "fs";
 import path from "path";
@@ -44,6 +44,7 @@ export default defineConfig({
             "stores/index": path.resolve(__dirname, "src/stores/index.ts"),
             "router/index": path.resolve(__dirname, "src/router/index.ts"),
             "composables/index": path.resolve(__dirname, "src/composables/index.ts"),
+            "utils/index": path.resolve(__dirname, "src/utils/index.ts"),
             "types/index": path.resolve(__dirname, "src/types/index.ts"),
          },
          name: "SharedVueLibrary",
@@ -85,6 +86,13 @@ export default defineConfig({
                primevue: "PrimeVue",
                pinia: "Pinia",
             },
+
+            manualChunks(id, { getModuleInfo }) {
+               // Consolidate supertokens-web-js and its recipes into a vendor chunk
+               if (id.includes("node_modules/supertokens-web-js")) {
+                  return "supertokens-vendor";
+               }
+            },
          },
       },
    },
@@ -92,11 +100,11 @@ export default defineConfig({
       vue(),
       // Auto import things like: computed, ref, watch, etc
       // https://github.com/antfu/unplugin-auto-import
-      AutoImport({
-         imports: ["vue", "vue-router"],
-         dirs: ["src/composables", "src/stores"],
-         vueTemplate: true,
-      }),
+      // AutoImport({
+      //    imports: ["vue", "vue-router"],
+      //    dirs: ["src/composables/index.ts", "src/stores/index.ts"],
+      //    vueTemplate: true,
+      // }),
       tailwindcss(),
       dts({
          tsconfigPath: "./tsconfig.app.json",
@@ -106,6 +114,7 @@ export default defineConfig({
             "src/stores",
             "src/router",
             "src/composables",
+            "src/utils",
             "src/types",
             "src/generated_types",
          ],
@@ -119,6 +128,7 @@ export default defineConfig({
    //    },
    // },
    resolve: {
+      dedupe: ["vue", "supertokens-web-js"], // force single copy
       alias: {
          "@": fileURLToPath(new URL("./src", import.meta.url)),
       },

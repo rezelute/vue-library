@@ -5,8 +5,7 @@ import ThirdParty from "supertokens-web-js/recipe/thirdparty";
 import Session from "supertokens-web-js/recipe/session";
 import { type AppInfoUserInput } from "supertokens-web-js/lib/build/types";
 
-// shared utils
-import { themePresets } from "./primeThemePresets";
+import { customThemes, setupPrimeVue } from "./utils/primeThemePresets";
 
 const initializeSuperTokens = (config: { appInfo: AppInfoUserInput }) => {
    SuperTokens.init({
@@ -19,10 +18,4 @@ const initializeSuperTokens = (config: { appInfo: AppInfoUserInput }) => {
    });
 };
 
-export { initializeSuperTokens, themePresets };
-
-// export default {
-//    install: (app: any) => {
-//       app.component("ThemeToggle", ThemeToggle);
-//    },
-// };
+export { initializeSuperTokens, customThemes, setupPrimeVue };

@@ -57,6 +57,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref, computed, watch } from "vue";
 import Card from "primevue/card";
 import InputOtp from "primevue/inputotp";
 import Button from "primevue/button";
@@ -65,7 +66,13 @@ import toastContent from "../../../content/generic/toastContent";
 import Message from "primevue/message";
 import { type EmitNotify } from "../../../types";
 
-const emits = defineEmits(["verificationCodeSuccess", "resendCodeSuccess", "notify", "restartFlow"]);
+const emits = defineEmits([
+   "verificationCodeSuccess",
+   "verificationCodeError",
+   "resendCodeSuccess",
+   "resendCodeError",
+   "restartFlow",
+]);
 
 defineProps<{
    pageAuthType: "Sign in" | "Sign up";
@@ -94,12 +101,18 @@ watch(userMagicCode, () => {
 const invalidCodeText = computed(() => {
    if (userMagicCode.value.length < 6) {
       return "Please enter a valid code length";
-   } else if (
+   }
+   // invalid code input with attempts left
+   else if (
       codeInputAttemptMax.value > 0 &&
       codeInputAttemptCount.value > 0 &&
       codeInputAttemptCount.value < codeInputAttemptMax.value
    ) {
       return `Invalid code. You have ${codeInputAttemptMax.value - codeInputAttemptCount.value} attempts left.`;
+   }
+   // code likely valid
+   else {
+      return "";
    }
 });
 
@@ -156,7 +169,7 @@ async function onCodeSubmit() {
          else {
             await clearLoginAttemptInfo();
 
-            emits("notify", {
+            emits("verificationCodeError", {
                type: "input_code_invalid",
                severity: "error",
                summary: otpErrorSummary,
@@ -169,7 +182,7 @@ async function onCodeSubmit() {
       // for any other type of error, show a generic error toast and hide the code input field
       // if (err.isSuperTokensGeneralError === true) {} else {}
 
-      emits("notify", {
+      emits("verificationCodeError", {
          type: "unexpected",
          severity: "error",
          summary: toastContent.error.somethingWentWrong.summary,
@@ -199,7 +212,7 @@ async function onResendCode() {
          // enter email / phone UI again.
          await clearLoginAttemptInfo();
 
-         emits("notify", {
+         emits("resendCodeError", {
             type: "restart_flow_error",
             severity: "error",
             summary: resendOtpFailedSummary,
@@ -218,7 +231,7 @@ async function onResendCode() {
       // this may be a custom error message sent from the API by you.
       // if (err.isSuperTokensGeneralError === true) {} else {}
 
-      emits("notify", {
+      emits("resendCodeError", {
          type: "unexpected",
          severity: "error",
          summary: toastContent.error.somethingWentWrong.summary,

@@ -38,7 +38,9 @@
 <script setup lang="ts">
 import { getAuthorisationURLWithQueryParamsAndSetState } from "supertokens-web-js/recipe/thirdparty";
 
-const props = withDefaults(
+const emits = defineEmits(["googleSignInError", "googleSignInSuccess"]);
+
+withDefaults(
    defineProps<{
       authType?: "Sign up" | "Sign in";
    }>(),
@@ -47,6 +49,8 @@ const props = withDefaults(
    }
 );
 
+// methods
+// -----------------------------------------
 // -- Third party auth (google)
 async function onGoogleSignIn() {
    const sendCodeErrorTitle = "Failed to sign in with Google";
@@ -66,10 +70,13 @@ async function onGoogleSignIn() {
       // we redirect the user to google for auth.
       window.location.assign(authUrl);
    } catch (err: any) {
-      console.error("Google sign in: ", err.message);
-      // TODO: SHOW TOAST!
-      // showToast(sendCodeErrorTitle, sendCodeErrorDescription);
-      // if (err.isSuperTokensGeneralError === true) {} else {}
+      emits("googleSignInError", {
+         type: "unexpected",
+         severity: "error",
+         summary: sendCodeErrorTitle,
+         detail: sendCodeErrorDescription,
+         json: err,
+      });
    }
 }
 </script>

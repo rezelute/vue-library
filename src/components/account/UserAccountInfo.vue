@@ -33,6 +33,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted, watch } from "vue";
 import Card from "primevue/card";
 import Skeleton from "primevue/skeleton";
 import Session from "supertokens-web-js/recipe/session";
@@ -44,28 +45,48 @@ const isLoading = ref(false);
 
 // lifecycle
 // -----------------------------------------
-onMounted(() => {
-   getUserInfo();
+const props = defineProps<{
+   updatedEmailDate?: Date | null; // optional prop to trigger email refresh
+}>();
+
+onMounted(async () => {
+   await getUserId();
+   await getUserEmail();
 });
 
+watch(
+   () => props.updatedEmailDate,
+   async () => {
+      await getUserEmail();
+   }
+);
 // methods
 // -----------------------------------------
-async function getUserInfo() {
+async function getUserEmail() {
    try {
       isLoading.value = true;
-
-      userId.value = await Session.getUserId();
       const response = await accountService.getEmail();
-
       if (!response.ok) {
-         throw new Error(`Error getting user email: ${response.status} - ${response.statusText}`);
+         throw response;
       }
 
       const data = await response.json();
       userEmail.value = data.email;
    } catch (error) {
-      // console error but we dont emit an error to the parent, we just hide the whole section
-      console.error("Error fetching user getUserInfo: ", error);
+      // console error but we dont emit an error to the parent, we just hide the section
+      console.error("Error fetching user account email: ", error);
+   } finally {
+      isLoading.value = false;
+   }
+}
+
+async function getUserId() {
+   try {
+      isLoading.value = true;
+      userId.value = await Session.getUserId();
+   } catch (error) {
+      // console error but we dont emit an error to the parent, we just hide the section
+      console.error("Error fetching user account ID: ", error);
    } finally {
       isLoading.value = false;
    }

@@ -44,6 +44,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
 import Card from "primevue/card";
 import Button from "primevue/button";
 import EmailInput from "../../components/account/EmailInput.vue";
@@ -55,8 +56,10 @@ import { type EmitNotify } from "../../types";
 const updateEmailFailSameEmail = "No changes have been made";
 const updateEmailFailSameEmailDetail =
    "The new email address you provided is the same as the current one. Please enter a different email address.";
+const updateEmailSuccessSummary = "Email updated successfully";
+const updateEmailSuccessDetail = "We have updated your email address successfully.";
 
-const emits = defineEmits(["notify"]);
+const emits = defineEmits(["changeEmailRequestError", "changeEmailActionSuccess"]);
 
 // data
 // -----------------------------------------
@@ -79,13 +82,28 @@ async function sendChangeEmail() {
    try {
       isLoading.value = true;
 
-      const response = await accountService.changeEmail(email.value);
+      const response = await accountService.requestEmailChange(email.value);
+      console.log("Change email request - response: ", response);
       if (!response.ok) {
          throw response;
       }
 
-      // request change email sent successfully, show confirmation message
-      isEmailSent.value = true;
+      const data = await response.json();
+
+      // Email was updated immediately by supertokens (likely because the email was previously verified)
+      if (response.ok && data.message === "Email updated") {
+         emits("changeEmailActionSuccess", {
+            type: "email_already_verified",
+            severity: "success",
+            summary: updateEmailSuccessSummary,
+            detail: updateEmailSuccessDetail,
+         } satisfies EmitNotify);
+      }
+      // response message is most likely "Verification email sent"
+      // a request change email was sent successfully, show confirmation message
+      else {
+         isEmailSent.value = true;
+      }
    } catch (error) {
       isEmailSent.value = false;
 
@@ -93,7 +111,7 @@ async function sendChangeEmail() {
       if (error instanceof Response) {
          const json = await (error as Response).json();
          if (json.error === "EMAIL_SAME_AS_CURRENT") {
-            emits("notify", {
+            emits("changeEmailRequestError", {
                type: "email_same_as_current",
                severity: "info",
                summary: updateEmailFailSameEmail,
@@ -104,7 +122,7 @@ async function sendChangeEmail() {
       }
       // handle other errors
       else {
-         emits("notify", {
+         emits("changeEmailRequestError", {
             type: "unexpected",
             severity: "error",
             summary: toastContent.error.somethingWentWrong.summary,

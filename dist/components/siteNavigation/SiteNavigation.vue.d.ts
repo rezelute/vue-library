@@ -24,10 +24,10 @@ declare function __VLS_template(): {
 type __VLS_TemplateResult = ReturnType<typeof __VLS_template>;
 declare const __VLS_component: import('vue').DefineComponent<__VLS_Props, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
     signoutSuccess: (...args: any[]) => void;
-    notify: (...args: any[]) => void;
+    signoutError: (...args: any[]) => void;
 }, string, import('vue').PublicProps, Readonly<__VLS_Props> & Readonly<{
     onSignoutSuccess?: ((...args: any[]) => any) | undefined;
-    onNotify?: ((...args: any[]) => any) | undefined;
+    onSignoutError?: ((...args: any[]) => any) | undefined;
 }>, {
     userSignedIn: boolean;
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {

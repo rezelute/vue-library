@@ -4,20 +4,24 @@
          v-if="!showMagicInputCode"
          :pageAuthType="pageAuthType"
          @sendCodeSuccess="() => (showMagicInputCode = true)"
-         @notify="(payload: EmitNotify) => $emit('notify', payload)"
+         @signupStartError="(payload: EmitNotify) => $emit('signupStartError', payload)"
+         @googleSignInError="(payload: EmitNotify) => $emit('googleSignInError', payload)"
       />
       <VerifyCode
          v-else
          :pageAuthType="pageAuthType"
-         @verificationCodeSuccess="onVerificationCodeSuccess"
+         @verificationCodeSuccess="(...args) => $emit('verificationCodeSuccess', ...args)"
+         @verificationCodeError="onVerifyCodeSubmitError"
          @resendCodeSuccess="(...args) => $emit('resendCodeSuccess', ...args)"
+         @resendCodeError="onResendCodeError"
          @restartFlow="() => (showMagicInputCode = false)"
-         @notify="onVerifyCodeError"
       />
    </PageLoader>
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted, computed } from "vue";
+import { useRoute } from "vue-router";
 import SignInUpForm from "../../components/SignInUp/signInUpForm/SignInUpForm.vue";
 import VerifyCode from "../../components/SignInUp/verifyCode/VerifyCode.vue";
 import { getLoginAttemptInfo } from "supertokens-web-js/recipe/passwordless";
@@ -27,7 +31,17 @@ import PageLoader from "../../components/pageLoader/PageLoader.vue";
 import toastContent from "../../content/generic/toastContent";
 import { type EmitNotify, type EmitSuccess } from "../../types";
 
-const emits = defineEmits(["notify", "resendCodeSuccess"]);
+const emits = defineEmits([
+   "signupStartError",
+   "checkMagicLinkSentError",
+   "resendCodeSuccess",
+   "resendCodeError",
+   "verificationCodeSuccess",
+   "verificationCodeError",
+   "googleCallbackSuccess",
+   "googleCallbackError",
+   "googleSignInError",
+]);
 const route = useRoute();
 const router = useRouter();
 
@@ -65,7 +79,7 @@ async function hasInitialMagicLinkBeenSent() {
       if (codeAlreadySent) console.info("Code already sent: ", codeAlreadySent);
       return codeAlreadySent !== undefined;
    } catch (error) {
-      emits("notify", {
+      emits("checkMagicLinkSentError", {
          type: "unexpected",
          severity: "error",
          summary: toastContent.error.somethingWentWrong.summary,
@@ -97,9 +111,9 @@ async function handleGoogleCallback() {
             console.log("Existing user signed in successfully");
          }
 
-         window.location.assign("/home");
+         emits("googleCallbackSuccess");
       } else if (response.status === "SIGN_IN_UP_NOT_ALLOWED") {
-         emits("notify", {
+         emits("googleCallbackError", {
             type: "sign_in_up_not_allowed",
             severity: "error",
             summary: googleFailSummary,
@@ -111,20 +125,18 @@ async function handleGoogleCallback() {
       // gives an email for the user. If that's not the case, sign up / in
       // will fail.
       else {
-         emits("notify", {
-            type: "unexpected",
+         emits("googleCallbackError", {
+            type: "no_user_email",
             severity: "error",
             summary: googleFailSummary,
             detail: googleFailDetail,
             json: response,
          } satisfies EmitNotify);
-
-         window.location.assign("/signin"); // redirect back to login page
       }
    } catch (error) {
       // if (err.isSuperTokensGeneralError === true) {} else {}
 
-      emits("notify", {
+      emits("googleCallbackError", {
          type: "unexpected",
          severity: "error",
          summary: toastContent.error.somethingWentWrong.summary,
@@ -136,20 +148,24 @@ async function handleGoogleCallback() {
    }
 }
 
-// -- verification code handlers --
-function onVerificationCodeSuccess(payload: EmitSuccess) {
-   // redirect to home page with vue router
-   window.location.href = "/home";
-}
-
-function onVerifyCodeError(payload: EmitNotify) {
+function onVerifyCodeSubmitError(payload: EmitNotify) {
    // reset the code input field
-   if (payload.type === "restart_flow_error" || payload.type === "input_code_invalid") {
+   if (payload.type === "input_code_invalid") {
       showMagicInputCode.value = false;
    }
 
    // emit back up to the parent component to handle toasting
-   emits("notify", payload);
+   emits("verificationCodeError", payload);
+}
+
+function onResendCodeError(payload: EmitNotify) {
+   // reset the code input field
+   if (payload.type === "restart_flow_error") {
+      showMagicInputCode.value = false;
+   }
+
+   // emit back up to the parent component to handle toasting
+   emits("resendCodeError", payload);
 }
 </script>
 

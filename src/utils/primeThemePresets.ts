@@ -1,3 +1,7 @@
+import PrimeVue from "primevue/config";
+import Lara from "@primeuix/themes/lara";
+import { definePreset } from "@primeuix/themes";
+
 // Green theme
 const preset1 = {
    semantic: {
@@ -67,6 +71,21 @@ const preset1 = {
    },
 };
 
-export const themePresets = {
+const customThemes = {
    preset1,
 };
+
+const MyPreset = definePreset(Lara, preset1);
+
+function setupPrimeVue(app: any) {
+   app.use(PrimeVue, {
+      theme: {
+         preset: MyPreset,
+         options: {
+            darkModeSelector: ".dark",
+         },
+      },
+   });
+}
+
+export { customThemes, setupPrimeVue };
