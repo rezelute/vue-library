@@ -1,5 +1,5 @@
-import { validateEmail } from "./validation";
+import { getRedirectTargetWithQueryParams } from "./url";
 
-export { validateEmail };
+export { getRedirectTargetWithQueryParams };
 
-export default { validateEmail };
+export default { getRedirectTargetWithQueryParams };

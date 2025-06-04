@@ -41,24 +41,19 @@ async function deleteAccount() {
       "Something went wrong while deleting your account. Please try again or contact us to let us know about this issue.";
 
    try {
-      const response = await accountService.deleteAccount(props.deleteToken as string);
-
-      // If the response status is not OK (not in the 2xx range)
-      if (!response.ok) {
-         throw response;
-      }
+      await accountService.deleteAccount(props.deleteToken as string);
 
       // If the response is OK, we can proceed with the deletion
       await Session.signOut();
 
       emits("deleteAccountSuccess");
-   } catch (error) {
+   } catch (err) {
       emits("deleteAccountError", {
          type: "unexpected",
          severity: "error",
          summary: deleteAccountErrorSummary,
          detail: deleteAccountErrorDetail,
-         json: error,
+         json: err,
       } satisfies EmitNotify);
    }
 }

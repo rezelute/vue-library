@@ -11,9 +11,9 @@ const useUserStore = defineStore("userStore", () => {
       try {
          isFetchingSession.value = true;
          isSignedIn.value = await Session.doesSessionExist();
-      } catch (error) {
+      } catch (err) {
          isSignedIn.value = false;
-         console.error("Error checking session status", error);
+         console.error("Error checking session status", err);
       } finally {
          isFetchingSession.value = false;
       }

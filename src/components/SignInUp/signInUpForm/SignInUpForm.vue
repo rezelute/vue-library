@@ -102,7 +102,7 @@ async function onSignupStart() {
          // showMagicInputCode.value = true;
          emits("sendCodeSuccess", true);
       }
-   } catch (error: any) {
+   } catch (err) {
       // this may be a custom error message sent from the API OR the input email is not valid
       // if (err.isSuperTokensGeneralError === true) {}
 
@@ -111,7 +111,7 @@ async function onSignupStart() {
          severity: "error",
          summary: toastContent.error.somethingWentWrong.summary,
          detail: toastContent.error.somethingWentWrong.detail,
-         json: error,
+         json: err,
       } satisfies EmitNotify);
    } finally {
       signingUpLoading.value = false;

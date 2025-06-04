@@ -20,7 +20,12 @@
 import { computed, onMounted } from "vue";
 import Textbox from "primevue/inputtext";
 import Message from "primevue/message";
-import { validateEmail } from "../../utils/validation";
+import { z } from "zod";
+
+function isEmailValid(email: string): boolean {
+   const emailSchema = z.string().email();
+   return emailSchema.safeParse(email).success;
+}
 
 // Two-way binding
 const email = defineModel<string>("email", { required: true });
@@ -42,18 +47,18 @@ const emailInvalidText = "Please enter a valid email address";
 // -----------------------------------------
 onMounted(() => {
    // Emit initial validity
-   emit("validity-changed", validateEmail(email.value));
+   emit("validity-changed", isEmailValid(email.value));
 });
 
 // computed
 // -----------------------------------------
-const showError = computed(() => props.isSubmitClicked && !validateEmail(email.value));
+const showError = computed(() => props.isSubmitClicked && !isEmailValid(email.value));
 
 // methods
 // -----------------------------------------
 function onInput(value: string | undefined) {
    const sanitizedValue = value ?? "";
    email.value = sanitizedValue;
-   emit("validity-changed", validateEmail(sanitizedValue));
+   emit("validity-changed", isEmailValid(sanitizedValue));
 }
 </script>

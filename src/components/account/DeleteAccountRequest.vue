@@ -47,16 +47,12 @@ async function sendDeleteEmail() {
    try {
       isLoading.value = true;
 
-      const response = await accountService.requestDelete();
-      if (!response.ok) {
-         throw response;
-      }
+      await accountService.requestDelete();
+
       // request deletion email sent successfully, show confirmation message
-      else {
-         isDeleteEmailSent.value = true;
-         emits("deleteAccountRequestSuccess");
-      }
-   } catch (error) {
+      isDeleteEmailSent.value = true;
+      emits("deleteAccountRequestSuccess");
+   } catch (err) {
       isDeleteEmailSent.value = false;
 
       emits("deleteAccountRequestError", {
@@ -64,7 +60,7 @@ async function sendDeleteEmail() {
          severity: "error",
          summary: toastContent.error.somethingWentWrong.summary,
          detail: toastContent.error.somethingWentWrong.detail,
-         json: error,
+         json: err,
       } satisfies EmitNotify);
    } finally {
       isLoading.value = false;

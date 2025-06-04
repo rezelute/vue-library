@@ -64,7 +64,8 @@
       "stylelint-fix": "stylelint \"**/*.scss\" \"**/*.vue\" --fix"
    },
    "dependencies": {
-      "supertokens-web-js": "^0.14.0"
+      "supertokens-web-js": "^0.14.0",
+      "zod": "^3.25.42"
    },
    "peerDependencies": {
       "@primeuix/themes": "^1.0.0",

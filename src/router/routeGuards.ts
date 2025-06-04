@@ -6,11 +6,19 @@ export function setupAuthGuard(router: Router) {
       const userStore = useUserStore();
       await userStore.updateAuth();
 
+      // if the user is not signed in and trying to access a route that requires authentication
+      // redirect to signin
       if (to.meta.requiresAuth && !userStore.isSignedIn) {
          next("/signin");
-      } else if (to.meta.guestOnly && userStore.isSignedIn) {
+      }
+      // trying to access guest only routers like signup/signin while signed in
+      // redirect to home
+      else if (to.meta.guestOnly && userStore.isSignedIn) {
          next("/home");
-      } else {
+      }
+      // continue to the requested route
+      // Note: We dont force profile check here otherwise this could be a disruptive user journey
+      else {
          next();
       }
    });

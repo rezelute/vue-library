@@ -38,6 +38,10 @@ import Card from "primevue/card";
 import Skeleton from "primevue/skeleton";
 import Session from "supertokens-web-js/recipe/session";
 import accountService from "../../services/account/accountService";
+import { type EmitNotify } from "../../types";
+import toastContent from "../../content/generic/toastContent";
+
+const emits = defineEmits(["getUserIdError", "getUserEmailError"]);
 
 const userId = ref("");
 const userEmail = ref("");
@@ -65,16 +69,17 @@ watch(
 async function getUserEmail() {
    try {
       isLoading.value = true;
-      const response = await accountService.getEmail();
-      if (!response.ok) {
-         throw response;
-      }
-
-      const data = await response.json();
+      const { data } = await accountService.getEmail();
       userEmail.value = data.email;
-   } catch (error) {
-      // console error but we dont emit an error to the parent, we just hide the section
-      console.error("Error fetching user account email: ", error);
+   } catch (err) {
+      // emit to the parent so it can log the error
+      emits("getUserEmailError", {
+         type: "unexpected",
+         severity: "error",
+         summary: toastContent.error.somethingWentWrong.summary,
+         detail: toastContent.error.somethingWentWrong.detail,
+         json: err,
+      } satisfies EmitNotify);
    } finally {
       isLoading.value = false;
    }
@@ -84,9 +89,15 @@ async function getUserId() {
    try {
       isLoading.value = true;
       userId.value = await Session.getUserId();
-   } catch (error) {
-      // console error but we dont emit an error to the parent, we just hide the section
-      console.error("Error fetching user account ID: ", error);
+   } catch (err) {
+      // emit to the parent so it can log the error
+      emits("getUserIdError", {
+         type: "unexpected",
+         severity: "error",
+         summary: toastContent.error.somethingWentWrong.summary,
+         detail: toastContent.error.somethingWentWrong.detail,
+         json: err,
+      } satisfies EmitNotify);
    } finally {
       isLoading.value = false;
    }

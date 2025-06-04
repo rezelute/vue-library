@@ -11,21 +11,30 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import profileService from "../../services/account/profileService";
-import { useRouter } from "vue-router";
+import profileService from "../../../services/account/profileService";
+import { useRouter, useRoute } from "vue-router";
+import { getRedirectTargetWithQueryParams } from "../../../utils/url";
 
+const route = useRoute();
 const router = useRouter();
 
-const emits = defineEmits(["profileCompletionError", "profileIsComplete", "profileNotComplete"]);
+const emits = defineEmits(["profileCheckError", "profileIsComplete", "profileNotComplete"]);
 
 // lifecycle
 // -----------------------------------------
 onMounted(async () => {
+   checkProfileCompletion();
+});
+
+// methods
+// -----------------------------------------
+async function checkProfileCompletion() {
    try {
-      const profileComplete = await profileService.getProfileCompletion();
+      const { data } = await profileService.getProfile();
+
       // profile is complete, go to home page OR to redirect query param if exists (e.g. /home?redirect=/some-page)
-      if (profileComplete) {
-         const redirect = router.currentRoute.value.query.redirect as string | undefined;
+      if (data.isComplete) {
+         const redirect = getRedirectTargetWithQueryParams(route.query);
          if (redirect) {
             router.push(redirect);
          } else {
@@ -34,14 +43,14 @@ onMounted(async () => {
       }
       // Profile not complete, redirect to the profile completion page (preserve query params)
       else {
-         router.push({ name: "profile", query: router.currentRoute.value.query });
+         router.push({ name: "profile", query: route.query });
       }
-   } catch (error) {
-      console.error("Error checking profile completion: ", error);
+   } catch (err) {
+      console.error("Error checking profile completion: ", err);
       // application decides how to handle the error
-      emits("profileCompletionError");
+      emits("profileCheckError");
    }
-});
+}
 </script>
 
 <style scoped></style>

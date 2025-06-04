@@ -146,13 +146,13 @@ async function onSignout() {
       console.log("emitting signoutSuccess");
 
       emits("signoutSuccess");
-   } catch (error) {
+   } catch (err) {
       emits("signoutError", {
          type: "unexpected",
          severity: "error",
          summary: toastContent.error.somethingWentWrong.summary,
          detail: toastContent.error.somethingWentWrong.detail,
-         json: error,
+         json: err,
       } satisfies EmitNotify);
    } finally {
       signOutloading.value = false;

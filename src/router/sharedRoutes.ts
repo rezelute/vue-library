@@ -7,12 +7,6 @@ export type SharedRoute = {
 
 export const sharedRoutes: SharedRoute[] = [
    {
-      path: "/account",
-      name: "account",
-      // component: AccountPage,
-      meta: { requiresAuth: true },
-   },
-   {
       path: "/goodbye",
       name: "goodbye",
       // component: GoodbyePage,
@@ -30,6 +24,22 @@ export const sharedRoutes: SharedRoute[] = [
       props: { authType: "signin" },
       meta: { guestOnly: true },
       // component: SigninPage,
+   },
+   {
+      path: "/account",
+      name: "account",
+      // component: AccountPage,
+      meta: { requiresAuth: true },
+   },
+   {
+      path: "/profile-check",
+      name: "profile-check",
+      meta: { requiresAuth: true },
+   },
+   {
+      path: "/profile",
+      name: "profile",
+      meta: { requiresAuth: true },
    },
    {
       path: "/error",

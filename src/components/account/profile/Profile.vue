@@ -1,0 +1,127 @@
+<template>
+   <PageLoader :isLoading="isLoading">
+      <Card v-if="profileConfig && userProfile" class="max-w-xl p-12 w-full">
+         <template #title>
+            <h1 class="h1">Profile</h1>
+         </template>
+         <template #content>
+            <section>
+               <form class="spacing-form" @submit.prevent>
+                  <FullNameInput
+                     v-if="showNameInput"
+                     v-model:firstName="userProfile.firstName"
+                     v-model:lastName="userProfile.lastName"
+                     :isSubmitClicked="isSubmitClicked"
+                     @validity-changed="
+                        (val: boolean) => {
+                           isNameValid = val;
+                        }
+                     "
+                  />
+
+                  <Button
+                     label="Save profile"
+                     submit="submit"
+                     :loading="isProfileSubmitting"
+                     @click="onSubmitProfile"
+                  />
+               </form>
+            </section>
+         </template>
+      </Card>
+   </PageLoader>
+</template>
+
+<script setup lang="ts">
+import { ref, onMounted, computed } from "vue";
+import profileService, {
+   type ProfileConfigResp,
+   type ProfileFields,
+} from "../../../services/account/profileService";
+import Card from "primevue/card";
+import Button from "primevue/button";
+import { type EmitNotify } from "../../../types";
+import toastContent from "../../../content/generic/toastContent";
+
+const emits = defineEmits(["profileLoadError", "profileSubmitSuccess", "profileSubmitError"]);
+
+// defineProps<{
+// }>();
+
+// data
+// -----------------------------------------
+const profileConfig = ref<ProfileConfigResp[] | null>(null);
+const isLoading = ref(false);
+const isSubmitClicked = ref(false);
+const isProfileSubmitting = ref(false);
+// fields
+const userProfile = ref<ProfileFields | null>(null);
+const isNameValid = ref(false);
+
+// lifecycle
+// -----------------------------------------
+onMounted(async () => {
+   await loadProfile();
+});
+
+// computed
+// -----------------------------------------
+const showNameInput = computed(() => {
+   return profileConfig.value?.find((config) => config.category === "name") !== undefined;
+});
+
+// methods
+// -----------------------------------------
+async function loadProfile() {
+   try {
+      isLoading.value = true;
+
+      // fetch user profile data
+      const { data: profileConfigData } = await profileService.getProfileConfig();
+      const { data: profileData } = await profileService.getProfile();
+
+      profileConfig.value = profileConfigData;
+      userProfile.value = { ...profileData.fields }; // we dont care about isComplete
+   } catch (err) {
+      emits("profileLoadError", {
+         type: "unexpected",
+         severity: "error",
+         summary: toastContent.error.somethingWentWrong.summary,
+         detail: toastContent.error.somethingWentWrong.detail,
+         json: err,
+      } satisfies EmitNotify);
+   } finally {
+      isLoading.value = false;
+   }
+}
+
+async function onSubmitProfile() {
+   isProfileSubmitting.value = true;
+
+   try {
+      if (!isNameValid.value) {
+         isSubmitClicked.value = true;
+         // if name is not valid, we don't submit the profile
+         // fields will be showing error messages after the button is clicked
+         return;
+      }
+
+      // submit profile data
+      await profileService.updateProfile(userProfile.value as ProfileFields);
+
+      emits("profileSubmitSuccess");
+   } catch (err) {
+      emits("profileSubmitError", {
+         type: "unexpected",
+         severity: "error",
+         summary: toastContent.error.somethingWentWrong.summary,
+         detail: toastContent.error.somethingWentWrong.detail,
+         json: err,
+      } satisfies EmitNotify);
+   } finally {
+      isProfileSubmitting.value = false;
+   }
+}
+</script>
+
+<style scoped></style>

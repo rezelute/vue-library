@@ -24,9 +24,9 @@ const props = defineProps<{
 
 // lifecycle
 // -----------------------------------------
-onMounted(() => {
+onMounted(async () => {
    if (props.updateEmailToken) {
-      updateEmail();
+      await updateEmail();
    }
 });
 
@@ -41,13 +41,8 @@ async function updateEmail() {
       "The email verification token is invalid or has expired. Please try again.";
 
    try {
-      const response = await accountService.updateEmail(props.updateEmailToken);
+      const data = await accountService.updateEmail(props.updateEmailToken);
 
-      if (!response.ok) {
-         throw response;
-      }
-      console.log("Change email response: ", response);
-      const data = await response.json();
       if (data.status === "OK") {
          emits("changeEmailActionSuccess", {
             type: "email_already_verified",
@@ -65,11 +60,11 @@ async function updateEmail() {
       }
       // response was ok but the status was not OK, throw the response to be handled in the catch block
       else {
-         throw response;
+         throw new Error(
+            `Unexpected response status: ${data.status}. Expected 'OK' or 'EMAIL_VERIFICATION_INVALID_TOKEN_ERROR'.`
+         );
       }
    } catch (err) {
-      console.error("❌ Error during email verification:", err);
-
       emits("changeEmailActionError", {
          type: "unexpected",
          severity: "error",

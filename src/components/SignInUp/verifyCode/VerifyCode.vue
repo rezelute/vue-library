@@ -178,7 +178,7 @@ async function onCodeSubmit() {
             } satisfies EmitNotify);
          }
       }
-   } catch (error: any) {
+   } catch (err) {
       // for any other type of error, show a generic error toast and hide the code input field
       // if (err.isSuperTokensGeneralError === true) {} else {}
 
@@ -187,7 +187,7 @@ async function onCodeSubmit() {
          severity: "error",
          summary: toastContent.error.somethingWentWrong.summary,
          detail: toastContent.error.somethingWentWrong.detail,
-         json: error,
+         json: err,
       } satisfies EmitNotify);
    } finally {
       isSubmittingCode.value = false;
@@ -227,7 +227,7 @@ async function onResendCode() {
             detail: "Please check your email for the new code.",
          });
       }
-   } catch (error: any) {
+   } catch (err) {
       // this may be a custom error message sent from the API by you.
       // if (err.isSuperTokensGeneralError === true) {} else {}
 
@@ -236,7 +236,7 @@ async function onResendCode() {
          severity: "error",
          summary: toastContent.error.somethingWentWrong.summary,
          detail: toastContent.error.somethingWentWrong.detail,
-         json: error,
+         json: err,
       } satisfies EmitNotify);
    } finally {
       isResendingCode.value = false;

@@ -52,6 +52,7 @@ import accountService from "../../services/account/accountService";
 import ActionConfirmMsg from "../../components/actionConfirmMsg/ActionConfirmMsg.vue";
 import toastContent from "../../content/generic/toastContent";
 import { type EmitNotify } from "../../types";
+import { ApiResponseError } from "../../utils/error/ApiResponseError";
 
 const updateEmailFailSameEmail = "No changes have been made";
 const updateEmailFailSameEmailDetail =
@@ -82,16 +83,10 @@ async function sendChangeEmail() {
    try {
       isLoading.value = true;
 
-      const response = await accountService.requestEmailChange(email.value);
-      console.log("Change email request - response: ", response);
-      if (!response.ok) {
-         throw response;
-      }
-
-      const data = await response.json();
+      const data = await accountService.requestEmailChange(email.value);
 
       // Email was updated immediately by supertokens (likely because the email was previously verified)
-      if (response.ok && data.message === "Email updated") {
+      if (data.message === "Email updated") {
          emits("changeEmailActionSuccess", {
             type: "email_already_verified",
             severity: "success",
@@ -104,19 +99,18 @@ async function sendChangeEmail() {
       else {
          isEmailSent.value = true;
       }
-   } catch (error) {
+   } catch (err) {
       isEmailSent.value = false;
 
       // handle response errors
-      if (error instanceof Response) {
-         const json = await (error as Response).json();
-         if (json.error === "EMAIL_SAME_AS_CURRENT") {
+      if (err instanceof ApiResponseError) {
+         if (err.data.error === "EMAIL_SAME_AS_CURRENT") {
             emits("changeEmailRequestError", {
                type: "email_same_as_current",
                severity: "info",
                summary: updateEmailFailSameEmail,
                detail: updateEmailFailSameEmailDetail,
-               json,
+               json: err,
             } satisfies EmitNotify);
          }
       }
@@ -127,7 +121,7 @@ async function sendChangeEmail() {
             severity: "error",
             summary: toastContent.error.somethingWentWrong.summary,
             detail: toastContent.error.somethingWentWrong.detail,
-            json: error,
+            json: err,
          } satisfies EmitNotify);
       }
    } finally {

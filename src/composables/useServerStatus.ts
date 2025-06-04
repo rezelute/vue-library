@@ -11,8 +11,8 @@ export default function useServerStatus() {
          if (!response.ok) throw new Error("Server is down");
 
          connectionReady.value = true;
-      } catch (error) {
-         console.error(error);
+      } catch (err) {
+         console.error(err);
          connectionReady.value = false;
       } finally {
          isLoading.value = false;

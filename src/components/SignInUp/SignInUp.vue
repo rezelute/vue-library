@@ -78,13 +78,13 @@ async function hasInitialMagicLinkBeenSent() {
       const codeAlreadySent = await getLoginAttemptInfo();
       if (codeAlreadySent) console.info("Code already sent: ", codeAlreadySent);
       return codeAlreadySent !== undefined;
-   } catch (error) {
+   } catch (err) {
       emits("checkMagicLinkSentError", {
          type: "unexpected",
          severity: "error",
          summary: toastContent.error.somethingWentWrong.summary,
          detail: toastContent.error.somethingWentWrong.detail,
-         json: error,
+         json: err,
       } satisfies EmitNotify);
    } finally {
       isLoading.value = false;
@@ -133,7 +133,7 @@ async function handleGoogleCallback() {
             json: response,
          } satisfies EmitNotify);
       }
-   } catch (error) {
+   } catch (err) {
       // if (err.isSuperTokensGeneralError === true) {} else {}
 
       emits("googleCallbackError", {
@@ -141,7 +141,7 @@ async function handleGoogleCallback() {
          severity: "error",
          summary: toastContent.error.somethingWentWrong.summary,
          detail: toastContent.error.somethingWentWrong.detail,
-         json: error,
+         json: err,
       } satisfies EmitNotify);
    } finally {
       isLoading.value = false;
