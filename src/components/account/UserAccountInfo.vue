@@ -5,8 +5,11 @@
       </template>
       <template #content>
          <div v-if="!isLoading" class="spacing-elements">
-            <div v-if="userId" class="flex flex-row gap-2">
-               <div>ID:</div>
+            <div v-if="userId" class="flex flex-col sm:flex-row gap-0 sm:gap-2">
+               <div class="block sm:flex font-bold">
+                  <span>ID</span>
+                  <span class="hidden sm:block">:</span>
+               </div>
                <div>
                   <code class="text-primary break-all">
                      {{ userId }}
@@ -14,10 +17,13 @@
                </div>
             </div>
 
-            <div v-if="userEmail" class="flex flex-row gap-2">
-               <div>Email:</div>
+            <div v-if="userEmail" class="flex flex-col sm:flex-row gap-0 sm:gap-2">
+               <div class="block sm:flex font-bold">
+                  <span>Email</span>
+                  <span class="hidden sm:block">:</span>
+               </div>
                <div>
-                  <strong class="text-primary break-all px-2">
+                  <strong class="text-primary break-all sm:pl-2">
                      {{ userEmail }}
                   </strong>
                </div>

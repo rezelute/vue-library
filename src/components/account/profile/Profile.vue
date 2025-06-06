@@ -5,7 +5,7 @@
             <h1 class="h1">Profile</h1>
          </template>
          <template #content>
-            <section class="mt-">
+            <section>
                <form class="spacing-groups" @submit.prevent>
                   <p>
                      We need a few basic details for essential purposes—like personalizing emails with your

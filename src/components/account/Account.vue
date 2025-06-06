@@ -1,22 +1,31 @@
 <template>
    <PageLoader :isLoading="isLoading">
-      <div v-if="!deleteToken && !updateEmailToken" class="max-w-xl">
-         <slot id="header">
-            <h1 class="h1 text-color">Your account</h1>
-         </slot>
+      <template #loadingText>
+         <span v-if="deleteToken">Deleting your account...</span>
+         <span v-else-if="updateEmailToken">Updating your email...</span>
+         <span v-else>Loading your account...</span>
+      </template>
+      <template #default>
+         <div v-if="!deleteToken && !updateEmailToken" class="max-w-xl">
+            <slot id="header">
+               <h1 class="h1 text-color">Your account</h1>
+            </slot>
 
-         <div class="spacing-page-sections">
-            <UserAccountInfo :updatedEmailDate="updatedEmailDate" />
-            <ChangeEmailRequest
-               @changeEmailRequestError="(...args) => $emit('changeEmailRequestError', ...args)"
-               @changeEmailActionSuccess="onChangeEmailActionSuccess"
-            />
-            <DeleteAccountRequest
-               @deleteAccountRequestError="(...args) => $emit('deleteAccountRequestError', ...args)"
-               @deleteAccountRequestSuccess="(...args) => $emit('deleteAccountRequestSuccess', ...args)"
-            />
+            <div class="spacing-page-sections">
+               <UserAccountInfo class="card-p-sm" :updatedEmailDate="updatedEmailDate" />
+               <ChangeEmailRequest
+                  class="card-p-sm"
+                  @changeEmailRequestError="(...args) => $emit('changeEmailRequestError', ...args)"
+                  @changeEmailActionSuccess="onChangeEmailActionSuccess"
+               />
+               <DeleteAccountRequest
+                  class="card-p-sm"
+                  @deleteAccountRequestError="(...args) => $emit('deleteAccountRequestError', ...args)"
+                  @deleteAccountRequestSuccess="(...args) => $emit('deleteAccountRequestSuccess', ...args)"
+               />
+            </div>
          </div>
-      </div>
+      </template>
    </PageLoader>
 </template>
 

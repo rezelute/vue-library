@@ -23,14 +23,14 @@
                         </Button>
                      </div>
 
-                     <Button
+                     <!-- <Button
                         v-if="userSignedIn"
                         icon="pi pi-sign-out"
                         aria-label="Sign out"
                         variant="outlined"
                         :loading="signOutloading"
                         @click="onSignout"
-                     />
+                     /> -->
                   </div>
 
                   <!-- Burger menu for smaller screens -->
@@ -53,14 +53,14 @@
                            </router-link>
 
                            <!-- BUTTONS (sign out etc.) -->
-                           <Button
-                              v-if="userSignedIn"
-                              icon="pi pi-sign-out"
-                              aria-label="Sign out"
-                              variant="outlined"
-                              :loading="signOutloading"
-                              @click="onSignout"
-                           />
+                           <button
+                              v-else
+                              class="p-tieredmenu-item-link"
+                              @click="(e) => item.command?.({ originalEvent: e, item })"
+                           >
+                              <span :class="item.icon" />
+                              <span class="ml-2">{{ item.label }}</span>
+                           </button>
                         </template>
                      </TieredMenu>
                   </div>
@@ -115,6 +115,14 @@ const signUpSystemItems = ref([
    { label: "Sign up", icon: "pi pi-user-plus", to: "/signup" },
 ]);
 
+const signedOutSystemItems = ref([
+   {
+      label: "Sign Out",
+      icon: "pi pi-sign-out",
+      "aria-label": "Sign out",
+      command: onSignout,
+   },
+]);
 // computed
 // -----------------------------------------
 const items = computed(() => {
@@ -124,7 +132,7 @@ const items = computed(() => {
    }
    // signed IN links (we dont show sign in/up items)
    else {
-      return props.items;
+      return [...(props.items || []), ...signedOutSystemItems.value] as MenuItem[];
    }
 });
 

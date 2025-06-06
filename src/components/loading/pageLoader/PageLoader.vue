@@ -1,28 +1,26 @@
 <template>
-   <div v-if="isLoading" class="w-full" :class="{ 'flex flex-grow items-center justify-center': fillHeight }">
+   <div v-if="isLoading" class="w-full">
       <div class="spacing-elements p-12">
-         <p class="text-xl">{{ loadingText }}</p>
+         <slot name="loadingText"></slot>
          <ProgressSpinner aria-label="Loading" />
       </div>
    </div>
    <div v-else>
-      <slot />
+      <slot name="default" />
    </div>
 </template>
 
 <script setup lang="ts">
 import ProgressSpinner from "primevue/progressspinner";
 
-const props = withDefaults(
+withDefaults(
    defineProps<{
       isLoading: boolean;
       loadingText?: string;
-      fillHeight?: boolean;
    }>(),
    {
       isLoading: false,
       loadingText: "",
-      fillHeight: false,
    }
 );
 </script>

@@ -86,13 +86,13 @@
 
    /* === PRIME COMPONENT OVERRIDES === */
    .card-p-sm {
-      @apply p-2 sm:p-6;
+      @apply p-1 sm:p-6;
    }
    .card-p-md {
-      @apply p-2 sm:p-8;
+      @apply p-1 sm:p-8;
    }
    .card-p-lg {
-      @apply p-2 sm:p-12;
+      @apply p-1 sm:p-12;
    }
 }
 
