@@ -3,7 +3,9 @@
       <label v-if="label" :for="id" class="font-medium">{{ label }}</label>
       <p v-if="helper" class="text-sm text-gray-500">{{ helper }}</p>
 
-      <slot />
+      <div class="mt-1">
+         <slot />
+      </div>
 
       <Message v-if="error" class="mt-1" severity="error" size="small" variant="simple">
          {{ error }}

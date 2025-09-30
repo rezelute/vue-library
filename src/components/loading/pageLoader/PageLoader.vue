@@ -1,5 +1,6 @@
 <template>
    <Transition name="fade" mode="out-in">
+      <!-- Loading State -->
       <div v-if="isLoading" key="loading" class="w-full" role="status" aria-live="polite">
          <div class="vstack-sm p-12">
             <slot name="loadingText">
@@ -9,6 +10,22 @@
             <ProgressSpinner aria-label="Loading" />
          </div>
       </div>
+
+      <!-- Error State -->
+      <div v-else-if="isError" key="error" class="w-full">
+         <slot name="error">
+            <!-- Fallback error if no slot provided -->
+            <div class="vstack-sm p-12 text-center items-center">
+               <div class="w-96">
+                  <PageErrorIcon />
+               </div>
+               <p>Something went wrong, please try again later.</p>
+               <Button type="button" class="btn mt-4 w-fit" @click="$emit('retry')">Retry</Button>
+            </div>
+         </slot>
+      </div>
+
+      <!-- Success State -->
       <div v-else key="loaded">
          <slot name="default" />
       </div>
@@ -16,16 +33,24 @@
 </template>
 
 <script setup lang="ts">
+import Button from "primevue/button";
 import ProgressSpinner from "primevue/progressspinner";
+import PageErrorIcon from "../../icons/PageErrorIcon.vue";
 
 withDefaults(
    defineProps<{
       isLoading: boolean;
+      isError?: boolean;
    }>(),
    {
       isLoading: false,
+      isError: false,
    }
 );
+
+defineEmits<{
+   (e: "retry"): void;
+}>();
 </script>
 
 <style scoped>
