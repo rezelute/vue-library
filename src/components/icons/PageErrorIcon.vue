@@ -1,17 +1,8 @@
 <template>
    <div>
-      <svg
-         version="1.1"
-         xmlns="http://www.w3.org/2000/svg"
-         xmlns:xlink="http://www.w3.org/1999/xlink"
-         x="0px"
-         y="0px"
-         viewBox="0 0 500 500"
-         style="enable-background: new 0 0 500 500"
-         xml:space="preserve"
-      >
+      <svg x="0px" y="0px" viewBox="0 0 500 450" style="enable-background: new 0 0 500 450">
          <g id="BACKGROUND">
-            <rect style="fill: none; stroke-miterlimit: 10" width="500" height="500" />
+            <rect style="fill: none; stroke-miterlimit: 10" width="500" height="450" />
             <g>
                <polygon
                   style="fill: #cad2f9"
