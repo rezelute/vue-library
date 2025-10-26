@@ -8,19 +8,32 @@
             <section>
                <form class="vstack-form" @submit.prevent>
                   <p>
-                     We need a few basic details for essential purposes—like personalizing emails with your
+                     We need a few basic details for essential purposes—like personalising emails with your
                      name.
                   </p>
 
-                  <FullNameInput
-                     v-if="showNameInput"
-                     v-model:firstName="userProfile.firstName"
-                     v-model:lastName="userProfile.lastName"
-                     :isLastNameRequired="isLastNameRequired"
+                  <!-- First name -->
+                  <NameInput
+                     v-if="firstNameConfig.isActive"
+                     v-model:name="userProfile.firstName"
+                     nameType="first"
                      :isSubmitClicked="isSubmitClicked"
                      @validity-changed="
                         (val: boolean) => {
-                           isNameValid = val;
+                           isFirstNameValid = val;
+                        }
+                     "
+                  />
+
+                  <!-- Last name -->
+                  <NameInput
+                     v-if="lastNameConfig.isActive"
+                     v-model:name="userProfile.lastName"
+                     nameType="last"
+                     :isSubmitClicked="isSubmitClicked"
+                     @validity-changed="
+                        (val: boolean) => {
+                           isLastNameValid = val;
                         }
                      "
                   />
@@ -50,7 +63,7 @@ import profileService, {
 } from "../../../services/account/profileService";
 import { type EmitNotify } from "../../../types";
 import normalizeError from "../../../utils/error/normalizeError.util";
-import FullNameInput from "./FullNameInput.vue";
+import NameInput from "./NameInput.vue";
 
 const emits = defineEmits(["profileLoadError", "profileSubmitSuccess", "profileSubmitError"]);
 
@@ -62,7 +75,8 @@ const isSubmitClicked = ref(false);
 const isProfileSubmitting = ref(false);
 // fields
 const userProfile = ref<ProfileFields | null>(null);
-const isNameValid = ref(false);
+const isFirstNameValid = ref(false);
+const isLastNameValid = ref(false);
 
 // lifecycle
 // -----------------------------------------
@@ -72,15 +86,34 @@ onMounted(async () => {
 
 // computed
 // -----------------------------------------
-const showNameInput = computed(() => {
-   return profileConfig.value?.find((config) => config.category === "name") !== undefined;
+const firstNameConfig = computed(() => {
+   const result = { isActive: false, isRequired: false };
+
+   const category = profileConfig.value?.find((config) => config.category === "name");
+   if (!category) return result;
+
+   const field = category.fields.find((field) => field.type === "firstName");
+   if (!field) return result;
+
+   result.isActive = true;
+   result.isRequired = field.isRequired;
+
+   return result;
 });
 
-const isLastNameRequired = computed(() => {
-   const nameConfig = profileConfig.value?.find((config) => config.category === "name");
-   return nameConfig
-      ? nameConfig.fields.find((field) => field.type === "lastName" && field.isRequired) !== undefined
-      : false;
+const lastNameConfig = computed(() => {
+   const result = { isActive: false, isRequired: false };
+
+   const category = profileConfig.value?.find((config) => config.category === "name");
+   if (!category) return result;
+
+   const field = category.fields.find((field) => field.type === "lastName");
+   if (!field) return result;
+
+   result.isActive = true;
+   result.isRequired = field.isRequired;
+
+   return result;
 });
 
 // methods
@@ -108,12 +141,26 @@ async function loadProfile() {
    }
 }
 
+async function isProfileInputValid() {
+   // if first name input is active, check its validity
+   if (firstNameConfig.value.isActive && !isFirstNameValid.value) {
+      return false;
+   }
+   // if last name input is active, check its validity
+   if (lastNameConfig.value.isActive && !isLastNameValid.value) {
+      return false;
+   }
+
+   // assume everything is valid
+   return true;
+}
+
 async function onSubmitProfile() {
    isProfileSubmitting.value = true;
+   isSubmitClicked.value = true;
 
    try {
-      if (!isNameValid.value) {
-         isSubmitClicked.value = true;
+      if (!isProfileInputValid()) {
          // if name is not valid, we don't submit the profile
          // fields will be showing error messages after the button is clicked
          return;
