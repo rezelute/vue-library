@@ -3,11 +3,13 @@
       <!-- Loading State -->
       <div v-if="isLoading" key="loading" class="w-full" role="status" aria-live="polite">
          <div class="vstack-sm p-12">
-            <slot name="loadingText">
+            <slot name="preloader">
+               <!-- Fallback preloader if no slot provided -->
+               <ProgressSpinner aria-label="Loading" />
+
                <!-- Invisible fallback for accessibility only if no text is provided -->
                <span class="sr-only">Loading...</span>
             </slot>
-            <ProgressSpinner aria-label="Loading" />
          </div>
       </div>
 

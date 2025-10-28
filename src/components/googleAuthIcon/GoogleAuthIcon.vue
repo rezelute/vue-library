@@ -40,9 +40,10 @@ import { getAuthorisationURLWithQueryParamsAndSetState } from "supertokens-web-j
 
 const emits = defineEmits(["googleSignInError", "googleSignInSuccess"]);
 
-withDefaults(
+const props = withDefaults(
    defineProps<{
       authType?: "Sign up" | "Sign in";
+      apiDomain: string;
    }>(),
    {
       authType: "Sign in",
@@ -61,7 +62,7 @@ async function onGoogleSignIn() {
          thirdPartyId: "google",
          // This is where Google should redirect the user back after login or error.
          // This URL goes on the Google's dashboard as well: https://support.google.com/cloud/answer/6158849?hl=en
-         frontendRedirectURI: `${import.meta.env.VITE_CLIENT_URL}/signup?thirdPartyId=google`,
+         frontendRedirectURI: `${props.apiDomain}/signup?thirdPartyId=google`,
       });
 
       // Example value of authUrl:

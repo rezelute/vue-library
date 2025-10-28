@@ -57,6 +57,7 @@ const isLoading = ref(false);
 // lifecycle
 // -----------------------------------------
 const props = defineProps<{
+   apiDomain: string;
    updatedEmailDate?: Date | null; // optional prop to trigger email refresh
 }>();
 
@@ -76,7 +77,7 @@ watch(
 async function getUserEmail() {
    try {
       isLoading.value = true;
-      const { data } = await accountService.getEmail();
+      const { data } = await accountService.getEmail(props.apiDomain);
       userEmail.value = data.email;
    } catch (err) {
       // emit to the parent so it can log the error

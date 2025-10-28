@@ -3,6 +3,7 @@
       <SignInUpForm
          v-if="!showMagicInputCode"
          :pageAuthType="pageAuthType"
+         :apiDomain="apiDomain"
          @sendCodeSuccess="() => (showMagicInputCode = true)"
          @signupStartError="(payload: EmitNotify) => $emit('signupStartError', payload)"
          @googleSignInError="(payload: EmitNotify) => $emit('googleSignInError', payload)"
@@ -22,7 +23,7 @@
 <script setup lang="ts">
 import { getLoginAttemptInfo } from "supertokens-web-js/recipe/passwordless";
 import { signInAndUp } from "supertokens-web-js/recipe/thirdparty";
-import { computed, onMounted, ref } from "vue";
+import { computed, inject, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { useRouter } from "vue-router";
 import PageLoader from "../../components/loading/pageLoader/PageLoader.vue";
@@ -31,6 +32,7 @@ import VerifyCode from "../../components/SignInUp/verifyCode/VerifyCode.vue";
 import toastContent from "../../content/generic/toastContent";
 import { type EmitNotify } from "../../types";
 import normalizeError from "../../utils/error/normalizeError.util";
+import { API_DOMAIN_KEY } from "../../utils/injectionKeys";
 
 const emits = defineEmits([
    "signupStartError",
@@ -50,6 +52,7 @@ const router = useRouter();
 // -----------------------------------------
 const isLoading = ref(true);
 const showMagicInputCode = ref(false); // if a magic link has been sent, show the code input field
+const apiDomain = inject(API_DOMAIN_KEY) as string;
 
 // lifecycle
 // -----------------------------------------

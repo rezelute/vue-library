@@ -12,14 +12,20 @@
             </slot>
 
             <div class="vstack-page">
-               <UserAccountInfo class="card-p-sm" :updatedEmailDate="updatedEmailDate" />
+               <UserAccountInfo
+                  class="card-p-sm"
+                  :updatedEmailDate="updatedEmailDate"
+                  :apiDomain="apiDomain"
+               />
                <ChangeEmailRequest
                   class="card-p-sm"
+                  :apiDomain="apiDomain"
                   @changeEmailRequestError="(...args) => $emit('changeEmailRequestError', ...args)"
                   @changeEmailActionSuccess="onChangeEmailActionSuccess"
                />
                <DeleteAccountRequest
                   class="card-p-sm"
+                  :apiDomain="apiDomain"
                   @deleteAccountRequestError="(...args) => $emit('deleteAccountRequestError', ...args)"
                   @deleteAccountRequestSuccess="(...args) => $emit('deleteAccountRequestSuccess', ...args)"
                />
@@ -30,14 +36,17 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { inject, onMounted, ref } from "vue";
 import { useDeleteAccount } from "../../composables/account/useDeleteAccount";
 import { useUpdateEmail } from "../../composables/account/useUpdateEmail";
 import { type EmitNotify } from "../../types";
+import { API_DOMAIN_KEY } from "../../utils/injectionKeys";
 import PageLoader from "../loading/pageLoader/PageLoader.vue";
 import ChangeEmailRequest from "./ChangeEmailRequest.vue";
 import DeleteAccountRequest from "./DeleteAccountRequest.vue";
 import UserAccountInfo from "./UserAccountInfo.vue";
+
+const apiDomain = inject(API_DOMAIN_KEY) as string;
 
 const emits = defineEmits([
    "deleteAccountRequestError",
@@ -64,8 +73,8 @@ const isLoading = ref(false); // page loader state
 
 // lifecycle
 // -----------------------------------------
-const { updateEmail } = useUpdateEmail();
-const { deleteAccount } = useDeleteAccount();
+const { updateEmail } = useUpdateEmail(apiDomain);
+const { deleteAccount } = useDeleteAccount(apiDomain);
 
 onMounted(async () => {
    // update email token present, update email and emit success or error events

@@ -1,4 +1,4 @@
-import { type ApiResponse,type SuccessResponse } from "../../types";
+import { type ApiResponse, type SuccessResponse } from "../../types";
 import { ApiResponseError } from "../../utils/error/ApiResponseError";
 
 interface UserEmailData {
@@ -9,8 +9,8 @@ interface UpdateUserEmailData {
    status: "OK" | "EMAIL_VERIFICATION_INVALID_TOKEN_ERROR";
 }
 
-async function getEmail(): Promise<ApiResponse<UserEmailData>> {
-   const response = await fetch(`${import.meta.env.VITE_API_DOMAIN}/user/email`, {
+async function getEmail(apiDomain: string): Promise<ApiResponse<UserEmailData>> {
+   const response = await fetch(`${apiDomain}/user/email`, {
       method: "GET",
       credentials: "include",
       headers: {
@@ -26,8 +26,8 @@ async function getEmail(): Promise<ApiResponse<UserEmailData>> {
    return data as ApiResponse<UserEmailData>;
 }
 
-async function requestEmailChange(userNewEmail: string): Promise<SuccessResponse> {
-   const response = await fetch(`${import.meta.env.VITE_API_DOMAIN}/user/email/request-change`, {
+async function requestEmailChange(userNewEmail: string, apiDomain: string): Promise<SuccessResponse> {
+   const response = await fetch(`${apiDomain}/user/email/request-change`, {
       method: "PATCH",
       headers: {
          "Content-Type": "application/json",
@@ -44,9 +44,9 @@ async function requestEmailChange(userNewEmail: string): Promise<SuccessResponse
    return data as SuccessResponse;
 }
 
-async function updateEmail(token: string): Promise<UpdateUserEmailData> {
+async function updateEmail(token: string, apiDomain: string): Promise<UpdateUserEmailData> {
    // note this is a supertokens based endpoint (/auth/user/email/verify)
-   const response = await fetch(`${import.meta.env.VITE_API_DOMAIN}/auth/user/email/verify`, {
+   const response = await fetch(`${apiDomain}/auth/user/email/verify`, {
       method: "POST",
       headers: {
          "Content-Type": "application/json",
@@ -64,8 +64,8 @@ async function updateEmail(token: string): Promise<UpdateUserEmailData> {
    return data as UpdateUserEmailData;
 }
 
-async function requestDelete(): Promise<SuccessResponse> {
-   const response = await fetch(`${import.meta.env.VITE_API_DOMAIN}/account/request-delete`, {
+async function requestDelete(apiDomain: string): Promise<SuccessResponse> {
+   const response = await fetch(`${apiDomain}/account/request-delete`, {
       method: "POST",
       credentials: "include",
    });
@@ -78,8 +78,8 @@ async function requestDelete(): Promise<SuccessResponse> {
    return data as SuccessResponse;
 }
 
-async function deleteAccount(deleteToken: string): Promise<SuccessResponse> {
-   const response = await fetch(`${import.meta.env.VITE_API_DOMAIN}/account`, {
+async function deleteAccount(deleteToken: string, apiDomain: string): Promise<SuccessResponse> {
+   const response = await fetch(`${apiDomain}/account`, {
       method: "DELETE",
       credentials: "include",
       headers: {

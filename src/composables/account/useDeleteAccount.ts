@@ -4,7 +4,7 @@ import accountService from "@/services/account/accountService";
 import { type EmitNotify } from "@/types";
 import normalizeError from "@/utils/error/normalizeError.util";
 
-export function useDeleteAccount() {
+export function useDeleteAccount(apiDomain: string) {
    async function deleteAccount(
       token: string,
       onSuccess: () => void,
@@ -15,7 +15,7 @@ export function useDeleteAccount() {
          "Something went wrong while deleting your account. Please try again or contact us to let us know about this issue.";
 
       try {
-         await accountService.deleteAccount(token);
+         await accountService.deleteAccount(token, apiDomain);
          await Session.signOut();
          onSuccess();
       } catch (err) {

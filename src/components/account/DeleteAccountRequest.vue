@@ -34,6 +34,10 @@ import accountService from "../../services/account/accountService";
 import { type EmitNotify } from "../../types";
 import normalizeError from "../../utils/error/normalizeError.util";
 
+const props = defineProps<{
+   apiDomain: string;
+}>();
+
 const emits = defineEmits(["deleteAccountRequestError", "deleteAccountRequestSuccess"]);
 
 // data
@@ -48,7 +52,7 @@ async function sendDeleteEmail() {
    try {
       isLoading.value = true;
 
-      await accountService.requestDelete();
+      await accountService.requestDelete(props.apiDomain);
 
       // request deletion email sent successfully, show confirmation message
       isDeleteEmailSent.value = true;

@@ -54,7 +54,7 @@
 <script setup lang="ts">
 import Button from "primevue/button";
 import Card from "primevue/card";
-import { computed, onMounted, ref } from "vue";
+import { computed, inject, onMounted, ref } from "vue";
 import PageLoader from "../../../components/loading/pageLoader/PageLoader.vue";
 import toastContent from "../../../content/generic/toastContent";
 import profileService, {
@@ -63,9 +63,11 @@ import profileService, {
 } from "../../../services/account/profileService";
 import { type EmitNotify } from "../../../types";
 import normalizeError from "../../../utils/error/normalizeError.util";
+import { API_DOMAIN_KEY } from "../../../utils/injectionKeys";
 import NameInput from "./NameInput.vue";
 
 const emits = defineEmits(["profileLoadError", "profileSubmitSuccess", "profileSubmitError"]);
+const apiDomain = inject(API_DOMAIN_KEY) as string;
 
 // data
 // -----------------------------------------
@@ -123,8 +125,8 @@ async function loadProfile() {
       isLoading.value = true;
 
       // fetch user profile data
-      const { data: profileConfigData } = await profileService.getProfileConfig();
-      const { data: profileData } = await profileService.getProfile();
+      const { data: profileConfigData } = await profileService.getProfileConfig(apiDomain);
+      const { data: profileData } = await profileService.getProfile(apiDomain);
 
       profileConfig.value = profileConfigData;
       userProfile.value = { ...profileData.fields }; // we dont care about isComplete
@@ -167,7 +169,7 @@ async function onSubmitProfile() {
       }
 
       // submit profile data
-      await profileService.updateProfile(userProfile.value as ProfileFields);
+      await profileService.updateProfile(userProfile.value as ProfileFields, apiDomain);
 
       emits("profileSubmitSuccess");
    } catch (err) {

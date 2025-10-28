@@ -3,7 +3,7 @@ import accountService from "@/services/account/accountService";
 import { type EmitNotify } from "@/types";
 import normalizeError from "@/utils/error/normalizeError.util";
 
-export function useUpdateEmail() {
+export function useUpdateEmail(apiDomain: string) {
    async function updateEmail(
       token: string,
       onSuccess: (payload: EmitNotify) => void,
@@ -16,7 +16,7 @@ export function useUpdateEmail() {
          "The email verification token is invalid or has expired. Please try again.";
 
       try {
-         const data = await accountService.updateEmail(token);
+         const data = await accountService.updateEmail(token, apiDomain);
 
          if (data.status === "OK") {
             onSuccess({

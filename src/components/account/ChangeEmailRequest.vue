@@ -56,6 +56,10 @@ import { type EmitNotify } from "../../types";
 import { ApiResponseError } from "../../utils/error/ApiResponseError";
 import normalizeError from "../../utils/error/normalizeError.util";
 
+const props = defineProps<{
+   apiDomain: string;
+}>();
+
 const updateEmailFailSameEmail = "No changes have been made";
 const updateEmailFailSameEmailDetail =
    "The new email address you provided is the same as the current one. Please enter a different email address.";
@@ -85,7 +89,7 @@ async function sendChangeEmail() {
    try {
       isLoading.value = true;
 
-      const data = await accountService.requestEmailChange(email.value);
+      const data = await accountService.requestEmailChange(email.value, props.apiDomain);
 
       // Email was updated immediately by supertokens (likely because the email was previously verified)
       if (data.message === "Email updated") {

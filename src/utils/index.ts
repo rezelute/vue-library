@@ -1,5 +1,11 @@
 import { getRedirectTargetWithQueryParams } from "./url";
+import { API_DOMAIN_KEY } from "./injectionKeys";
+
+const injectionKeys = {
+   API_DOMAIN_KEY,
+};
 
 export { getRedirectTargetWithQueryParams };
+export { injectionKeys };
 
-export default { getRedirectTargetWithQueryParams };
+export default { getRedirectTargetWithQueryParams, injectionKeys };

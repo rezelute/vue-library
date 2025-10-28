@@ -4,9 +4,10 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { inject, onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import profileService from "../../../services/account/profileService";
+import { API_DOMAIN_KEY } from "../../../utils/injectionKeys";
 import { getRedirectTargetWithQueryParams } from "../../../utils/url";
 import PageLoader from "./../../loading/pageLoader/PageLoader.vue";
 
@@ -18,6 +19,7 @@ const emits = defineEmits(["profileCheckError", "profileIsComplete", "profileNot
 // data
 // -----------------------------------------
 const isLoading = ref(true); // this is always true because it will redirect after the checks
+const apiDomain = inject(API_DOMAIN_KEY) as string;
 
 // lifecycle
 // -----------------------------------------
@@ -29,7 +31,7 @@ onMounted(async () => {
 // -----------------------------------------
 async function checkProfileCompletion() {
    try {
-      const { data } = await profileService.getProfile();
+      const { data } = await profileService.getProfile(apiDomain);
 
       // profile is complete, go to home page OR to redirect query param if exists (e.g. /home?redirect=/some-page)
       if (data.isCompleted) {

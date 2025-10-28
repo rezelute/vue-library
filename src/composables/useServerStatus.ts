@@ -1,13 +1,13 @@
-import { type Ref,ref } from "vue";
+import { type Ref, ref } from "vue";
 
-export default function useServerStatus() {
+export default function useServerStatus(apiDomainUrl: string) {
    const connectionReady = ref(false);
 
    async function checkServer(isLoading: Ref<boolean>) {
       try {
          isLoading.value = true;
 
-         const response = await fetch(import.meta.env.VITE_API_DOMAIN, { method: "HEAD" });
+         const response = await fetch(apiDomainUrl, { method: "HEAD" });
          if (!response.ok) throw new Error("Server is down");
 
          connectionReady.value = true;

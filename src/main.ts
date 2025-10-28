@@ -101,15 +101,6 @@ function initializeApp() {
    const pinia = createPinia();
    app.use(pinia);
 
-   // SuperTokens setup
-   // initializeSuperTokens({
-   //    appInfo: {
-   //       appName: "Auth App",
-   //       apiDomain: import.meta.env.VITE_API_DOMAIN as string,
-   //       apiBasePath: "/auth",
-   //    },
-   // });
-
    // PrimeVue plugins
    app.use(PrimeVue, {
       theme: {

@@ -23,8 +23,8 @@ export interface ProfileConfigResp {
 type ProfileUpdatedResp = ProfileFields;
 
 // ex: [{ category: "name", fields: [{ type: "firstName", required: true }, { type: "lastName", required: true }] }]
-async function getProfileConfig(): Promise<ApiResponse<ProfileConfigResp[]>> {
-   const response = await fetch(`${import.meta.env.VITE_API_DOMAIN}/profile/config`, {
+async function getProfileConfig(apiDomain: string): Promise<ApiResponse<ProfileConfigResp[]>> {
+   const response = await fetch(`${apiDomain}/profile/config`, {
       method: "GET",
       headers: {
          "Content-Type": "application/json",
@@ -41,8 +41,8 @@ async function getProfileConfig(): Promise<ApiResponse<ProfileConfigResp[]>> {
 }
 
 // ex: { fields: { firstName: "John", lastName: "Doe" }, isComplete: true }
-async function getProfile(): Promise<ApiResponse<ProfileResp>> {
-   const response = await fetch(`${import.meta.env.VITE_API_DOMAIN}/user/profile`, {
+async function getProfile(apiDomain: string): Promise<ApiResponse<ProfileResp>> {
+   const response = await fetch(`${apiDomain}/user/profile`, {
       method: "GET",
       headers: {
          "Content-Type": "application/json",
@@ -59,8 +59,11 @@ async function getProfile(): Promise<ApiResponse<ProfileResp>> {
 }
 
 // ex : { firstName: "John", lastName: "Doe" }
-async function updateProfile(newFields: ProfileFields): Promise<ApiResponse<ProfileUpdatedResp>> {
-   const response = await fetch(`${import.meta.env.VITE_API_DOMAIN}/user/profile`, {
+async function updateProfile(
+   newFields: ProfileFields,
+   apiDomain: string
+): Promise<ApiResponse<ProfileUpdatedResp>> {
+   const response = await fetch(`${apiDomain}/user/profile`, {
       method: "PATCH",
       headers: {
          "Content-Type": "application/json",

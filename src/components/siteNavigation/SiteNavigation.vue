@@ -50,7 +50,7 @@
 import Button from "primevue/button";
 import TieredMenu from "primevue/tieredmenu";
 import Session from "supertokens-web-js/recipe/session";
-import { computed, ref } from "vue";
+import { computed, inject, ref } from "vue";
 import ThemeToggle from "../../components/themeToggle/ThemeToggle.vue";
 import toastContent from "../../content/generic/toastContent";
 import { useUserStore } from "../../stores/userStore";

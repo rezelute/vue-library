@@ -6,6 +6,7 @@
       <template #content>
          <section>
             <GoogleAuthIcon
+               :apiDomain="apiDomain"
                :authType="pageAuthType"
                @googleSignInError="(...args) => $emit('googleSignInError', ...args)"
             />
@@ -58,6 +59,7 @@ const emits = defineEmits(["sendCodeSuccess", "signupStartError", "googleSignInE
 
 defineProps<{
    pageAuthType: "Sign in" | "Sign up";
+   apiDomain: string;
 }>();
 
 // data
