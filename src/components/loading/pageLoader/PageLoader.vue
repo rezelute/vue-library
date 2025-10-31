@@ -1,7 +1,7 @@
 <template>
    <Transition name="fade" mode="out-in">
       <!-- Loading State -->
-      <div v-if="isLoading" key="loading" class="w-full" role="status" aria-live="polite">
+      <div v-if="showPreloadSlot && isLoading" key="loading" class="w-full" role="status" aria-live="polite">
          <div class="vstack-sm p-12">
             <slot name="preloader">
                <!-- Fallback preloader if no slot provided -->
@@ -42,11 +42,13 @@ import PageErrorIcon from "../../icons/PageErrorIcon.vue";
 withDefaults(
    defineProps<{
       isLoading: boolean;
+      showPreloadSlot?: boolean; // if true, intention is use the preload slot rather than the default spinner
       isError?: boolean;
    }>(),
    {
       isLoading: false,
       isError: false,
+      showPreloadSlot: false, // we try to use skeleton loaders instead by default
    }
 );
 
