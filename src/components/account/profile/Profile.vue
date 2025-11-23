@@ -94,7 +94,7 @@ const firstNameConfig = computed(() => {
    const category = profileConfig.value?.find((config) => config.category === "name");
    if (!category) return result;
 
-   const field = category.fields.find((field) => field.type === "firstName");
+   const field = category.fields.find((field) => field.type === "first_name");
    if (!field) return result;
 
    result.isActive = true;
@@ -109,7 +109,7 @@ const lastNameConfig = computed(() => {
    const category = profileConfig.value?.find((config) => config.category === "name");
    if (!category) return result;
 
-   const field = category.fields.find((field) => field.type === "lastName");
+   const field = category.fields.find((field) => field.type === "last_name");
    if (!field) return result;
 
    result.isActive = true;
@@ -128,7 +128,7 @@ async function loadProfile() {
       const { data: profileConfigData } = await profileService.getProfileConfig(apiDomain);
       const { data: profileData } = await profileService.getProfile(apiDomain);
 
-      profileConfig.value = profileConfigData;
+      profileConfig.value = { ...profileConfigData };
       userProfile.value = { ...profileData.fields }; // we dont care about isComplete
    } catch (err) {
       emits("profileLoadError", {

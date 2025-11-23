@@ -2,22 +2,20 @@ import { type ApiResponse } from "../../types";
 import { ApiResponseError } from "../../utils/error/ApiResponseError";
 
 export type ProfileFieldCategory = "name" | "address";
-
-export type ProfileFieldKey = "firstName" | "lastName";
-
-export type ProfileFields = Record<ProfileFieldKey, string>;
-
-export interface ProfileResp {
-   fields: ProfileFields;
-   isCompleted: boolean;
-}
-
 export interface ProfileConfigResp {
    category: ProfileFieldCategory;
    fields: Array<{
-      type: ProfileFieldKey;
+      type: "first_name" | "last_name";
       isRequired: boolean;
    }>;
+}
+
+// ex: { firstName: "John", lastName: "Doe" }
+export type ProfileFields = Record<"firstName" | "lastName", string>;
+// ex: { fields: { firstName: "John", lastName: "Doe" }, isComplete: true }
+export interface ProfileResp {
+   fields: ProfileFields;
+   isCompleted: boolean;
 }
 
 type ProfileUpdatedResp = ProfileFields;
