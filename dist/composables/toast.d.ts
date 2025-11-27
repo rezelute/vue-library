@@ -1,0 +1,20 @@
+import { ToastServiceMethods } from 'primevue/toastservice';
+export interface AddToast {
+    type: string;
+    severity: "info" | "warn" | "error" | "success";
+    summary: string;
+    detail?: string;
+    life?: number;
+    json?: any;
+}
+export default function useToasting(toast: ToastServiceMethods): {
+    addToast: (toastParam: AddToast) => void;
+    toastContent: {
+        error: {
+            somethingWentWrong: {
+                summary: string;
+                detail: string;
+            };
+        };
+    };
+};

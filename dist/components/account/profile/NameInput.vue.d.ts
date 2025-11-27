@@ -1,0 +1,16 @@
+type __VLS_Props = {
+    isSubmitClicked: boolean;
+    nameType: "first" | "last";
+};
+type __VLS_PublicProps = {
+    "name": string;
+} & __VLS_Props;
+declare const _default: import('vue').DefineComponent<__VLS_PublicProps, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
+    "update:name": (value: string) => any;
+} & {
+    "validity-changed": (value: boolean) => any;
+}, string, import('vue').PublicProps, Readonly<__VLS_PublicProps> & Readonly<{
+    "onValidity-changed"?: ((value: boolean) => any) | undefined;
+    "onUpdate:name"?: ((value: string) => any) | undefined;
+}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, HTMLDivElement>;
+export default _default;
