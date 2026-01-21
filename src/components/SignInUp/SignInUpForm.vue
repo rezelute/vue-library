@@ -61,7 +61,7 @@ const emits = defineEmits(["signUpStart", "googleSignIn"])
 withDefaults(
    defineProps<{
       pageAuthType: "signIn" | "signUp"
-      isSignUpLoading: boolean
+      isSignupLoading: boolean
       signupInviteOnly?: boolean
       enableThirdPartyAuth?: {
          useGoogle?: boolean
