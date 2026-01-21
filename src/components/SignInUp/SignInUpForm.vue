@@ -62,7 +62,7 @@ withDefaults(
    defineProps<{
       pageAuthType: "signIn" | "signUp"
       isSignupLoading: boolean
-      signupInviteOnly?: boolean
+      isSignupInviteOnly?: boolean
       enableThirdPartyAuth?: {
          useGoogle?: boolean
       }
