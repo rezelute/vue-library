@@ -6,12 +6,12 @@ const meta = {
    component: SignInUpForm,
    tags: ["autodocs"],
    argTypes: {
-      pageAuthType: { control: { type: "select", options: ["signIn", "signUp"] } },
+      pageAuthType: { control: { type: "select", options: ["sign-in", "sign-up"] } },
       signupInviteOnly: { control: "boolean" },
       isSignUpLoading: { control: "boolean" },
    },
    args: {
-      pageAuthType: "signIn",
+      pageAuthType: "sign-in",
       signupInviteOnly: false,
       isSignUpLoading: false,
       email: "",
@@ -24,7 +24,7 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
    args: {
-      pageAuthType: "signIn",
+      pageAuthType: "sign-in",
       signupInviteOnly: false,
       isSignUpLoading: false,
       email: "",
@@ -33,7 +33,7 @@ export const Default: Story = {
 
 export const SignUp: Story = {
    args: {
-      pageAuthType: "signUp",
+      pageAuthType: "sign-up",
       email: "",
    },
 }
@@ -48,14 +48,14 @@ export const Loading: Story = {
 export const InviteOnly: Story = {
    args: {
       signupInviteOnly: true,
-      pageAuthType: "signUp",
+      pageAuthType: "sign-up",
       email: "",
    },
 }
 
 export const WithGoogleAuth: Story = {
    args: {
-      pageAuthType: "signIn",
+      pageAuthType: "sign-in",
       enableThirdPartyAuth: { useGoogle: true },
       email: "",
    },

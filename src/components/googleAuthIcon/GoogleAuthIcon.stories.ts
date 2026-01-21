@@ -6,10 +6,10 @@ const meta = {
    component: GoogleAuthIcon,
    tags: ["autodocs"],
    argTypes: {
-      authType: { control: { type: "select", options: ["signIn", "signUp"] } },
+      authType: { control: { type: "select", options: ["sign-in", "sign-up"] } },
    },
    args: {
-      authType: "signIn",
+      authType: "sign-in",
    },
 } satisfies Meta<typeof GoogleAuthIcon>
 
@@ -19,12 +19,12 @@ type Story = StoryObj<typeof meta>
 
 export const SignIn: Story = {
    args: {
-      authType: "signIn",
+      authType: "sign-in",
    },
 }
 
 export const SignUp: Story = {
    args: {
-      authType: "signUp",
+      authType: "sign-up",
    },
 }

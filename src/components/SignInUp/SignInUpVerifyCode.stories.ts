@@ -6,13 +6,13 @@ const meta = {
    component: SignInUpVerifyCode,
    tags: ["autodocs"],
    argTypes: {
-      pageAuthType: { control: { type: "radio" }, options: ["signIn", "signUp"] },
+      pageAuthType: { control: { type: "radio" }, options: ["sign-in", "sign-up"] },
       isSubmittingCode: { control: "boolean" },
       isResendingCode: { control: "boolean" },
       codeInputErrorMessage: { control: "text" },
    },
    args: {
-      pageAuthType: "signIn",
+      pageAuthType: "sign-in",
       isSubmittingCode: false,
       isResendingCode: false,
       codeInputErrorMessage: "",
@@ -129,6 +129,6 @@ export const ValidCode: Story = {
 
 export const SignUpMode: Story = {
    args: {
-      pageAuthType: "signUp",
+      pageAuthType: "sign-up",
    },
 }
