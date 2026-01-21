@@ -23,6 +23,10 @@
             </div>
 
             <form class="vstack-form" data-test="auth-form" @submit.prevent>
+               <Message v-if="isSignupInviteOnly" severity="info">
+                  Sign up is currently by invite only during the beta period.
+               </Message>
+
                <p class="mb-2">
                   This website offers a Passwordless Sign-In option. Instead of remembering a
                   password, you'll receive a one-time code via email each time you sign in.

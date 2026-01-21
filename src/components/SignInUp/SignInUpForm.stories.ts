@@ -7,13 +7,13 @@ const meta = {
    tags: ["autodocs"],
    argTypes: {
       pageAuthType: { control: { type: "select", options: ["sign-in", "sign-up"] } },
-      signupInviteOnly: { control: "boolean" },
-      isSignUpLoading: { control: "boolean" },
+      isSignupInviteOnly: { control: "boolean" },
+      isSignupLoading: { control: "boolean" },
    },
    args: {
       pageAuthType: "sign-in",
-      signupInviteOnly: false,
-      isSignUpLoading: false,
+      isSignupInviteOnly: false,
+      isSignupLoading: false,
       email: "",
    },
 } satisfies Meta<typeof SignInUpForm>
@@ -25,8 +25,8 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
    args: {
       pageAuthType: "sign-in",
-      signupInviteOnly: false,
-      isSignUpLoading: false,
+      isSignupInviteOnly: false,
+      isSignupLoading: false,
       email: "",
    },
 }
@@ -40,15 +40,23 @@ export const SignUp: Story = {
 
 export const Loading: Story = {
    args: {
-      isSignUpLoading: true,
+      isSignupLoading: true,
       email: "",
    },
 }
 
-export const InviteOnly: Story = {
+export const InviteOnlyOnSignUp: Story = {
    args: {
-      signupInviteOnly: true,
+      isSignupInviteOnly: true,
       pageAuthType: "sign-up",
+      email: "",
+   },
+}
+
+export const InviteOnlyOnSignIn: Story = {
+   args: {
+      isSignupInviteOnly: true,
+      pageAuthType: "sign-in",
       email: "",
    },
 }
