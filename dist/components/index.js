@@ -1,4 +1,4 @@
-import { useId as Je, mergeProps as f, createElementBlock as b, openBlock as p, createElementVNode as g, renderSlot as w, createTextVNode as tt, toDisplayString as M, resolveComponent as R, resolveDirective as Et, withDirectives as Mt, createBlock as _, resolveDynamicComponent as nt, withCtx as x, createCommentVNode as I, normalizeClass as W, defineComponent as j, ref as G, computed as Z, unref as z, Teleport as Qe, Transition as Pt, Fragment as dt, renderList as xe, createVNode as P, onMounted as Xt, createStaticVNode as Ce, mergeModels as et, useModel as At, withModifiers as Yt, watch as tn } from "vue";
+import { useId as Je, mergeProps as f, createElementBlock as b, openBlock as p, createElementVNode as g, renderSlot as S, createTextVNode as tt, toDisplayString as M, resolveComponent as R, resolveDirective as Et, withDirectives as Mt, createBlock as _, resolveDynamicComponent as nt, withCtx as x, createCommentVNode as I, normalizeClass as W, defineComponent as j, ref as G, computed as Z, unref as z, Teleport as Qe, Transition as Pt, Fragment as dt, renderList as xe, createVNode as P, onMounted as Xt, createStaticVNode as Ce, mergeModels as et, useModel as At, withModifiers as Yt, watch as tn } from "vue";
 import { m as pt, B as O, a as rt, C as Pe, s as N, g as J, F as _e, N as Y, S as F, c as Le, z as zt, b as en, l as ot, n as nn, i as ne, P as Lt, Q as on, d as Ft, T as oe, R as ie, v as ct, e as Te, K as rn, W as ze, U as Oe, A as an, f as sn, t as ln, M as re, Y as Ee, D as un, h as Me, j as B, J as dn, k as cn, L as pn, o as st, I as ae, p as mn, r as Ae, q as fn, u as gn, _ as bn } from "../index-DExoY821.js";
 import { z as De } from "zod";
 function X(...e) {
@@ -126,7 +126,7 @@ function le(e, t) {
   }
   return n;
 }
-function S(e) {
+function w(e) {
   for (var t = 1; t < arguments.length; t++) {
     var n = arguments[t] != null ? arguments[t] : {};
     t % 2 ? le(Object(n), !0).forEach(function(o) {
@@ -211,7 +211,7 @@ var U = {
   },
   beforeMount: function() {
     var t;
-    this.rootEl = zt(en(this.$el) ? this.$el : (t = this.$el) === null || t === void 0 ? void 0 : t.parentElement, "[".concat(this.$attrSelector, "]")), this.rootEl && (this.rootEl.$pc = S({
+    this.rootEl = zt(en(this.$el) ? this.$el : (t = this.$el) === null || t === void 0 ? void 0 : t.parentElement, "[".concat(this.$attrSelector, "]")), this.rootEl && (this.rootEl.$pc = w({
       name: this.$.type.name,
       attrSelector: this.$attrSelector
     }, this.$params)), this._loadStyles(), this._hook("onBeforeMount");
@@ -255,7 +255,7 @@ var U = {
     },
     _loadGlobalStyles: function() {
       var t = this._useGlobalPT(this._getOptionValue, "global.css", this.$params);
-      N(t) && O.load(t, S({
+      N(t) && O.load(t, w({
         name: "global"
       }, this.$styleOptions));
     },
@@ -264,27 +264,27 @@ var U = {
       if (!(this.isUnstyled || this.$theme === "none")) {
         if (!F.isStyleNameLoaded("common")) {
           var o, r, i = ((o = this.$style) === null || o === void 0 || (r = o.getCommonTheme) === null || r === void 0 ? void 0 : r.call(o)) || {}, l = i.primitive, u = i.semantic, s = i.global, a = i.style;
-          O.load(l?.css, S({
+          O.load(l?.css, w({
             name: "primitive-variables"
-          }, this.$styleOptions)), O.load(u?.css, S({
+          }, this.$styleOptions)), O.load(u?.css, w({
             name: "semantic-variables"
-          }, this.$styleOptions)), O.load(s?.css, S({
+          }, this.$styleOptions)), O.load(s?.css, w({
             name: "global-variables"
-          }, this.$styleOptions)), O.loadStyle(S({
+          }, this.$styleOptions)), O.loadStyle(w({
             name: "global-style"
           }, this.$styleOptions), a), F.setLoadedStyleName("common");
         }
         if (!F.isStyleNameLoaded((t = this.$style) === null || t === void 0 ? void 0 : t.name) && (n = this.$style) !== null && n !== void 0 && n.name) {
           var d, c, m, h, k = ((d = this.$style) === null || d === void 0 || (c = d.getComponentTheme) === null || c === void 0 ? void 0 : c.call(d)) || {}, $ = k.css, T = k.style;
-          (m = this.$style) === null || m === void 0 || m.load($, S({
+          (m = this.$style) === null || m === void 0 || m.load($, w({
             name: "".concat(this.$style.name, "-variables")
-          }, this.$styleOptions)), (h = this.$style) === null || h === void 0 || h.loadStyle(S({
+          }, this.$styleOptions)), (h = this.$style) === null || h === void 0 || h.loadStyle(w({
             name: "".concat(this.$style.name, "-style")
           }, this.$styleOptions), T), F.setLoadedStyleName(this.$style.name);
         }
         if (!F.isStyleNameLoaded("layer-order")) {
           var E, D, A = (E = this.$style) === null || E === void 0 || (D = E.getLayerOrderThemeCSS) === null || D === void 0 ? void 0 : D.call(E);
-          O.load(A, S({
+          O.load(A, w({
             name: "layer-order",
             first: !0
           }, this.$styleOptions)), F.setLoadedStyleName("layer-order");
@@ -292,7 +292,7 @@ var U = {
       }
     },
     _loadScopedThemeStyles: function(t) {
-      var n, o, r, i = ((n = this.$style) === null || n === void 0 || (o = n.getPresetTheme) === null || o === void 0 ? void 0 : o.call(n, t, "[".concat(this.$attrSelector, "]"))) || {}, l = i.css, u = (r = this.$style) === null || r === void 0 ? void 0 : r.load(l, S({
+      var n, o, r, i = ((n = this.$style) === null || n === void 0 || (o = n.getPresetTheme) === null || o === void 0 ? void 0 : o.call(n, t, "[".concat(this.$attrSelector, "]"))) || {}, l = i.css, u = (r = this.$style) === null || r === void 0 ? void 0 : r.load(l, w({
         name: "".concat(this.$attrSelector, "-").concat(this.$style.name)
       }, this.$styleOptions));
       this.scopedStyleEl = u.el;
@@ -321,10 +321,10 @@ var U = {
       return _e(t, n, o);
     },
     _getPTValue: function() {
-      var t, n = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {}, o = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : "", r = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {}, i = arguments.length > 3 && arguments[3] !== void 0 ? arguments[3] : !0, l = /./g.test(o) && !!r[o.split(".")[0]], u = this._getPropValue("ptOptions") || ((t = this.$primevueConfig) === null || t === void 0 ? void 0 : t.ptOptions) || {}, s = u.mergeSections, a = s === void 0 ? !0 : s, d = u.mergeProps, c = d === void 0 ? !1 : d, m = i ? l ? this._useGlobalPT(this._getPTClassValue, o, r) : this._useDefaultPT(this._getPTClassValue, o, r) : void 0, h = l ? void 0 : this._getPTSelf(n, this._getPTClassValue, o, S(S({}, r), {}, {
+      var t, n = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {}, o = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : "", r = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {}, i = arguments.length > 3 && arguments[3] !== void 0 ? arguments[3] : !0, l = /./g.test(o) && !!r[o.split(".")[0]], u = this._getPropValue("ptOptions") || ((t = this.$primevueConfig) === null || t === void 0 ? void 0 : t.ptOptions) || {}, s = u.mergeSections, a = s === void 0 ? !0 : s, d = u.mergeProps, c = d === void 0 ? !1 : d, m = i ? l ? this._useGlobalPT(this._getPTClassValue, o, r) : this._useDefaultPT(this._getPTClassValue, o, r) : void 0, h = l ? void 0 : this._getPTSelf(n, this._getPTClassValue, o, w(w({}, r), {}, {
         global: m || {}
       })), k = this._getPTDatasets(o);
-      return a || !a && h ? c ? this._mergeProps(c, m, h, k) : S(S(S({}, m), h), k) : S(S({}, h), k);
+      return a || !a && h ? c ? this._mergeProps(c, m, h, k) : w(w(w({}, m), h), k) : w(w({}, h), k);
     },
     _getPTSelf: function() {
       for (var t = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {}, n = arguments.length, o = new Array(n > 1 ? n - 1 : 0), r = 1; r < n; r++)
@@ -338,7 +338,7 @@ var U = {
     },
     _getPTDatasets: function() {
       var t, n, o = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : "", r = "data-pc-", i = o === "root" && N((t = this.pt) === null || t === void 0 ? void 0 : t["data-pc-section"]);
-      return o !== "transition" && S(S({}, o === "root" && S(S(ut({}, "".concat(r, "name"), J(i ? (n = this.pt) === null || n === void 0 ? void 0 : n["data-pc-section"] : this.$.type.name)), i && ut({}, "".concat(r, "extend"), J(this.$.type.name))), {}, ut({}, "".concat(this.$attrSelector), ""))), {}, ut({}, "".concat(r, "section"), J(o)));
+      return o !== "transition" && w(w({}, o === "root" && w(w(ut({}, "".concat(r, "name"), J(i ? (n = this.pt) === null || n === void 0 ? void 0 : n["data-pc-section"] : this.$.type.name)), i && ut({}, "".concat(r, "extend"), J(this.$.type.name))), {}, ut({}, "".concat(this.$attrSelector), ""))), {}, ut({}, "".concat(r, "section"), J(o)));
     },
     _getPTClassValue: function() {
       var t = this._getOptionValue.apply(this, arguments);
@@ -363,7 +363,7 @@ var U = {
       };
       if (t != null && t.hasOwnProperty("_usept")) {
         var l, u = t._usept || ((l = this.$primevueConfig) === null || l === void 0 ? void 0 : l.ptOptions) || {}, s = u.mergeSections, a = s === void 0 ? !0 : s, d = u.mergeProps, c = d === void 0 ? !1 : d, m = i(t.originalValue), h = i(t.value);
-        return m === void 0 && h === void 0 ? void 0 : rt(h) ? h : rt(m) ? m : a || !a && h ? c ? this._mergeProps(c, m, h) : S(S({}, m), h) : h;
+        return m === void 0 && h === void 0 ? void 0 : rt(h) ? h : rt(m) ? m : a || !a && h ? c ? this._mergeProps(c, m, h) : w(w({}, m), h) : h;
       }
       return i(t);
     },
@@ -375,7 +375,7 @@ var U = {
     },
     ptm: function() {
       var t = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : "", n = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
-      return this._getPTValue(this.pt, t, S(S({}, this.$params), n));
+      return this._getPTValue(this.pt, t, w(w({}, this.$params), n));
     },
     ptmi: function() {
       var t, n = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : "", o = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, r = f(this.$_attrsWithoutPT, this.ptm(n, o));
@@ -383,18 +383,18 @@ var U = {
     },
     ptmo: function() {
       var t = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {}, n = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : "", o = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {};
-      return this._getPTValue(t, n, S({
+      return this._getPTValue(t, n, w({
         instance: this
       }, o), !1);
     },
     cx: function() {
       var t = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : "", n = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
-      return this.isUnstyled ? void 0 : this._getOptionValue(this.$style.classes, t, S(S({}, this.$params), n));
+      return this.isUnstyled ? void 0 : this._getOptionValue(this.$style.classes, t, w(w({}, this.$params), n));
     },
     sx: function() {
       var t = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : "", n = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : !0, o = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {};
       if (n) {
-        var r = this._getOptionValue(this.$style.inlineStyles, t, S(S({}, this.$params), o)), i = this._getOptionValue(se.inlineStyles, t, S(S({}, this.$params), o));
+        var r = this._getOptionValue(this.$style.inlineStyles, t, w(w({}, this.$params), o)), i = this._getOptionValue(se.inlineStyles, t, w(w({}, this.$params), o));
         return [i, r];
       }
     }
@@ -411,7 +411,7 @@ var U = {
     defaultPT: function() {
       var t, n = this;
       return this._getPT((t = this.$primevueConfig) === null || t === void 0 ? void 0 : t.pt, void 0, function(o) {
-        return n._getOptionValue(o, n.$name, S({}, n.$params)) || pt(o, S({}, n.$params));
+        return n._getOptionValue(o, n.$name, w({}, n.$params)) || pt(o, w({}, n.$params));
       });
     },
     isUnstyled: function() {
@@ -433,7 +433,7 @@ var U = {
       return (t = this.$primevueConfig) === null || t === void 0 ? void 0 : t.theme;
     },
     $style: function() {
-      return S(S({
+      return w(w({
         classes: void 0,
         inlineStyles: void 0,
         load: function() {
@@ -815,7 +815,7 @@ function Rn(e, t, n, o, r, i) {
   return p(), b("span", f({
     class: e.cx("root"),
     "data-p": i.dataP
-  }, e.ptmi("root")), [w(e.$slots, "default", {}, function() {
+  }, e.ptmi("root")), [S(e.$slots, "default", {}, function() {
     return [tt(M(e.value), 1)];
   })], 16, Kn);
 }
@@ -2177,7 +2177,7 @@ var K = {
 }, bo = ["data-p"], ho = ["data-p"];
 function vo(e, t, n, o, r, i) {
   var l = R("SpinnerIcon"), u = R("Badge"), s = Et("ripple");
-  return e.asChild ? w(e.$slots, "default", {
+  return e.asChild ? S(e.$slots, "default", {
     key: 1,
     class: W(e.cx("root")),
     a11yAttrs: i.a11yAttrs
@@ -2187,8 +2187,8 @@ function vo(e, t, n, o, r, i) {
     "data-p": i.dataP
   }, i.attrs), {
     default: x(function() {
-      return [w(e.$slots, "default", {}, function() {
-        return [e.loading ? w(e.$slots, "loadingicon", f({
+      return [S(e.$slots, "default", {}, function() {
+        return [e.loading ? S(e.$slots, "loadingicon", f({
           key: 0,
           class: [e.cx("loadingIcon"), e.cx("icon")]
         }, e.ptm("loadingIcon")), function() {
@@ -2200,7 +2200,7 @@ function vo(e, t, n, o, r, i) {
             class: [e.cx("loadingIcon"), e.cx("icon")],
             spin: ""
           }, e.ptm("loadingIcon")), null, 16, ["class"]))];
-        }) : w(e.$slots, "icon", f({
+        }) : S(e.$slots, "icon", f({
           key: 1,
           class: [e.cx("icon")]
         }, e.ptm("icon")), function() {
@@ -2334,12 +2334,12 @@ var xo = /* @__PURE__ */ (function() {
   }
 };
 function Po(e, t, n, o, r, i) {
-  return i.inline ? w(e.$slots, "default", {
+  return i.inline ? S(e.$slots, "default", {
     key: 0
   }) : r.mounted ? (p(), _(Qe, {
     key: 1,
     to: n.appendTo
-  }, [w(e.$slots, "default")], 8, ["to"])) : I("", !0);
+  }, [S(e.$slots, "default")], 8, ["to"])) : I("", !0);
 }
 Jt.render = Po;
 var _o = `
@@ -3372,7 +3372,7 @@ function Go(e, t, n, o, r, i) {
           }, e.ptmi("root")), [e.$slots.start ? (p(), b("div", f({
             key: 0,
             class: e.cx("start")
-          }, e.ptm("start")), [w(e.$slots, "start")], 16)) : I("", !0), P(l, f({
+          }, e.ptm("start")), [S(e.$slots, "start")], 16)) : I("", !0), P(l, f({
             ref: i.menubarRef,
             id: e.$id + "_list",
             class: e.cx("rootList"),
@@ -3401,7 +3401,7 @@ function Go(e, t, n, o, r, i) {
           }, e.ptm("rootList")), null, 16, ["id", "class", "tabindex", "aria-label", "aria-labelledby", "aria-disabled", "aria-activedescendant", "menuId", "focusedItemId", "items", "templates", "activeItemPath", "visible", "pt", "unstyled", "onFocus", "onBlur", "onKeydown", "onItemClick", "onItemMouseenter", "onItemMousemove"]), e.$slots.end ? (p(), b("div", f({
             key: 1,
             class: e.cx("end")
-          }, e.ptm("end")), [w(e.$slots, "end")], 16)) : I("", !0)], 16, Wo)) : I("", !0)];
+          }, e.ptm("end")), [S(e.$slots, "end")], 16)) : I("", !0)], 16, Wo)) : I("", !0)];
         }),
         _: 3
       }, 16, ["onEnter", "onAfterEnter", "onLeave", "onAfterLeave"])];
@@ -3453,7 +3453,7 @@ const qo = { class: "bg-surface-0 dark:bg-surface-900" }, Zo = { class: "contain
                   class: W([$.class, "p-0!"])
                 }, {
                   default: x(() => [
-                    w(c.$slots, "logo")
+                    S(c.$slots, "logo")
                   ]),
                   _: 3
                 }, 8, ["to", "class"])
@@ -3574,7 +3574,7 @@ function ri(e, t, n, o, r, i) {
   }, e.ptmi("root")), [e.$slots.header ? (p(), b("div", f({
     key: 0,
     class: e.cx("header")
-  }, e.ptm("header")), [w(e.$slots, "header")], 16)) : I("", !0), g("div", f({
+  }, e.ptm("header")), [S(e.$slots, "header")], 16)) : I("", !0), g("div", f({
     class: e.cx("body")
   }, e.ptm("body")), [e.$slots.title || e.$slots.subtitle ? (p(), b("div", f({
     key: 0,
@@ -3582,15 +3582,15 @@ function ri(e, t, n, o, r, i) {
   }, e.ptm("caption")), [e.$slots.title ? (p(), b("div", f({
     key: 0,
     class: e.cx("title")
-  }, e.ptm("title")), [w(e.$slots, "title")], 16)) : I("", !0), e.$slots.subtitle ? (p(), b("div", f({
+  }, e.ptm("title")), [S(e.$slots, "title")], 16)) : I("", !0), e.$slots.subtitle ? (p(), b("div", f({
     key: 1,
     class: e.cx("subtitle")
-  }, e.ptm("subtitle")), [w(e.$slots, "subtitle")], 16)) : I("", !0)], 16)) : I("", !0), g("div", f({
+  }, e.ptm("subtitle")), [S(e.$slots, "subtitle")], 16)) : I("", !0)], 16)) : I("", !0), g("div", f({
     class: e.cx("content")
-  }, e.ptm("content")), [w(e.$slots, "content")], 16), e.$slots.footer ? (p(), b("div", f({
+  }, e.ptm("content")), [S(e.$slots, "content")], 16), e.$slots.footer ? (p(), b("div", f({
     key: 1,
     class: e.cx("footer")
-  }, e.ptm("footer")), [w(e.$slots, "footer")], 16)) : I("", !0)], 16)], 16);
+  }, e.ptm("footer")), [S(e.$slots, "footer")], 16)) : I("", !0)], 16)], 16);
 }
 it.render = ri;
 const Da = /* @__PURE__ */ j({
@@ -3971,13 +3971,13 @@ const gi = /* @__PURE__ */ jt(pi, [["render", fi]]), bi = {
       default: x(() => [
         e.showPreloadSlot && e.isLoading ? (p(), b("div", bi, [
           g("div", hi, [
-            w(t.$slots, "preloader", {}, () => [
+            S(t.$slots, "preloader", {}, () => [
               P(z(Qt), { "aria-label": "Loading" }),
               e.loadingText ? (p(), b("div", vi, M(e.loadingText), 1)) : (p(), b("span", yi, "Loading..."))
             ], !0)
           ])
         ])) : e.isError ? (p(), b("div", ki, [
-          w(t.$slots, "error", {}, () => [
+          S(t.$slots, "error", {}, () => [
             g("div", $i, [
               g("div", Ii, [
                 P(gi)
@@ -3992,7 +3992,7 @@ const gi = /* @__PURE__ */ jt(pi, [["render", fi]]), bi = {
             ])
           ], !0)
         ])) : (p(), b("div", Si, [
-          w(t.$slots, "default", {}, void 0, !0)
+          S(t.$slots, "default", {}, void 0, !0)
         ]))
       ]),
       _: 3
@@ -4909,7 +4909,7 @@ function ur(e, t, n, o, r, i) {
             "aria-labelledby": i.ariaLabelledById,
             "aria-modal": e.modal,
             "data-p": i.dataP
-          }, e.ptmi("root")), [e.$slots.container ? w(e.$slots, "container", {
+          }, e.ptmi("root")), [e.$slots.container ? S(e.$slots, "container", {
             key: 0,
             closeCallback: i.close,
             maximizeCallback: function(d) {
@@ -4925,7 +4925,7 @@ function ur(e, t, n, o, r, i) {
             onMousedown: t[0] || (t[0] = function() {
               return i.initDrag && i.initDrag.apply(i, arguments);
             })
-          }, e.ptm("header")), [w(e.$slots, "header", {
+          }, e.ptm("header")), [S(e.$slots, "header", {
             class: W(e.cx("title"))
           }, function() {
             return [e.header ? (p(), b("span", f({
@@ -4935,7 +4935,7 @@ function ur(e, t, n, o, r, i) {
             }, e.ptm("title")), M(e.header), 17, sr)) : I("", !0)];
           }), g("div", f({
             class: e.cx("headerActions")
-          }, e.ptm("headerActions")), [e.maximizable ? w(e.$slots, "maximizebutton", {
+          }, e.ptm("headerActions")), [e.maximizable ? S(e.$slots, "maximizebutton", {
             key: 0,
             maximized: r.maximized,
             maximizeCallback: function(d) {
@@ -4954,7 +4954,7 @@ function ur(e, t, n, o, r, i) {
               "data-pc-group-section": "headericon"
             }), {
               icon: x(function(a) {
-                return [w(e.$slots, "maximizeicon", {
+                return [S(e.$slots, "maximizeicon", {
                   maximized: r.maximized
                 }, function() {
                   return [(p(), _(nt(i.maximizeIconComponent), f({
@@ -4964,7 +4964,7 @@ function ur(e, t, n, o, r, i) {
               }),
               _: 3
             }, 16, ["autofocus", "class", "onClick", "tabindex", "unstyled", "pt"])];
-          }) : I("", !0), e.closable ? w(e.$slots, "closebutton", {
+          }) : I("", !0), e.closable ? S(e.$slots, "closebutton", {
             key: 1,
             closeCallback: i.close
           }, function() {
@@ -4980,7 +4980,7 @@ function ur(e, t, n, o, r, i) {
               "data-pc-group-section": "headericon"
             }), {
               icon: x(function(a) {
-                return [w(e.$slots, "closeicon", {}, function() {
+                return [S(e.$slots, "closeicon", {}, function() {
                   return [(p(), _(nt(e.closeIcon ? "span" : "TimesIcon"), f({
                     class: [e.closeIcon, a.class]
                   }, e.ptm("pcCloseButton").icon), null, 16, ["class"]))];
@@ -4993,11 +4993,11 @@ function ur(e, t, n, o, r, i) {
             class: [e.cx("content"), e.contentClass],
             style: e.contentStyle,
             "data-p": i.dataP
-          }, $e($e({}, e.contentProps), e.ptm("content"))), [w(e.$slots, "default")], 16, lr), e.footer || e.$slots.footer ? (p(), b("div", f({
+          }, $e($e({}, e.contentProps), e.ptm("content"))), [S(e.$slots, "default")], 16, lr), e.footer || e.$slots.footer ? (p(), b("div", f({
             key: 1,
             ref: i.footerContainerRef,
             class: e.cx("footer")
-          }, e.ptm("footer")), [w(e.$slots, "footer", {}, function() {
+          }, e.ptm("footer")), [S(e.$slots, "footer", {}, function() {
             return [tt(M(e.footer), 1)];
           })], 16)) : I("", !0)], 64))], 16, ar)), [[s, {
             disabled: !e.modal
@@ -5226,7 +5226,7 @@ const Sr = {
   setup(e) {
     return (t, n) => (p(), _(z(it), null, {
       title: x(() => [
-        w(t.$slots, "default", { id: "header" }, () => [
+        S(t.$slots, "default", { id: "header" }, () => [
           n[0] || (n[0] = g("h2", { class: "h2 text-color" }, "Your details", -1))
         ])
       ]),
@@ -6114,14 +6114,14 @@ function Qr(e, t, n, o, r, i) {
         "data-p": i.dataP
       }, e.ptm("root")), [g("div", f({
         class: e.cx("contentWrapper")
-      }, e.ptm("contentWrapper")), [e.$slots.container ? w(e.$slots, "container", {
+      }, e.ptm("contentWrapper")), [e.$slots.container ? S(e.$slots, "container", {
         key: 0,
         closeCallback: i.close
       }) : (p(), b("div", f({
         key: 1,
         class: e.cx("content"),
         "data-p": i.dataP
-      }, e.ptm("content")), [w(e.$slots, "icon", {
+      }, e.ptm("content")), [S(e.$slots, "icon", {
         class: W(e.cx("icon"))
       }, function() {
         return [(p(), _(nt(e.icon ? "span" : null), f({
@@ -6132,7 +6132,7 @@ function Qr(e, t, n, o, r, i) {
         key: 0,
         class: e.cx("text"),
         "data-p": i.dataP
-      }, e.ptm("text")), [w(e.$slots, "default")], 16, Xr)) : I("", !0), e.closable ? Mt((p(), b("button", f({
+      }, e.ptm("text")), [S(e.$slots, "default")], 16, Xr)) : I("", !0), e.closable ? Mt((p(), b("button", f({
         key: 1,
         class: e.cx("closeButton"),
         "aria-label": i.closeAriaLabel,
@@ -6141,7 +6141,7 @@ function Qr(e, t, n, o, r, i) {
           return i.close(s);
         }),
         "data-p": i.dataP
-      }, we(we({}, e.closeButtonProps), e.ptm("closeButton"))), [w(e.$slots, "closeicon", {}, function() {
+      }, we(we({}, e.closeButtonProps), e.ptm("closeButton"))), [S(e.$slots, "closeicon", {}, function() {
         return [e.closeIcon ? (p(), b("i", f({
           key: 0,
           class: [e.cx("closeIcon"), e.closeIcon],
@@ -6177,7 +6177,7 @@ const ta = { class: "flex flex-col gap-1" }, ea = ["for"], na = {
       }, M(e.label), 9, ea)) : I("", !0),
       e.helper ? (p(), b("p", na, M(e.helper), 1)) : I("", !0),
       g("div", oa, [
-        w(t.$slots, "default")
+        S(t.$slots, "default")
       ]),
       e.error ? (p(), _(z(Ot), {
         key: 2,
@@ -6249,7 +6249,7 @@ const ta = { class: "flex flex-col gap-1" }, ea = ["for"], na = {
         style: { "font-size": "1.2rem !important" }
       }, null, 2),
       g("div", aa, [
-        w(t.$slots, "default")
+        S(t.$slots, "default")
       ])
     ]));
   }
@@ -6273,7 +6273,7 @@ const ta = { class: "flex flex-col gap-1" }, ea = ["for"], na = {
     }
     return (s, a) => (p(), _(z(it), null, {
       title: x(() => [
-        w(s.$slots, "default", { id: "header" }, () => [
+        S(s.$slots, "default", { id: "header" }, () => [
           a[1] || (a[1] = g("h2", { class: "h2" }, "Change your email", -1))
         ])
       ]),
@@ -6332,7 +6332,7 @@ const ta = { class: "flex flex-col gap-1" }, ea = ["for"], na = {
     }
     return (i, l) => (p(), _(z(it), null, {
       title: x(() => [
-        w(i.$slots, "default", { id: "header" }, () => [
+        S(i.$slots, "default", { id: "header" }, () => [
           l[0] || (l[0] = g("h2", { class: "h2" }, "Delete your account", -1))
         ])
       ]),
@@ -6448,14 +6448,18 @@ const ta = { class: "flex flex-col gap-1" }, ea = ["for"], na = {
     email: { required: !0 },
     emailModifiers: {}
   }),
-  emits: /* @__PURE__ */ et(["signUpStart", "googleSignIn"], ["update:email"]),
+  emits: /* @__PURE__ */ et(["submit", "googleSignIn"], ["update:email"]),
   setup(e, { emit: t }) {
     const n = t, o = At(e, "email"), r = G(!1), i = G(!1);
     function l(s) {
       r.value = s;
     }
     async function u() {
-      i.value = !0, r.value && n("signUpStart");
+      i.value = !0, n("submit", {
+        email: o.value,
+        isValid: r.value
+        // Only validates email - additional fields are handled in the parent
+      });
     }
     return (s, a) => (p(), _(z(it), { class: "max-w-xl p-12 w-full" }, {
       title: x(() => [
@@ -6465,7 +6469,7 @@ const ta = { class: "flex flex-col gap-1" }, ea = ["for"], na = {
         e.isSignupInviteOnly && e.pageAuthType === "sign-up" ? (p(), b("div", ka, [
           P(z(Ot), { severity: "info" }, {
             default: x(() => [...a[3] || (a[3] = [
-              tt(" Sign up is currently by invite only during the beta period. ", -1)
+              tt(" Sign up is currently by invite only during the beta period as we roll things out in stages and gather early feedback. ", -1)
             ])]),
             _: 1
           })
@@ -6503,6 +6507,7 @@ const ta = { class: "flex flex-col gap-1" }, ea = ["for"], na = {
               "data-test": "auth-email-input",
               onValidityChanged: l
             }, null, 8, ["email", "isSubmitClicked"]),
+            S(s.$slots, "additional-fields", { isSubmitClicked: i.value }),
             P(z(K), {
               label: e.pageAuthType === "sign-up" ? "Sign up" : "Sign in",
               type: "button",
@@ -6513,7 +6518,7 @@ const ta = { class: "flex flex-col gap-1" }, ea = ["for"], na = {
           ], 32)
         ]))
       ]),
-      _: 1
+      _: 3
     }));
   }
 });
@@ -6711,7 +6716,7 @@ function Pa(e, t, n, o, r, i) {
   return p(), b("div", f({
     class: e.cx("root")
   }, e.ptmi("root")), [(p(!0), b(dt, null, xe(e.length, function(u) {
-    return w(e.$slots, "default", {
+    return S(e.$slots, "default", {
       key: u,
       events: i.getTemplateEvents(u - 1),
       attrs: i.getTemplateAttrs(u - 1),
