@@ -6,7 +6,8 @@
       <template #content>
          <div v-if="isSignupInviteOnly && pageAuthType === 'sign-up'">
             <Message severity="info">
-               Sign up is currently by invite only during the beta period.
+               Sign up is currently by invite only during the beta period as we roll things out in
+               stages and gather early feedback.
             </Message>
          </div>
          <section v-else>
@@ -37,12 +38,16 @@
                   data-test="auth-email-input"
                   @validity-changed="onValidityChanged"
                />
+
+               <!-- additional fields like: captcha (expose isSubmitClicked to parent) -->
+               <slot name="additional-fields" :isSubmitClicked="isSubmitClicked" />
+
                <Button
                   :label="pageAuthType === 'sign-up' ? 'Sign up' : 'Sign in'"
                   type="button"
                   :loading="isSignupLoading"
                   data-test="auth-send-code-button"
-                  @click="onSignupStart"
+                  @click="onSubmit"
                />
             </form>
          </section>
@@ -60,7 +65,7 @@ import GoogleAuthIcon from "../../components/googleAuthIcon/GoogleAuthIcon.vue"
 
 // props/emits
 // -----------------------------------------
-const emits = defineEmits(["signUpStart", "googleSignIn"])
+const emits = defineEmits(["submit", "googleSignIn"])
 
 withDefaults(
    defineProps<{
@@ -91,15 +96,14 @@ function onValidityChanged(isValid: boolean) {
    isEmailValid.value = isValid
 }
 
-/** If the email is valid, we will send an OTP code by email */
-async function onSignupStart() {
+/** If the email is valid, emit but only if valid */
+async function onSubmit() {
    isSubmitClicked.value = true
 
-   if (!isEmailValid.value) {
-      return
-   }
-
-   emits("signUpStart")
+   emits("submit", {
+      email: email.value,
+      isValid: isEmailValid.value, // Only validates email - additional fields are handled in the parent
+   })
 }
 </script>
 

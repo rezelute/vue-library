@@ -38,6 +38,39 @@ export const SignUp: Story = {
    },
 }
 
+// Story demonstrating the 'additional-fields' slot with an image and isSubmitClicked
+export const WithAdditionalFields: Story = {
+   render: (args, { slots }) => ({
+      components: { SignInUpForm },
+      setup() {
+         return { args }
+      },
+      template: `
+         <SignInUpForm v-bind="args">
+            <template #additional-fields="slotProps">
+               <div style="text-align: center;">
+                  <img src="/src/stories/assets/cloudflare.png" alt="Cloudflare Captcha" style="max-width: 260px; margin-bottom: 0.5rem;" />
+                  <div style="font-size: 0.9em; color: #888;">
+                     Captcha required. Submit clicked: <b>{{ slotProps.isSubmitClicked ? 'Yes' : 'No' }}</b>
+                  </div>
+               </div>
+            </template>
+         </SignInUpForm>
+      `,
+   }),
+   args: {
+      pageAuthType: "sign-up",
+      email: "",
+   },
+   parameters: {
+      docs: {
+         description: {
+            story: "Demonstrates usage of the 'additional-fields' slot, rendering a captcha image and showing the isSubmitClicked value.",
+         },
+      },
+   },
+}
+
 export const Loading: Story = {
    args: {
       isSignupLoading: true,
