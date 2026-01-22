@@ -7,17 +7,15 @@ const meta = {
    component: PageLoader,
    tags: ["autodocs"],
    argTypes: {
-      isLoading: { control: "boolean" },
-      isError: { control: "boolean" },
+      showLoading: { control: "boolean" },
+      showError: { control: "boolean" },
       loadingText: { control: "text" },
-      showPreloadSlot: { control: "boolean" },
       // No controls for slots, but we can show usage in stories
    },
    args: {
-      isLoading: true,
-      isError: false,
+      showLoading: true,
+      showError: false,
       loadingText: "Loading, please wait...",
-      showPreloadSlot: false,
    },
 } satisfies Meta<typeof PageLoader>
 
@@ -27,28 +25,25 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
    args: {
-      isLoading: true,
-      isError: false,
+      showLoading: true,
+      showError: false,
       loadingText: "Loading, please wait...",
-      showPreloadSlot: false,
    },
 }
 
 export const WithCustomText: Story = {
    args: {
-      isLoading: true,
-      isError: false,
+      showLoading: true,
+      showError: false,
       loadingText: "Fetching your data...",
-      showPreloadSlot: false,
    },
 }
 
 export const ErrorState: Story = {
    args: {
-      isLoading: false,
-      isError: true,
+      showLoading: false,
+      showError: true,
       loadingText: "",
-      showPreloadSlot: false,
    },
    render: (args: any) => ({
       components: { PageLoader },
@@ -59,10 +54,9 @@ export const ErrorState: Story = {
 
 export const LoadedState: Story = {
    args: {
-      isLoading: false,
-      isError: false,
+      showLoading: false,
+      showError: false,
       loadingText: "",
-      showPreloadSlot: false,
    },
    render: (args: any) => ({
       components: { PageLoader },
@@ -73,10 +67,9 @@ export const LoadedState: Story = {
 
 export const WithPreloadSlot: Story = {
    args: {
-      isLoading: true,
-      isError: false,
+      showLoading: true,
+      showError: false,
       loadingText: "",
-      showPreloadSlot: true,
    },
    render: (args: any) => ({
       components: { PageLoader },
@@ -87,9 +80,8 @@ export const WithPreloadSlot: Story = {
 
 export const SpinnerWithLoadingText: Story = {
    args: {
-      isLoading: true,
-      isError: false,
+      showLoading: true,
+      showError: false,
       loadingText: "Loading spinner with text...",
-      showPreloadSlot: true,
    },
 }

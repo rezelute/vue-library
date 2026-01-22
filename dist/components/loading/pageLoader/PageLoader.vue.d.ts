@@ -1,8 +1,7 @@
 type __VLS_Props = {
-    isLoading: boolean;
+    showLoading: boolean;
     loadingText?: string;
-    showPreloadSlot?: boolean;
-    isError?: boolean;
+    showError?: boolean;
 };
 declare function __VLS_template(): {
     attrs: Partial<{}>;
@@ -20,9 +19,8 @@ declare const __VLS_component: import('vue').DefineComponent<__VLS_Props, {}, {}
 }, string, import('vue').PublicProps, Readonly<__VLS_Props> & Readonly<{
     onRetry?: (() => any) | undefined;
 }>, {
-    isLoading: boolean;
-    showPreloadSlot: boolean;
-    isError: boolean;
+    showLoading: boolean;
+    showError: boolean;
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, any>;
 declare const _default: __VLS_WithTemplateSlots<typeof __VLS_component, __VLS_TemplateResult["slots"]>;
 export default _default;

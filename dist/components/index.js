@@ -3957,10 +3957,9 @@ const gi = /* @__PURE__ */ jt(pi, [["render", fi]]), bi = {
 }, $i = { class: "vstack-sm p-12 text-center items-center" }, Ii = { class: "w-96" }, Si = { key: "loaded" }, wi = /* @__PURE__ */ j({
   __name: "PageLoader",
   props: {
-    isLoading: { type: Boolean, default: !1 },
+    showLoading: { type: Boolean, default: !1 },
     loadingText: {},
-    showPreloadSlot: { type: Boolean, default: !1 },
-    isError: { type: Boolean, default: !1 }
+    showError: { type: Boolean, default: !1 }
   },
   emits: ["retry"],
   setup(e) {
@@ -3969,14 +3968,14 @@ const gi = /* @__PURE__ */ jt(pi, [["render", fi]]), bi = {
       mode: "out-in"
     }, {
       default: x(() => [
-        e.showPreloadSlot && e.isLoading ? (p(), b("div", bi, [
+        e.showLoading ? (p(), b("div", bi, [
           g("div", hi, [
             S(t.$slots, "preloader", {}, () => [
               P(z(Qt), { "aria-label": "Loading" }),
               e.loadingText ? (p(), b("div", vi, M(e.loadingText), 1)) : (p(), b("span", yi, "Loading..."))
             ], !0)
           ])
-        ])) : e.isError ? (p(), b("div", ki, [
+        ])) : e.showError ? (p(), b("div", ki, [
           S(t.$slots, "error", {}, () => [
             g("div", $i, [
               g("div", Ii, [
@@ -3998,7 +3997,7 @@ const gi = /* @__PURE__ */ jt(pi, [["render", fi]]), bi = {
       _: 3
     }));
   }
-}), ja = /* @__PURE__ */ jt(wi, [["__scopeId", "data-v-dc76550c"]]), xi = {
+}), ja = /* @__PURE__ */ jt(wi, [["__scopeId", "data-v-35f2d320"]]), xi = {
   key: 0,
   class: "bar"
 }, Ci = /* @__PURE__ */ j({
