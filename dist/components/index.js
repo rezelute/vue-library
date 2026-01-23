@@ -5213,7 +5213,7 @@ const Ba = /* @__PURE__ */ D({
   __name: "InputSkeleton",
   props: {
     isLoading: { type: Boolean, default: !1 },
-    height: { default: "2.5rem" }
+    height: { default: "2.4rem" }
   },
   setup(e) {
     return (t, n) => e.isLoading ? (p(), P(O(zt), {
