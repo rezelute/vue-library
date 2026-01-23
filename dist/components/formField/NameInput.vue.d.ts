@@ -3,6 +3,7 @@ type __VLS_Props = {
     placeholder?: string;
     isSubmitClicked?: boolean;
     isRequired?: boolean;
+    showSkeleton?: boolean;
 };
 type __VLS_PublicProps = {
     "name": string | null;
@@ -17,5 +18,6 @@ declare const _default: import('vue').DefineComponent<__VLS_PublicProps, {}, {},
 }>, {
     isSubmitClicked: boolean;
     isRequired: boolean;
+    showSkeleton: boolean;
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, HTMLDivElement>;
 export default _default;

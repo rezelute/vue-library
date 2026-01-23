@@ -47,7 +47,8 @@
                      label="Submit code"
                      class="w-fit"
                      type="submit"
-                     :loading="isSubmittingCode || isResendingCode"
+                     :loading="isSubmittingCode"
+                     :disabled="isResendingCode"
                      data-test="auth-verify-button"
                      @click="onCodeSubmit"
                   />
@@ -63,7 +64,8 @@
                      class="w-fit"
                      label="Resend code"
                      type="submit"
-                     :loading="isSubmittingCode || isResendingCode"
+                     :loading="isResendingCode"
+                     :disabled="isSubmittingCode"
                      data-test="auth-resend-code"
                      @click="onResendCode"
                   />

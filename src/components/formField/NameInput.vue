@@ -1,14 +1,16 @@
 <template>
    <div class="vstack-form">
       <FormField id="profile_name" :label="label" :error="showNameError ? nameInvalidText : ''">
-         <Textbox
-            id="profile_name"
-            v-model="name"
-            :invalid="showNameError"
-            :placeholder="placeholder"
-            :required="isRequired"
-            class="w-full"
-         />
+         <InputSkeleton :isLoading="showSkeleton">
+            <Textbox
+               id="profile_name"
+               v-model="name"
+               :invalid="showNameError"
+               :placeholder="placeholder"
+               :required="isRequired"
+               class="w-full"
+            />
+         </InputSkeleton>
       </FormField>
    </div>
 </template>
@@ -17,6 +19,7 @@ import Textbox from "primevue/inputtext"
 import { computed, onMounted, watch } from "vue"
 import { z } from "zod"
 import FormField from "@/components/formField/FormField.vue"
+import InputSkeleton from "@/components/loading/InputSkeleton.vue"
 
 // props / emits
 // -----------------------------------------
@@ -29,10 +32,12 @@ const props = withDefaults(
       placeholder?: string
       isSubmitClicked?: boolean
       isRequired?: boolean
+      showSkeleton?: boolean
    }>(),
    {
       isSubmitClicked: false,
       isRequired: true,
+      showSkeleton: false,
    }
 )
 

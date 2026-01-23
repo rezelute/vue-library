@@ -18,7 +18,6 @@
       </div>
 
       <!-- Error State -->
-
       <div v-else-if="showError" key="error" class="w-full">
          <slot name="error">
             <!-- Fallback error if no slot provided -->
