@@ -26,7 +26,7 @@
                   <PageErrorIcon />
                </div>
                <p>Something went wrong, please try again later.</p>
-               <Button label="Retry" type="button" class="btn mt-4 w-fit" @click="$emit('retry')" />
+               <Button label="Retry" type="button" class="btn mt-4 w-fit" @click="reloadPage" />
             </div>
          </slot>
       </div>
@@ -55,7 +55,11 @@ withDefaults(
    }
 )
 
-defineEmits(["retry"])
+// methods
+// -----------------------------------------
+function reloadPage() {
+   window.location.reload()
+}
 </script>
 
 <style scoped>

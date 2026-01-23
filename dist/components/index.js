@@ -3961,43 +3961,45 @@ const gi = /* @__PURE__ */ Dt(pi, [["render", fi]]), bi = {
     loadingText: {},
     showError: { type: Boolean, default: !1 }
   },
-  emits: ["retry"],
   setup(e) {
-    return (t, n) => (p(), _(Pt, {
+    function t() {
+      window.location.reload();
+    }
+    return (n, o) => (p(), _(Pt, {
       name: "fade",
       mode: "out-in"
     }, {
       default: x(() => [
         e.showLoading ? (p(), b("div", bi, [
           g("div", hi, [
-            S(t.$slots, "preloader", {}, () => [
+            S(n.$slots, "preloader", {}, () => [
               P(z(Jt), { "aria-label": "Loading" }),
               e.loadingText ? (p(), b("div", vi, M(e.loadingText), 1)) : (p(), b("span", yi, "Loading..."))
             ], !0)
           ])
         ])) : e.showError ? (p(), b("div", ki, [
-          S(t.$slots, "error", {}, () => [
+          S(n.$slots, "error", {}, () => [
             g("div", $i, [
               g("div", Ii, [
                 P(gi)
               ]),
-              n[1] || (n[1] = g("p", null, "Something went wrong, please try again later.", -1)),
+              o[0] || (o[0] = g("p", null, "Something went wrong, please try again later.", -1)),
               P(z(K), {
                 label: "Retry",
                 type: "button",
                 class: "btn mt-4 w-fit",
-                onClick: n[0] || (n[0] = (o) => t.$emit("retry"))
+                onClick: t
               })
             ])
           ], !0)
         ])) : (p(), b("div", Si, [
-          S(t.$slots, "default", {}, void 0, !0)
+          S(n.$slots, "default", {}, void 0, !0)
         ]))
       ]),
       _: 3
     }));
   }
-}), Da = /* @__PURE__ */ Dt(wi, [["__scopeId", "data-v-285d8afb"]]), xi = {
+}), Da = /* @__PURE__ */ Dt(wi, [["__scopeId", "data-v-f9276afa"]]), xi = {
   key: 0,
   class: "bar"
 }, Ci = /* @__PURE__ */ j({
