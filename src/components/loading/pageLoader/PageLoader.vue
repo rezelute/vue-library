@@ -26,7 +26,7 @@
                <div class="w-96">
                   <PageErrorIcon class="mx-auto w-70 h-70 text-primary slow-pulse" />
                </div>
-               <p class="py-1 px-6" :class="errorTextClass">
+               <p class="py-2 px-6" :class="errorTextClass">
                   {{ errorText || "Something went wrong, please try again later." }}
                </p>
                <Button label="Retry" type="button" class="btn mt-4 w-fit" @click="reloadPage" />

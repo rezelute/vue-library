@@ -3986,7 +3986,7 @@ const gi = /* @__PURE__ */ Dt(pi, [["render", fi]]), bi = {
                 P(gi, { class: "mx-auto w-70 h-70 text-primary slow-pulse" })
               ]),
               g("p", {
-                class: U(["py-1 px-6", e.errorTextClass])
+                class: U(["py-2 px-6", e.errorTextClass])
               }, M(e.errorText || "Something went wrong, please try again later."), 3),
               P(z(K), {
                 label: "Retry",
@@ -4003,7 +4003,7 @@ const gi = /* @__PURE__ */ Dt(pi, [["render", fi]]), bi = {
       _: 3
     }));
   }
-}), Da = /* @__PURE__ */ Dt(wi, [["__scopeId", "data-v-2b340c5d"]]), xi = {
+}), Da = /* @__PURE__ */ Dt(wi, [["__scopeId", "data-v-400e73e9"]]), xi = {
   key: 0,
   class: "bar"
 }, Ci = /* @__PURE__ */ j({
