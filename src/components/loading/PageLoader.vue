@@ -44,7 +44,7 @@
 <script setup lang="ts">
 import Button from "primevue/button"
 import ProgressSpinner from "primevue/progressspinner"
-import PageErrorIcon from "../../icons/PageErrorIcon.vue"
+import PageErrorIcon from "../icons/PageErrorIcon.vue"
 
 withDefaults(
    defineProps<{
