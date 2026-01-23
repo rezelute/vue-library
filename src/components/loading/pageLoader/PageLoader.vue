@@ -25,7 +25,9 @@
                <div class="w-96">
                   <PageErrorIcon class="mx-auto w-70 h-70 text-primary slow-pulse" />
                </div>
-               <p class="bg-surface-50 py-1 px-6">Something went wrong, please try again later.</p>
+               <p class="bg-surface-50 py-1 px-6">
+                  {{ errorText || "Something went wrong, please try again later." }}
+               </p>
                <Button label="Retry" type="button" class="btn mt-4 w-fit" @click="reloadPage" />
             </div>
          </slot>
@@ -48,6 +50,7 @@ withDefaults(
       showLoading: boolean
       loadingText?: string
       showError?: boolean
+      errorText?: string // if you dont use the error slot, you can use this prop to show custom error text
    }>(),
    {
       showLoading: false,
