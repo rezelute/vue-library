@@ -1,5 +1,5 @@
 type __VLS_Props = {
-    showLoading: boolean;
+    showLoading?: boolean;
     loadingText?: string;
     showError?: boolean;
     errorText?: string;

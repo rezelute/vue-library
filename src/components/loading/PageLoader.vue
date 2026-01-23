@@ -48,7 +48,7 @@ import PageErrorIcon from "../icons/PageErrorIcon.vue"
 
 withDefaults(
    defineProps<{
-      showLoading: boolean
+      showLoading?: boolean
       loadingText?: string
       showError?: boolean
       errorText?: string // if you dont use the error slot, you can use this prop to show custom error text

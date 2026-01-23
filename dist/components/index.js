@@ -4003,7 +4003,7 @@ const gi = /* @__PURE__ */ jt(pi, [["render", fi]]), bi = {
       _: 3
     }));
   }
-}), Da = /* @__PURE__ */ jt(wi, [["__scopeId", "data-v-89950992"]]), xi = {
+}), Da = /* @__PURE__ */ jt(wi, [["__scopeId", "data-v-59a9114a"]]), xi = {
   key: 0,
   class: "bar"
 }, Ci = /* @__PURE__ */ D({
