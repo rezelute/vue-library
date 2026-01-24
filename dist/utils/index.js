@@ -1,31 +1,34 @@
-class n extends Error {
+class o extends Error {
   response;
   data;
-  constructor(s, e, r) {
+  constructor(s, e, a) {
     super(s), this.name = "ApiResponseError", this.response = {
       status: e.status,
       statusText: e.statusText,
       url: e.url
-    }, this.data = r;
+    }, this.data = a;
   }
 }
-class o extends Error {
+class i extends Error {
   type;
   // error type identifier
+  messageSummary;
+  // short summary for logging
   details;
   // additional error details (object or array)
   cause;
   // stack trace of the original error
   constructor({
     type: s,
-    message: e,
+    messageSummary: e,
+    message: a,
     details: r,
-    cause: a
+    cause: n
   }) {
-    super(e), this.name = "AppError", this.type = s, this.details = r, this.cause = a;
+    super(a), this.name = "AppError", this.type = s, this.details = r, this.cause = n, this.messageSummary = e;
   }
 }
-function i(t) {
+function u(t) {
   if (t instanceof Error)
     return {
       name: t.name,
@@ -37,7 +40,7 @@ function i(t) {
       status: t.status,
       statusText: t.statusText,
       url: t.url,
-      headers: u(t.headers)
+      headers: c(t.headers)
     };
   if (typeof t == "object" && t !== null)
     try {
@@ -47,23 +50,23 @@ function i(t) {
     }
   return { message: String(t) };
 }
-function u(t) {
+function c(t) {
   const s = {};
-  return t.forEach((e, r) => {
-    s[r] = e;
+  return t.forEach((e, a) => {
+    s[a] = e;
   }), s;
 }
-function c(t) {
+function m(t) {
   const { redirect: s, ...e } = t;
   if (!s) return null;
-  const r = new URLSearchParams(e).toString();
-  return r ? `${s}?${r}` : s;
+  const a = new URLSearchParams(e).toString();
+  return a ? `${s}?${a}` : s;
 }
-const l = { getRedirectTargetWithQueryParams: c, normalizeError: i, ApiResponseError: n, AppError: o };
+const l = { getRedirectTargetWithQueryParams: m, normalizeError: u, ApiResponseError: o, AppError: i };
 export {
-  n as ApiResponseError,
-  o as AppError,
+  o as ApiResponseError,
+  i as AppError,
   l as default,
-  c as getRedirectTargetWithQueryParams,
-  i as normalizeError
+  m as getRedirectTargetWithQueryParams,
+  u as normalizeError
 };
