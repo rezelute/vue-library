@@ -13,6 +13,7 @@ export { default as ChangeEmailRequest } from "./account/ChangeEmailRequest.vue"
 export { default as DeleteAccountRequest } from "./account/DeleteAccountRequest.vue"
 // form field
 export { default as FormField } from "./formField/FormField.vue"
+export type { FormFieldProps } from "./formField/FormField.vue"
 export { default as NameInput } from "./formField/NameInput.vue"
 
 // auth

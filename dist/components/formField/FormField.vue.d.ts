@@ -1,4 +1,4 @@
-interface FormFieldProps {
+export interface FormFieldProps {
     id?: string;
     label?: string;
     helper?: string;

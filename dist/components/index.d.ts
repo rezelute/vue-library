@@ -9,6 +9,7 @@ export { default as UserAccountInfo } from './account/UserAccountInfo.vue';
 export { default as ChangeEmailRequest } from './account/ChangeEmailRequest.vue';
 export { default as DeleteAccountRequest } from './account/DeleteAccountRequest.vue';
 export { default as FormField } from './formField/FormField.vue';
+export type { FormFieldProps } from './formField/FormField.vue';
 export { default as NameInput } from './formField/NameInput.vue';
 export { default as SignInUpForm } from './SignInUp/SignInUpForm.vue';
 export { default as SignInUpVerifyCode } from './SignInUp/SignInUpVerifyCode.vue';

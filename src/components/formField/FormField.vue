@@ -25,7 +25,7 @@
 import { Skeleton } from "primevue"
 import Message from "primevue/message"
 
-interface FormFieldProps {
+export interface FormFieldProps {
    id?: string
    label?: string
    helper?: string
