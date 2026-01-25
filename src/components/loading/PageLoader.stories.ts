@@ -70,7 +70,6 @@ export const ErrorStateDark: Story = {
       showLoading: false,
       showError: true,
       loadingText: "",
-      errorTextClass: "bg-surface-800 text-surface-50 border border-surface-700 rounded",
    },
    render: (args: any) => ({
       components: { PageLoader },

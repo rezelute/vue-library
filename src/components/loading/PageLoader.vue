@@ -18,10 +18,12 @@
       </div>
 
       <!-- Error State -->
-      <div v-else-if="showError" key="error" class="items-center justify-center">
+      <div v-else-if="showError" key="error">
          <slot name="error">
             <!-- Fallback error if no slot provided -->
-            <AppInfoError :errorText="errorText" class="max-w-xl mx-auto" />
+            <div class="justify-center items-center flex flex-col min-h-screen">
+               <AppInfoError :errorText="errorText" class="max-w-xl" />
+            </div>
          </slot>
       </div>
 
