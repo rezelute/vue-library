@@ -3953,7 +3953,7 @@ const Ii = {
 }, xi = {
   key: 1,
   class: "sr-only"
-}, Ci = { key: "error" }, Pi = { class: "justify-center items-center flex flex-col min-h-screen" }, _i = { key: "loaded" }, Li = /* @__PURE__ */ D({
+}, Ci = { key: "error" }, Pi = { class: "justify-center items-center flex flex-col" }, _i = { key: "loaded" }, Li = /* @__PURE__ */ D({
   __name: "PageLoader",
   props: {
     showLoading: { type: Boolean, default: !1 },
@@ -3990,7 +3990,7 @@ const Ii = {
       _: 3
     }));
   }
-}), Ka = /* @__PURE__ */ _e(Li, [["__scopeId", "data-v-500fc51a"]]), Ti = {
+}), Ka = /* @__PURE__ */ _e(Li, [["__scopeId", "data-v-a4694725"]]), Ti = {
   key: 0,
   class: "bar"
 }, Oi = /* @__PURE__ */ D({
