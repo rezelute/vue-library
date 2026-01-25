@@ -3,7 +3,6 @@ export interface PageLoaderProps {
     loadingText?: string;
     showError?: boolean;
     errorText?: string;
-    errorTextClass?: string;
 }
 declare function __VLS_template(): {
     attrs: Partial<{}>;

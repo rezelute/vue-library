@@ -6,10 +6,10 @@ const meta = {
    component: AppErrorInfo,
    tags: ["autodocs"],
    argTypes: {
-      error: { control: "object" },
+      errorText: { control: "text" },
    },
    args: {
-      error: { message: "Something went wrong!" },
+      errorText: undefined,
    },
 } satisfies Meta<typeof AppErrorInfo>
 
@@ -19,12 +19,12 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
    args: {
-      error: { message: "Something went wrong!" },
+      errorText: undefined,
    },
 }
 
-export const WithCustomError: Story = {
+export const WithCustomErrorText: Story = {
    args: {
-      error: { message: "Custom error message." },
+      errorText: "Custom error message.",
    },
 }
