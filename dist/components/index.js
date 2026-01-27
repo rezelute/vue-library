@@ -3962,7 +3962,8 @@ const Ii = {
   key: "loading",
   class: "w-full",
   role: "status",
-  "aria-live": "polite"
+  "aria-live": "polite",
+  "data-test": "pageloader-loading"
 }, Si = { class: "vstack-sm p-12" }, wi = {
   key: 0,
   class: "text-center mt-4"
@@ -4006,7 +4007,7 @@ const Ii = {
       _: 3
     }));
   }
-}), Ka = /* @__PURE__ */ _t(Li, [["__scopeId", "data-v-a4694725"]]), Ti = {
+}), Ka = /* @__PURE__ */ _t(Li, [["__scopeId", "data-v-ad992f4e"]]), Ti = {
   key: 0,
   class: "bar"
 }, Oi = /* @__PURE__ */ D({

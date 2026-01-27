@@ -1,7 +1,14 @@
 <template>
    <Transition name="fade" mode="out-in">
       <!-- Loading State -->
-      <div v-if="showLoading" key="loading" class="w-full" role="status" aria-live="polite">
+      <div
+         v-if="showLoading"
+         key="loading"
+         class="w-full"
+         role="status"
+         aria-live="polite"
+         data-test="pageloader-loading"
+      >
          <div class="vstack-sm p-12">
             <slot name="preloader">
                <!-- Fallback preloader if no slot provided -->
@@ -27,7 +34,7 @@
          </slot>
       </div>
 
-      <!-- Success State -->
+      <!-- Success State, load component -->
       <div v-else key="loaded">
          <slot name="default" />
       </div>
