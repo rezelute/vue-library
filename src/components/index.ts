@@ -2,6 +2,7 @@
 export { default as ThemeToggle } from "./themeToggle/ThemeToggle.vue"
 export { default as SiteNavigation } from "./siteNavigation/SiteNavigation.vue"
 export { default as AppErrorInfo } from "./appErrorInfo/AppErrorInfo.vue"
+export { default as ScrollToTop } from "./scrollToTop/scrollToTop.vue"
 // loaders
 export { default as PageLoader } from "./loading/PageLoader.vue"
 export type { PageLoaderProps } from "./loading/PageLoader.vue"
