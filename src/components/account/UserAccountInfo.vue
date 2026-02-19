@@ -2,7 +2,7 @@
    <Card>
       <template #title>
          <slot id="header">
-            <h2 class="h2 text-color">Your details</h2>
+            <Heading tag="h2" textSize="md" marginBtmSize="sm">{{ headingText }}</Heading>
          </slot>
       </template>
       <template #content>
@@ -43,14 +43,22 @@
 <script setup lang="ts">
 import Card from "primevue/card"
 import Skeleton from "primevue/skeleton"
+import Heading from "../heading/Heading.vue"
 
 // lifecycle
 // -----------------------------------------
-const props = defineProps<{
-   isLoading: boolean
-   userId: string
-   userEmail: string
-}>()
+const props = withDefaults(
+   defineProps<{
+      userId?: string
+      userEmail?: string
+      isLoading?: boolean
+      headingText?: string
+   }>(),
+   {
+      isLoading: false,
+      headingText: "Your details",
+   }
+)
 </script>
 
 <style scoped></style>

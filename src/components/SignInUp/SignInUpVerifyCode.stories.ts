@@ -6,16 +6,16 @@ const meta = {
    component: SignInUpVerifyCode,
    tags: ["autodocs"],
    argTypes: {
-      pageAuthType: { control: { type: "radio" }, options: ["sign-in", "sign-up"] },
       isSubmittingCode: { control: "boolean" },
       isResendingCode: { control: "boolean" },
-      codeInputErrorMessage: { control: "text" },
+      errorMessage: { control: "text" },
+      otpLength: { control: "number" },
    },
    args: {
-      pageAuthType: "sign-in",
       isSubmittingCode: false,
       isResendingCode: false,
-      codeInputErrorMessage: "",
+      errorMessage: "",
+      otpLength: 6,
    },
 } satisfies Meta<typeof SignInUpVerifyCode>
 
@@ -66,15 +66,15 @@ export const InvalidLength: Story = {
    },
 }
 
-// 2. Server error (codeInputErrorMessage)
+// 2. Server error (errorMessage)
 export const ServerError: Story = {
    args: {
-      codeInputErrorMessage: "The code you entered is incorrect. You have 2 attempts left.",
+      errorMessage: "The code you entered is incorrect. You have 2 attempts left.",
    },
    parameters: {
       docs: {
          description: {
-            story: "Shows backend/server error message for invalid code (codeInputErrorMessage).",
+            story: "Shows a server-side error message via the errorMessage prop.",
          },
       },
    },
@@ -127,8 +127,49 @@ export const ValidCode: Story = {
    },
 }
 
-export const SignUpMode: Story = {
+/** Override the card title via the title prop. */
+export const CustomTitle: Story = {
    args: {
-      pageAuthType: "sign-up",
+      title: "Check your email",
+   },
+}
+
+/** Use a 4-digit OTP instead of the default 6. */
+export const FourDigitCode: Story = {
+   args: {
+      otpLength: 4,
+   },
+   parameters: {
+      docs: {
+         description: { story: "Set otpLength to match whatever code length your backend sends." },
+      },
+   },
+}
+
+/** Use slots to provide context-specific copy. */
+export const WithSlotContent: Story = {
+   render: (args) => ({
+      components: { SignInUpVerifyCode },
+      setup() {
+         return { args }
+      },
+      template: `
+         <SignInUpVerifyCode v-bind="args">
+            <template #description>
+               <p>To finish signing in, enter the code that was emailed to you. The code is only valid for 10 minutes.</p>
+            </template>
+            <template #resend-description>
+               <p>Didn't receive an email? Check your Junk folder or request a new code below.</p>
+            </template>
+         </SignInUpVerifyCode>
+      `,
+   }),
+   args: {},
+   parameters: {
+      docs: {
+         description: {
+            story: "Use #description and #resend-description slots to provide app-specific copy.",
+         },
+      },
    },
 }

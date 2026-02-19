@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite"
+import GoogleAuthIcon from "../googleAuthIcon/GoogleAuthIcon.vue"
 import SignInUpForm from "./SignInUpForm.vue"
 
 const meta = {
@@ -6,14 +7,10 @@ const meta = {
    component: SignInUpForm,
    tags: ["autodocs"],
    argTypes: {
-      pageAuthType: { control: { type: "select", options: ["sign-in", "sign-up"] } },
-      isSignupInviteOnly: { control: "boolean" },
-      isSignupLoading: { control: "boolean" },
+      loading: { control: "boolean" },
    },
    args: {
-      pageAuthType: "sign-in",
-      isSignupInviteOnly: false,
-      isSignupLoading: false,
+      loading: false,
       email: "",
    },
 } satisfies Meta<typeof SignInUpForm>
@@ -24,80 +21,136 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
    args: {
-      pageAuthType: "sign-in",
-      isSignupInviteOnly: false,
-      isSignupLoading: false,
       email: "",
    },
 }
 
-export const SignUp: Story = {
+export const Loading: Story = {
    args: {
-      pageAuthType: "sign-up",
+      loading: true,
       email: "",
    },
 }
 
-// Story demonstrating the 'additional-fields' slot with an image and isSubmitClicked
-export const WithAdditionalFields: Story = {
-   render: (args, { slots }) => ({
+/** Override the card title and submit button text via props. */
+export const CustomLabels: Story = {
+   args: {
+      title: "Create your account",
+      submitText: "Get started",
+      email: "",
+   },
+}
+
+/**
+ * Use the #notice slot to show any banner above the form — invite-only
+ * messages, maintenance warnings, beta notices, etc.
+ */
+export const WithNotice: Story = {
+   render: (args) => ({
       components: { SignInUpForm },
       setup() {
          return { args }
       },
       template: `
          <SignInUpForm v-bind="args">
-            <template #additional-fields="slotProps">
+            <template #notice>
+               <div style="background:#e0f0ff; border:1px solid #90c0f0; border-radius:6px; padding:0.75rem 1rem; margin-bottom:1rem; font-size:0.9em;">
+                  Sign up is currently invite-only during the beta period.
+               </div>
+            </template>
+         </SignInUpForm>
+      `,
+   }),
+   args: { email: "" },
+   parameters: {
+      docs: {
+         description: {
+            story: "Use the #notice slot for any banner (invite-only, maintenance, etc.).",
+         },
+      },
+   },
+}
+
+/**
+ * Use the #oauth-providers slot to add third-party auth buttons.
+ * The 'Or' divider is rendered automatically when this slot is used.
+ */
+export const WithGoogleAuth: Story = {
+   render: (args) => ({
+      components: { SignInUpForm, GoogleAuthIcon },
+      setup() {
+         return { args }
+      },
+      template: `
+         <SignInUpForm v-bind="args">
+            <template #oauth-providers>
+               <GoogleAuthIcon />
+            </template>
+         </SignInUpForm>
+      `,
+   }),
+   args: { email: "" },
+   parameters: {
+      docs: {
+         description: {
+            story: "Use the #oauth-providers slot to inject OAuth buttons. The 'Or' divider is shown automatically.",
+         },
+      },
+   },
+}
+
+/**
+ * Use the #description slot to explain the sign-in flow to your users.
+ */
+export const WithDescription: Story = {
+   render: (args) => ({
+      components: { SignInUpForm },
+      setup() {
+         return { args }
+      },
+      template: `
+         <SignInUpForm v-bind="args">
+            <template #description>
+               <p class="mb-2">
+                  This site uses Passwordless Sign-In. Instead of a password, you'll receive
+                  a one-time code via email each time you sign in.
+               </p>
+            </template>
+         </SignInUpForm>
+      `,
+   }),
+   args: { email: "" },
+}
+
+/**
+ * Use the #additional-fields slot for extra form inputs (e.g. captcha).
+ * The slot exposes `isSubmitClicked` so child fields know when to show validation errors.
+ */
+export const WithAdditionalFields: Story = {
+   render: (args) => ({
+      components: { SignInUpForm },
+      setup() {
+         return { args }
+      },
+      template: `
+         <SignInUpForm v-bind="args">
+            <template #additional-fields="{ isSubmitClicked }">
                <div style="text-align: center;">
                   <img src="/src/stories/assets/cloudflare.png" alt="Cloudflare Captcha" style="max-width: 260px; margin-bottom: 0.5rem;" />
                   <div style="font-size: 0.9em; color: #888;">
-                     Captcha required. Submit clicked: <b>{{ slotProps.isSubmitClicked ? 'Yes' : 'No' }}</b>
+                     Captcha required. Submit clicked: <b>{{ isSubmitClicked ? 'Yes' : 'No' }}</b>
                   </div>
                </div>
             </template>
          </SignInUpForm>
       `,
    }),
-   args: {
-      pageAuthType: "sign-up",
-      email: "",
-   },
+   args: { email: "" },
    parameters: {
       docs: {
          description: {
-            story: "Demonstrates usage of the 'additional-fields' slot, rendering a captcha image and showing the isSubmitClicked value.",
+            story: "The #additional-fields slot exposes isSubmitClicked so validation timing matches the main form.",
          },
       },
-   },
-}
-
-export const Loading: Story = {
-   args: {
-      isSignupLoading: true,
-      email: "",
-   },
-}
-
-export const InviteOnlyOnSignUp: Story = {
-   args: {
-      isSignupInviteOnly: true,
-      pageAuthType: "sign-up",
-      email: "",
-   },
-}
-
-export const InviteOnlyOnSignIn: Story = {
-   args: {
-      isSignupInviteOnly: true,
-      pageAuthType: "sign-in",
-      email: "",
-   },
-}
-
-export const WithGoogleAuth: Story = {
-   args: {
-      pageAuthType: "sign-in",
-      enableThirdPartyAuth: { useGoogle: true },
-      email: "",
    },
 }

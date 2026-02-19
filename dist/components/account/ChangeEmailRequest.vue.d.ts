@@ -1,6 +1,7 @@
 type __VLS_Props = {
     isEmailSent: boolean;
     isLoading?: boolean;
+    headingText?: string;
 };
 type __VLS_PublicProps = {
     "email"?: string;
@@ -22,7 +23,10 @@ declare const __VLS_component: import('vue').DefineComponent<__VLS_PublicProps, 
 }, string, import('vue').PublicProps, Readonly<__VLS_PublicProps> & Readonly<{
     "onUpdate:email"?: ((value: string) => any) | undefined;
     onRequestEmailChange?: ((...args: any[]) => any) | undefined;
-}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, any>;
+}>, {
+    isLoading: boolean;
+    headingText: string;
+}, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, any>;
 declare const _default: __VLS_WithTemplateSlots<typeof __VLS_component, __VLS_TemplateResult["slots"]>;
 export default _default;
 type __VLS_WithTemplateSlots<T, S> = T & {

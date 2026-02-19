@@ -3,7 +3,7 @@
    <Card>
       <template #title>
          <slot id="header">
-            <h2 class="h2">Delete your account</h2>
+            <Heading tag="h2" textSize="md" marginBtmSize="sm">{{ headingText }}</Heading>
          </slot>
       </template>
       <template #content>
@@ -35,13 +35,21 @@
 import Button from "primevue/button"
 import Card from "primevue/card"
 import ActionConfirmMsg from "../../components/actionConfirmMsg/ActionConfirmMsg.vue"
+import Heading from "../heading/Heading.vue"
 
 // props / emits
 // -----------------------------------------
-const props = defineProps<{
-   isDeleteEmailSent: boolean
-   isLoading?: boolean
-}>()
+const props = withDefaults(
+   defineProps<{
+      isDeleteEmailSent: boolean
+      isLoading?: boolean
+      headingText?: string
+   }>(),
+   {
+      isLoading: false,
+      headingText: "Delete your account",
+   }
+)
 const emits = defineEmits(["sendDeleteEmail"])
 
 // methods

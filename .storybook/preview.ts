@@ -104,6 +104,14 @@ setup((app) => {
 })
 
 const preview: Preview = {
+   decorators: [
+      // Wraps every story in the same off-white background the consumer app uses,
+      // so Cards and other surface components are visible against the page.
+      (story) => ({
+         components: { story },
+         template: `<div style="min-height:100vh; padding:2rem; background:#f5f5f5;"><story /></div>`,
+      }),
+   ],
    parameters: {
       controls: {
          matchers: {

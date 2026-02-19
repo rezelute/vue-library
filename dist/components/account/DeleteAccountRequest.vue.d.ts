@@ -1,6 +1,7 @@
 type __VLS_Props = {
     isDeleteEmailSent: boolean;
     isLoading?: boolean;
+    headingText?: string;
 };
 declare function __VLS_template(): {
     attrs: Partial<{}>;
@@ -17,7 +18,10 @@ declare const __VLS_component: import('vue').DefineComponent<__VLS_Props, {}, {}
     sendDeleteEmail: (...args: any[]) => void;
 }, string, import('vue').PublicProps, Readonly<__VLS_Props> & Readonly<{
     onSendDeleteEmail?: ((...args: any[]) => any) | undefined;
-}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, any>;
+}>, {
+    isLoading: boolean;
+    headingText: string;
+}, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, any>;
 declare const _default: __VLS_WithTemplateSlots<typeof __VLS_component, __VLS_TemplateResult["slots"]>;
 export default _default;
 type __VLS_WithTemplateSlots<T, S> = T & {

@@ -2,7 +2,7 @@
    <Card>
       <template #title>
          <slot id="header">
-            <h2 class="h2">Change your email</h2>
+            <Heading tag="h2" textSize="md" marginBtmSize="sm">{{ headingText }}</Heading>
          </slot>
       </template>
       <template #content>
@@ -43,14 +43,22 @@ import Card from "primevue/card"
 import { ref } from "vue"
 import EmailInput from "../../components/account/EmailInput.vue"
 import ActionConfirmMsg from "../../components/actionConfirmMsg/ActionConfirmMsg.vue"
+import Heading from "../heading/Heading.vue"
 
 // props / emits
 // -----------------------------------------
 const emits = defineEmits(["requestEmailChange"])
-const props = defineProps<{
-   isEmailSent: boolean
-   isLoading?: boolean
-}>()
+const props = withDefaults(
+   defineProps<{
+      isEmailSent: boolean
+      isLoading?: boolean
+      headingText?: string
+   }>(),
+   {
+      isLoading: false,
+      headingText: "Change your email",
+   }
+)
 
 // models
 // -----------------------------------------

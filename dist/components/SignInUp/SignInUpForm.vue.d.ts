@@ -1,10 +1,9 @@
 type __VLS_Props = {
-    pageAuthType: "sign-in" | "sign-up";
-    isSignupLoading: boolean;
-    isSignupInviteOnly?: boolean;
-    enableThirdPartyAuth?: {
-        useGoogle?: boolean;
-    };
+    /** Override the card title */
+    title?: string;
+    /** Override the submit button label */
+    submitText?: string;
+    loading?: boolean;
 };
 type __VLS_PublicProps = {
     "email": string;
@@ -12,6 +11,9 @@ type __VLS_PublicProps = {
 declare function __VLS_template(): {
     attrs: Partial<{}>;
     slots: {
+        notice?(_: {}): any;
+        'oauth-providers'?(_: {}): any;
+        description?(_: {}): any;
         'additional-fields'?(_: {
             isSubmitClicked: boolean;
         }): any;
@@ -22,14 +24,14 @@ declare function __VLS_template(): {
 type __VLS_TemplateResult = ReturnType<typeof __VLS_template>;
 declare const __VLS_component: import('vue').DefineComponent<__VLS_PublicProps, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
     submit: (...args: any[]) => void;
-    googleSignIn: (...args: any[]) => void;
     "update:email": (value: string) => void;
 }, string, import('vue').PublicProps, Readonly<__VLS_PublicProps> & Readonly<{
     onSubmit?: ((...args: any[]) => any) | undefined;
     "onUpdate:email"?: ((value: string) => any) | undefined;
-    onGoogleSignIn?: ((...args: any[]) => any) | undefined;
 }>, {
-    pageAuthType: "sign-in" | "sign-up";
+    loading: boolean;
+    title: string;
+    submitText: string;
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, any>;
 declare const _default: __VLS_WithTemplateSlots<typeof __VLS_component, __VLS_TemplateResult["slots"]>;
 export default _default;
