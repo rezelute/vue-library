@@ -1,6 +1,6 @@
 export interface HeadingProps {
-    textSize?: "heading-sm" | "heading-md" | "heading-lg" | "heading-xl" | "heading-2xl" | "heading-3xl";
-    marginSize?: "heading-mb-sm" | "heading-mb-md" | "heading-mb-lg";
+    textSize?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
+    marginBtmSize?: "sm" | "md" | "lg";
     tag?: string;
 }
 declare function __VLS_template(): {

@@ -8,27 +8,21 @@
 import { computed } from "vue"
 
 export interface HeadingProps {
-   textSize?:
-      | "heading-sm"
-      | "heading-md"
-      | "heading-lg"
-      | "heading-xl"
-      | "heading-2xl"
-      | "heading-3xl"
-   marginSize?: "heading-mb-sm" | "heading-mb-md" | "heading-mb-lg"
+   textSize?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl"
+   marginBtmSize?: "sm" | "md" | "lg"
    tag?: string
 }
 
 const props = defineProps<HeadingProps>()
 
-const textSize = computed(() => props.textSize || "heading-lg")
-const marginSize = computed(() => props.marginSize || "")
+const textSize = computed(() => (props.textSize ? `heading-${props.textSize}` : "heading-lg"))
+const marginSize = computed(() => (props.marginBtmSize ? `heading-mb-${props.marginBtmSize}` : ""))
 const tag = computed(() => props.tag || "h2")
 </script>
 
 <!--
 Usage:
-<Heading textSize="heading-2xl" marginSize="heading-mb-lg">My Heading</Heading>
+<Heading textSize="2xl" marginBtmSize="lg">My Heading</Heading>
 -->
 
 <style scoped>
