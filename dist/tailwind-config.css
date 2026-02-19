@@ -70,6 +70,10 @@
 /* manually trigger the dark mode */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/*
+   Only defined colour sets are allowed to be used.
+   This prevents usage of arbitrary colors and encourages use of the design system tokens.
+*/
 @theme {
    --color-*: initial;
 }

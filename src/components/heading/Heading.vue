@@ -53,6 +53,9 @@ Usage:
 }
 
 /* margin bottom styles */
+.heading-mb-xs {
+   @apply mb-2 sm:mb-4;
+}
 .heading-mb-sm {
    @apply mb-4 sm:mb-6;
 }
