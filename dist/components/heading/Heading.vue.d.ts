@@ -1,6 +1,6 @@
 export interface HeadingProps {
     textSize?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
-    marginBtmSize?: "sm" | "md" | "lg";
+    marginBtmSize?: "sm" | "md" | "lg" | "xl";
     tag?: string;
 }
 declare function __VLS_template(): {

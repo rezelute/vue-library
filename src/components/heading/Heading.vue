@@ -9,7 +9,7 @@ import { computed } from "vue"
 
 export interface HeadingProps {
    textSize?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl"
-   marginBtmSize?: "sm" | "md" | "lg"
+   marginBtmSize?: "sm" | "md" | "lg" | "xl"
    tag?: string
 }
 
@@ -61,5 +61,8 @@ Usage:
 }
 .heading-mb-lg {
    @apply mb-8 sm:mb-10;
+}
+.heading-mb-xl {
+   @apply mb-10 sm:mb-12;
 }
 </style>

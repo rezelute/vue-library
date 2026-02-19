@@ -4,6 +4,7 @@ export { default as SiteNavigation } from "./siteNavigation/SiteNavigation.vue"
 export { default as AppErrorInfo } from "./appErrorInfo/AppErrorInfo.vue"
 export { default as ScrollToTop } from "./scrollToTop/scrollToTop.vue"
 export { default as Heading } from "./heading/Heading.vue"
+export type { HeadingProps } from "./heading/Heading.vue"
 // loaders
 export { default as PageLoader } from "./loading/PageLoader.vue"
 export type { PageLoaderProps } from "./loading/PageLoader.vue"
