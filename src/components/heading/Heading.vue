@@ -9,7 +9,7 @@ import { computed } from "vue"
 
 export interface HeadingProps {
    textSize?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl"
-   marginBtmSize?: "sm" | "md" | "lg" | "xl"
+   marginBtmSize?: "xs" | "sm" | "md" | "lg" | "xl"
    tag: string
 }
 
