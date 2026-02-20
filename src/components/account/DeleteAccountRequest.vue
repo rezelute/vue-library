@@ -2,7 +2,7 @@
    <!-- Delete account request -->
    <Card>
       <template #title>
-         <slot id="header">
+         <slot name="header">
             <Heading tag="h2" textSize="md" marginBtmSize="sm">{{ headingText }}</Heading>
          </slot>
       </template>

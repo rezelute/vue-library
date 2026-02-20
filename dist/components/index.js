@@ -5294,7 +5294,7 @@ const Dr = /* @__PURE__ */ D({
   setup(e) {
     return (t, n) => (p(), _(L(it), null, {
       title: S(() => [
-        y(t.$slots, "default", { id: "header" }, () => [
+        y(t.$slots, "header", {}, () => [
           I(zt, {
             tag: "h2",
             textSize: "md",
@@ -6357,7 +6357,7 @@ const fa = { class: "flex flex-col gap-1" }, ga = ["for"], ba = {
     }
     return (s, a) => (p(), _(L(it), null, {
       title: S(() => [
-        y(s.$slots, "default", { id: "header" }, () => [
+        y(s.$slots, "header", {}, () => [
           I(zt, {
             tag: "h2",
             textSize: "md",
@@ -6426,7 +6426,7 @@ const fa = { class: "flex flex-col gap-1" }, ga = ["for"], ba = {
     }
     return (i, l) => (p(), _(L(it), null, {
       title: S(() => [
-        y(i.$slots, "default", { id: "header" }, () => [
+        y(i.$slots, "header", {}, () => [
           I(zt, {
             tag: "h2",
             textSize: "md",

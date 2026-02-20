@@ -9,9 +9,7 @@ type __VLS_PublicProps = {
 declare function __VLS_template(): {
     attrs: Partial<{}>;
     slots: {
-        default?(_: {
-            id: string;
-        }): any;
+        header?(_: {}): any;
     };
     refs: {};
     rootEl: any;
