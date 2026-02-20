@@ -3852,7 +3852,7 @@ const bi = /* @__PURE__ */ st(mi, [["render", gi]]), hi = { class: "text-center"
     tag: {}
   },
   setup(e) {
-    const t = e, n = R(() => t.textSize ? `heading-${t.textSize}` : "heading-lg"), o = R(() => t.marginBtmSize ? `heading-mb-${t.marginBtmSize}` : ""), r = R(() => t.tag || "h2");
+    const t = e, n = R(() => t.textSize ? `heading-${t.textSize}` : "heading-lg"), o = R(() => t.marginBtmSize ? `heading-mb-${t.marginBtmSize}` : ""), r = R(() => t.tag);
     return (i, l) => (p(), _(tt(r.value), {
       class: W(["heading", n.value, o.value])
     }, {
@@ -3862,7 +3862,7 @@ const bi = /* @__PURE__ */ st(mi, [["render", gi]]), hi = { class: "text-center"
       _: 3
     }, 8, ["class"]));
   }
-}), zt = /* @__PURE__ */ st(Si, [["__scopeId", "data-v-45e1a86b"]]);
+}), zt = /* @__PURE__ */ st(Si, [["__scopeId", "data-v-142bf8c7"]]);
 var wi = `
     .p-progressspinner {
         position: relative;

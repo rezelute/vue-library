@@ -10,14 +10,14 @@ import { computed } from "vue"
 export interface HeadingProps {
    textSize?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl"
    marginBtmSize?: "sm" | "md" | "lg" | "xl"
-   tag?: string
+   tag: string
 }
 
 const props = defineProps<HeadingProps>()
 
 const textSize = computed(() => (props.textSize ? `heading-${props.textSize}` : "heading-lg"))
 const marginSize = computed(() => (props.marginBtmSize ? `heading-mb-${props.marginBtmSize}` : ""))
-const tag = computed(() => props.tag || "h2")
+const tag = computed(() => props.tag)
 </script>
 
 <!--
