@@ -136,7 +136,7 @@ export const WithAdditionalFields: Story = {
          <SignInUpForm v-bind="args">
             <template #additional-fields="{ isSubmitClicked }">
                <div style="text-align: center;">
-                  <img src="/src/stories/assets/cloudflare.png" alt="Cloudflare Captcha" style="max-width: 260px; margin-bottom: 0.5rem;" />
+                  <img src="/src/stories/assets/cloudflare.png" alt="Cloudflare Captcha" style="max-width: 260px; width:100%; margin-bottom: 0.5rem;" />
                   <div style="font-size: 0.9em; color: #888;">
                      Captcha required. Submit clicked: <b>{{ isSubmitClicked ? 'Yes' : 'No' }}</b>
                   </div>

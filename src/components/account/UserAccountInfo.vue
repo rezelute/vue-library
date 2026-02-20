@@ -6,36 +6,41 @@
          </slot>
       </template>
       <template #content>
-         <div v-if="!isLoading" class="vstack-sm">
-            <div v-if="userId" class="flex flex-col sm:flex-row gap-0 sm:gap-2">
-               <div class="block sm:flex font-bold">
-                  <span>ID</span>
-                  <span class="hidden sm:block">:</span>
-               </div>
-               <div>
-                  <code class="text-primary break-all">
-                     {{ userId }}
-                  </code>
-               </div>
+         <dl class="flex flex-col m-0 p-0">
+            <!-- ID row -->
+            <div
+               class="flex items-center gap-4 py-4 border-b border-surface first:pt-0 last:border-b-0 last:pb-0"
+            >
+               <dt
+                  class="shrink-0 w-20 text-xs font-semibold uppercase tracking-wide text-muted-color select-none"
+               >
+                  User ID
+               </dt>
+               <dd class="flex-1 min-w-0 m-0 text-color">
+                  <Skeleton v-if="isLoading" height="1.2rem" width="14rem" />
+                  <code
+                     v-else
+                     class="inline-block font-mono text-xs px-2 py-0.5 rounded bg-surface-100 text-primary break-all"
+                     >{{ userId ?? "—" }}</code
+                  >
+               </dd>
             </div>
 
-            <div v-if="userEmail" class="flex flex-col sm:flex-row gap-0 sm:gap-2">
-               <div class="block sm:flex font-bold">
-                  <span>Email</span>
-                  <span class="hidden sm:block">:</span>
-               </div>
-               <div>
-                  <strong class="text-primary break-all sm:pl-2">
-                     {{ userEmail }}
-                  </strong>
-               </div>
+            <!-- Email row -->
+            <div
+               class="flex items-center gap-4 py-4 border-b border-surface first:pt-0 last:border-b-0 last:pb-0"
+            >
+               <dt
+                  class="shrink-0 w-20 text-xs font-semibold uppercase tracking-wide text-muted-color select-none"
+               >
+                  Email
+               </dt>
+               <dd class="flex-1 min-w-0 m-0 text-color">
+                  <Skeleton v-if="isLoading" height="1.2rem" width="12rem" />
+                  <span v-else class="break-all">{{ userEmail ?? "—" }}</span>
+               </dd>
             </div>
-         </div>
-         <!-- loading -->
-         <div v-else class="vstack-sm">
-            <Skeleton height="2rem"></Skeleton>
-            <Skeleton height="2rem"></Skeleton>
-         </div>
+         </dl>
       </template>
    </Card>
 </template>
@@ -60,5 +65,3 @@ const props = withDefaults(
    }
 )
 </script>
-
-<style scoped></style>

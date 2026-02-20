@@ -5,6 +5,7 @@ import Lara from "@primeuix/themes/lara"
 import { setup } from "@storybook/vue3"
 import type { Preview } from "@storybook/vue3-vite"
 import PrimeVue from "primevue/config"
+import { MINIMAL_VIEWPORTS } from "storybook/viewport"
 import { createRouter, createWebHistory } from "vue-router"
 
 // Green theme
@@ -113,6 +114,13 @@ const preview: Preview = {
       }),
    ],
    parameters: {
+      viewport: {
+         options: MINIMAL_VIEWPORTS,
+      },
+      initialGlobals: {
+         viewport: { value: "ipad", isRotated: false },
+      },
+
       controls: {
          matchers: {
             color: /(background|color)$/i,
