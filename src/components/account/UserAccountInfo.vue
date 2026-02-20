@@ -12,7 +12,7 @@
                class="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-4 py-6 border-b border-surface first:pt-0 last:border-b-0 last:pb-0"
             >
                <dt
-                  class="shrink-0 sm:w-20 text-xs font-semibold uppercase tracking-wide text-muted-color select-none"
+                  class="shrink-0 sm:w-20 text-sm font-semibold uppercase tracking-wide text-muted-color select-none"
                >
                   User ID
                </dt>
@@ -24,7 +24,7 @@
                   />
                   <code
                      v-else
-                     class="inline-block font-mono text-xs px-2 py-0.5 rounded bg-surface-100 text-primary break-all"
+                     class="inline-block font-mono text-sm px-2 py-0.5 rounded bg-surface-100 text-primary break-all"
                      >{{ userId ?? "—" }}</code
                   >
                </dd>
@@ -35,7 +35,7 @@
                class="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-4 py-6 border-b border-surface first:pt-0 last:border-b-0 last:pb-0"
             >
                <dt
-                  class="shrink-0 sm:w-20 text-xs font-semibold uppercase tracking-wide text-muted-color select-none"
+                  class="shrink-0 sm:w-20 text-sm font-semibold uppercase tracking-wide text-muted-color select-none"
                >
                   Email
                </dt>

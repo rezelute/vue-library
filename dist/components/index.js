@@ -5273,7 +5273,7 @@ const Dr = /* @__PURE__ */ D({
   }
 }), jr = { class: "flex flex-col m-0 p-0" }, Vr = { class: "flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-4 py-6 border-b border-surface first:pt-0 last:border-b-0 last:pb-0" }, Br = { class: "min-w-0 m-0 text-color" }, Fr = {
   key: 1,
-  class: "inline-block font-mono text-xs px-2 py-0.5 rounded bg-surface-100 text-primary break-all"
+  class: "inline-block font-mono text-sm px-2 py-0.5 rounded bg-surface-100 text-primary break-all"
 }, Nr = { class: "flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-4 py-6 border-b border-surface first:pt-0 last:border-b-0 last:pb-0" }, Kr = { class: "min-w-0 m-0" }, Rr = {
   key: 1,
   class: "break-all"
@@ -5304,7 +5304,7 @@ const Dr = /* @__PURE__ */ D({
       content: I(() => [
         v("dl", jr, [
           v("div", Vr, [
-            n[0] || (n[0] = v("dt", { class: "shrink-0 sm:w-20 text-xs font-semibold uppercase tracking-wide text-muted-color select-none" }, " User ID ", -1)),
+            n[0] || (n[0] = v("dt", { class: "shrink-0 sm:w-20 text-sm font-semibold uppercase tracking-wide text-muted-color select-none" }, " User ID ", -1)),
             v("dd", Br, [
               e.isLoading ? (p(), P(L(At), {
                 key: 0,
@@ -5314,7 +5314,7 @@ const Dr = /* @__PURE__ */ D({
             ])
           ]),
           v("div", Nr, [
-            n[1] || (n[1] = v("dt", { class: "shrink-0 sm:w-20 text-xs font-semibold uppercase tracking-wide text-muted-color select-none" }, " Email ", -1)),
+            n[1] || (n[1] = v("dt", { class: "shrink-0 sm:w-20 text-sm font-semibold uppercase tracking-wide text-muted-color select-none" }, " Email ", -1)),
             v("dd", Kr, [
               e.isLoading ? (p(), P(L(At), {
                 key: 0,
