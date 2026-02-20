@@ -9,15 +9,19 @@
          <dl class="flex flex-col m-0 p-0">
             <!-- ID row -->
             <div
-               class="flex items-center gap-4 py-4 border-b border-surface first:pt-0 last:border-b-0 last:pb-0"
+               class="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-4 py-6 border-b border-surface first:pt-0 last:border-b-0 last:pb-0"
             >
                <dt
-                  class="shrink-0 w-20 text-xs font-semibold uppercase tracking-wide text-muted-color select-none"
+                  class="shrink-0 sm:w-20 text-xs font-semibold uppercase tracking-wide text-muted-color select-none"
                >
                   User ID
                </dt>
-               <dd class="flex-1 min-w-0 m-0 text-color">
-                  <Skeleton v-if="isLoading" height="1.2rem" width="14rem" />
+               <dd class="min-w-0 m-0 text-color">
+                  <Skeleton
+                     v-if="isLoading"
+                     height="1.2rem"
+                     :pt="{ root: { style: '', class: 'w-full sm:!w-52' } }"
+                  />
                   <code
                      v-else
                      class="inline-block font-mono text-xs px-2 py-0.5 rounded bg-surface-100 text-primary break-all"
@@ -28,15 +32,19 @@
 
             <!-- Email row -->
             <div
-               class="flex items-center gap-4 py-4 border-b border-surface first:pt-0 last:border-b-0 last:pb-0"
+               class="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-4 py-6 border-b border-surface first:pt-0 last:border-b-0 last:pb-0"
             >
                <dt
-                  class="shrink-0 w-20 text-xs font-semibold uppercase tracking-wide text-muted-color select-none"
+                  class="shrink-0 sm:w-20 text-xs font-semibold uppercase tracking-wide text-muted-color select-none"
                >
                   Email
                </dt>
-               <dd class="flex-1 min-w-0 m-0 text-color">
-                  <Skeleton v-if="isLoading" height="1.2rem" width="12rem" />
+               <dd class="min-w-0 m-0">
+                  <Skeleton
+                     v-if="isLoading"
+                     height="1.2rem"
+                     :pt="{ root: { style: '', class: 'w-full sm:!w-52' } }"
+                  />
                   <span v-else class="break-all">{{ userEmail ?? "—" }}</span>
                </dd>
             </div>

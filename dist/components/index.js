@@ -5271,10 +5271,10 @@ const Dr = /* @__PURE__ */ D({
       }, null, 8, ["width", "height"])) : y(n.$slots, "default", { key: 0 })
     ]));
   }
-}), jr = { class: "flex flex-col m-0 p-0" }, Vr = { class: "flex items-center gap-4 py-4 border-b border-surface first:pt-0 last:border-b-0 last:pb-0" }, Br = { class: "flex-1 min-w-0 m-0 text-color" }, Fr = {
+}), jr = { class: "flex flex-col m-0 p-0" }, Vr = { class: "flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-4 py-6 border-b border-surface first:pt-0 last:border-b-0 last:pb-0" }, Br = { class: "min-w-0 m-0 text-color" }, Fr = {
   key: 1,
   class: "inline-block font-mono text-xs px-2 py-0.5 rounded bg-surface-100 text-primary break-all"
-}, Nr = { class: "flex items-center gap-4 py-4 border-b border-surface first:pt-0 last:border-b-0 last:pb-0" }, Kr = { class: "flex-1 min-w-0 m-0 text-color" }, Rr = {
+}, Nr = { class: "flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-4 py-6 border-b border-surface first:pt-0 last:border-b-0 last:pb-0" }, Kr = { class: "min-w-0 m-0" }, Rr = {
   key: 1,
   class: "break-all"
 }, ns = /* @__PURE__ */ D({
@@ -5304,22 +5304,22 @@ const Dr = /* @__PURE__ */ D({
       content: I(() => [
         v("dl", jr, [
           v("div", Vr, [
-            n[0] || (n[0] = v("dt", { class: "shrink-0 w-20 text-xs font-semibold uppercase tracking-wide text-muted-color select-none" }, " User ID ", -1)),
+            n[0] || (n[0] = v("dt", { class: "shrink-0 sm:w-20 text-xs font-semibold uppercase tracking-wide text-muted-color select-none" }, " User ID ", -1)),
             v("dd", Br, [
               e.isLoading ? (p(), P(L(At), {
                 key: 0,
                 height: "1.2rem",
-                width: "14rem"
+                pt: { root: { style: "", class: "w-full sm:!w-52" } }
               })) : (p(), b("code", Fr, M(e.userId ?? "—"), 1))
             ])
           ]),
           v("div", Nr, [
-            n[1] || (n[1] = v("dt", { class: "shrink-0 w-20 text-xs font-semibold uppercase tracking-wide text-muted-color select-none" }, " Email ", -1)),
+            n[1] || (n[1] = v("dt", { class: "shrink-0 sm:w-20 text-xs font-semibold uppercase tracking-wide text-muted-color select-none" }, " Email ", -1)),
             v("dd", Kr, [
               e.isLoading ? (p(), P(L(At), {
                 key: 0,
                 height: "1.2rem",
-                width: "12rem"
+                pt: { root: { style: "", class: "w-full sm:!w-52" } }
               })) : (p(), b("span", Rr, M(e.userEmail ?? "—"), 1))
             ])
           ])
