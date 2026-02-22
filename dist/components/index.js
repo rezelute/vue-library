@@ -6461,7 +6461,8 @@ const ba = { class: "flex flex-col gap-1" }, ga = ["for"], ha = {
     placeholder: {},
     isSubmitClicked: { type: Boolean, default: !1 },
     isRequired: { type: Boolean, default: !0 },
-    showSkeleton: { type: Boolean, default: !1 }
+    showSkeleton: { type: Boolean, default: !1 },
+    inputId: { default: "name-input" }
   }, {
     name: { required: !0 },
     nameModifiers: {}
@@ -6483,7 +6484,7 @@ const ba = { class: "flex flex-col gap-1" }, ga = ["for"], ha = {
     const l = R(() => o.isSubmitClicked && !i());
     return (d, s) => (p(), b("div", xa, [
       w(oe, {
-        id: "profile_name",
+        id: e.inputId,
         label: e.label,
         error: l.value ? Ca : ""
       }, {
@@ -6491,20 +6492,21 @@ const ba = { class: "flex flex-col gap-1" }, ga = ["for"], ha = {
           w(Dr, { isLoading: e.showSkeleton }, {
             default: I(() => [
               w(L(Ft), {
-                id: "profile_name",
+                id: e.inputId,
                 modelValue: r.value,
                 "onUpdate:modelValue": s[0] || (s[0] = (a) => r.value = a),
                 invalid: l.value,
                 placeholder: e.placeholder,
                 required: e.isRequired,
-                class: "w-full"
-              }, null, 8, ["modelValue", "invalid", "placeholder", "required"])
+                class: "w-full",
+                "data-test": e.inputId
+              }, null, 8, ["id", "modelValue", "invalid", "placeholder", "required", "data-test"])
             ]),
             _: 1
           }, 8, ["isLoading"])
         ]),
         _: 1
-      }, 8, ["label", "error"])
+      }, 8, ["id", "label", "error"])
     ]));
   }
 }), Pa = {

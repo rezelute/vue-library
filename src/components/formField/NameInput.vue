@@ -1,14 +1,15 @@
 <template>
    <div class="vstack-form">
-      <FormField id="profile_name" :label="label" :error="showNameError ? nameInvalidText : ''">
+      <FormField :id="inputId" :label="label" :error="showNameError ? nameInvalidText : ''">
          <InputSkeleton :isLoading="showSkeleton">
             <Textbox
-               id="profile_name"
+               :id="inputId"
                v-model="name"
                :invalid="showNameError"
                :placeholder="placeholder"
                :required="isRequired"
                class="w-full"
+               :data-test="inputId"
             />
          </InputSkeleton>
       </FormField>
@@ -33,11 +34,13 @@ const props = withDefaults(
       isSubmitClicked?: boolean
       isRequired?: boolean
       showSkeleton?: boolean
+      inputId?: string
    }>(),
    {
       isSubmitClicked: false,
       isRequired: true,
       showSkeleton: false,
+      inputId: "name-input",
    }
 )
 
