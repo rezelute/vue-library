@@ -6,7 +6,6 @@ import { setup } from "@storybook/vue3"
 import type { Preview } from "@storybook/vue3-vite"
 import PrimeVue from "primevue/config"
 import { MINIMAL_VIEWPORTS } from "storybook/viewport"
-import { createRouter, createWebHistory } from "vue-router"
 
 // Green theme
 const preset1 = {
@@ -79,21 +78,8 @@ const preset1 = {
 
 const MyPreset = definePreset(Lara, preset1)
 
-// Create a mock router for Storybook
-const router = createRouter({
-   history: createWebHistory(),
-   routes: [
-      {
-         path: "/",
-         name: "home",
-         component: { template: "<div>Home</div>" },
-      },
-   ],
-})
-
 // Setup Vue plugins globally for all stories
 setup((app) => {
-   app.use(router)
    app.use(PrimeVue, {
       theme: {
          preset: MyPreset,
