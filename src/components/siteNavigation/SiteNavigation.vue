@@ -11,7 +11,7 @@
 
             <!-- Right side -->
             <div class="flex items-center gap-3 ml-auto">
-               <ThemeToggle />
+               <slot name="action-items" />
 
                <Button
                   icon="pi pi-bars"

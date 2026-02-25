@@ -3,6 +3,7 @@ declare function __VLS_template(): {
     attrs: Partial<{}>;
     slots: {
         logo?(_: {}): any;
+        'action-items'?(_: {}): any;
         'drawer-logo'?(_: {}): any;
         'menu-items'?(_: {
             close: typeof closeDrawer;
