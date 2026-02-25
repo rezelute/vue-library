@@ -44,7 +44,7 @@ export const Default: Story = {
    render: (args) => ({
       components: { Heading },
       setup: () => ({ args }),
-      template: `<Heading v-bind="args">{{ args.default }}</Heading>`,
+      template: `<Heading tag="h1" v-bind="args">{{ args.default }}</Heading>`,
    }),
 }
 
@@ -53,12 +53,12 @@ export const AllSizes: Story = {
       components: { Heading },
       template: `
       <div>
-        <Heading textSize="sm" marginBtmSize="sm">Small Heading</Heading>
-        <Heading textSize="md" marginBtmSize="md">Medium Heading</Heading>
-        <Heading textSize="lg" marginBtmSize="lg">Large Heading</Heading>
-        <Heading textSize="xl">XL Heading</Heading>
-        <Heading textSize="2xl">2XL Heading</Heading>
-        <Heading textSize="3xl">3XL Heading</Heading>
+        <Heading tag="h1" textSize="sm" marginBtmSize="sm">Small Heading</Heading>
+        <Heading tag="h1" textSize="md" marginBtmSize="md">Medium Heading</Heading>
+        <Heading tag="h1" textSize="lg" marginBtmSize="lg">Large Heading</Heading>
+        <Heading tag="h1" textSize="xl">XL Heading</Heading>
+        <Heading tag="h1" textSize="2xl">2XL Heading</Heading>
+        <Heading tag="h1" textSize="3xl">3XL Heading</Heading>
       </div>
     `,
    }),
@@ -69,14 +69,21 @@ export const AllMargins: Story = {
       components: { Heading },
       template: `
       <div>
-        <div style="border: 1px solid #999; margin-bottom: 10px;">
-           <Heading textSize="lg" marginBtmSize="sm">Margin Bottom SM</Heading>
+         <div style="border: 1px solid #999; margin-bottom: 10px;">
+           <Heading tag="h1" textSize="lg" marginBtmSize="xs">Margin Bottom XS</Heading>
+           <p>This paragraph that comes after the heading.</p>
         </div>
         <div style="border: 1px solid #999; margin-bottom: 10px;">
-           <Heading textSize="lg" marginBtmSize="md">Margin Bottom MD</Heading>
+           <Heading tag="h1" textSize="lg" marginBtmSize="sm">Margin Bottom SM</Heading>
+           <p>This paragraph that comes after the heading.</p>
+        </div>
+        <div style="border: 1px solid #999; margin-bottom: 10px;">
+           <Heading tag="h1" textSize="lg" marginBtmSize="md">Margin Bottom MD</Heading>
+           <p>This paragraph that comes after the heading.</p>
         </div>
         <div style="border: 1px solid #999">
-           <Heading textSize="lg" marginBtmSize="lg">Margin Bottom LG</Heading>
+           <Heading tag="h1" textSize="lg" marginBtmSize="lg">Margin Bottom LG</Heading>
+           <p>This paragraph that comes after the heading.</p>
         </div>
       </div>
     `,
@@ -92,6 +99,6 @@ export const CustomTag: Story = {
    render: (args) => ({
       components: { Heading },
       setup: () => ({ args }),
-      template: `<Heading v-bind="args">{{ args.default }}</Heading>`,
+      template: `<Heading tag="h1" v-bind="args">{{ args.default }}</Heading>`,
    }),
 }

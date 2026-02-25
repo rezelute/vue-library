@@ -4,6 +4,7 @@ import { definePreset } from "@primeuix/themes"
 import Lara from "@primeuix/themes/lara"
 import { setup } from "@storybook/vue3"
 import type { Preview } from "@storybook/vue3-vite"
+import { onMounted, onUnmounted, watch } from "vue"
 import PrimeVue from "primevue/config"
 import { MINIMAL_VIEWPORTS } from "storybook/viewport"
 
@@ -92,12 +93,38 @@ setup((app) => {
 
 const preview: Preview = {
    decorators: [
+      // Applies dark mode class to <html> when darkMode parameter is set,
+      // so PrimeVue's darkModeSelector: ".dark" picks it up correctly.
+      (story, context) => {
+         const isDarkMode = !!context.parameters.darkMode
+
+         return {
+            components: { story },
+            setup() {
+               onMounted(() => {
+                  document.documentElement.classList.toggle("dark", isDarkMode)
+               })
+               onUnmounted(() => {
+                  document.documentElement.classList.remove("dark")
+               })
+            },
+            template: `<story />`,
+         }
+      },
       // Wraps every story in the same off-white background the consumer app uses,
       // so Cards and other surface components are visible against the page.
-      (story) => ({
-         components: { story },
-         template: `<div style="min-height:100vh; padding:2rem; background:#f5f5f5;"><story /></div>`,
-      }),
+      (story, context) => {
+         const { layout, minHeight, padding } = context.parameters
+         const isFullscreen = layout === "fullscreen"
+
+         const height = minHeight || (isFullscreen ? "100vh" : "auto")
+         const pad = isFullscreen ? "0" : padding || "2rem"
+
+         return {
+            components: { story },
+            template: `<div style="min-height:${height}; padding:${pad}; background:#f5f5f5;"><story /></div>`,
+         }
+      },
    ],
    parameters: {
       viewport: {

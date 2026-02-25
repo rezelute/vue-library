@@ -1,16 +1,3 @@
-export const ErrorTextOverride: Story = {
-   args: {
-      showLoading: false,
-      showError: true,
-      errorText: "Custom error: Unable to connect to server.",
-      loadingText: "",
-   },
-   render: (args: any) => ({
-      components: { PageLoader },
-      setup: () => ({ args, onRetry: fn() }),
-      template: `<PageLoader v-bind="args" @retry="onRetry" />`,
-   }),
-}
 import type { Meta, StoryObj } from "@storybook/vue3-vite"
 import { fn } from "storybook/test"
 import PageLoader from "./PageLoader.vue"
@@ -36,7 +23,13 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
+// -----------------------------------------
+// Stories
+// -----------------------------------------
 export const Default: Story = {
+   parameters: {
+      layout: "fullscreen",
+   },
    args: {
       showLoading: true,
       showError: false,
@@ -44,15 +37,10 @@ export const Default: Story = {
    },
 }
 
-export const WithCustomText: Story = {
-   args: {
-      showLoading: true,
-      showError: false,
-      loadingText: "Fetching your data...",
+export const ErrorTextDefault: Story = {
+   parameters: {
+      padding: "0.5em",
    },
-}
-
-export const ErrorState: Story = {
    args: {
       showLoading: false,
       showError: true,
@@ -65,7 +53,39 @@ export const ErrorState: Story = {
    }),
 }
 
+export const ErrorTextOverride: Story = {
+   parameters: {
+      padding: "0.5em",
+   },
+   args: {
+      showLoading: false,
+      showError: true,
+      errorText: "Custom error: Unable to connect to server.",
+      loadingText: "",
+   },
+   render: (args: any) => ({
+      components: { PageLoader },
+      setup: () => ({ args, onRetry: fn() }),
+      template: `<PageLoader v-bind="args" @retry="onRetry" />`,
+   }),
+}
+
+export const WithCustomText: Story = {
+   parameters: {
+      layout: "fullscreen",
+   },
+   args: {
+      showLoading: true,
+      showError: false,
+      loadingText: "Fetching your data...",
+   },
+}
+
 export const ErrorStateDark: Story = {
+   parameters: {
+      padding: "0.5em",
+      darkMode: true,
+   },
    args: {
       showLoading: false,
       showError: true,
@@ -74,15 +94,8 @@ export const ErrorStateDark: Story = {
    render: (args: any) => ({
       components: { PageLoader },
       setup: () => ({ args, onRetry: fn() }),
-      template: `
-         <div class="dark bg-surface-900">
-            <PageLoader v-bind="args" @retry="onRetry" />
-         </div>
-      `,
+      template: `<PageLoader v-bind="args" @retry="onRetry" />`,
    }),
-   parameters: {
-      backgrounds: { default: "dark" },
-   },
 }
 
 export const LoadedState: Story = {
@@ -99,6 +112,9 @@ export const LoadedState: Story = {
 }
 
 export const WithPreloadSlot: Story = {
+   parameters: {
+      layout: "fullscreen",
+   },
    args: {
       showLoading: true,
       showError: false,
@@ -112,6 +128,9 @@ export const WithPreloadSlot: Story = {
 }
 
 export const SpinnerWithLoadingText: Story = {
+   parameters: {
+      layout: "fullscreen",
+   },
    args: {
       showLoading: true,
       showError: false,

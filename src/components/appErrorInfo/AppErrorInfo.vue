@@ -1,22 +1,22 @@
 <template>
-   <Card class="p-10">
+   <Card class="p-2 sm:p-10 w-full">
       <template #title>
-         <h1 class="text-3xl font-semibold text-gray-800 text-center">Oops!</h1>
+         <h1 class="text-2xl sm:text-3xl font-semibold text-gray-800 text-center">Oops!</h1>
       </template>
       <template #content>
          <div class="text-center">
             <div class="mx-auto">
-               <PageErrorIcon class="mx-auto w-70 h-70 text-primary slow-pulse" />
+               <PageErrorIcon class="mx-auto max-w-70 text-primary slow-pulse" />
             </div>
 
-            <p class="mt-4 text-xl">
+            <p class="mt-4 text-lg sm:text-xl">
                {{
                   errorText ||
                   "Something went wrong! We have been notified about this automatically. Try refreshing the page or come back later."
                }}
             </p>
 
-            <Button label="Retry" type="button" class="btn mt-8 w-fit" @click="reloadPage" />
+            <Button label="Retry" type="button" class="btn mt-10 w-fit" @click="reloadPage" />
          </div>
       </template>
    </Card>

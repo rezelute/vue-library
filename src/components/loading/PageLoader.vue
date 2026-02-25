@@ -4,7 +4,7 @@
       <div
          v-if="showLoading"
          key="loading"
-         class="w-full"
+         class="min-h-dvh flex items-center justify-center"
          role="status"
          aria-live="polite"
          data-test="pageloader-loading"
@@ -25,12 +25,10 @@
       </div>
 
       <!-- Error State -->
-      <div v-else-if="showError" key="error">
+      <div v-else-if="showError" key="error" class="min-h-dvh flex items-center justify-center">
          <slot name="error">
             <!-- Fallback error if no slot provided -->
-            <div class="justify-center items-center flex flex-col">
-               <AppInfoError :errorText="errorText" class="max-w-xl" />
-            </div>
+            <AppInfoError :errorText="errorText" class="max-w-xl" />
          </slot>
       </div>
 

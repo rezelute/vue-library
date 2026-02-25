@@ -614,7 +614,7 @@ var $ = { regex: { rules: { class: { pattern: /^\.([a-zA-Z][\w-]*)$/, resolve(e)
     }
 
     .p-overlay-mask {
-        background: dt('mask.background');
+        background: var(--px-mask-background, dt('mask.background'));
         color: dt('mask.color');
         position: fixed;
         top: 0;
@@ -623,11 +623,11 @@ var $ = { regex: { rules: { class: { pattern: /^\.([a-zA-Z][\w-]*)$/, resolve(e)
         height: 100%;
     }
 
-    .p-overlay-mask-enter {
+    .p-overlay-mask-enter-active {
         animation: p-animate-overlay-mask-enter dt('mask.transition.duration') forwards;
     }
 
-    .p-overlay-mask-leave {
+    .p-overlay-mask-leave-active {
         animation: p-animate-overlay-mask-leave dt('mask.transition.duration') forwards;
     }
 
@@ -636,12 +636,12 @@ var $ = { regex: { rules: { class: { pattern: /^\.([a-zA-Z][\w-]*)$/, resolve(e)
             background: transparent;
         }
         to {
-            background: dt('mask.background');
+            background: var(--px-mask-background, dt('mask.background'));
         }
     }
     @keyframes p-animate-overlay-mask-leave {
         from {
-            background: dt('mask.background');
+            background: var(--px-mask-background, dt('mask.background'));
         }
         to {
             background: transparent;

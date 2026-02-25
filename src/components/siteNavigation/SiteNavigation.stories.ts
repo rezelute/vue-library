@@ -6,11 +6,10 @@ const meta = {
    component: SiteNavigation,
    tags: ["autodocs"],
    parameters: {
-      layout: "fullscreen",
       docs: {
          description: {
             component:
-               "A fixed-height site navigation bar with a slide-in drawer menu. Fully slot-based — the library owns layout and drawer behavior, the consumer owns all routing and content.",
+               "A site navigation bar with a slide-in drawer menu. Fully slot-based — the library owns layout and drawer behavior, the consumer owns all routing and content.",
          },
       },
    },
@@ -19,166 +18,46 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-// -------------------------------------------------------
-// Shared helpers
-// -------------------------------------------------------
+// -----------------------------------------
+// VARIABLES
+// -----------------------------------------
 
 const navLinkClass =
    "flex items-center gap-3 px-3 py-2.5 rounded-lg text-surface-700 dark:text-surface-200 hover:bg-surface-100 dark:hover:bg-surface-800 transition-colors"
-
-const signOutClass =
-   "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
-
 const signUpClass =
    "flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/30 transition-colors"
-
-// Logo template — reused across stories as an inline template string
-// NOTE: no JS interpolation, just a plain string used inside each story's template
-const logoTemplate = `
-  <template #logo>
-    <a href="/" class="flex items-center gap-2">
-      <div class="w-8 h-8 rounded-lg bg-primary-500 flex items-center justify-center">
-        <span class="pi pi-bolt text-white text-sm"></span>
+const contentBlock = `
+      <div class="p-4">
+        <h1 class="text-2xl font-bold">Content starts here</h1>
+        <p>This should be right below the navbar</p>
       </div>
-      <span class="font-semibold text-surface-800 dark:text-surface-100 text-base">Logo App Name</span>
-    </a>
-  </template>
-  <template #drawer-logo>
-    <div class="flex items-center gap-2">
-      <div class="w-7 h-7 rounded-lg bg-primary-500 flex items-center justify-center">
-        <span class="pi pi-bolt text-white text-xs"></span>
-      </div>
-      <span class="font-semibold text-surface-800 dark:text-surface-100">Logo App Name</span>
-    </div>
-  </template>
-`
+    `
 
-// -------------------------------------------------------
-// Signed Out
-// -------------------------------------------------------
-
-export const SignedOut: Story = {
-   name: "Signed Out (3 items)",
-   render: () => ({
-      components: { SiteNavigation },
-      template: `
-      <SiteNavigation>
-        ${logoTemplate}
-
-        <template #menu-items="{ close }">
-          <a href="/food" :class="linkClass" @click="close">
-            <span class="pi pi-search text-base"></span>
-            <span>Food Search</span>
-          </a>
-        </template>
-
-        <template #menu-footer="{ close }">
-          <a href="/signin" :class="linkClass" @click="close">
-            <span class="pi pi-sign-in text-base"></span>
-            <span>Sign in</span>
-          </a>
-          <a href="/signup" :class="signUpClass" @click="close">
-            <span class="pi pi-user-plus text-base"></span>
-            <span>Sign up</span>
-          </a>
-        </template>
-      </SiteNavigation>
-    `,
-      setup() {
-         return { linkClass: navLinkClass, signUpClass }
-      },
-   }),
-}
-
-// -------------------------------------------------------
-// Signed In
-// -------------------------------------------------------
-
-export const SignedIn: Story = {
-   name: "Signed In (5 items)",
-   render: () => ({
-      components: { SiteNavigation },
-      template: `
-      <SiteNavigation>
-        ${logoTemplate}
-
-        <template #menu-items="{ close }">
-          <a
-            v-for="item in navItems"
-            :key="item.to"
-            :href="item.to"
-            :data-test="item.testId"
-            :class="linkClass"
-            @click="close"
-          >
-            <span :class="item.icon" class="text-base"></span>
-            <span>{{ item.label }}</span>
-          </a>
-        </template>
-
-        <template #menu-footer="{ close }">
-          <button :class="signOutClass" @click="close">
-            <span class="pi pi-sign-out text-base"></span>
-            <span>Sign out</span>
-          </button>
-        </template>
-      </SiteNavigation>
-    `,
-      setup() {
-         return {
-            linkClass: navLinkClass,
-            signOutClass,
-            navItems: [
-               { label: "Home", icon: "pi pi-home", to: "/home", testId: "nav-home" },
-               { label: "Food Search", icon: "pi pi-search", to: "/food", testId: "nav-food" },
-               { label: "My Profile", icon: "pi pi-user", to: "/profile", testId: "nav-profile" },
-               { label: "Settings", icon: "pi pi-cog", to: "/settings", testId: "nav-settings" },
-               {
-                  label: "Dashboard",
-                  icon: "pi pi-chart-bar",
-                  to: "/dashboard",
-                  testId: "nav-dashboard",
-               },
-            ],
-         }
-      },
-   }),
-}
-
-// -------------------------------------------------------
-// Image Logo
-// -------------------------------------------------------
-
-export const ImageLogo: Story = {
-   name: "With Image Logo",
-   render: () => ({
-      components: { SiteNavigation },
-      template: `
-      <SiteNavigation>
+const defaultLogo = `
         <template #logo>
-          <a href="/">
-            <img
-              src="https://primefaces.org/cdn/primevue/images/logo.svg"
-              alt="Logo"
-              class="h-8 w-auto"
-            />
+          <a href="/" class="flex items-center gap-2">
+            <img src="https://primefaces.org/cdn/primevue/images/logo.svg" alt="Logo" class="w-8 h-8" />
+            <span class="font-semibold text-surface-800 dark:text-surface-100 text-base">Logo App Name</span>
           </a>
-        </template>
+        </template>`
+
+const defaultDrawerLogo = `
         <template #drawer-logo>
-          <img
-            src="https://primefaces.org/cdn/primevue/images/logo.svg"
-            alt="Logo"
-            class="h-6 w-auto"
-          />
-        </template>
+          <div class="flex items-center gap-2">
+            <img src="https://primefaces.org/cdn/primevue/images/logo.svg" alt="Logo" class="w-7 h-7" />
+            <span class="font-semibold text-surface-800 dark:text-surface-100">Logo App Name</span>
+          </div>
+        </template>`
 
+const defaultMenuItems = `
         <template #menu-items="{ close }">
-          <a href="/food" :class="linkClass" @click="close">
+          <a href="/cheese" :class="linkClass" @click="close">
             <span class="pi pi-search text-base"></span>
-            <span>Food Search</span>
+            <span>Cheese Search</span>
           </a>
-        </template>
+        </template>`
 
+const signInSignUpFooter = `
         <template #menu-footer="{ close }">
           <a href="/signin" :class="linkClass" @click="close">
             <span class="pi pi-sign-in text-base"></span>
@@ -188,25 +67,27 @@ export const ImageLogo: Story = {
             <span class="pi pi-user-plus text-base"></span>
             <span>Sign up</span>
           </a>
-        </template>
-      </SiteNavigation>
-    `,
-      setup() {
-         return { linkClass: navLinkClass, signUpClass }
-      },
-   }),
-}
+        </template>`
 
-// -------------------------------------------------------
-// Tall Logo
-// -------------------------------------------------------
+const signInOnlyFooter = `
+        <template #menu-footer="{ close }">
+          <a href="/signin" :class="linkClass" @click="close">
+            <span class="pi pi-sign-in text-base"></span>
+            <span>Sign in</span>
+          </a>
+        </template>`
 
-export const TallLogo: Story = {
-   name: "Tall Logo (navbar stays fixed height)",
+// -----------------------------------------
+// STORIES
+// -----------------------------------------
+
+// Action Items (icon buttons) story
+export const ActionIconButtons: Story = {
+   name: "Action Items: Icon Buttons",
    parameters: {
       docs: {
          description: {
-            story: "Passing a tall logo into the slot — the navbar height should remain h-16 with the logo constrained by the slot wrapper.",
+            story: "Shows two icon-only action items in the action-items slot using PrimeVue Button with icons.",
          },
       },
    },
@@ -214,31 +95,19 @@ export const TallLogo: Story = {
       components: { SiteNavigation },
       template: `
       <SiteNavigation>
-        <template #logo>
-          <a href="/" class="flex items-center gap-2">
-            <div class="h-20 w-20 bg-primary-200 rounded flex items-center justify-center text-xs text-primary-800 font-bold">
-              Tall Logo
-            </div>
-          </a>
+        ${defaultLogo}
+        ${defaultDrawerLogo}
+        <template #action-items>
+          <button class="p-button p-button-rounded p-button-text p-button-plain" aria-label="Notifications">
+            <span class="pi pi-bell text-lg"></span>
+          </button>
+          <button class="p-button p-button-rounded p-button-text p-button-plain" aria-label="Settings">
+            <span class="pi pi-cog text-lg"></span>
+          </button>
         </template>
-        <template #drawer-logo>
-          <span class="font-semibold">Tall Logo</span>
-        </template>
-
-        <template #menu-items="{ close }">
-          <a href="/food" :class="linkClass" @click="close">
-            <span class="pi pi-search text-base"></span>
-            <span>Food Search</span>
-          </a>
-        </template>
-
-        <template #menu-footer="{ close }">
-          <a href="/signin" :class="linkClass" @click="close">
-            <span class="pi pi-sign-in text-base"></span>
-            <span>Sign in</span>
-          </a>
-        </template>
+        ${defaultMenuItems}
       </SiteNavigation>
+      ${contentBlock}
     `,
       setup() {
          return { linkClass: navLinkClass }
@@ -246,16 +115,54 @@ export const TallLogo: Story = {
    }),
 }
 
-// -------------------------------------------------------
-// No Footer
-// -------------------------------------------------------
+export const DrawerFooterItems: Story = {
+   name: "Drawer - Footer Items Available",
+   render: () => ({
+      components: { SiteNavigation },
+      template: `
+      <SiteNavigation>
+        ${defaultLogo}
+        ${defaultDrawerLogo}
+        ${defaultMenuItems}
+        ${signInSignUpFooter}
+      </SiteNavigation>
+      ${contentBlock}
+    `,
+      setup() {
+         return { linkClass: navLinkClass, signUpClass }
+      },
+   }),
+}
 
-export const NoFooter: Story = {
-   name: "No Footer Slot (edge case)",
+export const DrawerNoFooter: Story = {
+   name: "Drawer - No Footer Slot",
+   parameters: {
+      docs: {
+         description: { story: "Drawer renders gracefully when no menu-footer slot is provided." },
+      },
+   },
+   render: () => ({
+      components: { SiteNavigation },
+      template: `
+      <SiteNavigation>
+        ${defaultLogo}
+        ${defaultDrawerLogo}
+        ${defaultMenuItems}
+      </SiteNavigation>
+      ${contentBlock}
+    `,
+      setup() {
+         return { linkClass: navLinkClass }
+      },
+   }),
+}
+
+export const TallLogoImage: Story = {
+   name: "Tall Logo Image",
    parameters: {
       docs: {
          description: {
-            story: "Verifies the drawer renders gracefully when no menu-footer slot is provided.",
+            story: "Logo slot receives a tall image, navbar height remains fixed (h-16).",
          },
       },
    },
@@ -263,19 +170,269 @@ export const NoFooter: Story = {
       components: { SiteNavigation },
       template: `
       <SiteNavigation>
-        ${logoTemplate}
-
-        <template #menu-items="{ close }">
-          <a href="/food" :class="linkClass" @click="close">
-            <span class="pi pi-search text-base"></span>
-            <span>Food Search</span>
-          </a>
-          <a href="/about" :class="linkClass" @click="close">
-            <span class="pi pi-info-circle text-base"></span>
-            <span>About</span>
+        <template #logo>
+          <a href="/" class="flex items-center h-full gap-2">
+            <img src="https://primefaces.org/cdn/primevue/images/logo.svg" alt="Logo" class="h-20 w-auto" />
+            <span class="font-semibold text-surface-800 dark:text-surface-100 text-base">Logo App Name</span>
           </a>
         </template>
+        <template #drawer-logo>
+          <div class="flex items-center gap-2">
+            <img src="https://primefaces.org/cdn/primevue/images/logo.svg" alt="Logo" class="h-6 w-auto" />
+            <span class="font-semibold text-surface-800 dark:text-surface-100">Logo App Name</span>
+          </div>
+        </template>
+        ${defaultMenuItems}
+        ${signInOnlyFooter}
       </SiteNavigation>
+      ${contentBlock}
+    `,
+      setup() {
+         return { linkClass: navLinkClass }
+      },
+   }),
+}
+
+// Dark background
+export const DarkBackground: Story = {
+   name: "Dark Background",
+   parameters: {
+      docs: {
+         description: {
+            story: "Preview nav against a dark page (Tailwind dark mode).",
+         },
+      },
+   },
+   decorators: [
+      () => ({
+         template: "<story />",
+         mounted() {
+            document.documentElement.classList.add("dark")
+         },
+         unmounted() {
+            document.documentElement.classList.remove("dark")
+         },
+      }),
+   ],
+   render: () => ({
+      components: { SiteNavigation },
+      template: `
+      <div class="dark min-h-screen bg-surface-900">
+        <SiteNavigation>
+          ${defaultLogo}
+          ${defaultDrawerLogo}
+          ${defaultMenuItems}
+          ${signInSignUpFooter}
+        </SiteNavigation>
+        ${contentBlock}
+      </div>
+    `,
+      setup() {
+         return { linkClass: navLinkClass, signUpClass }
+      },
+   }),
+}
+
+// Individual prop stories
+
+export const PositionFixed: Story = {
+   name: "Position: Fixed",
+   parameters: {
+      layout: "fullscreen",
+      docs: { description: { story: "Nav bar is fixed to top (position='fixed')." } },
+   },
+   render: () => ({
+      components: { SiteNavigation },
+      template: `
+      <div style="min-height: 200vh;">
+        <SiteNavigation position="fixed">
+          ${defaultLogo}
+          ${defaultDrawerLogo}
+          ${defaultMenuItems}
+          ${signInOnlyFooter}
+        </SiteNavigation>
+        ${contentBlock}
+      </div>
+    `,
+      setup() {
+         return { linkClass: navLinkClass }
+      },
+   }),
+}
+
+export const PositionSticky: Story = {
+   name: "Position: Sticky",
+   parameters: {
+      layout: "fullscreen",
+      docs: { description: { story: "Nav bar sticks on scroll (position='sticky')." } },
+   },
+   render: () => ({
+      components: { SiteNavigation },
+      template: `
+      <div style="min-height: 200vh;">
+        <div class="py-8">Content above sticky navbar</div>
+        <SiteNavigation position="sticky">
+          ${defaultLogo}
+          ${defaultDrawerLogo}
+          ${defaultMenuItems}
+          ${signInOnlyFooter}
+        </SiteNavigation>
+        ${contentBlock}
+      </div>
+    `,
+      setup() {
+         return { linkClass: navLinkClass }
+      },
+   }),
+}
+
+export const NavHeightTall: Story = {
+   name: "Nav Height: Tall",
+   parameters: {
+      docs: { description: { story: "Nav bar height is taller (navHeight='h-24')." } },
+   },
+   render: () => ({
+      components: { SiteNavigation },
+      template: `
+      <SiteNavigation navHeight="h-24">
+        <template #logo>
+          <a href="/" class="flex items-center h-full gap-2">
+            <img src="https://primefaces.org/cdn/primevue/images/logo.svg" alt="Logo" class="h-full w-auto" />
+            <span class="font-semibold text-surface-800 dark:text-surface-100 text-base">Logo App Name</span>
+          </a>
+        </template>
+        <template #drawer-logo>
+          <div class="flex items-center gap-2">
+            <img src="https://primefaces.org/cdn/primevue/images/logo.svg" alt="Logo" class="h-6 w-auto" />
+            <span class="font-semibold text-surface-800 dark:text-surface-100">Logo App Name</span>
+          </div>
+        </template>
+        ${defaultMenuItems}
+        ${signInOnlyFooter}
+      </SiteNavigation>
+      ${contentBlock}
+    `,
+      setup() {
+         return { linkClass: navLinkClass }
+      },
+   }),
+}
+
+export const BorderEnabled: Story = {
+   name: "Border Enabled",
+   parameters: {
+      docs: { description: { story: "Nav bar shows border (border=true)." } },
+   },
+   render: () => ({
+      components: { SiteNavigation },
+      template: `
+      <SiteNavigation :border="true">
+        ${defaultLogo}
+        ${defaultDrawerLogo}
+        ${defaultMenuItems}
+        ${signInOnlyFooter}
+      </SiteNavigation>
+      ${contentBlock}
+    `,
+      setup() {
+         return { linkClass: navLinkClass }
+      },
+   }),
+}
+
+export const ShadowEnabled: Story = {
+   name: "Shadow Enabled",
+   parameters: {
+      docs: { description: { story: "Nav bar shows shadow (shadow=true)." } },
+   },
+   render: () => ({
+      components: { SiteNavigation },
+      template: `
+      <div>
+        <SiteNavigation :shadow="true">
+          ${defaultLogo}
+          ${defaultDrawerLogo}
+          ${defaultMenuItems}
+          ${signInOnlyFooter}
+        </SiteNavigation>
+        ${contentBlock}
+      </div>
+    `,
+      setup() {
+         return { linkClass: navLinkClass }
+      },
+   }),
+}
+
+export const FrostedEnabled: Story = {
+   name: "Frosted Enabled",
+   parameters: {
+      layout: "fullscreen",
+      docs: {
+         description: {
+            story: "Nav bar has frosted glass effect (frosted=true). Scroll to see the blur effect on content behind the header.",
+         },
+      },
+   },
+   render: () => ({
+      components: { SiteNavigation },
+      template: `
+      <div style="min-height: 120vh; background: #f9fafb;">
+        <SiteNavigation :frosted="true" position="fixed">
+          ${defaultLogo}
+          ${defaultDrawerLogo}
+          ${defaultMenuItems}
+          ${signInOnlyFooter}
+        </SiteNavigation>
+        <div class="bg-primary py-20">
+            <div>Content starts here</div>
+            <p>Scroll down to see the frosted glass effect in action as the header blurs the content behind it.</p>
+        </div>
+      </div>
+    `,
+      setup() {
+         return { linkClass: navLinkClass }
+      },
+   }),
+}
+
+export const ContainedDisabled: Story = {
+   name: "Contained Disabled",
+   parameters: {
+      docs: { description: { story: "Nav bar is full-bleed (contained=false)." } },
+   },
+   render: () => ({
+      components: { SiteNavigation },
+      template: `
+      <SiteNavigation :contained="false">
+        ${defaultLogo}
+        ${defaultDrawerLogo}
+        ${defaultMenuItems}
+        ${signInOnlyFooter}
+      </SiteNavigation>
+      ${contentBlock}
+    `,
+      setup() {
+         return { linkClass: navLinkClass }
+      },
+   }),
+}
+
+export const DrawerWidthCustom: Story = {
+   name: "Drawer Width Custom",
+   parameters: {
+      docs: { description: { story: "Drawer width set to w-80! (drawerWidth='w-80!')." } },
+   },
+   render: () => ({
+      components: { SiteNavigation },
+      template: `
+      <SiteNavigation drawerWidth="w-80!">
+        ${defaultLogo}
+        ${defaultDrawerLogo}
+        ${defaultMenuItems}
+        ${signInOnlyFooter}
+      </SiteNavigation>
+      ${contentBlock}
     `,
       setup() {
          return { linkClass: navLinkClass }
