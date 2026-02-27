@@ -41,6 +41,16 @@
          "default": "./dist/vue-library.css"
       }
    },
+   "typesVersions": {
+      "*": {
+         "components": ["dist/components/index.d.ts"],
+         "stores": ["dist/stores/index.d.ts"],
+         "composables": ["dist/composables/index.d.ts"],
+         "utils": ["dist/utils/index.d.ts"],
+         "content": ["dist/content/index.d.ts"],
+         "types": ["dist/types/index.d.ts"]
+      }
+   },
    "files": [
       "dist"
    ],
