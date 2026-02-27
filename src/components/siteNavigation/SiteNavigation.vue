@@ -1,7 +1,7 @@
 <template>
    <header :class="headerClasses">
       <div :class="innerClasses">
-         <nav class="flex items-center h-full gap-4 p-1">
+         <nav aria-label="Top navigation bar" class="flex items-center h-full gap-4 p-1">
             <div class="flex items-center h-full py-2 shrink-0 overflow-hidden">
                <slot name="logo" />
             </div>
@@ -32,16 +32,22 @@
          header: 'pb-6!',
       }"
    >
+      <!-- drawer header -->
       <template #header>
          <div class="flex items-center h-10 px-1">
             <slot name="drawer-logo" />
          </div>
       </template>
+
+      <!-- drawer content -->
       <template #default>
          <div class="flex flex-col h-full">
-            <nav class="flex flex-col gap-1">
+            <!-- drawer main items  -->
+            <nav aria-label="Main navigation" class="flex flex-col gap-1 p-3">
                <slot name="menu-items" :close="closeDrawer" />
             </nav>
+
+            <!-- drawer footer items -->
             <div
                v-if="$slots['menu-footer']"
                class="border-t border-surface-200 dark:border-surface-700 pt-4 pb-2 flex flex-col gap-1 mt-20"

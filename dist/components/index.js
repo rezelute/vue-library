@@ -2994,7 +2994,13 @@ function Fo(e, t, n, o, r, i) {
   });
 }
 Ve.render = Fo;
-const No = { class: "flex items-center h-full gap-4 p-1" }, Ro = { class: "flex items-center h-full py-2 shrink-0 overflow-hidden" }, Uo = { class: "flex items-center gap-3 ml-auto" }, Ko = { class: "flex items-center h-10 px-1" }, Ho = { class: "flex flex-col h-full" }, Wo = { class: "flex flex-col gap-1" }, Zo = {
+const No = {
+  "aria-label": "Top navigation bar",
+  class: "flex items-center h-full gap-4 p-1"
+}, Ro = { class: "flex items-center h-full py-2 shrink-0 overflow-hidden" }, Uo = { class: "flex items-center gap-3 ml-auto" }, Ko = { class: "flex items-center h-10 px-1" }, Ho = { class: "flex flex-col h-full" }, Wo = {
+  "aria-label": "Main navigation",
+  class: "flex flex-col gap-1 p-3"
+}, Zo = {
   key: 0,
   class: "border-t border-surface-200 dark:border-surface-700 pt-4 pb-2 flex flex-col gap-1 mt-20"
 }, Ca = /* @__PURE__ */ j({
