@@ -17,7 +17,6 @@ const props = defineProps<HeadingProps>()
 
 const textSize = computed(() => (props.textSize ? `heading-${props.textSize}` : "heading-lg"))
 const marginSize = computed(() => (props.marginBtmSize ? `heading-mb-${props.marginBtmSize}` : ""))
-const tag = computed(() => props.tag)
 </script>
 
 <!--
