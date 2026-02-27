@@ -3071,6 +3071,7 @@ const No = {
         visible: n.value,
         "onUpdate:visible": a[1] || (a[1] = (d) => n.value = d),
         position: "right",
+        "aria-label": "Navigation menu panel",
         pt: {
           root: e.drawerWidth,
           header: "pb-6!"

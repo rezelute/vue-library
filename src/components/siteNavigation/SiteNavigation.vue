@@ -27,6 +27,7 @@
    <Drawer
       v-model:visible="drawerOpen"
       position="right"
+      aria-label="Navigation menu panel"
       :pt="{
          root: drawerWidth,
          header: 'pb-6!',
