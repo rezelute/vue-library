@@ -1,37 +1,38 @@
 {
    "name": "@rezelute/vue-library",
    "version": "1.0.2",
-   "private": true,
    "type": "module",
-   "module": "./dist/index.js",
    "types": "./dist/index.d.ts",
+   "sideEffects": [
+      "**/*.vue",
+      "**/*.css"
+   ],
    "exports": {
       ".": {
-         "import": "./dist/index.js",
-         "types": "./dist/index.d.ts"
+         "types": "./dist/index.d.ts",
+         "import": "./src/index.ts"
       },
       "./components": {
-         "import": "./dist/components/index.js",
-         "types": "./dist/components/index.d.ts"
+         "types": "./dist/components/index.d.ts",
+         "import": "./src/components/index.ts"
       },
       "./stores": {
-         "import": "./dist/stores/index.js",
-         "types": "./dist/stores/index.d.ts"
+         "types": "./dist/stores/index.d.ts",
+         "import": "./src/stores/index.ts"
       },
       "./composables": {
-         "import": "./dist/composables/index.js",
-         "types": "./dist/composables/index.d.ts"
+         "types": "./dist/composables/index.d.ts",
+         "import": "./src/composables/index.ts"
       },
       "./utils": {
-         "import": "./dist/utils/index.js",
-         "types": "./dist/utils/index.d.ts"
+         "types": "./dist/utils/index.d.ts",
+         "import": "./src/utils/index.ts"
       },
       "./content": {
-         "import": "./dist/content/index.js",
-         "types": "./dist/content/index.d.ts"
+         "types": "./dist/content/index.d.ts",
+         "import": "./src/content/index.ts"
       },
       "./types": {
-         "import": "./dist/types/index.js",
          "types": "./dist/types/index.d.ts"
       },
       "./tailwind-config.css": {
@@ -41,20 +42,10 @@
          "default": "./dist/vue-library.css"
       }
    },
-   "typesVersions": {
-      "*": {
-         "components": ["dist/components/index.d.ts"],
-         "stores": ["dist/stores/index.d.ts"],
-         "composables": ["dist/composables/index.d.ts"],
-         "utils": ["dist/utils/index.d.ts"],
-         "content": ["dist/content/index.d.ts"],
-         "types": ["dist/types/index.d.ts"]
-      }
-   },
    "files": [
-      "dist"
+      "dist",
+      "src"
    ],
-   "prepare": "vite build",
    "scripts": {
       "dev": "vite",
       "build": "run-p tscheck \"build-only {@}\" --",
@@ -71,8 +62,6 @@
       "lint": "eslint . --fix",
       "prettier": "prettier --check src/",
       "prettier-fix": "prettier --write src/",
-      "stylelint": "stylelint \"**/*.scss\" \"**/*.vue\"",
-      "stylelint-fix": "stylelint \"**/*.scss\" \"**/*.vue\" --fix",
       "storybook": "storybook dev -p 6006",
       "build-storybook": "storybook build"
    },
@@ -118,13 +107,7 @@
       "prettier": "^3.8.1",
       "primevue": "^4.5.4",
       "rollup-plugin-copy": "^3.5.0",
-      "sass": "^1.97.3",
       "storybook": "^10.2.12",
-      "stylelint": "^17.4.0",
-      "stylelint-config-recess-order": "^7.6.1",
-      "stylelint-config-standard": "^40.0.0",
-      "stylelint-config-standard-scss": "^17.0.0",
-      "stylelint-config-standard-vue": "^1.0.0",
       "tailwindcss": "^4.2.1",
       "typescript": "^5.9.3",
       "vite": "^7.3.1",

@@ -1,23 +1,16 @@
-import { defineStore as a } from "pinia";
-import { ref as s } from "vue";
-const i = a("userStore", () => {
-  const e = s(!1), r = s(!1);
-  async function t(o) {
-    try {
-      r.value = !0, e.value = o;
-    } catch (n) {
-      e.value = !1, console.error("Error checking session status", n);
-    } finally {
-      r.value = !1;
-    }
+import { defineStore as o } from "pinia";
+import { ref as n } from "vue";
+const s = o("userStore", () => {
+  const e = n(!1);
+  function t(r) {
+    e.value = r;
   }
   return {
-    isFetchingSession: r,
     isSignedIn: e,
     updateAuth: t
   };
-}), l = { useUserStore: i };
+}), i = { useUserStore: s };
 export {
-  l as default,
-  i as useUserStore
+  i as default,
+  s as useUserStore
 };

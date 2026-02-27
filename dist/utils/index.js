@@ -1,4 +1,17 @@
-class i extends Error {
+function i(t = /* @__PURE__ */ new Date()) {
+  const e = t instanceof Date ? t : new Date(t);
+  if (isNaN(e.getTime()))
+    throw new Error("Invalid date provided to formatDateTimeUK");
+  return e.toLocaleString("en-GB", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: !1
+  }).replace(",", "");
+}
+class o extends Error {
   type;
   // error type identifier
   summary;
@@ -8,16 +21,16 @@ class i extends Error {
   cause;
   // stack trace of the original error
   constructor({
-    type: s,
-    summary: a,
-    message: e,
-    details: r,
+    type: e,
+    summary: r,
+    message: a,
+    details: s,
     cause: n
   }) {
-    super(e), this.name = "AppError", this.type = s, this.details = r, this.cause = n, this.summary = a;
+    super(a), this.name = "AppError", this.type = e, this.details = s, this.cause = n, this.summary = r;
   }
 }
-function o(t) {
+function c(t) {
   if (t instanceof Error)
     return {
       name: t.name,
@@ -40,21 +53,32 @@ function o(t) {
   return { message: String(t) };
 }
 function u(t) {
-  const s = {};
-  return t.forEach((a, e) => {
-    s[e] = a;
-  }), s;
+  const e = {};
+  return t.forEach((r, a) => {
+    e[a] = r;
+  }), e;
 }
-function c(t) {
-  const { redirect: s, ...a } = t;
-  if (!s) return null;
-  const e = new URLSearchParams(a).toString();
-  return e ? `${s}?${e}` : s;
+function m(t) {
+  return t && t.charAt(0).toUpperCase() + t.slice(1);
 }
-const m = { getRedirectTargetWithQueryParams: c, normalizeError: o, AppError: i };
+function f(t) {
+  const { redirect: e, ...r } = t;
+  if (!e) return null;
+  const a = new URLSearchParams(r).toString();
+  return a ? `${e}?${a}` : e;
+}
+const d = {
+  getRedirectTargetWithQueryParams: f,
+  normalizeError: c,
+  AppError: o,
+  formatDateTimeUK: i,
+  capitalizeFirstLetter: m
+};
 export {
-  i as AppError,
-  m as default,
-  c as getRedirectTargetWithQueryParams,
-  o as normalizeError
+  o as AppError,
+  m as capitalizeFirstLetter,
+  d as default,
+  i as formatDateTimeUK,
+  f as getRedirectTargetWithQueryParams,
+  c as normalizeError
 };
