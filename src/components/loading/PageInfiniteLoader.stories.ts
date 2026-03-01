@@ -7,9 +7,13 @@ const meta = {
    tags: ["autodocs"],
    argTypes: {
       isLoading: { control: "boolean" },
+      color: { control: "color", description: "Bar color" },
+      height: { control: "text", description: "Bar height (e.g. '5px', '8px')" },
    },
    args: {
       isLoading: true,
+      color: "#35a626",
+      height: "5px",
    },
 } satisfies Meta<typeof PageInfiniteLoader>
 
@@ -20,6 +24,16 @@ type Story = StoryObj<typeof meta>
 export const Loading: Story = {
    args: {
       isLoading: true,
+      color: "#35a626",
+      height: "5px",
+   },
+}
+
+export const CustomColorAndHeight: Story = {
+   args: {
+      isLoading: true,
+      color: "#e63946",
+      height: "8px",
    },
 }
 

@@ -5,21 +5,29 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{
-   isLoading: boolean
-}>()
+const props = withDefaults(
+   defineProps<{
+      isLoading: boolean
+      color?: string
+      height?: string
+   }>(),
+   {
+      color: "#35a626", // default to a green color
+      height: "5px",
+   }
+)
 </script>
 
 <style scoped>
 .bar {
-   position: absolute;
-   top: 0%;
-   left: 50%;
-   transform: translate(-50%, -50%);
+   position: fixed;
+   top: 0;
+   left: 0;
    width: 100%;
-   height: 10px;
-   background: #ffffff;
+   height: v-bind("props.height");
+   background: transparent;
    overflow: hidden;
+   z-index: 9999;
 }
 .bar div:before {
    content: "";
@@ -27,7 +35,7 @@ defineProps<{
    top: 0px;
    left: 0px;
    bottom: 0px;
-   background: #247e18;
+   background: v-bind("props.color");
    animation: box-1 3100ms cubic-bezier(0.65, 0.81, 0.73, 0.4) infinite;
 }
 .bar div:after {
@@ -36,7 +44,7 @@ defineProps<{
    top: 0px;
    left: 0px;
    bottom: 0px;
-   background: #35a626;
+   background: v-bind("props.color");
    animation: box-2 3100ms cubic-bezier(0.16, 0.84, 0.44, 1) infinite;
    animation-delay: 2150ms;
 }
@@ -62,27 +70,4 @@ defineProps<{
       right: -8%;
    }
 }
-
-/* .loader {
-   width: fit-content;
-   font-weight: bold;
-   font-family: monospace;
-   white-space: pre;
-   font-size: 25px;
-   line-height: 1.2em;
-   height: 1.2em;
-   overflow: hidden;
-}
-.loader:before {
-   content: "L o a d i n g...\Aᛚ o a d i n g...\Aᛚ ᛟ a d i n g...\A ᛚ ᛟ ᚨ d i n g...\A ᛚ ᛟ ᚨ ᛞ i n g...\A ᛚ ᛟ ᚨ ᛞ ᛁ n g...\A ᛚ ᛟ ᚨ ᛞ ᛁ ᚾ g...\A ᛚ ᛟ ᚨ ᛞ ᛁ ᚾ ᚷ...";
-   white-space: pre;
-   display: inline-block;
-   animation: l39 1s infinite steps(8) alternate;
-}
-
-@keyframes l39 {
-   100% {
-      transform: translateY(-100%);
-   }
-} */
 </style>
