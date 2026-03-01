@@ -25,7 +25,7 @@
       </div>
 
       <!-- Error State -->
-      <div v-else-if="showError" key="error" class="min-h-dvh flex items-center justify-center">
+      <div v-else-if="showError" key="error" class="flex items-center justify-center">
          <slot name="error">
             <!-- Fallback error if no slot provided -->
             <AppInfoError :errorText="errorText" class="max-w-xl" />

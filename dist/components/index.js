@@ -3584,7 +3584,7 @@ const hr = {
   class: "sr-only"
 }, wr = {
   key: "error",
-  class: "min-h-dvh flex items-center justify-center"
+  class: "flex items-center justify-center"
 }, kr = { key: "loaded" }, Sr = /* @__PURE__ */ j({
   __name: "PageLoader",
   props: {
@@ -3620,7 +3620,7 @@ const hr = {
       _: 3
     }));
   }
-}), Ta = /* @__PURE__ */ at(Sr, [["__scopeId", "data-v-b12104a7"]]), xr = {
+}), Ta = /* @__PURE__ */ at(Sr, [["__scopeId", "data-v-f4e5f2aa"]]), xr = {
   key: 0,
   class: "bar"
 }, Cr = /* @__PURE__ */ j({
