@@ -9,6 +9,7 @@
          class="w-full"
          data-test="auth-email-field"
          @update:modelValue="onInput"
+         @keydown.enter="emit('enter-pressed')"
       />
    </FormField>
 </template>
@@ -36,6 +37,7 @@ const props = defineProps<{
 // Emit
 const emit = defineEmits<{
    (e: "validity-changed", value: boolean): void
+   (e: "enter-pressed"): void
 }>()
 
 const emailInvalidText = "Please enter a valid email address"

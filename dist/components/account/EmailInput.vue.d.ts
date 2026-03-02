@@ -9,8 +9,10 @@ declare const _default: import('vue').DefineComponent<__VLS_PublicProps, {}, {},
     "update:email": (value: string) => any;
 } & {
     "validity-changed": (value: boolean) => any;
+    "enter-pressed": () => any;
 }, string, import('vue').PublicProps, Readonly<__VLS_PublicProps> & Readonly<{
     "onValidity-changed"?: ((value: boolean) => any) | undefined;
+    "onEnter-pressed"?: (() => any) | undefined;
     "onUpdate:email"?: ((value: string) => any) | undefined;
 }>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, HTMLDivElement>;
 export default _default;

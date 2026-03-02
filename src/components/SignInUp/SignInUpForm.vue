@@ -28,6 +28,7 @@
                :isSubmitClicked="isSubmitClicked"
                data-test="auth-email-input"
                @validity-changed="onValidityChanged"
+               @enter-pressed="onSubmit"
             />
 
             <!-- Additional fields (e.g. captcha). isSubmitClicked is passed down so slot content
