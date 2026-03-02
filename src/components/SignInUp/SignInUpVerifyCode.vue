@@ -29,14 +29,16 @@
                      :error="showError ? codeValidationMessage : ''"
                      data-test="auth-error-message"
                   >
-                     <InputOtp
-                        id="magic-code-input"
-                        v-model="userMagicCode"
-                        :length="otpLength"
-                        required
-                        :invalid="showError"
-                        data-test="auth-code-input"
-                     />
+                     <div @paste.capture="onPaste">
+                        <InputOtp
+                           id="magic-code-input"
+                           v-model="userMagicCode"
+                           :length="otpLength"
+                           required
+                           :invalid="showError"
+                           data-test="auth-code-input"
+                        />
+                     </div>
                   </FormField>
                   <Button
                      label="Submit code"
@@ -78,7 +80,7 @@ import Button from "primevue/button"
 import Card from "primevue/card"
 import Divider from "primevue/divider"
 import InputOtp from "primevue/inputotp"
-import { computed, ref } from "vue"
+import { computed, nextTick, ref } from "vue"
 import FormField from "../../components/formField/FormField.vue"
 import Heading from "../heading/Heading.vue"
 
@@ -139,6 +141,16 @@ async function onCodeSubmit() {
    }
 
    emits("codeSubmit", userMagicCode.value)
+}
+
+/** Auto-submit when a full code is pasted */
+async function onPaste(event: ClipboardEvent) {
+   const pasted = event.clipboardData?.getData("text")?.trim() ?? ""
+   if (pasted.length === props.otpLength) {
+      // Allow InputOtp to update its model before submitting
+      await nextTick()
+      onCodeSubmit()
+   }
 }
 
 //** Resend OTP code which might have not been received by the user */
