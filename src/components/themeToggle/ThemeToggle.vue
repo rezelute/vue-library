@@ -10,16 +10,21 @@
 
 <script setup lang="ts">
 import Button from "primevue/button"
-import { computed, ref } from "vue"
+import { computed, onMounted, ref } from "vue"
 
-const lsTheme = localStorage.getItem("theme") || "light"
-const theme = ref(lsTheme)
-document.documentElement.classList.toggle("dark", lsTheme === "dark")
+const theme = ref("light") // default matches SSR render to avoid hydration mismatch
 
 // computed
 // -----------------------------------------
-// const themeIcon = ref("pi pi-sun");
 const themeIcon = computed(() => (theme.value === "light" ? "pi pi-sun" : "pi pi-moon"))
+
+// lifecycle
+// -----------------------------------------
+onMounted(() => {
+   const lsTheme = localStorage.getItem("theme") || "light"
+   theme.value = lsTheme
+   document.documentElement.classList.toggle("dark", lsTheme === "dark")
+})
 
 // methods
 // -----------------------------------------
