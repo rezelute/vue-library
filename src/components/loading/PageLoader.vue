@@ -1,42 +1,44 @@
 <template>
-   <Transition name="fade" mode="out-in">
-      <!-- Loading State -->
-      <div
-         v-if="showLoading"
-         key="loading"
-         class="min-h-dvh flex items-center justify-center"
-         role="status"
-         aria-live="polite"
-         data-test="pageloader-loading"
-      >
-         <div class="vstack-sm p-12">
-            <slot name="preloader">
-               <!-- Fallback preloader if no slot provided -->
-               <ProgressSpinner aria-label="Loading" />
+   <div>
+      <Transition name="fade" mode="out-in">
+         <!-- Loading State -->
+         <div
+            v-if="showLoading"
+            key="loading"
+            class="min-h-dvh flex items-center justify-center"
+            role="status"
+            aria-live="polite"
+            data-test="pageloader-loading"
+         >
+            <div class="vstack-sm p-12">
+               <slot name="preloader">
+                  <!-- Fallback preloader if no slot provided -->
+                  <ProgressSpinner aria-label="Loading" />
 
-               <!-- loading text (visible or accessible) -->
-               <div v-if="loadingText" class="text-center mt-4">
-                  {{ loadingText }}
-               </div>
-               <!-- Invisible fallback for accessibility only if no text is provided -->
-               <span v-else class="sr-only">Loading...</span>
+                  <!-- loading text (visible or accessible) -->
+                  <div v-if="loadingText" class="text-center mt-4">
+                     {{ loadingText }}
+                  </div>
+                  <!-- Invisible fallback for accessibility only if no text is provided -->
+                  <span v-else class="sr-only">Loading...</span>
+               </slot>
+            </div>
+         </div>
+
+         <!-- Error State -->
+         <div v-else-if="showError" key="error" class="flex items-center justify-center">
+            <slot name="error">
+               <!-- Fallback error if no slot provided -->
+               <AppInfoError :errorText="errorText" class="max-w-xl" />
             </slot>
          </div>
-      </div>
 
-      <!-- Error State -->
-      <div v-else-if="showError" key="error" class="flex items-center justify-center">
-         <slot name="error">
-            <!-- Fallback error if no slot provided -->
-            <AppInfoError :errorText="errorText" class="max-w-xl" />
-         </slot>
-      </div>
-
-      <!-- Success State, load component -->
-      <div v-else key="loaded">
-         <slot name="default" />
-      </div>
-   </Transition>
+         <!-- Success State, load component -->
+         <div v-else key="loaded">
+            <slot name="default" />
+         </div>
+      </Transition>
+   </div>
 </template>
 
 <script setup lang="ts">
