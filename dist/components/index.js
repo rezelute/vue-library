@@ -3585,7 +3585,10 @@ const hr = {
 }, wr = {
   key: "error",
   class: "flex items-center justify-center"
-}, kr = { key: "loaded" }, Sr = /* @__PURE__ */ j({
+}, kr = {
+  key: "loaded",
+  class: "contents"
+}, Sr = /* @__PURE__ */ j({
   __name: "PageLoader",
   props: {
     showLoading: { type: Boolean, default: !1 },
@@ -3622,7 +3625,7 @@ const hr = {
       })
     ]));
   }
-}), Ta = /* @__PURE__ */ at(Sr, [["__scopeId", "data-v-5099baee"]]), xr = {
+}), Ta = /* @__PURE__ */ at(Sr, [["__scopeId", "data-v-b04d0e48"]]), xr = {
   key: 0,
   class: "bar"
 }, Cr = /* @__PURE__ */ j({

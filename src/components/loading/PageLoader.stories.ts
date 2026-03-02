@@ -107,7 +107,18 @@ export const LoadedState: Story = {
    render: (args: any) => ({
       components: { PageLoader },
       setup: () => ({ args }),
-      template: `<PageLoader v-bind="args"><template #default><div style='padding:2rem;text-align:center;'>Loaded content!</div></template></PageLoader>`,
+      template: `
+         <PageLoader
+            v-bind="args"
+            style="display:flex; flex-direction:column; gap:1rem; padding:2rem; background:#f0f4ff;"
+         >
+            <template #default>
+               <div style="padding:1.5rem; background:#4f46e5; color:white; border-radius:8px;">Box 1 — flex child</div>
+               <div style="padding:1.5rem; background:#7c3aed; color:white; border-radius:8px;">Box 2 — flex child</div>
+               <div style="padding:1.5rem; background:#a21caf; color:white; border-radius:8px;">Box 3 — flex child</div>
+            </template>
+         </PageLoader>
+      `,
    }),
 }
 

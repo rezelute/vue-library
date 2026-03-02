@@ -34,7 +34,7 @@
          </div>
 
          <!-- Success State, load component -->
-         <div v-else key="loaded">
+         <div v-else key="loaded" class="contents">
             <slot name="default" />
          </div>
       </Transition>
