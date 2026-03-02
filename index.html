@@ -4,6 +4,14 @@
 <!doctype html>
 <html lang="">
    <head>
+      <!-- Blocking theme script: must be first to prevent flash of incorrect theme -->
+      <script>
+         (function () {
+            var t = localStorage.getItem("theme")
+            if (t === "dark") document.documentElement.classList.add("dark")
+         })()
+      </script>
+
       <title>Base app</title>
 
       <meta charset="UTF-8" />
