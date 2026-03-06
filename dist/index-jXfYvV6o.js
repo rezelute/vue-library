@@ -393,10 +393,10 @@ var $ = { regex: { rules: { class: { pattern: /^\.([a-zA-Z][\w-]*)$/, resolve(e)
   var l, o, i, s, u, d, p;
   let { preset: m, options: c } = t, h, g, y, v, b, A, R;
   if (f(m) && c.transform !== "strict") {
-    let { primitive: H, semantic: D, extend: x } = m, C = D || {}, { colorScheme: N } = C, I = j(C, ["colorScheme"]), P = x || {}, { colorScheme: M } = P, V = j(P, ["colorScheme"]), L = N || {}, { dark: z } = L, Y = j(L, ["dark"]), W = M || {}, { dark: Z } = W, q = j(W, ["dark"]), _ = f(H) ? this._toVariables({ primitive: H }, c) : {}, O = f(I) ? this._toVariables({ semantic: I }, c) : {}, K = f(Y) ? this._toVariables({ light: Y }, c) : {}, re = f(z) ? this._toVariables({ dark: z }, c) : {}, G = f(V) ? this._toVariables({ semantic: V }, c) : {}, he = f(q) ? this._toVariables({ light: q }, c) : {}, fe = f(Z) ? this._toVariables({ dark: Z }, c) : {}, [Ue, He] = [(l = _.declarations) != null ? l : "", _.tokens], [Ye, Ze] = [(o = O.declarations) != null ? o : "", O.tokens || []], [qe, Ge] = [(i = K.declarations) != null ? i : "", K.tokens || []], [Qe, Xe] = [(s = re.declarations) != null ? s : "", re.tokens || []], [Je, et] = [(u = G.declarations) != null ? u : "", G.tokens || []], [tt, nt] = [(d = he.declarations) != null ? d : "", he.tokens || []], [rt, at] = [(p = fe.declarations) != null ? p : "", fe.tokens || []];
+    let { primitive: H, semantic: D, extend: x } = m, C = D || {}, { colorScheme: N } = C, I = j(C, ["colorScheme"]), P = x || {}, { colorScheme: M } = P, V = j(P, ["colorScheme"]), L = N || {}, { dark: z } = L, q = j(L, ["dark"]), W = M || {}, { dark: Y } = W, Z = j(W, ["dark"]), _ = f(H) ? this._toVariables({ primitive: H }, c) : {}, O = f(I) ? this._toVariables({ semantic: I }, c) : {}, K = f(q) ? this._toVariables({ light: q }, c) : {}, re = f(z) ? this._toVariables({ dark: z }, c) : {}, G = f(V) ? this._toVariables({ semantic: V }, c) : {}, he = f(Z) ? this._toVariables({ light: Z }, c) : {}, fe = f(Y) ? this._toVariables({ dark: Y }, c) : {}, [Ue, He] = [(l = _.declarations) != null ? l : "", _.tokens], [qe, Ye] = [(o = O.declarations) != null ? o : "", O.tokens || []], [Ze, Ge] = [(i = K.declarations) != null ? i : "", K.tokens || []], [Qe, Xe] = [(s = re.declarations) != null ? s : "", re.tokens || []], [Je, et] = [(u = G.declarations) != null ? u : "", G.tokens || []], [tt, nt] = [(d = he.declarations) != null ? d : "", he.tokens || []], [rt, at] = [(p = fe.declarations) != null ? p : "", fe.tokens || []];
     h = this.transformCSS(e, Ue, "light", "variable", c, r, a), g = He;
-    let ot = this.transformCSS(e, `${Ye}${qe}`, "light", "variable", c, r, a), st = this.transformCSS(e, `${Qe}`, "dark", "variable", c, r, a);
-    y = `${ot}${st}`, v = [.../* @__PURE__ */ new Set([...Ze, ...Ge, ...Xe])];
+    let ot = this.transformCSS(e, `${qe}${Ze}`, "light", "variable", c, r, a), st = this.transformCSS(e, `${Qe}`, "dark", "variable", c, r, a);
+    y = `${ot}${st}`, v = [.../* @__PURE__ */ new Set([...Ye, ...Ge, ...Xe])];
     let it = this.transformCSS(e, `${Je}${tt}color-scheme:light`, "light", "variable", c, r, a), lt = this.transformCSS(e, `${rt}color-scheme:dark`, "dark", "variable", c, r, a);
     b = `${it}${lt}`, A = [.../* @__PURE__ */ new Set([...et, ...nt, ...at])], R = w(m.css, { dt: U });
   }
@@ -405,8 +405,8 @@ var $ = { regex: { rules: { class: { pattern: /^\.([a-zA-Z][\w-]*)$/, resolve(e)
   var i, s, u;
   let d, p, m;
   if (f(t) && n.transform !== "strict") {
-    let c = e.replace("-directive", ""), h = t, { colorScheme: g, extend: y, css: v } = h, b = j(h, ["colorScheme", "extend", "css"]), A = y || {}, { colorScheme: R } = A, H = j(A, ["colorScheme"]), D = g || {}, { dark: x } = D, C = j(D, ["dark"]), N = R || {}, { dark: I } = N, P = j(N, ["dark"]), M = f(b) ? this._toVariables({ [c]: k(k({}, b), H) }, n) : {}, V = f(C) ? this._toVariables({ [c]: k(k({}, C), P) }, n) : {}, L = f(x) ? this._toVariables({ [c]: k(k({}, x), I) }, n) : {}, [z, Y] = [(i = M.declarations) != null ? i : "", M.tokens || []], [W, Z] = [(s = V.declarations) != null ? s : "", V.tokens || []], [q, _] = [(u = L.declarations) != null ? u : "", L.tokens || []], O = this.transformCSS(c, `${z}${W}`, "light", "variable", n, a, l, o), K = this.transformCSS(c, q, "dark", "variable", n, a, l, o);
-    d = `${O}${K}`, p = [.../* @__PURE__ */ new Set([...Y, ...Z, ..._])], m = w(v, { dt: U });
+    let c = e.replace("-directive", ""), h = t, { colorScheme: g, extend: y, css: v } = h, b = j(h, ["colorScheme", "extend", "css"]), A = y || {}, { colorScheme: R } = A, H = j(A, ["colorScheme"]), D = g || {}, { dark: x } = D, C = j(D, ["dark"]), N = R || {}, { dark: I } = N, P = j(N, ["dark"]), M = f(b) ? this._toVariables({ [c]: k(k({}, b), H) }, n) : {}, V = f(C) ? this._toVariables({ [c]: k(k({}, C), P) }, n) : {}, L = f(x) ? this._toVariables({ [c]: k(k({}, x), I) }, n) : {}, [z, q] = [(i = M.declarations) != null ? i : "", M.tokens || []], [W, Y] = [(s = V.declarations) != null ? s : "", V.tokens || []], [Z, _] = [(u = L.declarations) != null ? u : "", L.tokens || []], O = this.transformCSS(c, `${z}${W}`, "light", "variable", n, a, l, o), K = this.transformCSS(c, Z, "dark", "variable", n, a, l, o);
+    d = `${O}${K}`, p = [.../* @__PURE__ */ new Set([...q, ...Y, ..._])], m = w(v, { dt: U });
   }
   return { css: d, tokens: p, style: m };
 }, getPresetC({ name: e = "", theme: t = {}, params: n, set: r, defaults: a }) {
@@ -723,11 +723,11 @@ function Wt(e) {
 var Kt = 0;
 function Bt(e) {
   var t = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, n = le(!1), r = le(e), a = le(null), l = jt() ? window.document : void 0, o = t.document, i = o === void 0 ? l : o, s = t.immediate, u = s === void 0 ? !0 : s, d = t.manual, p = d === void 0 ? !1 : d, m = t.name, c = m === void 0 ? "style_".concat(++Kt) : m, h = t.id, g = h === void 0 ? void 0 : h, y = t.media, v = y === void 0 ? void 0 : y, b = t.nonce, A = b === void 0 ? void 0 : b, R = t.first, H = R === void 0 ? !1 : R, D = t.onMounted, x = D === void 0 ? void 0 : D, C = t.onUpdated, N = C === void 0 ? void 0 : C, I = t.onLoad, P = I === void 0 ? void 0 : I, M = t.props, V = M === void 0 ? {} : M, L = function() {
-  }, z = function(Z) {
-    var q = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
+  }, z = function(Y) {
+    var Z = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
     if (i) {
-      var _ = je(je({}, V), q), O = _.name || c, K = _.id || g, re = _.nonce || A;
-      a.value = i.querySelector('style[data-primevue-style-id="'.concat(O, '"]')) || i.getElementById(K) || i.createElement("style"), a.value.isConnected || (r.value = Z || e, se(a.value, {
+      var _ = je(je({}, V), Z), O = _.name || c, K = _.id || g, re = _.nonce || A;
+      a.value = i.querySelector('style[data-primevue-style-id="'.concat(O, '"]')) || i.getElementById(K) || i.createElement("style"), a.value.isConnected || (r.value = Y || e, se(a.value, {
         type: "text/css",
         id: K,
         media: v,
@@ -742,7 +742,7 @@ function Bt(e) {
         immediate: !0
       }), n.value = !0);
     }
-  }, Y = function() {
+  }, q = function() {
     !i || !n.value || (L(), wt(a.value) && i.head.removeChild(a.value), n.value = !1, a.value = null);
   };
   return u && !p && Wt(z), {
@@ -750,7 +750,7 @@ function Bt(e) {
     name: c,
     el: a,
     css: r,
-    unload: Y,
+    unload: q,
     load: z,
     isLoaded: ut(n)
   };
@@ -765,7 +765,7 @@ function ne(e) {
 }
 var xe, Ce, Ne, Pe;
 function Le(e, t) {
-  return Yt(e) || Ht(e, t) || Ut(e, t) || Ft();
+  return qt(e) || Ht(e, t) || Ut(e, t) || Ft();
 }
 function Ft() {
   throw new TypeError(`Invalid attempt to destructure non-iterable instance.
@@ -801,7 +801,7 @@ function Ht(e, t) {
     return i;
   }
 }
-function Yt(e) {
+function qt(e) {
   if (Array.isArray(e)) return e;
 }
 function Ee(e, t) {
@@ -818,17 +818,17 @@ function de(e) {
   for (var t = 1; t < arguments.length; t++) {
     var n = arguments[t] != null ? arguments[t] : {};
     t % 2 ? Ee(Object(n), !0).forEach(function(r) {
-      Zt(e, r, n[r]);
+      Yt(e, r, n[r]);
     }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(n)) : Ee(Object(n)).forEach(function(r) {
       Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(n, r));
     });
   }
   return e;
 }
-function Zt(e, t, n) {
-  return (t = qt(t)) in e ? Object.defineProperty(e, t, { value: n, enumerable: !0, configurable: !0, writable: !0 }) : e[t] = n, e;
+function Yt(e, t, n) {
+  return (t = Zt(t)) in e ? Object.defineProperty(e, t, { value: n, enumerable: !0, configurable: !0, writable: !0 }) : e[t] = n, e;
 }
-function qt(e) {
+function Zt(e) {
   var t = Gt(e, "string");
   return ne(t) == "symbol" ? t : t + "";
 }
@@ -978,6 +978,7 @@ export {
   rn as n,
   sn as o,
   ln as p,
+  De as q,
   kn as r,
   f as s,
   jt as t,

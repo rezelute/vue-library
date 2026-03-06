@@ -20,6 +20,9 @@ export { default as FormField } from "./formField/FormField.vue"
 export type { FormFieldProps } from "./formField/FormField.vue"
 export { default as NameInput } from "./formField/NameInput.vue"
 
+// toast
+export { default as ToastProgress } from "./toast/ToastProgress.vue"
+
 // auth
 export { default as SignInUpForm } from "./SignInUp/SignInUpForm.vue"
 export { default as SignInUpVerifyCode } from "./SignInUp/SignInUpVerifyCode.vue"
