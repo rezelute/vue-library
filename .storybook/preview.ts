@@ -4,9 +4,9 @@ import { definePreset } from "@primeuix/themes"
 import Lara from "@primeuix/themes/lara"
 import { setup } from "@storybook/vue3"
 import type { Preview } from "@storybook/vue3-vite"
-import { onMounted, onUnmounted, watch } from "vue"
 import PrimeVue from "primevue/config"
 import { MINIMAL_VIEWPORTS } from "storybook/viewport"
+import { onMounted, onUnmounted, watch } from "vue"
 
 // Green theme
 const preset1 = {
@@ -118,7 +118,7 @@ const preview: Preview = {
          const isFullscreen = layout === "fullscreen"
 
          const height = minHeight || (isFullscreen ? "100vh" : "auto")
-         const pad = isFullscreen ? "0" : padding || "2rem"
+         const pad = isFullscreen ? "0" : padding || "1rem"
 
          return {
             components: { story },

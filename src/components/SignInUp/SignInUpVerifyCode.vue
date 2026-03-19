@@ -13,7 +13,7 @@
          />
       </div>
 
-      <Card class="max-w-xl p-0 sm:p-12 w-full mx-auto">
+      <Card class="max-w-xl card-p-lg w-full mx-auto">
          <template #title>
             <Heading tag="h1" textSize="md" marginBtmSize="sm">{{ title }}</Heading>
          </template>
@@ -26,10 +26,11 @@
 
                   <FormField
                      id="magic-code-input"
+                     class="mb-4"
                      :error="showError ? codeValidationMessage : ''"
                      data-test="auth-error-message"
                   >
-                     <div @paste.capture="onPaste">
+                     <div class="otp-wrapper flex justify-center sm:justify-start" @paste.capture="onPaste">
                         <InputOtp
                            id="magic-code-input"
                            v-model="userMagicCode"
@@ -42,7 +43,7 @@
                   </FormField>
                   <Button
                      label="Submit code"
-                     class="w-fit"
+                     class="w-full sm:w-fit"
                      type="submit"
                      :loading="isSubmittingCode"
                      :disabled="isResendingCode"
@@ -59,7 +60,7 @@
                   <slot name="resend-description" />
 
                   <Button
-                     class="w-fit"
+                     class="w-full sm:w-fit"
                      label="Resend code"
                      variant="outlined"
                      type="button"
@@ -163,4 +164,23 @@ function onRestartFlow() {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+/* Fluid OTP cells: shrink gracefully on narrow screens */
+@media (max-width: 400px) {
+   .otp-wrapper :deep(.p-inputotp-input) {
+      width: 2rem;
+      height: 2.5rem;
+      font-size: 0.95rem;
+      padding: 0;
+   }
+}
+
+@media (min-width: 401px) and (max-width: 540px) {
+   .otp-wrapper :deep(.p-inputotp-input) {
+      width: 2.5rem;
+      height: 3rem;
+      font-size: 1.1rem;
+      padding: 0;
+   }
+}
+</style>

@@ -1,5 +1,5 @@
 <template>
-   <Card class="max-w-xl p-12 w-full">
+   <Card class="max-w-xl w-full card-p-lg">
       <template #title>
          <Heading tag="h1" textSize="lg" marginBtmSize="sm">
             {{ title }}

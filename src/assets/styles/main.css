@@ -22,3 +22,13 @@ body {
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
 }
+
+.card-p-sm {
+   @apply p-1 sm:p-6;
+}
+.card-p-md {
+   @apply p-1 sm:p-8;
+}
+.card-p-lg {
+   @apply p-1 sm:p-12;
+}
