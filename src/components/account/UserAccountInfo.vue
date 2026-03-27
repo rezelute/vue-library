@@ -56,7 +56,7 @@
 <script setup lang="ts">
 import Card from "primevue/card"
 import Skeleton from "primevue/skeleton"
-import Heading from "../layout/Heading.vue"
+import Heading from "../ui/Heading.vue"
 
 // lifecycle
 // -----------------------------------------

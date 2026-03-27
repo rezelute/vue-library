@@ -83,7 +83,7 @@ import Divider from "primevue/divider"
 import InputOtp from "primevue/inputotp"
 import { computed, nextTick, ref } from "vue"
 import FormField from "../form/FormField.vue"
-import Heading from "../layout/Heading.vue"
+import Heading from "../ui/Heading.vue"
 
 // props & emits
 // -----------------------------------------

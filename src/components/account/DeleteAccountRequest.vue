@@ -35,7 +35,7 @@
 import Button from "primevue/button"
 import Card from "primevue/card"
 import ActionConfirmMsg from "../feedback/ActionConfirmMsg.vue"
-import Heading from "../layout/Heading.vue"
+import Heading from "../ui/Heading.vue"
 
 // props / emits
 // -----------------------------------------

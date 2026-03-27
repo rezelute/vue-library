@@ -25,7 +25,7 @@
 <script setup lang="ts">
 import Button from "primevue/button"
 import Card from "primevue/card"
-import PageErrorIcon from "../layout/PageErrorIcon.vue"
+import PageErrorIcon from "../ui/PageErrorIcon.vue"
 
 defineProps<{
    errorText?: string

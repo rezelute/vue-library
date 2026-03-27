@@ -43,7 +43,7 @@ import Card from "primevue/card"
 import { ref } from "vue"
 import EmailInput from "./EmailInput.vue"
 import ActionConfirmMsg from "../feedback/ActionConfirmMsg.vue"
-import Heading from "../layout/Heading.vue"
+import Heading from "../ui/Heading.vue"
 
 // props / emits
 // -----------------------------------------

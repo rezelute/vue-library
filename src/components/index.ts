@@ -1,9 +1,9 @@
-// layout
-export { default as ThemeToggle } from "./layout/ThemeToggle.vue"
-export { default as SiteNavigation } from "./layout/SiteNavigation.vue"
-export { default as ScrollToTop } from "./layout/scrollToTop.vue"
-export { default as Heading } from "./layout/Heading.vue"
-export type { HeadingProps } from "./layout/Heading.vue"
+// ui
+export { default as ThemeToggle } from "./ui/ThemeToggle.vue"
+export { default as SiteNavigation } from "./ui/SiteNavigation.vue"
+export { default as ScrollToTop } from "./ui/scrollToTop.vue"
+export { default as Heading } from "./ui/Heading.vue"
+export type { HeadingProps } from "./ui/Heading.vue"
 // loaders
 export { default as PageLoader } from "./loading/PageLoader.vue"
 export type { PageLoaderProps } from "./loading/PageLoader.vue"
