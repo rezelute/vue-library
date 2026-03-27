@@ -18,7 +18,7 @@
 import Textbox from "primevue/inputtext"
 import { computed, onMounted } from "vue"
 import { z } from "zod"
-import FormField from "../formField/FormField.vue"
+import FormField from "../form/FormField.vue"
 
 function isEmailValid(email: string): boolean {
    const emailSchema = z.string().email()

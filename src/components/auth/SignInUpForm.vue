@@ -52,8 +52,8 @@
 import Button from "primevue/button"
 import Card from "primevue/card"
 import { ref, type Slots, useSlots } from "vue"
-import EmailInput from "../../components/account/EmailInput.vue"
-import Heading from "../heading/Heading.vue"
+import EmailInput from "../account/EmailInput.vue"
+import Heading from "../layout/Heading.vue"
 
 // props/emits
 // -----------------------------------------

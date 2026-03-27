@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite"
-import GoogleAuthIcon from "../googleAuthIcon/GoogleAuthIcon.vue"
+import GoogleAuthIcon from "./GoogleAuthIcon.vue"
 import SignInUpForm from "./SignInUpForm.vue"
 
 const meta = {

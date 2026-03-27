@@ -43,7 +43,7 @@
 
 <script setup lang="ts">
 import ProgressSpinner from "primevue/progressspinner"
-import AppInfoError from "../appErrorInfo/AppErrorInfo.vue"
+import AppInfoError from "../feedback/AppErrorInfo.vue"
 
 export interface PageLoaderProps {
    showLoading?: boolean

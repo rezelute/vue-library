@@ -34,8 +34,8 @@
 <script setup lang="ts">
 import Button from "primevue/button"
 import Card from "primevue/card"
-import ActionConfirmMsg from "../../components/actionConfirmMsg/ActionConfirmMsg.vue"
-import Heading from "../heading/Heading.vue"
+import ActionConfirmMsg from "../feedback/ActionConfirmMsg.vue"
+import Heading from "../layout/Heading.vue"
 
 // props / emits
 // -----------------------------------------

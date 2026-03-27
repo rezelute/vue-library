@@ -1,10 +1,9 @@
-// general
-export { default as ThemeToggle } from "./themeToggle/ThemeToggle.vue"
-export { default as SiteNavigation } from "./siteNavigation/SiteNavigation.vue"
-export { default as AppErrorInfo } from "./appErrorInfo/AppErrorInfo.vue"
-export { default as ScrollToTop } from "./scrollToTop/scrollToTop.vue"
-export { default as Heading } from "./heading/Heading.vue"
-export type { HeadingProps } from "./heading/Heading.vue"
+// layout
+export { default as ThemeToggle } from "./layout/ThemeToggle.vue"
+export { default as SiteNavigation } from "./layout/SiteNavigation.vue"
+export { default as ScrollToTop } from "./layout/scrollToTop.vue"
+export { default as Heading } from "./layout/Heading.vue"
+export type { HeadingProps } from "./layout/Heading.vue"
 // loaders
 export { default as PageLoader } from "./loading/PageLoader.vue"
 export type { PageLoaderProps } from "./loading/PageLoader.vue"
@@ -15,14 +14,13 @@ export { default as InputSkeleton } from "./loading/InputSkeleton.vue"
 export { default as UserAccountInfo } from "./account/UserAccountInfo.vue"
 export { default as ChangeEmailRequest } from "./account/ChangeEmailRequest.vue"
 export { default as DeleteAccountRequest } from "./account/DeleteAccountRequest.vue"
-// form field
-export { default as FormField } from "./formField/FormField.vue"
-export type { FormFieldProps } from "./formField/FormField.vue"
-export { default as NameInput } from "./formField/NameInput.vue"
-
-// toast
-export { default as ToastProgress } from "./toast/ToastProgress.vue"
-
+// form
+export { default as FormField } from "./form/FormField.vue"
+export type { FormFieldProps } from "./form/FormField.vue"
+export { default as NameInput } from "./form/NameInput.vue"
+// feedback
+export { default as AppErrorInfo } from "./feedback/AppErrorInfo.vue"
+export { default as ToastProgress } from "./feedback/ToastProgress.vue"
 // auth
-export { default as SignInUpForm } from "./SignInUp/SignInUpForm.vue"
-export { default as SignInUpVerifyCode } from "./SignInUp/SignInUpVerifyCode.vue"
+export { default as SignInUpForm } from "./auth/SignInUpForm.vue"
+export { default as SignInUpVerifyCode } from "./auth/SignInUpVerifyCode.vue"
