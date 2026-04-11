@@ -1,0 +1,39 @@
+@layer components {
+   /* Generic Spacing */
+   /*-------------------*/
+   .vstack-xl {
+      @apply flex flex-col gap-12;
+   }
+   .vstack-lg {
+      @apply flex flex-col gap-10;
+   }
+   .vstack-md {
+      @apply flex flex-col gap-6;
+   }
+   .vstack-sm {
+      @apply flex flex-col gap-4;
+   }
+
+   /* Component Spacing */
+   /*-------------------*/
+   /* Spacing between page groups */
+   .vstack-page {
+      @apply flex flex-col gap-12;
+   }
+   /* Spacing between form groups */
+   .vstack-form {
+      @apply flex flex-col gap-5;
+   }
+
+   /* Surface Padding */
+   /*-------------------*/
+   .surface-p-sm {
+      @apply p-1 sm:p-6;
+   }
+   .surface-p-md {
+      @apply p-1 sm:p-8;
+   }
+   .surface-p-lg {
+      @apply p-1 sm:p-12;
+   }
+}

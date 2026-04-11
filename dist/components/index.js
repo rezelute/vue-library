@@ -1,5 +1,5 @@
-import { useId as yn, mergeProps as f, createElementBlock as m, openBlock as u, createElementVNode as b, renderSlot as y, createTextVNode as nt, toDisplayString as E, resolveComponent as Z, resolveDirective as At, withDirectives as jt, createBlock as P, resolveDynamicComponent as K, withCtx as k, createCommentVNode as S, normalizeClass as H, defineComponent as j, ref as et, computed as U, onMounted as Zt, unref as T, Teleport as wn, createVNode as C, Transition as Gt, Fragment as dt, mergeModels as X, useModel as Mt, createStaticVNode as $n, onUnmounted as kn, useCssVars as Sn, withKeys as Cn, withModifiers as he, watch as xn, normalizeProps as Pn, TransitionGroup as _n, renderList as Ke, reactive as Tn, normalizeStyle as In, useSlots as Ln, nextTick as zn } from "vue";
-import { m as ne, B as L, a as st, C as He, s as lt, g as Q, F as We, N as J, S as R, c as Ze, z as On, b as En, l as Bt, n as An, i as $e, P as Vt, Q as jn, d as Qt, T as ke, R as Se, v as Ge, e as qe, K as Mn, W as ve, U as Xe, L as Bn, f as rt, h as ct, I as Ce, t as Dn, j as Vn, r as Ye, k as Fn, o as Nn, p as Rn, _ as Je, q as Un, Y as Kn } from "../index-jXfYvV6o.js";
+import { useId as yn, mergeProps as f, createElementBlock as m, openBlock as u, createElementVNode as b, renderSlot as y, createTextVNode as nt, toDisplayString as E, resolveComponent as Z, resolveDirective as At, withDirectives as jt, createBlock as P, resolveDynamicComponent as K, withCtx as k, createCommentVNode as S, normalizeClass as H, defineComponent as j, ref as et, computed as U, onMounted as Zt, unref as T, Teleport as wn, createVNode as C, Transition as Gt, Fragment as dt, mergeModels as X, useModel as Mt, onUnmounted as $n, createStaticVNode as kn, useCssVars as Sn, withKeys as Cn, withModifiers as he, watch as xn, normalizeProps as Pn, TransitionGroup as _n, renderList as Ke, reactive as Tn, normalizeStyle as In, useSlots as Ln, nextTick as zn } from "vue";
+import { m as ne, B as L, a as st, C as He, s as lt, g as Q, F as We, N as J, S as R, c as Ze, z as On, b as En, l as Bt, n as An, i as $e, P as Vt, Q as jn, d as Qt, T as ke, R as Se, v as Ge, e as qe, K as Mn, W as ve, U as Xe, L as Bn, f as it, h as ct, I as Ce, t as Dn, j as Vn, r as Ye, k as Fn, o as Nn, p as Rn, _ as Je, q as Un, Y as Kn } from "../index-jXfYvV6o.js";
 import { z as Qe } from "zod";
 import { Skeleton as Hn } from "primevue";
 function V(...t) {
@@ -2229,7 +2229,7 @@ function Zo(t, e, n, o, i, r) {
   }, 16, ["class", "data-p"])), [[a]]);
 }
 F.render = Zo;
-const cl = /* @__PURE__ */ j({
+const pl = /* @__PURE__ */ j({
   __name: "ThemeToggle",
   setup(t) {
     const e = et("light"), n = U(() => e.value === "light" ? "pi pi-sun" : "pi pi-moon");
@@ -2368,7 +2368,7 @@ var an = er.extend("focustrap", {
               var g = Ce(p) ? Ce(p, o.getComputedSelector(e.$_pfocustrap_focusableselector)) ? p : ct(e, o.getComputedSelector(e.$_pfocustrap_focusableselector)) : ct(p);
               return lt(g) ? g : p.nextSibling && d(p.nextSibling);
             };
-            rt(d(a.nextSibling));
+            it(d(a.nextSibling));
           }
         });
       }), e.$_pfocustrap_mutationobserver.disconnect(), e.$_pfocustrap_mutationobserver.observe(e, {
@@ -2391,15 +2391,15 @@ var an = er.extend("focustrap", {
     },
     autoElementFocus: function(e, n) {
       var o = n.value || {}, i = o.autoFocusSelector, r = i === void 0 ? "" : i, l = o.firstFocusableSelector, s = l === void 0 ? "" : l, a = o.autoFocus, d = a === void 0 ? !1 : a, c = ct(e, "[autofocus]".concat(this.getComputedSelector(r)));
-      d && !c && (c = ct(e, this.getComputedSelector(s))), rt(c);
+      d && !c && (c = ct(e, this.getComputedSelector(s))), it(c);
     },
     onFirstHiddenElementFocus: function(e) {
       var n, o = e.currentTarget, i = e.relatedTarget, r = i === o.$_pfocustrap_lasthiddenfocusableelement || !((n = this.$el) !== null && n !== void 0 && n.contains(i)) ? ct(o.parentElement, this.getComputedSelector(o.$_pfocustrap_focusableselector)) : o.$_pfocustrap_lasthiddenfocusableelement;
-      rt(r);
+      it(r);
     },
     onLastHiddenElementFocus: function(e) {
       var n, o = e.currentTarget, i = e.relatedTarget, r = i === o.$_pfocustrap_firsthiddenfocusableelement || !((n = this.$el) !== null && n !== void 0 && n.contains(i)) ? Bn(o.parentElement, this.getComputedSelector(o.$_pfocustrap_focusableselector)) : o.$_pfocustrap_firsthiddenfocusableelement;
-      rt(r);
+      it(r);
     },
     createHiddenFocusableElements: function(e, n) {
       var o = this, i = n.value || {}, r = i.tabIndex, l = r === void 0 ? 0 : r, s = i.firstFocusableSelector, a = s === void 0 ? "" : s, d = i.lastFocusableSelector, c = d === void 0 ? "" : d, p = function(z) {
@@ -2837,7 +2837,7 @@ var sn = {
       var e = function(i) {
         return i && i.querySelector("[autofocus]");
       }, n = this.$slots.header && e(this.headerContainer);
-      n || (n = this.$slots.default && e(this.container), n || (n = this.$slots.footer && e(this.footerContainer), n || (n = this.closeButton))), n && rt(n);
+      n || (n = this.$slots.default && e(this.container), n || (n = this.$slots.footer && e(this.footerContainer), n || (n = this.closeButton))), n && it(n);
     },
     enableDocumentSettings: function() {
       this.dismissable && !this.modal && this.bindOutsideClickListener(), this.blockScroll && le();
@@ -3005,7 +3005,7 @@ const gr = {
 }, kr = {
   key: 0,
   class: "border-t border-surface-200 dark:border-surface-700 pt-4 pb-2 flex flex-col gap-1 mt-20"
-}, pl = /* @__PURE__ */ j({
+}, fl = /* @__PURE__ */ j({
   __name: "SiteNavigation",
   props: /* @__PURE__ */ X({
     position: { default: "fixed" },
@@ -3098,8 +3098,190 @@ const gr = {
       }, 8, ["visible", "pt"])
     ], 64));
   }
-});
-var Sr = `
+}), Sr = /* @__PURE__ */ j({
+  __name: "scrollToTop",
+  setup(t) {
+    const e = et(!1);
+    function n() {
+      e.value = window.scrollY > 0;
+    }
+    function o() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    return Zt(() => {
+      window.addEventListener("scroll", n), n();
+    }), $n(() => {
+      window.removeEventListener("scroll", n);
+    }), (i, r) => e.value ? (u(), P(T(F), {
+      key: 0,
+      class: "scroll-to-top-btn",
+      icon: "pi pi-arrow-up",
+      rounded: "",
+      "aria-label": "Scroll to top",
+      onClick: o
+    })) : S("", !0);
+  }
+}), rt = (t, e) => {
+  const n = t.__vccOpts || t;
+  for (const [o, i] of e)
+    n[o] = i;
+  return n;
+}, ml = /* @__PURE__ */ rt(Sr, [["__scopeId", "data-v-aca2c546"]]), Cr = /* @__PURE__ */ j({
+  __name: "Heading",
+  props: {
+    textSize: {},
+    marginBtmSize: {},
+    tag: {}
+  },
+  setup(t) {
+    const e = t, n = U(() => e.textSize ? `heading-${e.textSize}` : "heading-lg"), o = U(() => e.marginBtmSize ? `heading-mb-${e.marginBtmSize}` : "");
+    return (i, r) => (u(), P(K(t.tag), {
+      class: H(["heading", n.value, o.value])
+    }, {
+      default: k(() => [
+        y(i.$slots, "default", {}, void 0, !0)
+      ]),
+      _: 3
+    }, 8, ["class"]));
+  }
+}), Dt = /* @__PURE__ */ rt(Cr, [["__scopeId", "data-v-6124b454"]]);
+var xr = `
+    .p-progressspinner {
+        position: relative;
+        margin: 0 auto;
+        width: 100px;
+        height: 100px;
+        display: inline-block;
+    }
+
+    .p-progressspinner::before {
+        content: '';
+        display: block;
+        padding-top: 100%;
+    }
+
+    .p-progressspinner-spin {
+        height: 100%;
+        transform-origin: center center;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        animation: p-progressspinner-rotate 2s linear infinite;
+    }
+
+    .p-progressspinner-circle {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: 0;
+        stroke: dt('progressspinner.colorOne');
+        animation:
+            p-progressspinner-dash 1.5s ease-in-out infinite,
+            p-progressspinner-color 6s ease-in-out infinite;
+        stroke-linecap: round;
+    }
+
+    @keyframes p-progressspinner-rotate {
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    @keyframes p-progressspinner-dash {
+        0% {
+            stroke-dasharray: 1, 200;
+            stroke-dashoffset: 0;
+        }
+        50% {
+            stroke-dasharray: 89, 200;
+            stroke-dashoffset: -35px;
+        }
+        100% {
+            stroke-dasharray: 89, 200;
+            stroke-dashoffset: -124px;
+        }
+    }
+    @keyframes p-progressspinner-color {
+        100%,
+        0% {
+            stroke: dt('progressspinner.color.one');
+        }
+        40% {
+            stroke: dt('progressspinner.color.two');
+        }
+        66% {
+            stroke: dt('progressspinner.color.three');
+        }
+        80%,
+        90% {
+            stroke: dt('progressspinner.color.four');
+        }
+    }
+`, Pr = {
+  root: "p-progressspinner",
+  spin: "p-progressspinner-spin",
+  circle: "p-progressspinner-circle"
+}, _r = L.extend({
+  name: "progressspinner",
+  style: xr,
+  classes: Pr
+}), Tr = {
+  name: "BaseProgressSpinner",
+  extends: N,
+  props: {
+    strokeWidth: {
+      type: String,
+      default: "2"
+    },
+    fill: {
+      type: String,
+      default: "none"
+    },
+    animationDuration: {
+      type: String,
+      default: "2s"
+    }
+  },
+  style: _r,
+  provide: function() {
+    return {
+      $pcProgressSpinner: this,
+      $parentInstance: this
+    };
+  }
+}, ye = {
+  name: "ProgressSpinner",
+  extends: Tr,
+  inheritAttrs: !1,
+  computed: {
+    svgStyle: function() {
+      return {
+        "animation-duration": this.animationDuration
+      };
+    }
+  }
+}, Ir = ["fill", "stroke-width"];
+function Lr(t, e, n, o, i, r) {
+  return u(), m("div", f({
+    class: t.cx("root"),
+    role: "progressbar"
+  }, t.ptmi("root")), [(u(), m("svg", f({
+    class: t.cx("spin"),
+    viewBox: "25 25 50 50",
+    style: r.svgStyle
+  }, t.ptm("spin")), [b("circle", f({
+    class: t.cx("circle"),
+    cx: "50",
+    cy: "50",
+    r: "20",
+    fill: t.fill,
+    "stroke-width": t.strokeWidth,
+    strokeMiterlimit: "10"
+  }, t.ptm("circle")), null, 16, Ir)], 16))], 16);
+}
+ye.render = Lr;
+var zr = `
     .p-card {
         background: dt('card.background');
         color: dt('card.color');
@@ -3130,7 +3312,7 @@ var Sr = `
     .p-card-subtitle {
         color: dt('card.subtitle.color');
     }
-`, Cr = {
+`, Or = {
   root: "p-card p-component",
   header: "p-card-header",
   body: "p-card-body",
@@ -3139,26 +3321,26 @@ var Sr = `
   subtitle: "p-card-subtitle",
   content: "p-card-content",
   footer: "p-card-footer"
-}, xr = L.extend({
+}, Er = L.extend({
   name: "card",
-  style: Sr,
-  classes: Cr
-}), Pr = {
+  style: zr,
+  classes: Or
+}), Ar = {
   name: "BaseCard",
   extends: N,
-  style: xr,
+  style: Er,
   provide: function() {
     return {
       $pcCard: this,
       $parentInstance: this
     };
   }
-}, it = {
+}, at = {
   name: "Card",
-  extends: Pr,
+  extends: Ar,
   inheritAttrs: !1
 };
-function _r(t, e, n, o, i, r) {
+function jr(t, e, n, o, i, r) {
   return u(), m("div", f({
     class: t.cx("root")
   }, t.ptmi("root")), [t.$slots.header ? (u(), m("div", f({
@@ -3182,22 +3364,17 @@ function _r(t, e, n, o, i, r) {
     class: t.cx("footer")
   }, t.ptm("footer")), [y(t.$slots, "footer")], 16)) : S("", !0)], 16)], 16);
 }
-it.render = _r;
-const at = (t, e) => {
-  const n = t.__vccOpts || t;
-  for (const [o, i] of e)
-    n[o] = i;
-  return n;
-}, Tr = {}, Ir = {
+at.render = jr;
+const Mr = {}, Br = {
   x: "0px",
   y: "0px",
   viewBox: "0 0 500 450",
   style: { "enable-background": "new 0 0 500 450" }
 };
-function Lr(t, e) {
+function Dr(t, e) {
   return u(), m("div", null, [
-    (u(), m("svg", Ir, [...e[0] || (e[0] = [
-      $n(`<g id="BACKGROUND"><rect style="fill:none;stroke-miterlimit:10;" width="500" height="450"></rect><g><polygon style="fill:#cad2f9;" points="388.296,114.275 382.231,114.275 382.231,108.21 377.927,108.21 377.927,114.275
+    (u(), m("svg", Br, [...e[0] || (e[0] = [
+      kn(`<g id="BACKGROUND"><rect style="fill:none;stroke-miterlimit:10;" width="500" height="450"></rect><g><polygon style="fill:#cad2f9;" points="388.296,114.275 382.231,114.275 382.231,108.21 377.927,108.21 377.927,114.275
 			371.863,114.275 371.863,118.579 377.927,118.579 377.927,124.645 382.231,124.645 382.231,118.579 388.296,118.579 		"></polygon><polygon style="fill:#cad2f9;" points="351.733,91.401 347.335,91.401 347.335,87.002 344.213,87.002 344.213,91.401
 			339.815,91.401 339.815,94.523 344.213,94.523 344.213,98.921 347.335,98.921 347.335,94.523 351.733,94.523 		"></polygon><polygon style="fill:#cad2f9;" points="161.694,162.728 157.295,162.728 157.295,158.329 154.174,158.329 154.174,162.728
 			149.776,162.728 149.776,165.849 154.174,165.849 154.174,170.248 157.295,170.248 157.295,165.849 161.694,165.849 		"></polygon><polygon style="fill:#cad2f9;" points="42.831,261.986 36.766,261.986 36.766,255.92 32.462,255.92 32.462,261.986
@@ -3364,7 +3541,7 @@ function Lr(t, e) {
     ])]))
   ]);
 }
-const zr = /* @__PURE__ */ at(Tr, [["render", Lr]]), Or = { class: "text-center" }, Er = { class: "mx-auto" }, Ar = { class: "mt-4 text-lg sm:text-xl" }, jr = /* @__PURE__ */ j({
+const Vr = /* @__PURE__ */ rt(Mr, [["render", Dr]]), Fr = { class: "text-center" }, Nr = { class: "mx-auto" }, Rr = { class: "mt-4 text-lg sm:text-xl" }, Ur = /* @__PURE__ */ j({
   __name: "AppErrorInfo",
   props: {
     errorText: {}
@@ -3373,16 +3550,16 @@ const zr = /* @__PURE__ */ at(Tr, [["render", Lr]]), Or = { class: "text-center"
     function e() {
       window.location.reload();
     }
-    return (n, o) => (u(), P(T(it), { class: "p-2 sm:p-10 w-full" }, {
+    return (n, o) => (u(), P(T(at), { class: "p-2 sm:p-10 w-full" }, {
       title: k(() => [...o[0] || (o[0] = [
         b("h1", { class: "text-2xl sm:text-3xl font-semibold text-gray-800 text-center" }, "Oops!", -1)
       ])]),
       content: k(() => [
-        b("div", Or, [
-          b("div", Er, [
-            C(zr, { class: "mx-auto max-w-70 text-primary slow-pulse" })
+        b("div", Fr, [
+          b("div", Nr, [
+            C(Vr, { class: "mx-auto max-w-70 text-primary slow-pulse" })
           ]),
-          b("p", Ar, E(t.errorText || "Something went wrong! We have been notified about this automatically. Try refreshing the page or come back later."), 1),
+          b("p", Rr, E(t.errorText || "Something went wrong! We have been notified about this automatically. Try refreshing the page or come back later."), 1),
           C(T(F), {
             label: "Retry",
             type: "button",
@@ -3394,185 +3571,7 @@ const zr = /* @__PURE__ */ at(Tr, [["render", Lr]]), Or = { class: "text-center"
       _: 1
     }));
   }
-}), Mr = /* @__PURE__ */ at(jr, [["__scopeId", "data-v-0584d60b"]]), Br = /* @__PURE__ */ j({
-  __name: "scrollToTop",
-  setup(t) {
-    const e = et(!1);
-    function n() {
-      e.value = window.scrollY > 0;
-    }
-    function o() {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-    return Zt(() => {
-      window.addEventListener("scroll", n), n();
-    }), kn(() => {
-      window.removeEventListener("scroll", n);
-    }), (i, r) => e.value ? (u(), P(T(F), {
-      key: 0,
-      class: "scroll-to-top-btn",
-      icon: "pi pi-arrow-up",
-      rounded: "",
-      "aria-label": "Scroll to top",
-      onClick: o
-    })) : S("", !0);
-  }
-}), fl = /* @__PURE__ */ at(Br, [["__scopeId", "data-v-34846df9"]]), Dr = /* @__PURE__ */ j({
-  __name: "Heading",
-  props: {
-    textSize: {},
-    marginBtmSize: {},
-    tag: {}
-  },
-  setup(t) {
-    const e = t, n = U(() => e.textSize ? `heading-${e.textSize}` : "heading-lg"), o = U(() => e.marginBtmSize ? `heading-mb-${e.marginBtmSize}` : "");
-    return (i, r) => (u(), P(K(t.tag), {
-      class: H(["heading", n.value, o.value])
-    }, {
-      default: k(() => [
-        y(i.$slots, "default", {}, void 0, !0)
-      ]),
-      _: 3
-    }, 8, ["class"]));
-  }
-}), Dt = /* @__PURE__ */ at(Dr, [["__scopeId", "data-v-2f9a6a94"]]);
-var Vr = `
-    .p-progressspinner {
-        position: relative;
-        margin: 0 auto;
-        width: 100px;
-        height: 100px;
-        display: inline-block;
-    }
-
-    .p-progressspinner::before {
-        content: '';
-        display: block;
-        padding-top: 100%;
-    }
-
-    .p-progressspinner-spin {
-        height: 100%;
-        transform-origin: center center;
-        width: 100%;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        margin: auto;
-        animation: p-progressspinner-rotate 2s linear infinite;
-    }
-
-    .p-progressspinner-circle {
-        stroke-dasharray: 89, 200;
-        stroke-dashoffset: 0;
-        stroke: dt('progressspinner.colorOne');
-        animation:
-            p-progressspinner-dash 1.5s ease-in-out infinite,
-            p-progressspinner-color 6s ease-in-out infinite;
-        stroke-linecap: round;
-    }
-
-    @keyframes p-progressspinner-rotate {
-        100% {
-            transform: rotate(360deg);
-        }
-    }
-    @keyframes p-progressspinner-dash {
-        0% {
-            stroke-dasharray: 1, 200;
-            stroke-dashoffset: 0;
-        }
-        50% {
-            stroke-dasharray: 89, 200;
-            stroke-dashoffset: -35px;
-        }
-        100% {
-            stroke-dasharray: 89, 200;
-            stroke-dashoffset: -124px;
-        }
-    }
-    @keyframes p-progressspinner-color {
-        100%,
-        0% {
-            stroke: dt('progressspinner.color.one');
-        }
-        40% {
-            stroke: dt('progressspinner.color.two');
-        }
-        66% {
-            stroke: dt('progressspinner.color.three');
-        }
-        80%,
-        90% {
-            stroke: dt('progressspinner.color.four');
-        }
-    }
-`, Fr = {
-  root: "p-progressspinner",
-  spin: "p-progressspinner-spin",
-  circle: "p-progressspinner-circle"
-}, Nr = L.extend({
-  name: "progressspinner",
-  style: Vr,
-  classes: Fr
-}), Rr = {
-  name: "BaseProgressSpinner",
-  extends: N,
-  props: {
-    strokeWidth: {
-      type: String,
-      default: "2"
-    },
-    fill: {
-      type: String,
-      default: "none"
-    },
-    animationDuration: {
-      type: String,
-      default: "2s"
-    }
-  },
-  style: Nr,
-  provide: function() {
-    return {
-      $pcProgressSpinner: this,
-      $parentInstance: this
-    };
-  }
-}, ye = {
-  name: "ProgressSpinner",
-  extends: Rr,
-  inheritAttrs: !1,
-  computed: {
-    svgStyle: function() {
-      return {
-        "animation-duration": this.animationDuration
-      };
-    }
-  }
-}, Ur = ["fill", "stroke-width"];
-function Kr(t, e, n, o, i, r) {
-  return u(), m("div", f({
-    class: t.cx("root"),
-    role: "progressbar"
-  }, t.ptmi("root")), [(u(), m("svg", f({
-    class: t.cx("spin"),
-    viewBox: "25 25 50 50",
-    style: r.svgStyle
-  }, t.ptm("spin")), [b("circle", f({
-    class: t.cx("circle"),
-    cx: "50",
-    cy: "50",
-    r: "20",
-    fill: t.fill,
-    "stroke-width": t.strokeWidth,
-    strokeMiterlimit: "10"
-  }, t.ptm("circle")), null, 16, Ur)], 16))], 16);
-}
-ye.render = Kr;
-const Hr = {
+}), Kr = /* @__PURE__ */ rt(Ur, [["__scopeId", "data-v-a4fd2443"]]), Hr = {
   key: "loading",
   class: "min-h-dvh flex items-center justify-center",
   role: "status",
@@ -3614,7 +3613,7 @@ const Hr = {
             ])
           ])) : t.showError ? (u(), m("div", qr, [
             y(e.$slots, "error", {}, () => [
-              C(Mr, {
+              C(Kr, {
                 errorText: t.errorText,
                 class: "max-w-xl"
               }, null, 8, ["errorText"])
@@ -3627,7 +3626,7 @@ const Hr = {
       })
     ]));
   }
-}), ml = /* @__PURE__ */ at(Yr, [["__scopeId", "data-v-b04d0e48"]]), Jr = {
+}), bl = /* @__PURE__ */ rt(Yr, [["__scopeId", "data-v-9981e716"]]), Jr = {
   key: 0,
   class: "bar"
 }, Qr = /* @__PURE__ */ j({
@@ -3647,7 +3646,7 @@ const Hr = {
       b("div", null, null, -1)
     ])])) : S("", !0);
   }
-}), bl = /* @__PURE__ */ at(Qr, [["__scopeId", "data-v-bacfecf1"]]);
+}), gl = /* @__PURE__ */ rt(Qr, [["__scopeId", "data-v-bacfecf1"]]);
 var ln = {
   name: "WindowMaximizeIcon",
   extends: ot
@@ -4074,7 +4073,7 @@ var pi = `
       this.modal && !this.isUnstyled && ve(this.mask, "p-overlay-mask-leave-active"), this.dragging && this.documentDragEndListener && this.documentDragEndListener();
     },
     onLeave: function() {
-      this.$emit("hide"), rt(this.target), this.target = null, this.focusableClose = null, this.focusableMax = null;
+      this.$emit("hide"), it(this.target), this.target = null, this.focusableClose = null, this.focusableMax = null;
     },
     onAfterLeave: function() {
       this.autoZIndex && q.clear(this.mask), this.containerVisible = !1, this.unbindDocumentState(), this.unbindGlobalListeners(), this.$emit("after-hide");
@@ -4089,7 +4088,7 @@ var pi = `
       var e = function(i) {
         return i && i.querySelector("[autofocus]");
       }, n = this.$slots.footer && e(this.footerContainer);
-      n || (n = this.$slots.header && e(this.headerContainer), n || (n = this.$slots.default && e(this.content), n || (this.maximizable ? (this.focusableMax = !0, n = this.maximizableButton) : (this.focusableClose = !0, n = this.closeButton)))), n && rt(n, {
+      n || (n = this.$slots.header && e(this.headerContainer), n || (n = this.$slots.default && e(this.content), n || (this.maximizable ? (this.focusableMax = !0, n = this.maximizableButton) : (this.focusableClose = !0, n = this.closeButton)))), n && it(n, {
         focusVisible: !0
       });
     },
@@ -4404,7 +4403,7 @@ un.render = Ci;
 const xi = { class: "dialog-loader" }, Pi = { class: "flex flex-col justify-center" }, _i = {
   key: 0,
   class: "mt-8 text-center"
-}, gl = /* @__PURE__ */ j({
+}, hl = /* @__PURE__ */ j({
   __name: "DialogLoader",
   props: {
     visible: { type: Boolean },
@@ -4618,7 +4617,7 @@ const Di = /* @__PURE__ */ j({
 }, Ui = { class: "flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-4 py-6 border-b border-surface first:pt-0 last:border-b-0 last:pb-0" }, Ki = { class: "min-w-0 m-0" }, Hi = {
   key: 1,
   class: "break-all"
-}, hl = /* @__PURE__ */ j({
+}, vl = /* @__PURE__ */ j({
   __name: "UserAccountInfo",
   props: {
     userId: {},
@@ -4627,7 +4626,7 @@ const Di = /* @__PURE__ */ j({
     headingText: { default: "Your details" }
   },
   setup(t) {
-    return (e, n) => (u(), P(T(it), null, {
+    return (e, n) => (u(), P(T(at), null, {
       title: k(() => [
         y(e.$slots, "header", {}, () => [
           C(Dt, {
@@ -5671,7 +5670,7 @@ const ha = { class: "flex flex-col gap-1" }, va = ["for"], ya = {
       ])
     ]));
   }
-}), Ca = { key: 0 }, xa = { class: "text-primary break-all px-2" }, vl = /* @__PURE__ */ j({
+}), Ca = { key: 0 }, xa = { class: "text-primary break-all px-2" }, yl = /* @__PURE__ */ j({
   __name: "ChangeEmailRequest",
   props: /* @__PURE__ */ X({
     isEmailSent: { type: Boolean },
@@ -5690,7 +5689,7 @@ const ha = { class: "flex flex-col gap-1" }, va = ["for"], ya = {
     function s() {
       i.value = !0, r.value && n("requestEmailChange", { email: o.value });
     }
-    return (a, d) => (u(), P(T(it), null, {
+    return (a, d) => (u(), P(T(at), null, {
       title: k(() => [
         y(a.$slots, "header", {}, () => [
           C(Dt, {
@@ -5746,7 +5745,7 @@ const ha = { class: "flex flex-col gap-1" }, va = ["for"], ya = {
 }), Pa = {
   key: 0,
   class: "vstack-form"
-}, yl = /* @__PURE__ */ j({
+}, wl = /* @__PURE__ */ j({
   __name: "DeleteAccountRequest",
   props: {
     isDeleteEmailSent: { type: Boolean },
@@ -5759,7 +5758,7 @@ const ha = { class: "flex flex-col gap-1" }, va = ["for"], ya = {
     function i() {
       o("sendDeleteEmail");
     }
-    return (r, l) => (u(), P(T(it), null, {
+    return (r, l) => (u(), P(T(at), null, {
       title: k(() => [
         y(r.$slots, "header", {}, () => [
           C(Dt, {
@@ -5796,7 +5795,7 @@ const ha = { class: "flex flex-col gap-1" }, va = ["for"], ya = {
       _: 3
     }));
   }
-}), _a = { class: "vstack-form" }, Ta = "Name can be letters only, at least 2 characters and max 50 characters", wl = /* @__PURE__ */ j({
+}), _a = { class: "vstack-form" }, Ta = "Name can be letters only, at least 2 characters and max 50 characters", $l = /* @__PURE__ */ j({
   __name: "NameInput",
   props: /* @__PURE__ */ X({
     label: {},
@@ -7004,10 +7003,10 @@ const Es = ["onMouseenter", "onMouseleave"], As = { class: "p-toast-message-cont
       _: 1
     }, 16));
   }
-}), $l = /* @__PURE__ */ at(Fs, [["__scopeId", "data-v-481e6c61"]]), Ns = {
+}), kl = /* @__PURE__ */ rt(Fs, [["__scopeId", "data-v-0e3d49b0"]]), Ns = {
   key: 0,
   class: "flex items-center my-10"
-}, kl = /* @__PURE__ */ j({
+}, Sl = /* @__PURE__ */ j({
   __name: "SignInUpForm",
   props: /* @__PURE__ */ X({
     title: { default: "Sign in" },
@@ -7029,7 +7028,7 @@ const Es = ["onMouseenter", "onMouseleave"], As = { class: "p-toast-message-cont
         isValid: r.value
       });
     }
-    return (d, c) => (u(), P(T(it), { class: "max-w-xl p-12 w-full" }, {
+    return (d, c) => (u(), P(T(at), { class: "max-w-xl w-full surface-p-lg" }, {
       title: k(() => [
         C(Dt, {
           tag: "h1",
@@ -7502,7 +7501,7 @@ function nl(t, e, n, o, i, r) {
   }), 128))], 16);
 }
 vn.render = nl;
-const ol = { class: "px-4 py-8 sm:p-8" }, rl = { class: "max-w-xl mx-auto mb-2" }, il = { class: "vstack-form" }, al = { class: "vstack-form" }, Sl = /* @__PURE__ */ j({
+const ol = { class: "px-4 py-8 sm:p-8" }, rl = { class: "max-w-xl mx-auto mb-2" }, il = { class: "vstack-form" }, al = { class: "vstack-form" }, sl = /* @__PURE__ */ j({
   __name: "SignInUpVerifyCode",
   props: {
     title: { default: "Input validation code" },
@@ -7538,7 +7537,7 @@ const ol = { class: "px-4 py-8 sm:p-8" }, rl = { class: "max-w-xl mx-auto mb-2" 
           onClick: g
         })
       ]),
-      C(T(it), { class: "max-w-xl p-0 sm:p-12 w-full mx-auto" }, {
+      C(T(at), { class: "max-w-xl surface-p-lg w-full mx-auto" }, {
         title: k(() => [
           C(Dt, {
             tag: "h1",
@@ -7558,14 +7557,18 @@ const ol = { class: "px-4 py-8 sm:p-8" }, rl = { class: "max-w-xl mx-auto mb-2" 
             }, ["prevent"]))
           }, [
             b("div", il, [
-              y(v.$slots, "description"),
+              y(v.$slots, "description", {}, void 0, !0),
               C(we, {
                 id: "magic-code-input",
+                class: "mb-4",
                 error: a.value ? s.value : "",
                 "data-test": "auth-error-message"
               }, {
                 default: k(() => [
-                  b("div", { onPasteCapture: c }, [
+                  b("div", {
+                    class: "otp-wrapper flex justify-center sm:justify-start",
+                    onPasteCapture: c
+                  }, [
                     C(T(vn), {
                       id: "magic-code-input",
                       modelValue: i.value,
@@ -7581,7 +7584,7 @@ const ol = { class: "px-4 py-8 sm:p-8" }, rl = { class: "max-w-xl mx-auto mb-2" 
               }, 8, ["error"]),
               C(T(F), {
                 label: "Submit code",
-                class: "w-fit",
+                class: "w-full sm:w-fit",
                 type: "submit",
                 loading: t.isSubmittingCode,
                 disabled: t.isResendingCode,
@@ -7591,9 +7594,9 @@ const ol = { class: "px-4 py-8 sm:p-8" }, rl = { class: "max-w-xl mx-auto mb-2" 
             ]),
             C(T(hn)),
             b("div", al, [
-              y(v.$slots, "resend-description"),
+              y(v.$slots, "resend-description", {}, void 0, !0),
               C(T(F), {
-                class: "w-fit",
+                class: "w-full sm:w-fit",
                 label: "Resend code",
                 variant: "outlined",
                 type: "button",
@@ -7609,23 +7612,23 @@ const ol = { class: "px-4 py-8 sm:p-8" }, rl = { class: "max-w-xl mx-auto mb-2" 
       })
     ]));
   }
-});
+}), Cl = /* @__PURE__ */ rt(sl, [["__scopeId", "data-v-9a0740d5"]]);
 export {
-  Mr as AppErrorInfo,
-  vl as ChangeEmailRequest,
-  yl as DeleteAccountRequest,
-  gl as DialogLoader,
+  Kr as AppErrorInfo,
+  yl as ChangeEmailRequest,
+  wl as DeleteAccountRequest,
+  hl as DialogLoader,
   we as FormField,
   Dt as Heading,
   Di as InputSkeleton,
-  wl as NameInput,
-  bl as PageInfiniteLoader,
-  ml as PageLoader,
-  fl as ScrollToTop,
-  kl as SignInUpForm,
-  Sl as SignInUpVerifyCode,
-  pl as SiteNavigation,
-  cl as ThemeToggle,
-  $l as ToastProgress,
-  hl as UserAccountInfo
+  $l as NameInput,
+  gl as PageInfiniteLoader,
+  bl as PageLoader,
+  ml as ScrollToTop,
+  Sl as SignInUpForm,
+  Cl as SignInUpVerifyCode,
+  fl as SiteNavigation,
+  pl as ThemeToggle,
+  kl as ToastProgress,
+  vl as UserAccountInfo
 };
