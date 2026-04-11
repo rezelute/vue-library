@@ -13,7 +13,7 @@
          />
       </div>
 
-      <Card class="max-w-xl card-p-lg w-full mx-auto">
+      <Card class="max-w-xl surface-p-lg w-full mx-auto">
          <template #title>
             <Heading tag="h1" textSize="md" marginBtmSize="sm">{{ title }}</Heading>
          </template>
@@ -30,7 +30,10 @@
                      :error="showError ? codeValidationMessage : ''"
                      data-test="auth-error-message"
                   >
-                     <div class="otp-wrapper flex justify-center sm:justify-start" @paste.capture="onPaste">
+                     <div
+                        class="otp-wrapper flex justify-center sm:justify-start"
+                        @paste.capture="onPaste"
+                     >
                         <InputOtp
                            id="magic-code-input"
                            v-model="userMagicCode"

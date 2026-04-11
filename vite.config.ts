@@ -40,10 +40,9 @@ export default defineConfig({
             // manually copy tailwindcss config file to dist folder
             copy({
                targets: [
-                  {
-                     src: "src/assets/styles/tailwind-config.css",
-                     dest: "dist",
-                  },
+                  { src: "src/assets/styles/tailwind-config.css", dest: "dist" },
+                  { src: "src/assets/styles/tailwind-utilities.css", dest: "dist" },
+                  { src: "src/assets/styles/tailwind-theme.css", dest: "dist" },
                ],
                verbose: true, // Optional: logs output
                hook: "writeBundle", // Ensures it runs after build output

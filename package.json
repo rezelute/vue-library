@@ -38,6 +38,12 @@
       "./tailwind-config.css": {
          "default": "./dist/tailwind-config.css"
       },
+      "./tailwind-utilities.css": {
+         "default": "./dist/tailwind-utilities.css"
+      },
+      "./tailwind-theme.css": {
+         "default": "./dist/tailwind-theme.css"
+      },
       "./vue-library.css": {
          "default": "./dist/vue-library.css"
       }
