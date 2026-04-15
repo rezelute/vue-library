@@ -424,8 +424,7 @@ export const ContainerClassCustom: Story = {
       layout: "fullscreen",
       docs: {
          description: {
-            story:
-               "Uses `containerClass` to override the default `container mx-auto` with a specific max-width. Useful when a consumer app defines its own layout breakpoints rather than relying on the Tailwind `container` class.",
+            story: "Uses `containerClass` to override the default `container mx-auto` with a specific max-width. Useful when a consumer app defines its own layout breakpoints rather than relying on the Tailwind `container` class.",
          },
       },
    },
