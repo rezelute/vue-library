@@ -82,6 +82,12 @@ interface SiteNavigationProps {
    frosted?: boolean
    /** Constrain inner content to a max-width container, or go full-bleed */
    contained?: boolean
+   /**
+    * Override the inner container's width/max-width classes.
+    * When provided, replaces the default `container mx-auto` from `contained`.
+    * Example: `"max-w-7xl mx-auto"` or `"max-w-screen-xl mx-auto"`
+    */
+   containerClass?: string
    drawerWidth?: string
 }
 
@@ -121,7 +127,10 @@ const headerClasses = computed(() => [
    props.shadow && "shadow-md",
 ])
 
-const innerClasses = computed(() => ["h-full px-4", props.contained && "container mx-auto"])
+const innerClasses = computed(() => [
+   "h-full px-4",
+   props.containerClass ?? (props.contained && "container mx-auto"),
+])
 
 // Only fixed positioning requires a spacer — sticky/static are in normal flow
 const needsSpacer = computed(() => props.position === "fixed")

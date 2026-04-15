@@ -418,6 +418,34 @@ export const ContainedDisabled: Story = {
    }),
 }
 
+export const ContainerClassCustom: Story = {
+   name: "Container Class: Custom Max Width",
+   parameters: {
+      layout: "fullscreen",
+      docs: {
+         description: {
+            story:
+               "Uses `containerClass` to override the default `container mx-auto` with a specific max-width. Useful when a consumer app defines its own layout breakpoints rather than relying on the Tailwind `container` class.",
+         },
+      },
+   },
+   render: () => ({
+      components: { SiteNavigation },
+      template: `
+      <SiteNavigation containerClass="max-w-3xl mx-auto">
+        ${defaultLogo}
+        ${defaultDrawerLogo}
+        ${defaultMenuItems}
+        ${signInOnlyFooter}
+      </SiteNavigation>
+      ${contentBlock}
+    `,
+      setup() {
+         return { linkClass: navLinkClass }
+      },
+   }),
+}
+
 export const DrawerWidthCustom: Story = {
    name: "Drawer Width Custom",
    parameters: {
