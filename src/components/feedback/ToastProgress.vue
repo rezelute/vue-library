@@ -1,5 +1,11 @@
 <template>
-   <Toast v-bind="$attrs" :on-mouse-enter="() => {}" :on-mouse-leave="() => {}" @close="$emit('close', $event)" @life-end="$emit('life-end', $event)">
+   <Toast
+      v-bind="$attrs"
+      :on-mouse-enter="() => {}"
+      :on-mouse-leave="() => {}"
+      @close="$emit('close', $event)"
+      @life-end="$emit('life-end', $event)"
+   >
       <template #container="{ message, closeCallback }">
          <div
             class="toast-progress-wrapper"
@@ -13,7 +19,12 @@
                   <div v-if="message.detail" class="p-toast-detail">{{ message.detail }}</div>
                </div>
                <div v-if="message.closable !== false">
-                  <button class="p-toast-close-button" type="button" aria-label="Close" @click="closeCallback">
+                  <button
+                     class="p-toast-close-button"
+                     type="button"
+                     aria-label="Close"
+                     @click="closeCallback"
+                  >
                      <TimesIcon class="p-toast-close-icon" />
                   </button>
                </div>

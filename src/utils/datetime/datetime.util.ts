@@ -38,20 +38,20 @@ export function formatRelativeDate(
    input: Date | string | number,
    locale: string = "en-GB"
 ): string {
-   const millisecondsSinceInput = new Date(input).getTime() - Date.now()
-   const absoluteMilliseconds = Math.abs(millisecondsSinceInput)
+   const millsecSinceInput = new Date(input).getTime() - Date.now()
+   const absoluteMs = Math.abs(millsecSinceInput)
 
    const relativeFormatter = new Intl.RelativeTimeFormat(locale, { numeric: "auto" })
 
    const formatAs = (divisor: number, unit: Intl.RelativeTimeFormatUnit) =>
-      relativeFormatter.format(Math.round(millisecondsSinceInput / divisor), unit)
+      relativeFormatter.format(Math.round(millsecSinceInput / divisor), unit)
 
-   if (absoluteMilliseconds < MINUTE) return formatAs(1_000, "second")
-   if (absoluteMilliseconds < HOUR) return formatAs(MINUTE, "minute")
-   if (absoluteMilliseconds < DAY) return formatAs(HOUR, "hour")
-   if (absoluteMilliseconds < WEEK) return formatAs(DAY, "day")
-   if (absoluteMilliseconds < MONTH) return formatAs(WEEK, "week")
-   if (absoluteMilliseconds < YEAR) return formatAs(MONTH, "month")
+   if (absoluteMs < MINUTE) return formatAs(1_000, "second")
+   if (absoluteMs < HOUR) return formatAs(MINUTE, "minute")
+   if (absoluteMs < DAY) return formatAs(HOUR, "hour")
+   if (absoluteMs < WEEK) return formatAs(DAY, "day")
+   if (absoluteMs < MONTH) return formatAs(WEEK, "week")
+   if (absoluteMs < YEAR) return formatAs(MONTH, "month")
    return formatAs(YEAR, "year")
 }
 

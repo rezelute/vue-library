@@ -41,9 +41,9 @@
 import Button from "primevue/button"
 import Card from "primevue/card"
 import { ref } from "vue"
-import EmailInput from "./EmailInput.vue"
 import ActionConfirmMsg from "../feedback/ActionConfirmMsg.vue"
 import Heading from "../ui/Heading.vue"
+import EmailInput from "./EmailInput.vue"
 
 // props / emits
 // -----------------------------------------
