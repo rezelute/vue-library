@@ -38,27 +38,21 @@ export function formatRelativeDate(
    input: Date | string | number,
    locale: string = "en-GB"
 ): string {
-   // negative = past ("3 days ago"), positive = future ("in 3 days")
-   const diff = new Date(input).getTime() - Date.now() // milliseconds
-   // strip sign so thresholds work the same for past and future
-   const abs = Math.abs(diff)
-   // numeric: "auto" gives "yesterday"/"tomorrow" instead of "-1 days"/"1 day"
-   const rtf = new Intl.RelativeTimeFormat(locale, { numeric: "auto" })
+   const millisecondsSinceInput = new Date(input).getTime() - Date.now()
+   const absoluteMilliseconds = Math.abs(millisecondsSinceInput)
 
-   // < 60s → "5 seconds ago"
-   if (abs < MINUTE) return rtf.format(Math.round(diff / 1000), "second")
-   // < 60m → "12 minutes ago"
-   if (abs < HOUR) return rtf.format(Math.round(diff / MINUTE), "minute")
-   // < 24h → "3 hours ago"
-   if (abs < DAY) return rtf.format(Math.round(diff / HOUR), "hour")
-   // < 7d → "yesterday", "3 days ago"
-   if (abs < WEEK) return rtf.format(Math.round(diff / DAY), "day")
-   // < 30d → "last week", "3 weeks ago"
-   if (abs < MONTH) return rtf.format(Math.round(diff / WEEK), "week")
-   // < 365d → "last month", "3 months ago"
-   if (abs < YEAR) return rtf.format(Math.round(diff / MONTH), "month")
-   // → "last year", "3 years ago"
-   return rtf.format(Math.round(diff / YEAR), "year")
+   const relativeFormatter = new Intl.RelativeTimeFormat(locale, { numeric: "auto" })
+
+   const formatAs = (divisor: number, unit: Intl.RelativeTimeFormatUnit) =>
+      relativeFormatter.format(Math.round(millisecondsSinceInput / divisor), unit)
+
+   if (absoluteMilliseconds < MINUTE) return formatAs(1_000, "second")
+   if (absoluteMilliseconds < HOUR) return formatAs(MINUTE, "minute")
+   if (absoluteMilliseconds < DAY) return formatAs(HOUR, "hour")
+   if (absoluteMilliseconds < WEEK) return formatAs(DAY, "day")
+   if (absoluteMilliseconds < MONTH) return formatAs(WEEK, "week")
+   if (absoluteMilliseconds < YEAR) return formatAs(MONTH, "month")
+   return formatAs(YEAR, "year")
 }
 
 // -----------------------------------------
