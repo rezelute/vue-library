@@ -77,10 +77,9 @@ var h = {
 	getRedirectTargetWithQueryParams: m,
 	normalizeError: d,
 	AppError: u,
-	formatDateTimeUK: n,
 	formatRelativeDate: l,
 	formatDateTime: t,
 	capitalizeFirstLetter: p
 };
 //#endregion
-export { u as AppError, p as capitalizeFirstLetter, h as default, n as formatDateTimeUK, m as getRedirectTargetWithQueryParams, d as normalizeError };
+export { u as AppError, p as capitalizeFirstLetter, h as default, t as formatDateTime, n as formatDateTimeUK, l as formatRelativeDate, m as getRedirectTargetWithQueryParams, d as normalizeError };

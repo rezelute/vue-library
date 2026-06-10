@@ -11,6 +11,8 @@ export {
    AppError,
    formatDateTimeUK,
    capitalizeFirstLetter,
+   formatRelativeDate,
+   formatDateTime,
 }
 
 // default import - import Utils from "@/utils"
@@ -18,7 +20,6 @@ export default {
    getRedirectTargetWithQueryParams,
    normalizeError,
    AppError,
-   formatDateTimeUK,
    formatRelativeDate,
    formatDateTime,
    capitalizeFirstLetter,
