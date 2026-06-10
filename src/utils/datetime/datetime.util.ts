@@ -7,6 +7,12 @@ const defaultOptions: Intl.DateTimeFormatOptions = {
    hour12: false,
 }
 
+/**
+ * Formats a date/time value as a localised date and time string.
+ * @example
+ * formatDateTime(new Date("2025-06-06T14:30:00")) // "06/06/2025, 14:30"
+ * formatDateTime("2025-06-06T09:00:00", "en-US")  // "06/06/2025, 09:00"
+ */
 export function formatDateTime(
    input: Date | string | number = new Date(),
    locale: string = "en-GB",
@@ -22,8 +28,38 @@ export function formatDateTime(
 }
 
 /** @deprecated use formatDateTime */
-export const formatDateTimeUK = (input: Date | string | number = new Date()) =>
-   formatDateTime(input)
+function formatDateTimeUK() {}
+
+// -----------------------------------------
+
+type DateStyle = "short" | "medium" | "long"
+
+const dateStyleOptions: Record<DateStyle, Intl.DateTimeFormatOptions> = {
+   short: { day: "numeric", month: "short" },
+   medium: { day: "numeric", month: "short", year: "numeric" },
+   long: { day: "numeric", month: "long", year: "numeric" },
+}
+
+/**
+ * Formats a date value as a localised date string.
+ * @example
+ * formatDate("2025-06-06")           // "6 Jun 2025"
+ * formatDate("2025-06-06", "short")  // "6 Jun"
+ * formatDate("2025-06-06", "long")   // "6 June 2025"
+ */
+export function formatDate(
+   input: Date | string | number,
+   style: DateStyle = "medium",
+   locale: string = "en-GB"
+): string {
+   const date = input instanceof Date ? input : new Date(input)
+
+   if (isNaN(date.getTime())) {
+      throw new Error("Invalid date provided to formatDate")
+   }
+
+   return date.toLocaleDateString(locale, dateStyleOptions[style])
+}
 
 // -----------------------------------------
 

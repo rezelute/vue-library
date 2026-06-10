@@ -1,4 +1,4 @@
-import { formatDateTime, formatDateTimeUK, formatRelativeDate } from "./datetime/datetime.util"
+import { formatDate, formatDateTime, formatRelativeDate } from "./datetime/datetime.util"
 import { AppError } from "./error/AppError"
 import normalizeError from "./error/normalizeError.util"
 import { capitalizeFirstLetter } from "./strings/strings.util"
@@ -9,10 +9,10 @@ export {
    getRedirectTargetWithQueryParams,
    normalizeError,
    AppError,
-   formatDateTimeUK,
    capitalizeFirstLetter,
    formatRelativeDate,
    formatDateTime,
+   formatDate,
 }
 
 // default import - import Utils from "@/utils"
@@ -22,5 +22,6 @@ export default {
    AppError,
    formatRelativeDate,
    formatDateTime,
+   formatDate,
    capitalizeFirstLetter,
 }
