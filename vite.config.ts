@@ -83,8 +83,14 @@ export default defineConfig({
       // }),
       tailwindcss(),
       dts({
+         // use app tsconfig (not root) so vue/dom types are included
          tsconfigPath: "./tsconfig.app.json",
+         // strip the src/ prefix from output paths so d.ts files land in dist/ not dist/src/
+         entryRoot: path.resolve(__dirname, "src"),
+         // without this TS infers rootDir as the project root, causing the src/ prefix in emitted paths
+         compilerOptions: { rootDir: path.resolve(__dirname, "src") },
          include: [
+            // limit declaration generation to public entry points only — without this, dts would process the whole tsconfig include
             "src/index.ts",
             "src/components",
             "src/stores",
