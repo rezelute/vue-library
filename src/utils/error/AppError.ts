@@ -3,7 +3,7 @@ export class AppError extends Error {
    type: string // error type identifier
    summary?: string // short summary for logging
    details?: any // additional error details (object or array)
-   cause?: Error // stack trace of the original error
+   override cause?: Error // stack trace of the original error
 
    constructor({
       type,
