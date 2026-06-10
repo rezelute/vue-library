@@ -40,16 +40,76 @@ export const AllSeverities: Story = {
       setup() {
          const group = makeGroup("all-severities")
          return () =>
-            h("div", { style: "display: flex; flex-direction: column; gap: 1rem; align-items: flex-start;" }, [
-               h(ToastProgress, { position: "top-right", group }),
-               h("p", { style: "color: #555; font-size: 0.875rem; margin: 0;" }, "Click a button to trigger a toast (5s timer):"),
-               h("div", { style: "display: flex; gap: 0.75rem; flex-wrap: wrap;" }, [
-                  h("button", { style: buttonStyle("#22c55e"), onClick: () => trigger(group, "success", "Success", "Your changes have been saved.", 5000) }, "Success"),
-                  h("button", { style: buttonStyle("#3b82f6"), onClick: () => trigger(group, "info", "Info", "A new update is available.", 5000) }, "Info"),
-                  h("button", { style: buttonStyle("#f59e0b"), onClick: () => trigger(group, "warn", "Warning", "Your session is about to expire.", 5000) }, "Warning"),
-                  h("button", { style: buttonStyle("#ef4444"), onClick: () => trigger(group, "error", "Error", "Something went wrong. Please try again.", 5000) }, "Error"),
-               ]),
-            ])
+            h(
+               "div",
+               {
+                  style: "display: flex; flex-direction: column; gap: 1rem; align-items: flex-start;",
+               },
+               [
+                  h(ToastProgress, { position: "top-right", group }),
+                  h(
+                     "p",
+                     { style: "color: #555; font-size: 0.875rem; margin: 0;" },
+                     "Click a button to trigger a toast (5s timer):"
+                  ),
+                  h("div", { style: "display: flex; gap: 0.75rem; flex-wrap: wrap;" }, [
+                     h(
+                        "button",
+                        {
+                           style: buttonStyle("#22c55e"),
+                           onClick: () =>
+                              trigger(
+                                 group,
+                                 "success",
+                                 "Success",
+                                 "Your changes have been saved.",
+                                 5000
+                              ),
+                        },
+                        "Success"
+                     ),
+                     h(
+                        "button",
+                        {
+                           style: buttonStyle("#3b82f6"),
+                           onClick: () =>
+                              trigger(group, "info", "Info", "A new update is available.", 5000),
+                        },
+                        "Info"
+                     ),
+                     h(
+                        "button",
+                        {
+                           style: buttonStyle("#f59e0b"),
+                           onClick: () =>
+                              trigger(
+                                 group,
+                                 "warn",
+                                 "Warning",
+                                 "Your session is about to expire.",
+                                 5000
+                              ),
+                        },
+                        "Warning"
+                     ),
+                     h(
+                        "button",
+                        {
+                           style: buttonStyle("#ef4444"),
+                           onClick: () =>
+                              trigger(
+                                 group,
+                                 "error",
+                                 "Error",
+                                 "Something went wrong. Please try again.",
+                                 5000
+                              ),
+                        },
+                        "Error"
+                     ),
+                  ]),
+               ]
+            )
       },
    }),
 }
@@ -61,11 +121,35 @@ export const LongLife: Story = {
       setup() {
          const group = makeGroup("long-life")
          return () =>
-            h("div", { style: "display: flex; flex-direction: column; gap: 1rem; align-items: flex-start;" }, [
-               h(ToastProgress, { position: "top-right", group }),
-               h("p", { style: "color: #555; font-size: 0.875rem; margin: 0;" }, "10 second timer — hover the toast to pause the bar:"),
-               h("button", { style: buttonStyle("#22c55e"), onClick: () => trigger(group, "success", "Long Timer", "Hover me to pause the progress bar.", 10000) }, "Trigger (10s)"),
-            ])
+            h(
+               "div",
+               {
+                  style: "display: flex; flex-direction: column; gap: 1rem; align-items: flex-start;",
+               },
+               [
+                  h(ToastProgress, { position: "top-right", group }),
+                  h(
+                     "p",
+                     { style: "color: #555; font-size: 0.875rem; margin: 0;" },
+                     "10 second timer — hover the toast to pause the bar:"
+                  ),
+                  h(
+                     "button",
+                     {
+                        style: buttonStyle("#22c55e"),
+                        onClick: () =>
+                           trigger(
+                              group,
+                              "success",
+                              "Long Timer",
+                              "Hover me to pause the progress bar.",
+                              10000
+                           ),
+                     },
+                     "Trigger (10s)"
+                  ),
+               ]
+            )
       },
    }),
 }
@@ -77,11 +161,29 @@ export const Sticky: Story = {
       setup() {
          const group = makeGroup("sticky")
          return () =>
-            h("div", { style: "display: flex; flex-direction: column; gap: 1rem; align-items: flex-start;" }, [
-               h(ToastProgress, { position: "top-right", group }),
-               h("p", { style: "color: #555; font-size: 0.875rem; margin: 0;" }, "No life set — toast stays until dismissed, no progress bar shown:"),
-               h("button", { style: buttonStyle("#6366f1"), onClick: () => trigger(group, "info", "Sticky Toast", "No progress bar here.") }, "Trigger sticky"),
-            ])
+            h(
+               "div",
+               {
+                  style: "display: flex; flex-direction: column; gap: 1rem; align-items: flex-start;",
+               },
+               [
+                  h(ToastProgress, { position: "top-right", group }),
+                  h(
+                     "p",
+                     { style: "color: #555; font-size: 0.875rem; margin: 0;" },
+                     "No life set — toast stays until dismissed, no progress bar shown:"
+                  ),
+                  h(
+                     "button",
+                     {
+                        style: buttonStyle("#6366f1"),
+                        onClick: () =>
+                           trigger(group, "info", "Sticky Toast", "No progress bar here."),
+                     },
+                     "Trigger sticky"
+                  ),
+               ]
+            )
       },
    }),
 }
