@@ -12,11 +12,14 @@ function t(t = /* @__PURE__ */ new Date(), n = "en-GB", r = e) {
 	if (isNaN(i.getTime())) throw Error("Invalid date provided to formatDateTime");
 	return i.toLocaleString(n, r);
 }
-var n = (e = /* @__PURE__ */ new Date()) => t(e), r = 864e5;
-7 * r, 30 * r, 365 * r;
+var n = (e = /* @__PURE__ */ new Date()) => t(e), r = 6e4, i = 36e5, a = 864e5, o = 7 * a, s = 30 * a, c = 365 * a;
+function l(e, t = "en-GB") {
+	let n = new Date(e).getTime() - Date.now(), l = Math.abs(n), u = new Intl.RelativeTimeFormat(t, { numeric: "auto" }), d = (e, t) => u.format(Math.round(n / e), t);
+	return l < r ? d(1e3, "second") : l < i ? d(r, "minute") : l < a ? d(i, "hour") : l < o ? d(a, "day") : l < s ? d(o, "week") : l < c ? d(s, "month") : d(c, "year");
+}
 //#endregion
 //#region src/utils/error/AppError.ts
-var i = class extends Error {
+var u = class extends Error {
 	type;
 	summary;
 	details;
@@ -27,7 +30,7 @@ var i = class extends Error {
 };
 //#endregion
 //#region src/utils/error/normalizeError.util.ts
-function a(e) {
+function d(e) {
 	if (e instanceof Error) return {
 		name: e.name,
 		message: e.message,
@@ -37,7 +40,7 @@ function a(e) {
 		status: e.status,
 		statusText: e.statusText,
 		url: e.url,
-		headers: o(e.headers)
+		headers: f(e.headers)
 	};
 	if (typeof e == "object" && e) try {
 		return JSON.parse(JSON.stringify(e));
@@ -49,7 +52,7 @@ function a(e) {
 	}
 	return { message: String(e) };
 }
-function o(e) {
+function f(e) {
 	let t = {};
 	return e.forEach((e, n) => {
 		t[n] = e;
@@ -57,12 +60,12 @@ function o(e) {
 }
 //#endregion
 //#region src/utils/strings/strings.util.ts
-function s(e) {
+function p(e) {
 	return e && e.charAt(0).toUpperCase() + e.slice(1);
 }
 //#endregion
 //#region src/utils/url.ts
-function c(e) {
+function m(e) {
 	let { redirect: t, ...n } = e;
 	if (!t) return null;
 	let r = new URLSearchParams(n).toString();
@@ -70,12 +73,14 @@ function c(e) {
 }
 //#endregion
 //#region src/utils/index.ts
-var l = {
-	getRedirectTargetWithQueryParams: c,
-	normalizeError: a,
-	AppError: i,
+var h = {
+	getRedirectTargetWithQueryParams: m,
+	normalizeError: d,
+	AppError: u,
 	formatDateTimeUK: n,
-	capitalizeFirstLetter: s
+	formatRelativeDate: l,
+	formatDateTime: t,
+	capitalizeFirstLetter: p
 };
 //#endregion
-export { i as AppError, s as capitalizeFirstLetter, l as default, n as formatDateTimeUK, c as getRedirectTargetWithQueryParams, a as normalizeError };
+export { u as AppError, p as capitalizeFirstLetter, h as default, n as formatDateTimeUK, m as getRedirectTargetWithQueryParams, d as normalizeError };

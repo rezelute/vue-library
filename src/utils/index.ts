@@ -1,4 +1,4 @@
-import { formatDateTimeUK } from "./datetime/datetime.util"
+import { formatDateTime, formatDateTimeUK, formatRelativeDate } from "./datetime/datetime.util"
 import { AppError } from "./error/AppError"
 import normalizeError from "./error/normalizeError.util"
 import { capitalizeFirstLetter } from "./strings/strings.util"
@@ -19,5 +19,7 @@ export default {
    normalizeError,
    AppError,
    formatDateTimeUK,
+   formatRelativeDate,
+   formatDateTime,
    capitalizeFirstLetter,
 }

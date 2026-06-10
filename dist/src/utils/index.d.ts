@@ -1,4 +1,4 @@
-import { formatDateTimeUK } from './datetime/datetime.util';
+import { formatDateTime, formatDateTimeUK, formatRelativeDate } from './datetime/datetime.util';
 import { AppError } from './error/AppError';
 import { default as normalizeError } from './error/normalizeError.util';
 import { capitalizeFirstLetter } from './strings/strings.util';
@@ -9,6 +9,8 @@ declare const _default: {
     normalizeError: typeof normalizeError;
     AppError: typeof AppError;
     formatDateTimeUK: (input?: Date | string | number) => string;
+    formatRelativeDate: typeof formatRelativeDate;
+    formatDateTime: typeof formatDateTime;
     capitalizeFirstLetter: typeof capitalizeFirstLetter;
 };
 export default _default;
