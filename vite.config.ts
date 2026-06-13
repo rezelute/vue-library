@@ -51,17 +51,19 @@ export default defineConfig({
          // input: "src/index.ts", // Entry point
          // When we mark these as an external dependency,
          // we tell Rollup not to include them in the final output bundle because the consumer is expected to provide it externally
-         external: [
-            "vue",
-            "primevue",
-            "pinia",
-            "@primeuix/themes",
-            "primeicons",
-            "tailwindcss",
-            "tailwindcss-primeui",
-            "vee-validate",
-            "zod",
-         ],
+         external: (id) =>
+            [
+               "vue",
+               "pinia",
+               "tailwindcss",
+               "tailwindcss-primeui",
+               "vee-validate",
+               "zod",
+            ].includes(id) ||
+            id.startsWith("primevue") ||
+            id.startsWith("@primevue") ||
+            id.startsWith("@primeuix") ||
+            id.startsWith("primeicons"),
          output: {
             // References these as global variables provided by the consuming application
             globals: {
