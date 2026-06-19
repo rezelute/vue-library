@@ -27,9 +27,6 @@ export function formatDateTime(
    return date.toLocaleString(locale, options)
 }
 
-/** @deprecated use formatDateTime */
-function formatDateTimeUK() {}
-
 // -----------------------------------------
 
 type DateStyle = "short" | "medium" | "long"
