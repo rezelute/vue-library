@@ -5,8 +5,6 @@
  * formatDateTime("2025-06-06T09:00:00", "en-US")  // "06/06/2025, 09:00"
  */
 export declare function formatDateTime(input?: Date | string | number, locale?: string, options?: Intl.DateTimeFormatOptions): string;
-/** @deprecated use formatDateTime */
-declare function formatDateTimeUK(): void;
 type DateStyle = "short" | "medium" | "long";
 /**
  * Formats a date value as a localised date string.
@@ -19,7 +17,6 @@ export declare function formatDate(input: Date | string | number, style?: DateSt
 export declare function formatRelativeDate(input: Date | string | number, locale?: string): string;
 declare const _default: {
     formatDateTime: typeof formatDateTime;
-    formatDateTimeUK: typeof formatDateTimeUK;
     formatRelativeDate: typeof formatRelativeDate;
 };
 export default _default;

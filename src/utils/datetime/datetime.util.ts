@@ -92,6 +92,5 @@ export function formatRelativeDate(
 
 export default {
    formatDateTime,
-   formatDateTimeUK,
    formatRelativeDate,
 }
