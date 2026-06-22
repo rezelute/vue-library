@@ -45,8 +45,11 @@ import ActionConfirmMsg from "../feedback/ActionConfirmMsg.vue"
 import Heading from "../ui/Heading.vue"
 import EmailInput from "./EmailInput.vue"
 
-// props / emits
+// props, emits & slots
 // -----------------------------------------
+defineSlots<{
+   header?: () => unknown
+}>()
 const emits = defineEmits(["requestEmailChange"])
 const props = withDefaults(
    defineProps<{

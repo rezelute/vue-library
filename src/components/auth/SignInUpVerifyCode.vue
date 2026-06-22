@@ -88,8 +88,12 @@ import { computed, nextTick, ref } from "vue"
 import FormField from "../form/FormField.vue"
 import Heading from "../ui/Heading.vue"
 
-// props & emits
+// props, emits & slots
 // -----------------------------------------
+defineSlots<{
+   description?: () => unknown
+   "resend-description"?: () => unknown
+}>()
 const emits = defineEmits(["codeSubmit", "codeResendSubmit", "restartFlow"])
 const props = withDefaults(
    defineProps<{

@@ -91,6 +91,13 @@ interface SiteNavigationProps {
    drawerWidth?: string
 }
 
+defineSlots<{
+   logo?: () => unknown
+   "action-items"?: () => unknown
+   "drawer-logo"?: () => unknown
+   "menu-items"?: (props: { close: () => void }) => unknown
+   "menu-footer"?: (props: { close: () => void }) => unknown
+}>()
 const props = withDefaults(defineProps<SiteNavigationProps>(), {
    position: "fixed",
    navHeight: "h-16",

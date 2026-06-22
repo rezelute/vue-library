@@ -52,6 +52,11 @@ export interface PageLoaderProps {
    errorText?: string // if you dont use the error slot, you can use this prop to show custom error text
 }
 
+defineSlots<{
+   preloader?: () => unknown
+   error?: () => unknown
+   default?: () => unknown
+}>()
 withDefaults(defineProps<PageLoaderProps>(), {
    showLoading: false,
    showError: false,

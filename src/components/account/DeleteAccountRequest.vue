@@ -37,8 +37,11 @@ import Card from "primevue/card"
 import ActionConfirmMsg from "../feedback/ActionConfirmMsg.vue"
 import Heading from "../ui/Heading.vue"
 
-// props / emits
+// props, emits & slots
 // -----------------------------------------
+defineSlots<{
+   header?: () => unknown
+}>()
 const props = withDefaults(
    defineProps<{
       isDeleteEmailSent: boolean

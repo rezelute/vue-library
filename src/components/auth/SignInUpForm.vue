@@ -51,12 +51,18 @@
 <script setup lang="ts">
 import Button from "primevue/button"
 import Card from "primevue/card"
-import { ref, type Slots, useSlots } from "vue"
+import { ref } from "vue"
 import EmailInput from "../account/EmailInput.vue"
 import Heading from "../ui/Heading.vue"
 
-// props/emits
+// props, emits & slots
 // -----------------------------------------
+const slots = defineSlots<{
+   notice?: () => unknown
+   "oauth-providers"?: () => unknown
+   description?: () => unknown
+   "additional-fields"?: (props: { isSubmitClicked: boolean }) => unknown
+}>()
 const emits = defineEmits(["submit"])
 
 withDefaults(
@@ -73,8 +79,6 @@ withDefaults(
       loading: false,
    }
 )
-
-const slots: Slots = useSlots()
 
 // models
 // -----------------------------------------
