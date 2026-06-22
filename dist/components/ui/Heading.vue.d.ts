@@ -1,6 +1,5 @@
 export interface HeadingProps {
     textSize?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
-    marginBtmSize?: "xs" | "sm" | "md" | "lg" | "xl";
     tag: string;
 }
 declare var __VLS_8: {};

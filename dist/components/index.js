@@ -155,21 +155,16 @@ var V = /* @__PURE__ */ u({
 	__name: "Heading",
 	props: {
 		textSize: {},
-		marginBtmSize: {},
 		tag: {}
 	},
 	setup(e) {
-		let t = e, i = n(() => t.textSize ? `heading-${t.textSize}` : "heading-lg"), a = n(() => t.marginBtmSize ? `heading-mb-${t.marginBtmSize}` : "");
-		return (t, n) => (v(), r(S(e.tag), { class: m([
-			"heading",
-			i.value,
-			a.value
-		]) }, {
+		let t = e, i = n(() => t.textSize ? `heading-${t.textSize}` : "heading-lg");
+		return (t, n) => (v(), r(S(e.tag), { class: m(["heading", i.value]) }, {
 			default: E(() => [x(t.$slots, "default", {}, void 0, !0)]),
 			_: 3
 		}, 8, ["class"]));
 	}
-}), [["__scopeId", "data-v-6124b454"]]), he = {}, ge = {
+}), [["__scopeId", "data-v-8e827346"]]), he = {}, ge = {
 	x: "0px",
 	y: "0px",
 	viewBox: "0 0 500 450",

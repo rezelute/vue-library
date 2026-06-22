@@ -35,14 +35,14 @@
       "./types": {
          "types": "./dist/types/index.d.ts"
       },
-      "./tailwind-config.css": {
-         "default": "./dist/tailwind-config.css"
+      "./tailwind.css": {
+         "default": "./dist/tailwind.css"
+      },
+      "./tailwind-setup.css": {
+         "default": "./dist/tailwind-setup.css"
       },
       "./tailwind-utilities.css": {
          "default": "./dist/tailwind-utilities.css"
-      },
-      "./tailwind-theme.css": {
-         "default": "./dist/tailwind-theme.css"
       },
       "./vue-library.css": {
          "default": "./dist/vue-library.css"

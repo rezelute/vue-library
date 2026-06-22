@@ -1,6 +1,6 @@
 @import "tailwindcss";
+@import "./tailwind-setup.css";
 @import "./tailwind-utilities.css";
-@import "./tailwind-theme.css";
 @import "tailwindcss-primeui";
 
 *,
