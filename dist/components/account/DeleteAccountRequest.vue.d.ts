@@ -1,13 +1,16 @@
+type __VLS_Slots = {
+    header?: () => unknown;
+};
 type __VLS_Props = {
     isDeleteEmailSent: boolean;
     isLoading?: boolean;
     headingText?: string;
 };
-declare var __VLS_9: {};
-type __VLS_Slots = {} & {
-    header?: (props: typeof __VLS_9) => any;
-};
-declare const __VLS_base: import('vue').DefineComponent<__VLS_Props, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, any, string, import('vue').PublicProps, any, {
+declare const __VLS_base: import('vue').DefineComponent<__VLS_Props, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
+    sendDeleteEmail: (...args: any[]) => void;
+}, string, import('vue').PublicProps, Readonly<__VLS_Props> & Readonly<{
+    onSendDeleteEmail?: ((...args: any[]) => any) | undefined;
+}>, {
     isLoading: boolean;
     headingText: string;
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, any>;

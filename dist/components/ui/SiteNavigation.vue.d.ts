@@ -23,6 +23,17 @@ interface SiteNavigationProps {
     containerClass?: string;
     drawerWidth?: string;
 }
+type __VLS_Slots = {
+    logo?: () => unknown;
+    "action-items"?: () => unknown;
+    "drawer-logo"?: () => unknown;
+    "menu-items"?: (props: {
+        close: () => void;
+    }) => unknown;
+    "menu-footer"?: (props: {
+        close: () => void;
+    }) => unknown;
+};
 type __VLS_Props = SiteNavigationProps;
 declare const __VLS_defaultModels: {
     drawerOpen: boolean;
@@ -31,22 +42,6 @@ type __VLS_ModelProps = {
     "drawerOpen"?: typeof __VLS_defaultModels['drawerOpen'];
 };
 type __VLS_PublicProps = __VLS_Props & __VLS_ModelProps;
-declare var __VLS_1: {}, __VLS_3: {}, __VLS_19: {}, __VLS_22: {
-    close: any;
-}, __VLS_24: {
-    close: any;
-};
-type __VLS_Slots = {} & {
-    logo?: (props: typeof __VLS_1) => any;
-} & {
-    'action-items'?: (props: typeof __VLS_3) => any;
-} & {
-    'drawer-logo'?: (props: typeof __VLS_19) => any;
-} & {
-    'menu-items'?: (props: typeof __VLS_22) => any;
-} & {
-    'menu-footer'?: (props: typeof __VLS_24) => any;
-};
 declare const __VLS_base: import('vue').DefineComponent<__VLS_PublicProps, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
     "update:drawerOpen": (value: boolean) => any;
 }, string, import('vue').PublicProps, Readonly<__VLS_PublicProps> & Readonly<{

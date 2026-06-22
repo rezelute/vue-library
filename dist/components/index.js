@@ -239,7 +239,7 @@ var ve = /*#__PURE__*/ K(he, [["render", _e]]), ye = { class: "text-center" }, b
 			_: 3
 		})]));
 	}
-}), [["__scopeId", "data-v-9981e716"]]), ke = {
+}), [["__scopeId", "data-v-8f891e26"]]), ke = {
 	key: 0,
 	class: "bar"
 }, Ae = /*#__PURE__*/ K(/* @__PURE__ */ u({
@@ -678,17 +678,17 @@ var ve = /*#__PURE__*/ K(he, [["render", _e]]), ye = { class: "text-center" }, b
 	}),
 	emits: /*@__PURE__*/ d(["submit"], ["update:email"]),
 	setup(e, { emit: t }) {
-		let n = t, s = te(), u = T(e, "email"), d = b(!1), f = b(!1);
+		let n = te(), s = t, u = T(e, "email"), d = b(!1), f = b(!1);
 		function p(e) {
 			d.value = e;
 		}
 		async function m() {
-			f.value = !0, n("submit", {
+			f.value = !0, s("submit", {
 				email: u.value,
 				isValid: d.value
 			});
 		}
-		return (t, n) => (v(), r(w(A), { class: "max-w-xl w-full surface-p-lg" }, {
+		return (t, s) => (v(), r(w(A), { class: "max-w-xl w-full surface-p-lg" }, {
 			title: E(() => [l(q, {
 				tag: "h1",
 				textSize: "lg",
@@ -700,7 +700,7 @@ var ve = /*#__PURE__*/ K(he, [["render", _e]]), ye = { class: "text-center" }, b
 			content: E(() => [
 				x(t.$slots, "notice"),
 				x(t.$slots, "oauth-providers"),
-				w(s)["oauth-providers"] ? (v(), a("div", dt, [...n[2] ||= [
+				n["oauth-providers"] ? (v(), a("div", dt, [...s[2] ||= [
 					o("hr", { class: "flex-1 border-gray-300" }, null, -1),
 					o("span", { class: "px-4 text-gray-500 uppercase" }, "Or", -1),
 					o("hr", { class: "flex-1 border-gray-300" }, null, -1)
@@ -708,12 +708,12 @@ var ve = /*#__PURE__*/ K(he, [["render", _e]]), ye = { class: "text-center" }, b
 				o("form", {
 					class: "vstack-form",
 					"data-test": "auth-form",
-					onSubmit: n[1] ||= D(() => {}, ["prevent"])
+					onSubmit: s[1] ||= D(() => {}, ["prevent"])
 				}, [
 					x(t.$slots, "description"),
 					l(Q, {
 						email: u.value,
-						"onUpdate:email": n[0] ||= (e) => u.value = e,
+						"onUpdate:email": s[0] ||= (e) => u.value = e,
 						isSubmitClicked: f.value,
 						"data-test": "auth-email-input",
 						onValidityChanged: p,
@@ -832,6 +832,6 @@ var ve = /*#__PURE__*/ K(he, [["render", _e]]), ye = { class: "text-center" }, b
 			_: 3
 		})]));
 	}
-}), [["__scopeId", "data-v-3cee568e"]]);
+}), [["__scopeId", "data-v-84acc80d"]]);
 //#endregion
 export { J as AppErrorInfo, Qe as ChangeEmailRequest, et as DeleteAccountRequest, Pe as DialogLoader, Z as FormField, q as Heading, Y as InputSkeleton, nt as NameInput, Ae as PageInfiniteLoader, Oe as PageLoader, me as ScrollToTop, ft as SignInUpForm, _t as SignInUpVerifyCode, fe as SiteNavigation, V as ThemeToggle, ut as ToastProgress, He as UserAccountInfo };

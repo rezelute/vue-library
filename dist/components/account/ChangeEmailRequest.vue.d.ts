@@ -1,3 +1,6 @@
+type __VLS_Slots = {
+    header?: () => unknown;
+};
 type __VLS_Props = {
     isEmailSent: boolean;
     isLoading?: boolean;
@@ -7,11 +10,11 @@ type __VLS_ModelProps = {
     "email"?: string;
 };
 type __VLS_PublicProps = __VLS_Props & __VLS_ModelProps;
-declare var __VLS_9: {};
-type __VLS_Slots = {} & {
-    header?: (props: typeof __VLS_9) => any;
-};
-declare const __VLS_base: import('vue').DefineComponent<__VLS_PublicProps, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<__VLS_PublicProps> & Readonly<{}>, {
+declare const __VLS_base: import('vue').DefineComponent<__VLS_PublicProps, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
+    "update:email": (value: string) => any;
+}, string, import('vue').PublicProps, Readonly<__VLS_PublicProps> & Readonly<{
+    "onUpdate:email"?: ((value: string) => any) | undefined;
+}>, {
     isLoading: boolean;
     headingText: string;
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, any>;

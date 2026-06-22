@@ -1,12 +1,11 @@
+type __VLS_Slots = {
+    header?: () => unknown;
+};
 type __VLS_Props = {
     userId?: string;
     userEmail?: string;
     isLoading?: boolean;
     headingText?: string;
-};
-declare var __VLS_9: {};
-type __VLS_Slots = {} & {
-    header?: (props: typeof __VLS_9) => any;
 };
 declare const __VLS_base: import('vue').DefineComponent<__VLS_Props, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<__VLS_Props> & Readonly<{}>, {
     isLoading: boolean;

@@ -4,13 +4,10 @@ export interface PageLoaderProps {
     showError?: boolean;
     errorText?: string;
 }
-declare var __VLS_7: {}, __VLS_14: {}, __VLS_21: {};
-type __VLS_Slots = {} & {
-    preloader?: (props: typeof __VLS_7) => any;
-} & {
-    error?: (props: typeof __VLS_14) => any;
-} & {
-    default?: (props: typeof __VLS_21) => any;
+type __VLS_Slots = {
+    preloader?: () => unknown;
+    error?: () => unknown;
+    default?: () => unknown;
 };
 declare const __VLS_base: import('vue').DefineComponent<PageLoaderProps, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<PageLoaderProps> & Readonly<{}>, {
     showLoading: boolean;

@@ -1,3 +1,7 @@
+type __VLS_Slots = {
+    description?: () => unknown;
+    "resend-description"?: () => unknown;
+};
 type __VLS_Props = {
     /** Override the card title */
     title?: string;
@@ -8,13 +12,15 @@ type __VLS_Props = {
     isSubmittingCode: boolean;
     isResendingCode: boolean;
 };
-declare var __VLS_22: {}, __VLS_47: {};
-type __VLS_Slots = {} & {
-    description?: (props: typeof __VLS_22) => any;
-} & {
-    'resend-description'?: (props: typeof __VLS_47) => any;
-};
-declare const __VLS_base: import('vue').DefineComponent<__VLS_Props, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, any, string, import('vue').PublicProps, any, {
+declare const __VLS_base: import('vue').DefineComponent<__VLS_Props, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
+    codeSubmit: (...args: any[]) => void;
+    codeResendSubmit: (...args: any[]) => void;
+    restartFlow: (...args: any[]) => void;
+}, string, import('vue').PublicProps, Readonly<__VLS_Props> & Readonly<{
+    onCodeSubmit?: ((...args: any[]) => any) | undefined;
+    onCodeResendSubmit?: ((...args: any[]) => any) | undefined;
+    onRestartFlow?: ((...args: any[]) => any) | undefined;
+}>, {
     title: string;
     otpLength: number;
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, any>;
