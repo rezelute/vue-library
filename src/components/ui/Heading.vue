@@ -19,7 +19,7 @@ const textSize = computed(() => (props.textSize ? `heading-${props.textSize}` : 
 
 <!--
 Usage:
-<Heading textSize="2xl" marginBtmSize="lg">My Heading</Heading>
+<Heading textSize="2xl">My Heading</Heading>
 -->
 
 <style scoped>

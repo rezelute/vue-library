@@ -15,7 +15,7 @@
 
       <Card class="max-w-xl surface-p-lg w-full mx-auto">
          <template #title>
-            <Heading tag="h1" textSize="md" marginBtmSize="sm">{{ title }}</Heading>
+            <Heading tag="h1" textSize="md" class="heading-mb-sm">{{ title }}</Heading>
          </template>
          <template #content>
             <form class="vstack-md" @submit.prevent>

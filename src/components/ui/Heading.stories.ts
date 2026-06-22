@@ -10,10 +10,6 @@ const meta = {
          control: { type: "select" },
          options: ["sm", "md", "lg", "xl", "2xl", "3xl"],
       },
-      marginBtmSize: {
-         control: { type: "select" },
-         options: ["sm", "md", "lg"],
-      },
       tag: {
          control: { type: "select" },
          options: ["h1", "h2", "h3", "h4", "h5", "h6", "div", "span", "p"],
@@ -24,7 +20,6 @@ const meta = {
    },
    args: {
       textSize: "lg",
-      marginBtmSize: "md",
       tag: "h2",
       default: "Heading Text",
    },
@@ -37,7 +32,6 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
    args: {
       textSize: "lg",
-      marginBtmSize: "md",
       tag: "h2",
       default: "Heading Text",
    },
@@ -53,38 +47,12 @@ export const AllSizes: Story = {
       components: { Heading },
       template: `
       <div>
-        <Heading tag="h1" textSize="sm" marginBtmSize="sm">Small Heading</Heading>
-        <Heading tag="h1" textSize="md" marginBtmSize="md">Medium Heading</Heading>
-        <Heading tag="h1" textSize="lg" marginBtmSize="lg">Large Heading</Heading>
+        <Heading tag="h1" textSize="sm">Small Heading</Heading>
+        <Heading tag="h1" textSize="md">Medium Heading</Heading>
+        <Heading tag="h1" textSize="lg">Large Heading</Heading>
         <Heading tag="h1" textSize="xl">XL Heading</Heading>
         <Heading tag="h1" textSize="2xl">2XL Heading</Heading>
         <Heading tag="h1" textSize="3xl">3XL Heading</Heading>
-      </div>
-    `,
-   }),
-}
-
-export const AllMargins: Story = {
-   render: () => ({
-      components: { Heading },
-      template: `
-      <div>
-         <div style="border: 1px solid #999; margin-bottom: 10px;">
-           <Heading tag="h1" textSize="lg" marginBtmSize="xs">Margin Bottom XS</Heading>
-           <p>This paragraph that comes after the heading.</p>
-        </div>
-        <div style="border: 1px solid #999; margin-bottom: 10px;">
-           <Heading tag="h1" textSize="lg" marginBtmSize="sm">Margin Bottom SM</Heading>
-           <p>This paragraph that comes after the heading.</p>
-        </div>
-        <div style="border: 1px solid #999; margin-bottom: 10px;">
-           <Heading tag="h1" textSize="lg" marginBtmSize="md">Margin Bottom MD</Heading>
-           <p>This paragraph that comes after the heading.</p>
-        </div>
-        <div style="border: 1px solid #999">
-           <Heading tag="h1" textSize="lg" marginBtmSize="lg">Margin Bottom LG</Heading>
-           <p>This paragraph that comes after the heading.</p>
-        </div>
       </div>
     `,
    }),

@@ -2,7 +2,7 @@
    <Card>
       <template #title>
          <slot name="header">
-            <Heading tag="h2" textSize="md" marginBtmSize="sm">{{ headingText }}</Heading>
+            <Heading tag="h2" textSize="md" class="heading-mb-sm">{{ headingText }}</Heading>
          </slot>
       </template>
       <template #content>

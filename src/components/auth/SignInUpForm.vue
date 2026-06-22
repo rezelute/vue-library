@@ -1,7 +1,7 @@
 <template>
    <Card class="max-w-xl w-full surface-p-lg">
       <template #title>
-         <Heading tag="h1" textSize="lg" marginBtmSize="sm">
+         <Heading tag="h1" textSize="lg" class="heading-mb-sm">
             {{ title }}
          </Heading>
       </template>

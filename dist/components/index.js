@@ -164,7 +164,7 @@ var V = /* @__PURE__ */ u({
 			_: 3
 		}, 8, ["class"]));
 	}
-}), [["__scopeId", "data-v-8e827346"]]), he = {}, ge = {
+}), [["__scopeId", "data-v-ee392905"]]), he = {}, ge = {
 	x: "0px",
 	y: "0px",
 	viewBox: "0 0 500 450",
@@ -323,7 +323,7 @@ var ve = /*#__PURE__*/ K(he, [["render", _e]]), ye = { class: "text-center" }, b
 			title: E(() => [x(t.$slots, "header", {}, () => [l(q, {
 				tag: "h2",
 				textSize: "md",
-				marginBtmSize: "sm"
+				class: "heading-mb-sm"
 			}, {
 				default: E(() => [c(C(e.headingText), 1)]),
 				_: 1
@@ -465,7 +465,7 @@ var ve = /*#__PURE__*/ K(he, [["render", _e]]), ye = { class: "text-center" }, b
 			title: E(() => [x(t.$slots, "header", {}, () => [l(q, {
 				tag: "h2",
 				textSize: "md",
-				marginBtmSize: "sm"
+				class: "heading-mb-sm"
 			}, {
 				default: E(() => [c(C(e.headingText), 1)]),
 				_: 1
@@ -525,7 +525,7 @@ var ve = /*#__PURE__*/ K(he, [["render", _e]]), ye = { class: "text-center" }, b
 			title: E(() => [x(t.$slots, "header", {}, () => [l(q, {
 				tag: "h2",
 				textSize: "md",
-				marginBtmSize: "sm"
+				class: "heading-mb-sm"
 			}, {
 				default: E(() => [c(C(e.headingText), 1)]),
 				_: 1
@@ -692,7 +692,7 @@ var ve = /*#__PURE__*/ K(he, [["render", _e]]), ye = { class: "text-center" }, b
 			title: E(() => [l(q, {
 				tag: "h1",
 				textSize: "lg",
-				marginBtmSize: "sm"
+				class: "heading-mb-sm"
 			}, {
 				default: E(() => [c(C(e.title), 1)]),
 				_: 1
@@ -772,7 +772,7 @@ var ve = /*#__PURE__*/ K(he, [["render", _e]]), ye = { class: "text-center" }, b
 			title: E(() => [l(q, {
 				tag: "h1",
 				textSize: "md",
-				marginBtmSize: "sm"
+				class: "heading-mb-sm"
 			}, {
 				default: E(() => [c(C(e.title), 1)]),
 				_: 1
@@ -832,6 +832,6 @@ var ve = /*#__PURE__*/ K(he, [["render", _e]]), ye = { class: "text-center" }, b
 			_: 3
 		})]));
 	}
-}), [["__scopeId", "data-v-9a0740d5"]]);
+}), [["__scopeId", "data-v-3cee568e"]]);
 //#endregion
 export { J as AppErrorInfo, Qe as ChangeEmailRequest, et as DeleteAccountRequest, Pe as DialogLoader, Z as FormField, q as Heading, Y as InputSkeleton, nt as NameInput, Ae as PageInfiniteLoader, Oe as PageLoader, me as ScrollToTop, ft as SignInUpForm, _t as SignInUpVerifyCode, fe as SiteNavigation, V as ThemeToggle, ut as ToastProgress, He as UserAccountInfo };
